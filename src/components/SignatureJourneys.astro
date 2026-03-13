@@ -1,0 +1,241 @@
+---
+const journeys = [
+  {
+    id: '01',
+    title: 'The South Island Grand Tour',
+    country: 'New Zealand',
+    duration: '14 nights',
+    highlights: ['Fiordland by private charter', 'Helicopter to Franz Josef', 'Luxury lodge circuit'],
+    description: 'An immersive odyssey through the South Island\'s most dramatic landscapes — from Queenstown\'s alpine grandeur to the primal silence of Fiordland.',
+    image: 'https://picsum.photos/seed/south-island-journey/1200/800',
+    slug: '/journeys/south-island-grand-tour',
+  },
+  {
+    id: '02',
+    title: 'Northland & Bay of Islands Private Sail',
+    country: 'New Zealand',
+    duration: '8 nights',
+    highlights: ['Private yacht charter', 'Waitangi Treaty Grounds private visit', 'Paihia to Cape Brett lighthouse'],
+    description: 'Sail the sapphire waters of Northland aboard a private vessel, discovering hidden coves, island vineyards, and the birthplace of modern New Zealand.',
+    image: 'https://picsum.photos/seed/northland-sail/1200/800',
+    slug: '/journeys/northland-private-sail',
+  },
+  {
+    id: '03',
+    title: "Australia's Red Centre & Reef",
+    country: 'Australia',
+    duration: '12 nights',
+    highlights: ['Uluru at sunrise by 4WD', 'Private reef snorkel, Whitsundays', 'Indigenous cultural experience'],
+    description: 'An Australia of contrasts — the ancient ochre heart of the continent to the luminous world beneath the Coral Sea.',
+    image: 'https://picsum.photos/seed/australia-red-reef/1200/800',
+    slug: '/journeys/australia-red-centre-reef',
+  },
+];
+---
+
+<section
+  class="section-pad"
+  style="background:#112250; position:relative; overflow:hidden;"
+>
+
+  <!-- Decorative NZ Map SVG background -->
+  <svg
+    viewBox="0 0 200 420"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    style="
+      position:absolute;
+      right:-2%;
+      top:50%;
+      transform:translateY(-50%);
+      width:min(320px,28vw);
+      opacity:0.07;
+      fill:none;
+      stroke:#F5F0E9;
+      stroke-width:1.5;
+      pointer-events:none;
+    "
+  >
+    <!-- North Island -->
+    <path d="
+      M 88,12 C 92,8 99,6 106,10
+      C 118,16 128,30 132,48
+      C 136,64 138,72 148,86
+      C 158,100 162,116 158,132
+      C 154,148 144,160 136,170
+      C 126,180 116,184 106,184
+      C 94,184 82,176 72,162
+      C 62,148 56,130 58,112
+      C 60,94 68,78 70,62
+      C 72,46 76,28 88,12 Z
+    " />
+    <!-- South Island -->
+    <path d="
+      M 108,210 C 118,206 132,208 144,216
+      C 156,224 164,238 166,254
+      C 168,268 164,282 160,296
+      C 156,308 148,318 144,330
+      C 138,344 136,358 128,370
+      C 120,382 108,390 96,390
+      C 82,390 68,380 58,368
+      C 48,356 42,340 42,324
+      C 42,308 48,292 50,276
+      C 52,260 48,244 52,228
+      C 56,214 70,206 86,206
+      C 96,206 104,208 108,210 Z
+    " />
+    <!-- Stewart Island -->
+    <ellipse cx="112" cy="410" rx="10" ry="7" />
+    <!-- Cook Strait suggestion -->
+    <line x1="106" y1="192" x2="108" y2="204" stroke-dasharray="3,4" />
+  </svg>
+
+  <div class="container-xl">
+
+    <!-- Section header -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-20">
+      <div>
+        <div class="overline-light mb-4" data-reveal>exclusive collections</div>
+        <h2
+          class="display"
+          style="font-size:clamp(48px,6vw,88px); color:#F5F0E9; line-height:1;"
+          data-reveal
+          data-delay="100"
+        >
+          Signature<br />Journeys
+        </h2>
+      </div>
+      <p
+        class="type-body-font"
+        style="font-size:15px; font-style:italic; line-height:1.8; color:rgba(245,240,233,0.6); max-width:360px;"
+        data-reveal="right"
+        data-delay="200"
+      >
+        Meticulously curated journeys that reveal places most travellers never see — and experiences impossible to replicate.
+      </p>
+    </div>
+
+    <!-- Journey cards — horizontal editorial layout -->
+    <div class="flex flex-col gap-12">
+      {journeys.map(({ id, title, country, duration, highlights, description, image, slug }, i) => (
+        <a
+          href={slug}
+          class="journey-card group"
+          data-reveal
+          data-delay={String(i * 150)}
+          style="
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            text-decoration:none;
+            background:rgba(245,240,233,0.04);
+            border:1px solid rgba(245,240,233,0.08);
+          "
+        >
+          <!-- Image side -->
+          <div
+            style={`overflow:hidden; ${i % 2 === 1 ? 'order:2;' : ''}`}
+          >
+            <img
+              src={image}
+              alt={title}
+              style="width:100%; height:100%; min-height:360px; object-fit:cover; display:block; transition:transform 0.8s ease;"
+              class="journey-img"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Content side -->
+          <div
+            style={`
+              padding:clamp(32px,4vw,60px);
+              display:flex;
+              flex-direction:column;
+              justify-content:center;
+              gap:20px;
+              ${i % 2 === 1 ? 'order:1;' : ''}
+            `}
+          >
+            <div class="flex items-center gap-4">
+              <span
+                style="font-family:'Cormorant Unicase',serif; font-size:11px; font-weight:400; letter-spacing:0.3em; color:rgba(245,240,233,0.3);"
+              >
+                {id}
+              </span>
+              <span style="width:24px; height:1px; background:rgba(245,240,233,0.2);"></span>
+              <span
+                class="type-body-font"
+                style="font-size:10px; font-style:italic; letter-spacing:0.2em; color:rgba(245,240,233,0.45);"
+              >
+                {country} · {duration}
+              </span>
+            </div>
+
+            <h3
+              class="type-heading-font"
+              style="font-size:clamp(24px,2.5vw,36px); font-weight:300; color:#F5F0E9; letter-spacing:0.05em; line-height:1.2;"
+            >
+              {title}
+            </h3>
+
+            <p
+              class="type-body-font"
+              style="font-size:14px; font-style:italic; color:rgba(245,240,233,0.6); line-height:1.85;"
+            >
+              {description}
+            </p>
+
+            <!-- Highlights -->
+            <ul style="display:flex; flex-direction:column; gap:8px; margin:4px 0;">
+              {highlights.map((h) => (
+                <li style="display:flex; align-items:center; gap:10px;">
+                  <span style="width:16px; height:1px; background:rgba(201,233,255,0.5); flex-shrink:0;"></span>
+                  <span class="type-body-font" style="font-size:12px; font-style:italic; color:rgba(245,240,233,0.5); letter-spacing:0.06em;">{h}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div style="margin-top:8px;">
+              <span class="btn-luxury btn-luxury-light" style="font-size:11px;">
+                View journey
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                  <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- View all -->
+    <div class="flex justify-center mt-16" data-reveal>
+      <a href="/journeys" class="btn-filled btn-filled-light">
+        View All Signature Journeys
+        <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+          <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Hover effect on journey image */
+  .journey-card:hover .journey-img {
+    transform: scale(1.04);
+  }
+
+  @media (max-width: 640px) {
+    .journey-card {
+      grid-template-columns: 1fr !important;
+    }
+    .journey-card > div:first-child {
+      order: 0 !important;
+    }
+    .journey-card > div:last-child {
+      order: 1 !important;
+    }
+  }
+</style>

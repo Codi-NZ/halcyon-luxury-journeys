@@ -1,0 +1,364 @@
+---
+const navLinks = [
+  { href: '/journeys',     label: 'Journeys' },
+  { href: '/destinations', label: 'Destinations' },
+  { href: '/experiences',  label: 'Experiences' },
+  { href: '/about',        label: 'About' },
+  { href: '/contact',      label: 'Contact' },
+];
+---
+
+<!-- ─── Utility bar ─────────────────────────────── -->
+<div class="layout-outer utility-bar">
+  <div class="layout-inner utility-bar-inner">
+    <span class="type-body-font utility-text">New Zealand · Australia</span>
+    <a href="tel:+6491234567" class="type-body-font utility-text utility-link">+64 9 123 4567</a>
+  </div>
+</div>
+
+<!-- ─── Main header ────────────────────────────── -->
+<header id="site-header" class="layout-outer site-header">
+  <div class="layout-inner site-header-inner">
+
+    <a href="/" class="logo-link">
+      <img src="/halcyon-logo.svg" alt="Halcyon Luxury Journeys" id="header-logo" class="header-logo" />
+    </a>
+
+    <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu-overlay">
+      <span id="menu-label" class="menu-toggle-label type-body-font">Menu</span>
+      <span class="burger">
+        <span id="m1" class="burger-line"></span>
+        <span id="m2" class="burger-line"></span>
+        <span id="m3" class="burger-line"></span>
+      </span>
+    </button>
+
+  </div>
+</header>
+
+<!-- ─── Full-screen top-drop overlay ──────────── -->
+<div id="site-menu-overlay" class="menu-overlay" aria-hidden="true">
+
+  <div class="menu-overlay-grid">
+
+    <!-- Left: nav links -->
+    <nav class="menu-nav">
+      {navLinks.map(({ href, label }, i) => (
+        <a href={href} class="overlay-link display" style={`transition-delay: ${i * 0.07}s;`}>
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Right: contact -->
+    <div class="menu-contact">
+
+      <div class="contact-block" style="transition-delay: 0.32s;">
+        <p class="type-body-font contact-eyebrow">Get in Touch</p>
+        <a href="tel:+6491234567" class="type-body-font contact-phone">+64 9 123 4567</a>
+        <a href="mailto:hello@halcyonjourneys.com" class="type-body-font contact-email">hello@halcyonjourneys.com</a>
+      </div>
+
+      <div class="contact-block" style="transition-delay: 0.42s;">
+        <p class="type-body-font contact-eyebrow">Where We Travel</p>
+        <p class="type-body-font contact-destinations">New Zealand<br/>Australia</p>
+      </div>
+
+      <div class="contact-block" style="transition-delay: 0.52s;">
+        <a href="/enquire" class="type-body-font menu-cta">
+          Begin Your Journey
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+            <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom strip -->
+  <div class="menu-footer">
+    <span class="type-body-font menu-footer-text">Halcyon Luxury Journeys</span>
+  </div>
+
+</div>
+
+<style>
+  /* ── Utility bar ── */
+  .utility-bar {
+    background: #F5F0E9;
+    border-bottom: 1px solid rgba(17,34,80,0.08);
+  }
+  .utility-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 38px;
+  }
+  .utility-text {
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(17,34,80,0.45);
+    letter-spacing: 0.12em;
+  }
+  .utility-link {
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  .utility-link:hover { color: rgba(17,34,80,0.85); }
+
+  /* ── Main header ── */
+  .site-header {
+    background: #F5F0E9;
+    border-bottom: 1px solid rgba(17,34,80,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 600;
+    transition: background 0.4s ease, border-color 0.4s ease;
+  }
+  .site-header.menu-open {
+    background: transparent;
+    border-color: transparent;
+  }
+  .site-header-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    height: 72px;
+  }
+
+  /* ── Logo ── */
+  .logo-link { display:flex; align-items:center; text-decoration:none; }
+  .header-logo {
+    width: min(210px, 48vw);
+    height: auto;
+    display: block;
+    transition: filter 0.4s ease;
+  }
+  .menu-open .header-logo { filter: brightness(0) invert(1); }
+
+  /* ── Menu toggle ── */
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 4px 6px 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+  }
+  .menu-toggle-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #112250;
+    transition: color 0.4s ease;
+  }
+  .menu-open .menu-toggle-label { color: #F5F0E9; }
+
+  .burger { display:flex; flex-direction:column; gap:5px; }
+  .burger-line {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: #112250;
+    transition: transform 0.35s ease, opacity 0.35s ease, background 0.4s ease;
+    transform-origin: center;
+  }
+  .menu-open .burger-line { background: #F5F0E9; }
+  .menu-open #m1 { transform: translateY(6.5px) rotate(45deg); }
+  .menu-open #m2 { opacity: 0; }
+  .menu-open #m3 { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ── Overlay ── */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 550;
+    background: #112250;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-100%);
+    transition: transform 0.65s cubic-bezier(0.76, 0, 0.24, 1);
+    overflow: hidden;
+  }
+  .menu-overlay.open { transform: translateY(0); }
+
+  .menu-overlay-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: clamp(80px,10vw,140px) clamp(24px,6vw,100px);
+    gap: clamp(40px,6vw,80px);
+  }
+
+  /* ── Nav links ── */
+  .menu-nav { display:flex; flex-direction:column; }
+
+  .overlay-link {
+    display: block;
+    position: relative;
+    font-size: clamp(36px,5.5vw,80px);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: rgba(245,240,233,0.25);
+    text-decoration: none;
+    line-height: 1.1;
+    padding: clamp(8px,1vw,14px) 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: color 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* Static dim line — always present */
+  .overlay-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(245,240,233,0.08);
+  }
+
+  /* Animated gold line — slides in from left on hover */
+  .overlay-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: #C9A96E;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+
+  .overlay-link:hover { color: #F5F0E9; }
+  .overlay-link:hover::after { transform: scaleX(1); }
+
+  .menu-overlay.open .overlay-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Contact ── */
+  .menu-contact {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px,3.5vw,48px);
+    padding-left: clamp(20px,4vw,60px);
+    border-left: 1px solid rgba(245,240,233,0.1);
+  }
+
+  .contact-block {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .menu-overlay.open .contact-block {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .contact-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(201,169,110,0.8);
+    margin-bottom: 14px;
+  }
+  .contact-phone {
+    display: block;
+    font-size: clamp(16px,1.4vw,22px);
+    color: #F5F0E9;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    transition: color 0.25s ease;
+  }
+  .contact-phone:hover { color: #C9A96E; }
+
+  .contact-email {
+    display: block;
+    font-size: clamp(13px,1vw,16px);
+    color: rgba(245,240,233,0.5);
+    text-decoration: none;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    transition: color 0.25s ease;
+  }
+  .contact-email:hover { color: #C9A96E; }
+
+  .contact-destinations {
+    font-size: clamp(13px,0.9vw,15px);
+    color: rgba(245,240,233,0.45);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .menu-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #F5F0E9;
+    text-decoration: none;
+    border: 1px solid rgba(245,240,233,0.3);
+    padding: 14px 24px;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+  .menu-cta:hover { border-color: #C9A96E; color: #C9A96E; }
+
+  /* ── Footer strip ── */
+  .menu-footer {
+    padding: clamp(16px,2vw,24px) clamp(24px,6vw,100px);
+    border-top: 1px solid rgba(245,240,233,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .menu-footer-text {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(245,240,233,0.25);
+    font-style: italic;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .menu-overlay-grid { grid-template-columns: 1fr; }
+    .menu-contact { display: none; }
+  }
+</style>
+
+<script>
+  const header   = document.getElementById('site-header')!;
+  const toggle   = document.getElementById('menu-toggle')!;
+  const overlay  = document.getElementById('site-menu-overlay')!;
+  let isOpen = false;
+
+  const set = (next: boolean) => {
+    isOpen = next;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    overlay.classList.toggle('open', isOpen);
+    overlay.setAttribute('aria-hidden', String(!isOpen));
+    header.classList.toggle('menu-open', isOpen);
+    document.documentElement.style.overflow = isOpen ? 'hidden' : '';
+  };
+
+  toggle.addEventListener('click', () => set(!isOpen));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isOpen) set(false);
+  });
+
+  overlay.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => set(false));
+  });
+</script>

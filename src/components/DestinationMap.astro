@@ -1,0 +1,242 @@
+---
+---
+
+<section style="background:#F5F0E9; padding: clamp(64px,8vw,120px) 0;">
+  <div class="container-xl">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,6vw,100px); align-items:center;">
+
+      <!-- LEFT: SVG Maps -->
+      <div style="position:relative; display:flex; align-items:center; justify-content:center; gap:clamp(40px,5vw,80px);">
+
+        <!-- Australia SVG -->
+        <svg
+          id="map-australia"
+          viewBox="0 0 280 280"
+          xmlns="http://www.w3.org/2000/svg"
+          style="width:clamp(160px,18vw,240px); cursor:pointer; transition:opacity 0.3s ease;"
+          aria-label="Australia"
+          data-country="australia"
+        >
+          <!-- Mainland -->
+          <path
+            id="au-mainland"
+            d="M 200,22 C 216,22 232,28 244,40 C 256,52 262,70 264,86 C 268,106 266,122 260,138 C 256,150 252,158 254,168 C 258,178 268,186 270,198 C 272,214 262,230 248,240 C 234,250 214,254 196,256 C 176,258 154,256 136,248 C 116,240 100,226 86,218 C 72,210 58,208 46,208 C 32,208 18,216 8,212 C 0,208 -2,196 4,184 C 10,170 22,158 32,144 C 42,130 48,114 48,98 C 48,82 42,66 48,52 C 56,36 76,26 98,20 C 120,14 146,14 168,16 C 182,18 194,20 200,22 Z"
+            fill="rgba(17,34,80,0.06)"
+            stroke="#112250"
+            stroke-width="1.5"
+            stroke-linejoin="round"
+            class="map-path"
+            style="transition: fill 0.4s ease;"
+          />
+          <!-- Tasmania -->
+          <ellipse
+            id="au-tasmania"
+            cx="218" cy="268" rx="16" ry="12"
+            fill="rgba(17,34,80,0.06)"
+            stroke="#112250"
+            stroke-width="1.5"
+            class="map-path"
+            style="transition: fill 0.4s ease;"
+          />
+          <!-- Cape York peninsula -->
+          <path
+            id="au-cape"
+            d="M 248,22 C 252,14 260,8 266,12 C 270,16 268,28 262,38 C 256,48 246,52 242,48 C 240,40 244,30 248,22 Z"
+            fill="rgba(17,34,80,0.06)"
+            stroke="#112250"
+            stroke-width="1.5"
+            class="map-path"
+            style="transition: fill 0.4s ease;"
+          />
+        </svg>
+
+        <!-- New Zealand SVG -->
+        <svg
+          id="map-nz"
+          viewBox="0 0 120 320"
+          xmlns="http://www.w3.org/2000/svg"
+          style="width:clamp(55px,6vw,80px); cursor:pointer; transition:opacity 0.3s ease;"
+          aria-label="New Zealand"
+          data-country="nz"
+        >
+          <!-- North Island -->
+          <path
+            id="nz-north"
+            d="M 80,8 C 90,12 98,22 100,34 C 102,46 96,58 88,68 C 80,78 70,84 66,94 C 62,104 64,116 58,126 C 52,136 40,140 32,136 C 22,130 18,118 20,106 C 22,94 30,84 36,74 C 44,62 50,50 52,38 C 54,24 50,10 58,6 C 66,2 74,4 80,8 Z"
+            fill="rgba(17,34,80,0.06)"
+            stroke="#112250"
+            stroke-width="1.5"
+            stroke-linejoin="round"
+            class="map-path"
+            style="transition: fill 0.4s ease;"
+          />
+          <!-- Cook Strait gap -->
+          <!-- South Island -->
+          <path
+            id="nz-south"
+            d="M 90,156 C 100,162 108,174 108,188 C 108,202 100,214 90,222 C 80,230 66,234 54,238 C 42,242 28,244 18,238 C 8,232 4,220 6,208 C 8,196 16,186 22,176 C 30,164 36,152 44,144 C 52,136 62,132 72,134 C 80,136 86,148 90,156 Z"
+            fill="rgba(17,34,80,0.06)"
+            stroke="#112250"
+            stroke-width="1.5"
+            stroke-linejoin="round"
+            class="map-path"
+            style="transition: fill 0.4s ease;"
+          />
+          <!-- Stewart Island -->
+          <ellipse
+            id="nz-stewart"
+            cx="30" cy="272" rx="12" ry="16"
+            fill="rgba(17,34,80,0.06)"
+            stroke="#112250"
+            stroke-width="1.5"
+            class="map-path"
+            style="transition: fill 0.4s ease;"
+          />
+        </svg>
+
+      </div>
+
+      <!-- RIGHT: Clickable items -->
+      <div>
+        <div class="overline mb-6" data-reveal>our destinations</div>
+
+        <!-- New Zealand -->
+        <div
+          class="map-item"
+          data-target="nz"
+          style="
+            padding: clamp(24px,2.5vw,36px) 0;
+            border-top: 1px solid rgba(17,34,80,0.15);
+            cursor: pointer;
+          "
+        >
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+            <div>
+              <div class="overline" style="margin-bottom:8px; color:rgba(17,34,80,0.45);">Destination 01</div>
+              <h3
+                class="display text-navy"
+                style="font-size:clamp(32px,4vw,60px); line-height:1; font-weight:400; letter-spacing:0.04em;"
+              >New Zealand</h3>
+              <p
+                class="type-body-font map-item-desc"
+                style="font-size:clamp(13px,0.9vw,15px); font-style:italic; color:rgba(17,34,80,0.55); margin-top:8px; line-height:1.6; max-height:0; overflow:hidden; transition:max-height 0.4s ease, opacity 0.4s ease; opacity:0;"
+              >Fiordland, Queenstown, Bay of Islands — landscapes of rare beauty at the edge of the Pacific.</p>
+            </div>
+            <span class="map-item-arrow" style="font-size:24px; color:rgba(17,34,80,0.3); transition:transform 0.3s ease, color 0.3s ease;">→</span>
+          </div>
+        </div>
+
+        <!-- Australia -->
+        <div
+          class="map-item"
+          data-target="australia"
+          style="
+            padding: clamp(24px,2.5vw,36px) 0;
+            border-top: 1px solid rgba(17,34,80,0.15);
+            border-bottom: 1px solid rgba(17,34,80,0.15);
+            cursor: pointer;
+          "
+        >
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:16px;">
+            <div>
+              <div class="overline" style="margin-bottom:8px; color:rgba(17,34,80,0.45);">Destination 02</div>
+              <h3
+                class="display text-navy"
+                style="font-size:clamp(32px,4vw,60px); line-height:1; font-weight:400; letter-spacing:0.04em;"
+              >Australia</h3>
+              <p
+                class="type-body-font map-item-desc"
+                style="font-size:clamp(13px,0.9vw,15px); font-style:italic; color:rgba(17,34,80,0.55); margin-top:8px; line-height:1.6; max-height:0; overflow:hidden; transition:max-height 0.4s ease, opacity 0.4s ease; opacity:0;"
+              >The Whitsundays, Uluru, The Kimberley — ancient, vast, and endlessly surprising.</p>
+            </div>
+            <span class="map-item-arrow" style="font-size:24px; color:rgba(17,34,80,0.3); transition:transform 0.3s ease, color 0.3s ease;">→</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .map-item:hover h3,
+  .map-item.is-active h3 {
+    color: #112250;
+  }
+
+  .map-item.is-active .map-item-desc,
+  .map-item:hover .map-item-desc {
+    max-height: 80px !important;
+    opacity: 1 !important;
+  }
+
+  .map-item.is-active .map-item-arrow,
+  .map-item:hover .map-item-arrow {
+    color: #C9A96E !important;
+    transform: translateX(4px);
+  }
+
+  /* Active map highlight */
+  #map-australia.is-active .map-path,
+  #map-nz.is-active .map-path {
+    fill: rgba(17,34,80,0.18);
+  }
+
+  #map-australia.is-highlighted .map-path {
+    fill: #C9A96E;
+    fill-opacity: 0.35;
+  }
+
+  #map-nz.is-highlighted .map-path {
+    fill: #C9A96E;
+    fill-opacity: 0.35;
+  }
+
+  /* Dim the non-active map */
+  #map-australia.is-dimmed,
+  #map-nz.is-dimmed {
+    opacity: 0.3;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll<HTMLElement>('.map-item');
+    const mapAU = document.getElementById('map-australia')!;
+    const mapNZ = document.getElementById('map-nz')!;
+
+    function activate(target: string) {
+      items.forEach(item => item.classList.toggle('is-active', item.dataset.target === target));
+
+      if (target === 'nz') {
+        mapNZ.classList.add('is-highlighted');
+        mapNZ.classList.remove('is-dimmed');
+        mapAU.classList.remove('is-highlighted');
+        mapAU.classList.add('is-dimmed');
+      } else {
+        mapAU.classList.add('is-highlighted');
+        mapAU.classList.remove('is-dimmed');
+        mapNZ.classList.remove('is-highlighted');
+        mapNZ.classList.add('is-dimmed');
+      }
+    }
+
+    function reset() {
+      items.forEach(item => item.classList.remove('is-active'));
+      mapAU.classList.remove('is-highlighted', 'is-dimmed');
+      mapNZ.classList.remove('is-highlighted', 'is-dimmed');
+    }
+
+    items.forEach(item => {
+      item.addEventListener('mouseenter', () => activate(item.dataset.target!));
+      item.addEventListener('mouseleave', reset);
+      item.addEventListener('click', () => activate(item.dataset.target!));
+    });
+
+    // Also hovering directly on the SVG maps
+    mapAU.addEventListener('mouseenter', () => activate('australia'));
+    mapNZ.addEventListener('mouseenter', () => activate('nz'));
+    mapAU.addEventListener('mouseleave', reset);
+    mapNZ.addEventListener('mouseleave', reset);
+  });
+</script>

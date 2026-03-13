@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LoadingScreen from '../components/LoadingScreen.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import BrandIntro from '../components/BrandIntro.astro';
+import DestinationsAccordion from '../components/DestinationsAccordion.astro';
+import ExperiencesCarousel from '../components/ExperiencesCarousel.astro';
+import SignatureJourneys from '../components/SignatureJourneys.astro';
+import WhyHalcyon from '../components/WhyHalcyon.astro';
+import DestinationStory from '../components/DestinationStory.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<Layout
+  title="Halcyon Luxury Journeys — Curated Travel, New Zealand & Australia"
+  description="Halcyon curates extraordinary private journeys through New Zealand and Australia — bespoke, exclusive, unforgettable."
+>
+  <LoadingScreen />
+  <Header />
+
+  <main>
+    <Hero />
+    <BrandIntro />
+    <DestinationsAccordion />
+    <ExperiencesCarousel />
+    <SignatureJourneys />
+    <WhyHalcyon />
+    <DestinationStory />
+    <Testimonials />
+    <CTASection />
+  </main>
+
+  <Footer />
+</Layout>

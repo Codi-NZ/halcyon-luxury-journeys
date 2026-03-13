@@ -1,0 +1,37 @@
+<!-- Loading Screen — Meridian concept: vertical bar draws down, wordmark rises -->
+<div id="loading-screen" aria-hidden="true">
+  <div class="loading-inner">
+    <div class="loading-bar-wrap">
+      <div class="loading-bar"></div>
+    </div>
+    <img src="/halcyon-logo.svg" alt="Halcyon Luxury Journeys" class="loading-logo" />
+  </div>
+</div>
+
+<script>
+  const MIN_MS = 2400;
+  const start = performance.now();
+
+  // Prevent scroll during loading
+  document.documentElement.style.overflow = 'hidden';
+
+  function exitLoading() {
+    const screen = document.getElementById('loading-screen');
+    if (!screen) return;
+    screen.classList.add('exit');
+    setTimeout(() => {
+      screen.remove();
+      document.documentElement.style.overflow = '';
+    }, 1050);
+  }
+
+  if (document.readyState === 'complete') {
+    const elapsed = performance.now() - start;
+    setTimeout(exitLoading, Math.max(0, MIN_MS - elapsed));
+  } else {
+    window.addEventListener('load', () => {
+      const elapsed = performance.now() - start;
+      setTimeout(exitLoading, Math.max(0, MIN_MS - elapsed));
+    });
+  }
+</script>

@@ -1,0 +1,16 @@
+{
+  "name": "halcyon-luxury-journeys",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev --host",
+    "start": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.12",
+    "astro": "^4.16.0",
+    "tailwindcss": "^4.1.12"
+  }
+}

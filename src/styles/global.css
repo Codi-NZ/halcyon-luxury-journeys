@@ -1,0 +1,511 @@
+/* ─── Google Fonts ─────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+@import './typography.css';
+@import "tailwindcss";
+
+/* ─── Tailwind v4 Theme Tokens ─────────────────── */
+@theme {
+  /* Breakpoints */
+  --breakpoint-xs: 360px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+  --breakpoint-3xl: 1680px;
+  --breakpoint-4xl: 1920px;
+
+  /* Brand colors */
+  --color-navy: #112250;
+  --color-cream: #F5F0E9;
+  --color-skyblue: #C9E9FF;
+  --color-sand: #FFF1DA;
+
+  /* Typography families */
+  --font-cormorant: "Cormorant Unicase", serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-lato: "Lato", sans-serif;
+
+  /* Letter spacing */
+  --tracking-ultra: 0.30em;
+  --tracking-widest: 0.20em;
+
+  /* Container widths */
+  --container-content: 123.75rem; /* 1980px design canvas */
+  --container-content-narrow: 82.5rem; /* 1320px readable content width */
+
+  /* Section spacing scale */
+  --spacing-section-sm: 5rem;
+  --spacing-section-md: 7rem;
+  --spacing-section-lg: 9rem;
+}
+
+/* ─── Base Reset ────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Playfair Display', serif;
+  color: #112250;
+  background-color: #F5F0E9;
+  overflow-x: hidden;
+}
+
+/* ─── Layout System (Outer + Inner Containers) ─── */
+@layer components {
+  /* Full-width wrapper for section backgrounds and visual separation */
+  .layout-outer {
+    @apply w-full;
+  }
+
+  /*
+    Main content container:
+    - centered
+    - modern large-screen max-width
+    - responsive horizontal breathing room
+  */
+  .layout-inner {
+    @apply mx-auto w-full max-w-content px-5 sm:px-7 md:px-8 lg:px-10 xl:px-14 2xl:px-16 3xl:px-20 4xl:px-24;
+  }
+
+  /* Narrow variant for reading-heavy blocks */
+  .layout-inner-narrow {
+    @apply mx-auto w-full max-w-content-narrow px-5 sm:px-7 md:px-8 lg:px-10 xl:px-12;
+  }
+
+  /* Consistent vertical rhythm between sections */
+  .section-space {
+    @apply py-20 md:py-28 xl:py-36;
+  }
+
+  .section-space-tight {
+    @apply py-14 md:py-20 xl:py-24;
+  }
+}
+
+/* ─── Loading Screen ────────────────────────────── */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #112250;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0;
+  transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1),
+              opacity 0.4s ease;
+}
+
+#loading-screen.exit {
+  transform: translateY(-100%);
+}
+
+.loading-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.loading-bar-wrap {
+  width: 1px;
+  height: 60px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.loading-bar {
+  width: 1px;
+  height: 100%;
+  background: rgba(245, 240, 233, 0.45);
+  transform: scaleY(0);
+  transform-origin: top center;
+  animation: barGrow 0.9s cubic-bezier(0.76, 0, 0.24, 1) forwards 0.3s;
+}
+
+@keyframes barGrow {
+  to { transform: scaleY(1); }
+}
+
+.loading-wordmark {
+  font-family: 'Cormorant Unicase', serif;
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 300;
+  color: #F5F0E9;
+  letter-spacing: 0.28em;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: wordUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) forwards 0.9s;
+}
+
+.loading-sub {
+  font-family: 'Playfair Display', serif;
+  font-size: 9px;
+  font-style: italic;
+  color: rgba(245, 240, 233, 0.45);
+  letter-spacing: 0.35em;
+  margin-top: 10px;
+  opacity: 0;
+  animation: fadeIn 0.7s ease forwards 1.5s;
+}
+
+.loading-logo {
+  width: min(340px, 74vw);
+  height: auto;
+  display: block;
+  filter: brightness(0) saturate(100%) invert(96%) sepia(11%) saturate(295%) hue-rotate(325deg) brightness(104%) contrast(95%);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: wordUp 0.9s cubic-bezier(0.76, 0, 0.24, 1) forwards 0.9s;
+}
+
+@keyframes wordUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ─── Scroll Reveal System ──────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+[data-reveal="left"] {
+  transform: translateX(-36px);
+}
+
+[data-reveal="right"] {
+  transform: translateX(36px);
+}
+
+[data-reveal="scale"] {
+  transform: scale(0.96);
+  opacity: 0;
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* ─── Typography ────────────────────────────────── */
+.display {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.overline {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.25em;
+  color: rgba(17, 34, 80, 0.5);
+  text-transform: lowercase;
+}
+
+.overline-light {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px;
+  font-style: italic;
+  letter-spacing: 0.25em;
+  color: rgba(245, 240, 233, 0.55);
+  text-transform: lowercase;
+}
+
+/* ─── Thin Rule ─────────────────────────────────── */
+.rule {
+  width: 48px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.25;
+}
+
+/* ─── Luxury Button ─────────────────────────────── */
+.btn-luxury {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.2em;
+  color: #112250;
+  border-bottom: 1px solid rgba(17, 34, 80, 0.3);
+  padding-bottom: 3px;
+  transition: gap 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-luxury:hover {
+  gap: 16px;
+  border-color: rgba(17, 34, 80, 0.8);
+}
+
+.btn-luxury-light {
+  color: #F5F0E9;
+  border-bottom-color: rgba(245, 240, 233, 0.35);
+}
+
+.btn-luxury-light:hover {
+  border-bottom-color: rgba(245, 240, 233, 0.9);
+}
+
+.btn-filled {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 0.18em;
+  color: #F5F0E9;
+  background: #112250;
+  border: 1px solid #112250;
+  padding: 14px 32px;
+  transition: background 0.35s ease, color 0.35s ease, gap 0.3s ease;
+}
+
+.btn-filled:hover {
+  background: transparent;
+  color: #112250;
+  gap: 16px;
+}
+
+.btn-filled-light {
+  color: #112250;
+  background: #F5F0E9;
+  border-color: #F5F0E9;
+}
+
+.btn-filled-light:hover {
+  background: transparent;
+  color: #F5F0E9;
+}
+
+/* ─── Cards ─────────────────────────────────────── */
+.dest-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: #fff;
+}
+
+.dest-card-img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.dest-card:hover .dest-card-img {
+  transform: scale(1.06);
+}
+
+.dest-card-body {
+  padding: 24px 0 0;
+}
+
+/* Journey card (horizontal) */
+.journey-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.journey-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(17, 34, 80, 0.25);
+}
+
+/* ─── Parallax Hero Setup ───────────────────────── */
+.hero-wrap {
+  position: relative;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: -10% 0;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: center 30%;
+  will-change: transform;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(17, 34, 80, 0.15) 0%,
+    rgba(0, 0, 0, 0.05) 40%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+.hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: clamp(60px, 10vh, 100px);
+  text-align: center;
+  will-change: transform, opacity;
+}
+
+/* ─── Section Utilities ─────────────────────────── */
+.section-pad {
+  padding-top: clamp(72px, 10vw, 140px);
+  padding-bottom: clamp(72px, 10vw, 140px);
+}
+
+.container-xl {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-left: clamp(20px, 5vw, 80px);
+  padding-right: clamp(20px, 5vw, 80px);
+}
+
+.container-lg {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: clamp(20px, 5vw, 60px);
+  padding-right: clamp(20px, 5vw, 60px);
+}
+
+/* ─── Map SVG ───────────────────────────────────── */
+.map-svg {
+  position: absolute;
+  opacity: 0.06;
+  fill: none;
+  stroke: #112250;
+  stroke-width: 1.5;
+  pointer-events: none;
+}
+
+/* ─── Scroll Indicator ──────────────────────────── */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  bottom: 32px;
+  right: 40px;
+}
+
+.scroll-indicator span {
+  font-family: 'Playfair Display', serif;
+  font-size: 9px;
+  font-style: italic;
+  letter-spacing: 0.3em;
+  color: rgba(245, 240, 233, 0.6);
+  writing-mode: vertical-rl;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: rgba(245, 240, 233, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(245, 240, 233, 0.8);
+  animation: scrollDown 2s ease infinite 2.5s;
+}
+
+@keyframes scrollDown {
+  0%   { top: -100%; }
+  100% { top: 100%; }
+}
+
+/* ─── Header — managed by Header.astro inline styles ── */
+
+/* ─── NZ Map background decoration ─────────────── */
+.nz-map-container {
+  position: absolute;
+  right: -2%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(420px, 40vw);
+  opacity: 0.055;
+  pointer-events: none;
+}
+
+/* ─── Grain texture overlay ─────────────────────── */
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+/* ─── Testimonial ───────────────────────────────── */
+.quote-mark {
+  font-family: 'Cormorant Unicase', serif;
+  font-size: 120px;
+  line-height: 0.7;
+  color: rgba(17, 34, 80, 0.08);
+  font-weight: 300;
+  user-select: none;
+}
+
+/* ─── Mobile Nav ────────────────────────────────── */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  z-index: 490;
+  background: #112250;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-nav.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
