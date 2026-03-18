@@ -1,0 +1,234 @@
+---
+// Concept 3 — Viselli-inspired: horizontal-scroll destination/property gallery
+const stays = [
+  {
+    name: 'Blanket Bay Lodge',
+    location: 'Queenstown, New Zealand',
+    type: 'Alpine Lodge',
+    img: 'https://picsum.photos/seed/blanket-bay-c3-v2/700/900',
+    href: '/accommodation',
+  },
+  {
+    name: 'Huka Lodge',
+    location: 'Taupō, New Zealand',
+    type: 'River Retreat',
+    img: 'https://picsum.photos/seed/huka-lodge-c3-v2/700/900',
+    href: '/accommodation',
+  },
+  {
+    name: 'Cape Kidnappers',
+    location: "Hawke's Bay, New Zealand",
+    type: 'Clifftop Estate',
+    img: 'https://picsum.photos/seed/cape-kidnappers-c3-v2/700/900',
+    href: '/accommodation',
+  },
+  {
+    name: 'Saffire Freycinet',
+    location: 'Tasmania, Australia',
+    type: 'Coastal Sanctuary',
+    img: 'https://picsum.photos/seed/saffire-c3-v2/700/900',
+    href: '/accommodation',
+  },
+  {
+    name: 'Longitude 131°',
+    location: 'Uluru, Australia',
+    type: 'Desert Retreat',
+    img: 'https://picsum.photos/seed/longitude131-c3-v2/700/900',
+    href: '/accommodation',
+  },
+];
+---
+
+<section id="c3-accommodation" class="c3-accom">
+
+  <!-- Section header -->
+  <div class="c3-accom-header">
+    <div data-reveal>
+      <p class="c3-accom-label">Where you rest</p>
+      <h2 class="c3-accom-heading">Exceptional Properties</h2>
+    </div>
+    <a href="/accommodation" class="c3-accom-all" data-reveal data-delay="100">
+      View all properties
+      <svg width="12" height="8" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+        <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Horizontal scroll gallery — Viselli projects style -->
+  <div class="c3-accom-track-wrap">
+    <div class="c3-accom-track">
+      {stays.map(({ name, location, type, img, href }, i) => (
+        <a
+          href={href}
+          class="c3-accom-card"
+          data-reveal
+          data-delay={String(i * 80)}
+        >
+          <div class="c3-accom-card-img-wrap">
+            <img
+              src={img}
+              alt={name}
+              class="c3-accom-card-img"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="c3-accom-card-info">
+            <span class="c3-accom-card-type">{type}</span>
+            <h3 class="c3-accom-card-name">{name}</h3>
+            <p class="c3-accom-card-location">{location}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .c3-accom {
+    background: #F5F0E9;
+    padding: clamp(64px, 9vw, 120px) 0;
+  }
+
+  /* Header */
+  .c3-accom-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 clamp(24px, 6vw, 100px);
+    margin-bottom: clamp(36px, 5vw, 64px);
+    max-width: 1420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .c3-accom-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.22em;
+    color: rgba(17, 34, 80, 0.4);
+    margin: 0 0 10px;
+  }
+  .c3-accom-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3vw, 42px);
+    font-weight: 300;
+    color: #112250;
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+  .c3-accom-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.18em;
+    color: rgba(17, 34, 80, 0.6);
+    border-bottom: 1px solid rgba(17, 34, 80, 0.2);
+    padding-bottom: 3px;
+    text-decoration: none;
+    transition: gap 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    margin-bottom: 4px;
+  }
+  .c3-accom-all:hover {
+    gap: 16px;
+    color: #112250;
+    border-color: rgba(17, 34, 80, 0.6);
+  }
+
+  /* Horizontal scroll track */
+  .c3-accom-track-wrap {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 clamp(24px, 6vw, 100px);
+    cursor: grab;
+  }
+  .c3-accom-track-wrap:active { cursor: grabbing; }
+  .c3-accom-track-wrap::-webkit-scrollbar { display: none; }
+
+  .c3-accom-track {
+    display: flex;
+    gap: clamp(16px, 2vw, 24px);
+    width: max-content;
+    padding-bottom: clamp(20px, 3vw, 36px);
+  }
+
+  /* Cards */
+  .c3-accom-card {
+    display: block;
+    text-decoration: none;
+    flex-shrink: 0;
+    width: clamp(240px, 28vw, 380px);
+  }
+  .c3-accom-card-img-wrap {
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: rgba(17, 34, 80, 0.06);
+  }
+  .c3-accom-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .c3-accom-card:hover .c3-accom-card-img {
+    transform: scale(1.05);
+  }
+  .c3-accom-card-info {
+    padding: 16px 0 0;
+  }
+  .c3-accom-card-type {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-style: italic;
+    letter-spacing: 0.2em;
+    color: rgba(17, 34, 80, 0.38);
+    margin-bottom: 6px;
+  }
+  .c3-accom-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 1.6vw, 22px);
+    font-weight: 400;
+    color: #112250;
+    margin: 0 0 4px;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+  }
+  .c3-accom-card-location {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.12em;
+    color: rgba(17, 34, 80, 0.4);
+    margin: 0;
+  }
+</style>
+
+<script>
+  // Drag to scroll
+  const track = document.querySelector('.c3-accom-track-wrap') as HTMLElement;
+  if (track) {
+    let isDown = false, startX = 0, scrollLeft = 0;
+    track.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    track.addEventListener('mouseleave', () => { isDown = false; });
+    track.addEventListener('mouseup', () => { isDown = false; });
+    track.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      track.scrollLeft = scrollLeft - (x - startX) * 1.4;
+    });
+  }
+</script>

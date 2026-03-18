@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LoadingScreen from '../components/LoadingScreen.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Concept 3 — exclusive components
+import C3Hero          from '../components/c3/C3Hero.astro';
+import C3Manifesto     from '../components/c3/C3Manifesto.astro';
+import C3Accommodation from '../components/c3/C3Accommodation.astro';
+import C3Experiences   from '../components/c3/C3Experiences.astro';
+import C3Itineraries   from '../components/c3/C3Itineraries.astro';
+import C3WhyUs         from '../components/c3/C3WhyUs.astro';
+import C3CTA           from '../components/c3/C3CTA.astro';
+
+import '../styles/global.css';
+---
+
+<Layout
+  title="Halcyon Luxury Journeys — Homepage Concept 3"
+  description="Halcyon curates extraordinary private journeys through New Zealand and Australia — bespoke, exclusive, unforgettable."
+>
+  <LoadingScreen />
+  <Header />
+
+  <main>
+    <!-- 1. Cinematic full-viewport hero -->
+    <C3Hero />
+
+    <!-- 2. Brand manifesto — editorial pull-quote + body -->
+    <C3Manifesto />
+
+    <!-- 3. Featured accommodation — hero card + two editorial cards -->
+    <C3Accommodation />
+
+    <!-- 4. Curated experiences — numbered list + stacked imagery -->
+    <C3Experiences />
+
+    <!-- 5. Signature itineraries — navy panel, three-column cards -->
+    <C3Itineraries />
+
+    <!-- 6. Why Halcyon — sticky quote + typeset pillar list -->
+    <C3WhyUs />
+
+    <!-- 7. Closing CTA — cinematic image, wordmark ghost, dual buttons -->
+    <C3CTA />
+  </main>
+
+  <Footer />
+</Layout>

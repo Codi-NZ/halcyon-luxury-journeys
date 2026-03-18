@@ -1,0 +1,148 @@
+---
+// Concept 3 — Viselli-inspired: clean, minimal closing CTA — no heavy overlay, light feel
+---
+
+<section id="c3-cta" class="c3-cta">
+
+  <div class="c3-cta-img-wrap" data-reveal>
+    <img
+      src="https://picsum.photos/seed/halcyon-nz-lake-cta/1800/900"
+      alt="New Zealand lake at golden hour"
+      class="c3-cta-img"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <div class="c3-cta-content">
+    <div class="c3-cta-text" data-reveal data-delay="80">
+      <p class="c3-cta-label">Ready to begin</p>
+      <h2 class="c3-cta-heading">
+        Every remarkable journey<br />begins with a conversation.
+      </h2>
+      <p class="c3-cta-body">
+        Share your vision with us — no obligation, just a quiet conversation
+        about the kind of travel that changes how you see the world.
+      </p>
+    </div>
+    <div class="c3-cta-actions" data-reveal data-delay="180">
+      <a href="/enquire" class="c3-cta-primary">Make an enquiry</a>
+      <a href="/itineraries" class="c3-cta-secondary">
+        Browse itineraries
+        <svg width="12" height="8" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+          <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  .c3-cta {
+    background: #F5F0E9;
+    padding: clamp(64px, 9vw, 120px) clamp(24px, 6vw, 100px);
+    border-top: 1px solid rgba(17, 34, 80, 0.07);
+  }
+
+  /* Image — full width, no overlay */
+  .c3-cta-img-wrap {
+    max-width: 1320px;
+    margin: 0 auto clamp(40px, 6vw, 80px);
+    overflow: hidden;
+    aspect-ratio: 16 / 7;
+    background: rgba(17, 34, 80, 0.05);
+  }
+  .c3-cta-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Text + actions */
+  .c3-cta-content {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 100px);
+    align-items: end;
+    border-top: 1px solid rgba(17, 34, 80, 0.1);
+    padding-top: clamp(32px, 4vw, 56px);
+  }
+  .c3-cta-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.22em;
+    color: rgba(17, 34, 80, 0.4);
+    margin: 0 0 14px;
+  }
+  .c3-cta-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 2.8vw, 40px);
+    font-weight: 300;
+    color: #112250;
+    line-height: 1.2;
+    margin: 0 0 20px;
+    letter-spacing: 0.01em;
+  }
+  .c3-cta-body {
+    font-family: 'Lato', sans-serif;
+    font-size: 13.5px;
+    font-style: italic;
+    color: rgba(17, 34, 80, 0.55);
+    line-height: 1.9;
+    margin: 0;
+    max-width: 400px;
+  }
+
+  /* Actions */
+  .c3-cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 4px;
+  }
+  .c3-cta-primary {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.22em;
+    color: #F5F0E9;
+    background: #112250;
+    border: 1px solid #112250;
+    padding: 15px 40px;
+    text-decoration: none;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+  .c3-cta-primary:hover {
+    background: transparent;
+    color: #112250;
+  }
+  .c3-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.18em;
+    color: rgba(17, 34, 80, 0.55);
+    border-bottom: 1px solid rgba(17, 34, 80, 0.18);
+    padding-bottom: 3px;
+    text-decoration: none;
+    transition: gap 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  .c3-cta-secondary:hover {
+    gap: 16px;
+    color: #112250;
+    border-color: rgba(17, 34, 80, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .c3-cta-content { grid-template-columns: 1fr; }
+  }
+</style>

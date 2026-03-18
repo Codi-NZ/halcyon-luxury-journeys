@@ -1,0 +1,259 @@
+---
+// Concept 3 — Viselli-inspired: clean itinerary list, light and minimal
+const itineraries = [
+  {
+    number: '01',
+    title: 'The South Island Grand Tour',
+    duration: '14 nights',
+    region: 'New Zealand',
+    description: "Alpine grandeur, fiordland silence, and the intimacy of New Zealand's finest lodges — a journey of contrasts and private discovery.",
+    img: 'https://picsum.photos/seed/south-island-c3-v2/1200/700',
+    slug: '/itineraries/south-island-grand-tour',
+  },
+  {
+    number: '02',
+    title: 'Northland & Bay of Islands',
+    duration: '8 nights',
+    region: 'New Zealand',
+    description: 'Private sail through sapphire waters to hidden coves, historic shores, and island vineyards — the birthplace of modern New Zealand, reimagined.',
+    img: 'https://picsum.photos/seed/northland-c3-v2/1200/700',
+    slug: '/itineraries/northland-bay-of-islands',
+  },
+  {
+    number: '03',
+    title: "Australia's Red Centre & The Reef",
+    duration: '12 nights',
+    region: 'Australia',
+    description: "Ancient ochre desert meets luminous coral sea — two of Earth's most arresting landscapes, seen through a lens of intimacy and insider access.",
+    img: 'https://picsum.photos/seed/red-centre-c3-v2/1200/700',
+    slug: '/itineraries/red-centre-and-reef',
+  },
+];
+---
+
+<section id="c3-itineraries" class="c3-itin">
+
+  <!-- Header -->
+  <div class="c3-itin-header" data-reveal>
+    <p class="c3-itin-label">Signature itineraries</p>
+    <h2 class="c3-itin-heading">Tailored Journeys</h2>
+  </div>
+
+  <!-- List -->
+  <div class="c3-itin-list">
+    {itineraries.map(({ number, title, duration, region, description, img, slug }, i) => (
+      <a
+        href={slug}
+        class="c3-itin-row"
+        data-reveal
+        data-delay={String(i * 100)}
+      >
+        <!-- Image -->
+        <div class="c3-itin-img-wrap">
+          <img
+            src={img}
+            alt={title}
+            class="c3-itin-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+
+        <!-- Info -->
+        <div class="c3-itin-info">
+          <div class="c3-itin-meta">
+            <span class="c3-itin-num">{number}</span>
+            <span class="c3-itin-region">{region} · {duration}</span>
+          </div>
+          <h3 class="c3-itin-title">{title}</h3>
+          <p class="c3-itin-desc">{description}</p>
+          <span class="c3-itin-cta">
+            View itinerary
+            <svg width="12" height="8" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+              <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <!-- Footer -->
+  <div class="c3-itin-footer" data-reveal>
+    <a href="/itineraries" class="c3-itin-all">
+      All itineraries
+      <svg width="12" height="8" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+        <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+      </svg>
+    </a>
+  </div>
+
+</section>
+
+<style>
+  .c3-itin {
+    background: #fff;
+    padding: clamp(64px, 9vw, 120px) clamp(24px, 6vw, 100px);
+    border-top: 1px solid rgba(17, 34, 80, 0.07);
+  }
+
+  /* Header */
+  .c3-itin-header {
+    max-width: 1320px;
+    margin: 0 auto clamp(36px, 5vw, 64px);
+  }
+  .c3-itin-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.22em;
+    color: rgba(17, 34, 80, 0.4);
+    margin: 0 0 10px;
+  }
+  .c3-itin-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3vw, 42px);
+    font-weight: 300;
+    color: #112250;
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+
+  /* List */
+  .c3-itin-list {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .c3-itin-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 80px);
+    align-items: center;
+    padding: clamp(32px, 4vw, 56px) 0;
+    border-top: 1px solid rgba(17, 34, 80, 0.09);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+  .c3-itin-row:last-child {
+    border-bottom: 1px solid rgba(17, 34, 80, 0.09);
+  }
+  .c3-itin-row:hover { opacity: 0.85; }
+
+  /* Alternate image/text order */
+  .c3-itin-row:nth-child(even) .c3-itin-img-wrap { order: 2; }
+  .c3-itin-row:nth-child(even) .c3-itin-info     { order: 1; }
+
+  /* Image */
+  .c3-itin-img-wrap {
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: rgba(17, 34, 80, 0.05);
+  }
+  .c3-itin-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.9s ease;
+  }
+  .c3-itin-row:hover .c3-itin-img {
+    transform: scale(1.04);
+  }
+
+  /* Info */
+  .c3-itin-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .c3-itin-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .c3-itin-num {
+    font-family: 'Cormorant Unicase', serif;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: rgba(17, 34, 80, 0.25);
+  }
+  .c3-itin-region {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.18em;
+    color: rgba(17, 34, 80, 0.38);
+  }
+  .c3-itin-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.2vw, 32px);
+    font-weight: 300;
+    color: #112250;
+    margin: 0;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  .c3-itin-desc {
+    font-family: 'Lato', sans-serif;
+    font-size: 13.5px;
+    font-style: italic;
+    color: rgba(17, 34, 80, 0.55);
+    line-height: 1.9;
+    margin: 0;
+  }
+  .c3-itin-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.18em;
+    color: rgba(17, 34, 80, 0.5);
+    border-bottom: 1px solid rgba(17, 34, 80, 0.16);
+    padding-bottom: 3px;
+    transition: gap 0.3s ease, color 0.3s ease;
+  }
+  .c3-itin-row:hover .c3-itin-cta {
+    gap: 16px;
+    color: #112250;
+  }
+
+  /* Footer */
+  .c3-itin-footer {
+    max-width: 1320px;
+    margin: clamp(36px, 5vw, 60px) auto 0;
+    display: flex;
+    justify-content: center;
+  }
+  .c3-itin-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.18em;
+    color: rgba(17, 34, 80, 0.55);
+    border-bottom: 1px solid rgba(17, 34, 80, 0.18);
+    padding-bottom: 3px;
+    text-decoration: none;
+    transition: gap 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  .c3-itin-all:hover {
+    gap: 16px;
+    color: #112250;
+    border-color: rgba(17, 34, 80, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .c3-itin-row {
+      grid-template-columns: 1fr;
+    }
+    .c3-itin-row:nth-child(even) .c3-itin-img-wrap,
+    .c3-itin-row:nth-child(even) .c3-itin-info { order: unset; }
+  }
+</style>

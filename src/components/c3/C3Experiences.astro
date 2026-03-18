@@ -1,0 +1,293 @@
+---
+// Concept 3 — Viselli-inspired: large featured spotlight + clean 3-col experience grid
+const featured = {
+  title: 'Private Helicopter Escapes',
+  location: 'New Zealand Alps',
+  description: 'Unlock landscapes inaccessible by road — glacier landings, remote valley picnics, summit flights with nothing but silence ahead.',
+  img: 'https://picsum.photos/seed/heli-nz-alps-c3/1800/1000',
+  href: '/experiences',
+};
+
+const experiences = [
+  {
+    title: 'Private Reef, Dawn Snorkel',
+    location: 'Whitsundays, Australia',
+    img: 'https://picsum.photos/seed/reef-whitsundays-c3/700/700',
+    href: '/experiences',
+  },
+  {
+    title: 'A Māori Cultural Evening',
+    location: 'Rotorua, New Zealand',
+    img: 'https://picsum.photos/seed/maori-rotorua-c3/700/700',
+    href: '/experiences',
+  },
+  {
+    title: 'Uluru at First Light',
+    location: 'Red Centre, Australia',
+    img: 'https://picsum.photos/seed/uluru-dawn-c3/700/700',
+    href: '/experiences',
+  },
+];
+---
+
+<section id="c3-experiences" class="c3-exp">
+
+  <!-- Section label -->
+  <div class="c3-exp-header" data-reveal>
+    <p class="c3-exp-label">Curated experiences</p>
+  </div>
+
+  <!-- Featured spotlight — Viselli large project card -->
+  <a href={featured.href} class="c3-exp-spotlight" data-reveal data-delay="80">
+    <div class="c3-exp-spot-img-wrap">
+      <img
+        src={featured.img}
+        alt={featured.title}
+        class="c3-exp-spot-img"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="c3-exp-spot-overlay"></div>
+    </div>
+    <div class="c3-exp-spot-info">
+      <div class="c3-exp-spot-left">
+        <p class="c3-exp-spot-location">{featured.location}</p>
+        <h2 class="c3-exp-spot-title">{featured.title}</h2>
+      </div>
+      <div class="c3-exp-spot-right">
+        <p class="c3-exp-spot-desc">{featured.description}</p>
+        <span class="c3-exp-spot-cta">
+          Discover more
+          <svg width="12" height="8" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+            <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </a>
+
+  <!-- 3-col grid -->
+  <div class="c3-exp-grid">
+    {experiences.map(({ title, location, img, href }, i) => (
+      <a
+        href={href}
+        class="c3-exp-card"
+        data-reveal
+        data-delay={String(i * 100)}
+      >
+        <div class="c3-exp-card-img-wrap">
+          <img
+            src={img}
+            alt={title}
+            class="c3-exp-card-img"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="c3-exp-card-info">
+          <p class="c3-exp-card-location">{location}</p>
+          <h3 class="c3-exp-card-title">{title}</h3>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <!-- Footer link -->
+  <div class="c3-exp-footer" data-reveal>
+    <a href="/experiences" class="c3-text-link">
+      All experiences
+      <svg width="12" height="8" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+        <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+      </svg>
+    </a>
+  </div>
+
+</section>
+
+<style>
+  .c3-exp {
+    background: #F5F0E9;
+    padding: clamp(64px, 9vw, 120px) clamp(24px, 6vw, 100px);
+    border-top: 1px solid rgba(17, 34, 80, 0.07);
+  }
+
+  /* Header */
+  .c3-exp-header {
+    max-width: 1320px;
+    margin: 0 auto clamp(28px, 4vw, 48px);
+  }
+  .c3-exp-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.22em;
+    color: rgba(17, 34, 80, 0.4);
+    margin: 0;
+  }
+
+  /* Spotlight */
+  .c3-exp-spotlight {
+    display: block;
+    max-width: 1320px;
+    margin: 0 auto clamp(24px, 3vw, 40px);
+    text-decoration: none;
+  }
+  .c3-exp-spot-img-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    aspect-ratio: 16 / 7;
+    background: rgba(17, 34, 80, 0.06);
+  }
+  .c3-exp-spot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .c3-exp-spotlight:hover .c3-exp-spot-img {
+    transform: scale(1.03);
+  }
+  .c3-exp-spot-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.28) 0%, transparent 60%);
+  }
+  .c3-exp-spot-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 60px);
+    padding: clamp(20px, 3vw, 36px) 0 0;
+    align-items: start;
+    border-top: 1px solid rgba(17, 34, 80, 0.1);
+    margin-top: clamp(20px, 3vw, 36px);
+  }
+  .c3-exp-spot-location {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.2em;
+    color: rgba(17, 34, 80, 0.4);
+    margin: 0 0 10px;
+  }
+  .c3-exp-spot-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 2.8vw, 38px);
+    font-weight: 300;
+    color: #112250;
+    margin: 0;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+  }
+  .c3-exp-spot-desc {
+    font-family: 'Lato', sans-serif;
+    font-size: 13.5px;
+    font-style: italic;
+    color: rgba(17, 34, 80, 0.58);
+    line-height: 1.9;
+    margin: 0 0 20px;
+  }
+  .c3-exp-spot-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.18em;
+    color: rgba(17, 34, 80, 0.55);
+    border-bottom: 1px solid rgba(17, 34, 80, 0.18);
+    padding-bottom: 3px;
+    transition: gap 0.3s ease, color 0.3s ease;
+  }
+  .c3-exp-spotlight:hover .c3-exp-spot-cta {
+    gap: 16px;
+    color: #112250;
+  }
+
+  /* 3-col grid */
+  .c3-exp-grid {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(14px, 2vw, 24px);
+  }
+  .c3-exp-card {
+    display: block;
+    text-decoration: none;
+  }
+  .c3-exp-card-img-wrap {
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    background: rgba(17, 34, 80, 0.06);
+  }
+  .c3-exp-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.9s ease;
+  }
+  .c3-exp-card:hover .c3-exp-card-img {
+    transform: scale(1.05);
+  }
+  .c3-exp-card-info {
+    padding: 14px 0 0;
+    border-top: 1px solid rgba(17, 34, 80, 0.08);
+    margin-top: 14px;
+  }
+  .c3-exp-card-location {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-style: italic;
+    letter-spacing: 0.2em;
+    color: rgba(17, 34, 80, 0.38);
+    margin: 0 0 6px;
+  }
+  .c3-exp-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(15px, 1.5vw, 20px);
+    font-weight: 400;
+    color: #112250;
+    margin: 0;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+
+  /* Footer */
+  .c3-exp-footer {
+    max-width: 1320px;
+    margin: clamp(36px, 5vw, 64px) auto 0;
+    display: flex;
+    justify-content: center;
+  }
+  .c3-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.18em;
+    color: rgba(17, 34, 80, 0.6);
+    border-bottom: 1px solid rgba(17, 34, 80, 0.2);
+    padding-bottom: 3px;
+    text-decoration: none;
+    transition: gap 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  .c3-text-link:hover {
+    gap: 16px;
+    color: #112250;
+    border-color: rgba(17, 34, 80, 0.55);
+  }
+
+  @media (max-width: 768px) {
+    .c3-exp-spot-info { grid-template-columns: 1fr; }
+    .c3-exp-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .c3-exp-grid { grid-template-columns: 1fr; }
+  }
+</style>

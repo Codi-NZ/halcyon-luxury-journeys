@@ -1,0 +1,156 @@
+---
+// Concept 3 — Viselli-inspired: minimal services/pillars grid
+const pillars = [
+  {
+    title: 'Completely Private',
+    body: 'Your journey, your pace — never shared with strangers or compromised by a fixed programme.',
+  },
+  {
+    title: 'Insider Access',
+    body: 'Places and people most travellers will never encounter, opened through years of quiet relationship.',
+  },
+  {
+    title: 'Exceptional Quality',
+    body: 'From your lodge to your guide, every element is selected against the highest possible standard.',
+  },
+  {
+    title: 'End-to-End Care',
+    body: '24/7 support from first enquiry to your safe return — we are with you every step of the way.',
+  },
+];
+---
+
+<section id="c3-whyus" class="c3-why">
+  <div class="c3-why-inner">
+
+    <!-- Left: label + heading -->
+    <div class="c3-why-head" data-reveal>
+      <p class="c3-why-label">Why Halcyon</p>
+      <h2 class="c3-why-heading">
+        Travel as it was<br /><em>always meant to be</em>
+      </h2>
+      <a href="/about" class="c3-why-link">
+        About us
+        <svg width="12" height="8" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+          <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Right: 2x2 grid of pillars -->
+    <div class="c3-why-grid">
+      {pillars.map(({ title, body }, i) => (
+        <div class="c3-why-pillar" data-reveal data-delay={String(i * 90)}>
+          <h3 class="c3-why-pillar-title">{title}</h3>
+          <p class="c3-why-pillar-body">{body}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .c3-why {
+    background: #F5F0E9;
+    padding: clamp(64px, 9vw, 120px) clamp(24px, 6vw, 100px);
+    border-top: 1px solid rgba(17, 34, 80, 0.07);
+  }
+  .c3-why-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: clamp(48px, 8vw, 120px);
+    align-items: start;
+  }
+
+  /* Head */
+  .c3-why-head {
+    position: sticky;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .c3-why-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.22em;
+    color: rgba(17, 34, 80, 0.4);
+    margin: 0;
+  }
+  .c3-why-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3vw, 42px);
+    font-weight: 300;
+    color: #112250;
+    margin: 0;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  .c3-why-heading em { font-style: italic; }
+  .c3-why-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.18em;
+    color: rgba(17, 34, 80, 0.55);
+    border-bottom: 1px solid rgba(17, 34, 80, 0.18);
+    padding-bottom: 3px;
+    text-decoration: none;
+    transition: gap 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  .c3-why-link:hover {
+    gap: 16px;
+    color: #112250;
+    border-color: rgba(17, 34, 80, 0.5);
+  }
+
+  /* Grid */
+  .c3-why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .c3-why-pillar {
+    padding: clamp(28px, 3.5vw, 48px);
+    border-top: 1px solid rgba(17, 34, 80, 0.09);
+    border-left: 1px solid rgba(17, 34, 80, 0.09);
+  }
+  .c3-why-pillar:nth-child(odd) { border-left: none; }
+  .c3-why-pillar:nth-child(3),
+  .c3-why-pillar:nth-child(4) { border-bottom: 1px solid rgba(17, 34, 80, 0.09); }
+
+  .c3-why-pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 1.6vw, 21px);
+    font-weight: 400;
+    color: #112250;
+    margin: 0 0 14px;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+  }
+  .c3-why-pillar-body {
+    font-family: 'Lato', sans-serif;
+    font-size: 13.5px;
+    font-style: italic;
+    color: rgba(17, 34, 80, 0.55);
+    line-height: 1.9;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .c3-why-inner { grid-template-columns: 1fr; }
+    .c3-why-head  { position: static; }
+  }
+  @media (max-width: 480px) {
+    .c3-why-grid { grid-template-columns: 1fr; }
+    .c3-why-pillar { border-left: none !important; }
+  }
+</style>
