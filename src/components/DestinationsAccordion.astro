@@ -4,7 +4,7 @@ const destinations = [
     name: 'New Zealand',
     region: 'Aotearoa',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=85',
-    slug: '/destinations/new-zealand',
+    description: 'From the ancient rainforests of Fiordland to the geothermal wonders of Rotorua, the golden vineyards of Marlborough to the remote beaches of the Coromandel — New Zealand is a land of breathtaking contrast. We know every corner intimately, and we bring it to life for those who travel with intention.',
     categories: [
       { label: 'Exceptional Places to Stay', href: '/destinations/new-zealand/places-to-stay' },
       { label: 'Exceptional Experiences',    href: '/destinations/new-zealand/experiences' },
@@ -14,7 +14,7 @@ const destinations = [
     name: 'Australia',
     region: 'The Great South Land',
     image: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1400&q=85',
-    slug: '/destinations/australia',
+    description: 'From the rust-red silence of Uluru to the turquoise waters of the Whitsundays, the ancient cultures of the Kimberley to the world-class dining of Melbourne — Australia rewards those who go beyond the obvious. We curate access to its most extraordinary places, experiences, and people.',
     categories: [
       { label: 'Exceptional Places to Stay', href: '/destinations/australia/places-to-stay' },
       { label: 'Exceptional Experiences',    href: '/destinations/australia/experiences' },
@@ -61,7 +61,7 @@ const destinations = [
 
     <!-- Two accordion rows -->
     <div>
-      {destinations.map(({ name, region, image, slug, categories }, i) => (
+      {destinations.map(({ name, region, image, description, categories }, i) => (
         <div class="accordion-item" data-reveal data-delay={String(i * 80)}>
 
           <button
@@ -96,22 +96,15 @@ const destinations = [
                   />
                 </div>
                 <div class="accordion-content">
+                  <p class="accordion-description">{description}</p>
                   <div class="accordion-categories">
                     {categories.map(({ label, href }) => (
-                      <a href={href} class="accordion-category-link">
-                        <span>{label}</span>
-                        <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-                          <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
-                        </svg>
+                      <a href={href} class="accordion-category-btn">
+                        {label}
+                        <span aria-hidden="true">→</span>
                       </a>
                     ))}
                   </div>
-                  <a href={slug} class="btn-luxury" style="display:inline-flex; margin-top:36px;">
-                    Explore {name}
-                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-                      <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
-                    </svg>
-                  </a>
                 </div>
               </div>
             </div>
@@ -128,6 +121,9 @@ const destinations = [
 <style>
   .accordion-item {
     border-top: 1px solid rgba(17,34,80,0.12);
+  }
+  .accordion-item:first-child {
+    border-top: none;
   }
 
   .accordion-trigger {
@@ -234,40 +230,42 @@ const destinations = [
     transform: scale(1.04);
   }
 
+  .accordion-description {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(14px, 1vw, 16px);
+    font-style: italic;
+    line-height: 1.85;
+    color: rgba(17,34,80,0.65);
+    margin-bottom: clamp(24px, 2.5vw, 36px);
+    max-width: 480px;
+  }
+
   .accordion-categories {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 12px;
   }
 
-  .accordion-category-link {
-    display: flex;
+  .accordion-category-btn {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    padding: clamp(16px, 1.8vw, 22px) 0;
-    border-bottom: 1px solid rgba(17,34,80,0.1);
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(18px, 2vw, 26px);
+    gap: 8px;
+    border-bottom: 1px solid rgba(17,34,80,0.35);
+    padding-bottom: 2px;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
     font-weight: 400;
-    letter-spacing: 0.02em;
-    color: #112250;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(17,34,80,0.85);
     text-decoration: none;
-    transition: color 0.25s ease, gap 0.25s ease;
+    width: fit-content;
+    transition: gap 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
-  .accordion-category-link:first-child {
-    border-top: 1px solid rgba(17,34,80,0.1);
-  }
-  .accordion-category-link:hover {
-    color: #C9A96E;
-  }
-  .accordion-category-link svg {
-    opacity: 0.4;
-    transition: opacity 0.25s ease, transform 0.25s ease;
-    flex-shrink: 0;
-  }
-  .accordion-category-link:hover svg {
-    opacity: 1;
-    transform: translateX(4px);
+  .accordion-category-btn:hover {
+    gap: 14px;
+    border-color: rgba(17,34,80,0.85);
+    color: #112250;
   }
 
   @media (max-width: 640px) {
