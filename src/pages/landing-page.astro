@@ -1,0 +1,302 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
+---
+
+<Layout
+  title="Coming Soon — Halcyon Luxury Journeys"
+  description="Something extraordinary is on its way. Halcyon Luxury Journeys — bespoke private travel through New Zealand and Australia."
+>
+
+  <main class="cs-root">
+
+    <!-- ── Left: cream text panel ──────────────── -->
+    <div class="cs-left">
+
+      <!-- Logo top -->
+      <a href="/" class="cs-logo-link">
+        <img src="/halcyon-logo.svg" alt="Halcyon Luxury Journeys" class="cs-logo" />
+      </a>
+
+      <!-- Centre text -->
+      <div class="cs-text">
+        <p class="cs-eyebrow">Something extraordinary is coming</p>
+
+        <h1 class="cs-headline">
+          Launching<br /><em>Soon</em>
+        </h1>
+
+        <div class="cs-rule"></div>
+
+        <p class="cs-body">
+          We are putting the finishing touches on something truly special —
+          bespoke private journeys through New Zealand &amp; Australia.
+        </p>
+
+        <!-- Newsletter form -->
+        <div class="cs-form-wrap">
+          <p class="cs-form-label">Be the first to know when we launch</p>
+          <form
+            name="newsletter"
+            method="POST"
+            action="/thank-you"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+          >
+            <input type="hidden" name="form-name" value="newsletter" />
+            <input type="text" name="bot-field" style="display:none" />
+
+            <div class="cs-input-row">
+              <input
+                type="email"
+                name="email"
+                placeholder="Your email address"
+                required
+                class="cs-input"
+                autocomplete="email"
+              />
+              <button type="submit" class="cs-btn">
+                Notify Me
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                  <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+                </svg>
+              </button>
+            </div>
+            <p class="cs-privacy">No spam. Unsubscribe at any time.</p>
+          </form>
+        </div>
+
+        <!-- Contact -->
+        <div class="cs-contact">
+          <a href="tel:+64211398539" class="cs-contact-link">+64 21 139 8539</a>
+          <span class="cs-contact-sep">·</span>
+          <a href="mailto:hello@halcyonluxuryjourneys.co.nz" class="cs-contact-link">hello@halcyonluxuryjourneys.co.nz</a>
+        </div>
+      </div>
+
+      <!-- Footer inside left panel -->
+      <div class="cs-footer">
+        <span class="cs-footer-text">New Zealand · Australia</span>
+        <span class="cs-footer-text">© 2025 Halcyon Luxury Journeys</span>
+      </div>
+
+    </div>
+
+    <!-- ── Right: video panel ───────────────────── -->
+    <div class="cs-right">
+      <video id="cs-video" autoplay muted loop playsinline class="cs-video">
+        <source src="/14861093_3840_2160_30fps.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+  </main>
+
+</Layout>
+
+<style>
+  /* ── Root ── */
+  .cs-root {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100dvh;
+  }
+
+  /* ══════════════════════
+     LEFT PANEL — cream
+  ══════════════════════ */
+  .cs-left {
+    background: #F5F0E9;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(36px, 4vw, 60px) clamp(36px, 5vw, 72px);
+  }
+
+  /* ── Logo ── */
+  .cs-logo-link { display: block; margin-bottom: clamp(48px, 7vw, 88px); }
+  .cs-logo {
+    width: min(190px, 42vw);
+    height: auto;
+  }
+
+  /* ── Text block ── */
+  .cs-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeUp 1s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Eyebrow ── */
+  .cs-eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    margin-bottom: 18px;
+  }
+
+  /* ── Headline ── */
+  .cs-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 5.5vw, 84px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: #112250;
+    margin-bottom: 24px;
+  }
+  .cs-headline em {
+    font-style: italic;
+    color: #C9A96E;
+  }
+
+  /* ── Rule ── */
+  .cs-rule {
+    width: 40px;
+    height: 1px;
+    background: rgba(17,34,80,0.2);
+    margin-bottom: 22px;
+  }
+
+  /* ── Body ── */
+  .cs-body {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(14px, 1.1vw, 16px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.85;
+    color: #112250;
+    max-width: 400px;
+    margin-bottom: clamp(32px, 4vw, 48px);
+  }
+
+  /* ── Form ── */
+  .cs-form-wrap { max-width: 440px; margin-bottom: clamp(24px, 3vw, 36px); }
+  .cs-form-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(17,34,80,0.7);
+    margin-bottom: 12px;
+  }
+  .cs-input-row { display: flex; }
+  .cs-input {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid rgba(17,34,80,0.18);
+    border-right: none;
+    color: #112250;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 13px 16px;
+    outline: none;
+    transition: border-color 0.25s ease;
+  }
+  .cs-input::placeholder { color: rgba(17,34,80,0.3); }
+  .cs-input:focus { border-color: #C9A96E; }
+
+  .cs-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #112250;
+    border: 1px solid #112250;
+    color: #F5F0E9;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 13px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+  .cs-btn:hover { background: #C9A96E; border-color: #C9A96E; color: #112250; }
+
+  .cs-privacy {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    color: rgba(17,34,80,0.3);
+    margin-top: 10px;
+    font-style: italic;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Contact ── */
+  .cs-contact { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .cs-contact-link {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    color: #112250;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  .cs-contact-link:hover { color: #C9A96E; }
+  .cs-contact-sep { color: rgba(17,34,80,0.5); font-size: 12px; }
+
+  /* ── Footer ── */
+  .cs-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: clamp(20px, 3vw, 32px);
+    margin-top: clamp(28px, 4vw, 48px);
+    border-top: 1px solid rgba(17,34,80,0.1);
+  }
+  .cs-footer-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(17,34,80,0.55);
+    font-style: italic;
+  }
+
+  /* ══════════════════════
+     RIGHT PANEL — video
+  ══════════════════════ */
+  .cs-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .cs-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ── Mobile: stack video top, text below ── */
+  @media (max-width: 768px) {
+    .cs-root {
+      grid-template-columns: 1fr;
+      grid-template-rows: 50vh auto;
+    }
+    .cs-right { order: -1; }
+    .cs-input-row { flex-direction: column; }
+    .cs-input { border-right: 1px solid rgba(17,34,80,0.18); border-bottom: none; }
+    .cs-btn { width: 100%; justify-content: center; }
+  }
+</style>
+
+<script>
+  const vid = document.getElementById('cs-video') as HTMLVideoElement;
+  if (vid) {
+    vid.loop = true;
+    vid.addEventListener('ended', () => { vid.currentTime = 0; vid.play(); });
+  }
+</script>
+
