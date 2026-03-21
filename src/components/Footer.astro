@@ -1,9 +1,11 @@
 ---
 const navLinks = [
-  { href: '/about',        label: 'About' },
-  { href: '/journeys',     label: 'Signature Journeys' },
   { href: '/destinations', label: 'Destinations' },
-  { href: '/enquire',      label: 'Enquire' },
+  { href: '/itineraries',  label: 'Itineraries' },
+  { href: '/inspiration',  label: 'Inspiration' },
+  { href: '/about',        label: 'About' },
+  { href: '/testimonials', label: 'Testimonials' },
+  { href: '/contact',      label: 'Enquire' },
 ];
 ---
 
@@ -12,7 +14,7 @@ const navLinks = [
   <div style="height:1px; background:rgba(245,240,233,0.12);"></div>
 
   <div class="container-xl section-pad">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-24 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16">
 
       <!-- Brand Column -->
       <div class="flex flex-col gap-6">
@@ -27,7 +29,7 @@ const navLinks = [
           class="type-body-font"
           style="font-size:13px; line-height:1.85; color:rgba(245,240,233,0.6); max-width:280px;"
         >
-          Curated private travel experiences across New Zealand and Australia, crafted for the discerning few.
+          Thoughtfully Crafted Journeys across New Zealand and Australia for the Discerning Traveler.
         </p>
         <div style="width:36px; height:1px; background:rgba(245,240,233,0.25);"></div>
         <p class="type-body-font" style="font-size:11px; font-style:italic; letter-spacing:0.1em; color:rgba(245,240,233,0.4);">
@@ -51,6 +53,62 @@ const navLinks = [
         ))}
       </div>
 
+      <!-- Newsletter Column -->
+      <div class="flex flex-col gap-5">
+        <div class="overline-light mb-2">Newsletter</div>
+        <p class="type-body-font" style="font-size:13px; font-style:italic; color:rgba(245,240,233,0.5); line-height:1.7;">
+          Stay inspired — sign up for curated travel ideas and Halcyon news.
+        </p>
+        <form
+          name="footer-newsletter"
+          method="POST"
+          action="/thank-you"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          style="display:flex; flex-direction:column; gap:10px; margin-top:4px;"
+        >
+          <input type="hidden" name="form-name" value="footer-newsletter" />
+          <input type="text" name="bot-field" style="display:none" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your email address"
+            required
+            style="
+              background:rgba(245,240,233,0.06);
+              border:1px solid rgba(245,240,233,0.18);
+              color:#F5F0E9;
+              font-family:'Lato',sans-serif;
+              font-size:13px;
+              font-style:italic;
+              padding:11px 14px;
+              outline:none;
+              width:100%;
+            "
+          />
+          <button
+            type="submit"
+            style="
+              background:transparent;
+              border:1px solid rgba(245,240,233,0.3);
+              color:rgba(245,240,233,0.8);
+              font-family:'Lato',sans-serif;
+              font-size:10px;
+              letter-spacing:0.18em;
+              text-transform:uppercase;
+              padding:11px 16px;
+              cursor:pointer;
+              transition:border-color 0.25s ease, color 0.25s ease;
+              text-align:center;
+            "
+            onmouseover="this.style.borderColor='#C9A96E'; this.style.color='#C9A96E';"
+            onmouseout="this.style.borderColor='rgba(245,240,233,0.3)'; this.style.color='rgba(245,240,233,0.8)';"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+
       <!-- Contact Column -->
       <div class="flex flex-col gap-5">
         <div class="overline-light mb-2">Contact</div>
@@ -70,7 +128,7 @@ const navLinks = [
           onmouseover="this.style.color='#F5F0E9';"
           onmouseout="this.style.color='rgba(245,240,233,0.65)';"
         >
-          +64 21 139 8539
+          Phone &amp; WhatsApp: +64 21 139 8539
         </a>
         <div style="height:1px; width:36px; background:rgba(245,240,233,0.2); margin-top:4px;"></div>
         <div class="flex items-center gap-6 mt-1">
@@ -110,7 +168,7 @@ const navLinks = [
         class="type-body-font"
         style="font-size:10px; font-style:italic; letter-spacing:0.1em; color:rgba(245,240,233,0.2);"
       >
-        Crafted with care · Based in Aotearoa New Zealand
+        Thoughtfully Crafted Journeys · Based in Aotearoa New Zealand
       </p>
     </div>
   </div>

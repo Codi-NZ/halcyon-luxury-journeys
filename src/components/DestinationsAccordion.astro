@@ -3,16 +3,22 @@ const destinations = [
   {
     name: 'New Zealand',
     region: 'Aotearoa',
-    description: 'At the edge of the Pacific, New Zealand offers a world apart — ancient fjords carved by ice, volcanic highlands still breathing, and a culture of warmth that welcomes only those who truly seek it. Here, luxury is not in what you see but in how it makes you feel: the silence of Milford Sound at dawn, a private lodge above a lake that reflects the stars, a meal prepared just for you from the land you\'re standing on.',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1400&q=85',
     slug: '/destinations/new-zealand',
+    categories: [
+      { label: 'Exceptional Places to Stay', href: '/destinations/new-zealand/places-to-stay' },
+      { label: 'Exceptional Experiences',    href: '/destinations/new-zealand/experiences' },
+    ],
   },
   {
     name: 'Australia',
     region: 'The Great South Land',
-    description: 'Australia defies any single description. It is the impossibly blue archipelago of the Whitsundays, the sacred stillness of Uluru at first light, the raw and untamed beauty of the Kimberley — a continent of contrasts so vast and so varied that a lifetime is barely enough. We know where to take you, and we know how to make it feel like it was made for you alone.',
     image: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1400&q=85',
     slug: '/destinations/australia',
+    categories: [
+      { label: 'Exceptional Places to Stay', href: '/destinations/australia/places-to-stay' },
+      { label: 'Exceptional Experiences',    href: '/destinations/australia/experiences' },
+    ],
   },
 ];
 ---
@@ -55,7 +61,7 @@ const destinations = [
 
     <!-- Two accordion rows -->
     <div>
-      {destinations.map(({ name, region, description, image, slug }, i) => (
+      {destinations.map(({ name, region, image, slug, categories }, i) => (
         <div class="accordion-item" data-reveal data-delay={String(i * 80)}>
 
           <button
@@ -90,9 +96,18 @@ const destinations = [
                   />
                 </div>
                 <div class="accordion-content">
-                  <p class="type-body-font accordion-desc">{description}</p>
-                  <a href={slug} class="btn-luxury" style="display:inline-flex; margin-top:28px;">
-                    Discover {name}
+                  <div class="accordion-categories">
+                    {categories.map(({ label, href }) => (
+                      <a href={href} class="accordion-category-link">
+                        <span>{label}</span>
+                        <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                          <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+                        </svg>
+                      </a>
+                    ))}
+                  </div>
+                  <a href={slug} class="btn-luxury" style="display:inline-flex; margin-top:36px;">
+                    Explore {name}
                     <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
                       <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
                     </svg>
@@ -219,11 +234,40 @@ const destinations = [
     transform: scale(1.04);
   }
 
-  .accordion-desc {
-    font-size: clamp(14px,1.05vw,17px);
-    line-height: 1.85;
-    color: rgba(17,34,80,0.65);
-    font-style: italic;
+  .accordion-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .accordion-category-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(16px, 1.8vw, 22px) 0;
+    border-bottom: 1px solid rgba(17,34,80,0.1);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2vw, 26px);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: #112250;
+    text-decoration: none;
+    transition: color 0.25s ease, gap 0.25s ease;
+  }
+  .accordion-category-link:first-child {
+    border-top: 1px solid rgba(17,34,80,0.1);
+  }
+  .accordion-category-link:hover {
+    color: #C9A96E;
+  }
+  .accordion-category-link svg {
+    opacity: 0.4;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    flex-shrink: 0;
+  }
+  .accordion-category-link:hover svg {
+    opacity: 1;
+    transform: translateX(4px);
   }
 
   @media (max-width: 640px) {
