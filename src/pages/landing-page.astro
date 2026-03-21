@@ -82,8 +82,19 @@ import '../styles/global.css';
 
     </div>
 
-    <!-- ── Right: video panel ───────────────────── -->
+    <!-- ── Right: video/photo panel ───────────────────── -->
     <div class="cs-right">
+      <!-- Mobile only: Queenstown NZ photo -->
+      <img
+        src="https://images.unsplash.com/photo-1652344433425-e4103642510d?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="Queenstown, New Zealand — Lake Wakatipu and The Remarkables"
+        class="cs-mobile-photo"
+        loading="eager"
+        decoding="async"
+        width="900"
+        height="1400"
+      />
+      <!-- Desktop only: video -->
       <video id="cs-video" autoplay muted loop playsinline class="cs-video">
         <source src="/14861093_3840_2160_30fps.mp4" type="video/mp4" />
       </video>
@@ -272,11 +283,17 @@ import '../styles/global.css';
     overflow: hidden;
   }
   .cs-video {
+    display: none;
+  }
+
+  /* Photo — shown on all screen sizes */
+  .cs-mobile-photo {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center center;
   }
 
   /* ── Mobile: full-screen video background, text overlaid ── */
@@ -287,15 +304,13 @@ import '../styles/global.css';
       min-height: 100dvh;
     }
 
-    /* Video panel becomes the full-screen background */
+    /* Right panel becomes the full-screen background */
     .cs-right {
       position: fixed;
       inset: 0;
       z-index: 0;
     }
-    .cs-video {
-      object-position: center center;
-    }
+
 
     /* Dark overlay so text is readable */
     .cs-right::after {
