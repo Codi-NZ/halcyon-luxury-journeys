@@ -279,15 +279,69 @@ import '../styles/global.css';
     object-fit: cover;
   }
 
-  /* ── Mobile: stack video top, text below ── */
+  /* ── Mobile: full-screen video background, text overlaid ── */
   @media (max-width: 768px) {
     .cs-root {
-      grid-template-columns: 1fr;
-      grid-template-rows: 50vh auto;
+      display: block;
+      position: relative;
+      min-height: 100dvh;
     }
-    .cs-right { order: -1; }
+
+    /* Video panel becomes the full-screen background */
+    .cs-right {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+    .cs-video {
+      object-position: center center;
+    }
+
+    /* Dark overlay so text is readable */
+    .cs-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(17,34,80,0.45) 0%,
+        rgba(17,34,80,0.55) 60%,
+        rgba(17,34,80,0.75) 100%
+      );
+    }
+
+    /* Left panel floats above video */
+    .cs-left {
+      position: relative;
+      z-index: 1;
+      background: transparent;
+      min-height: 100dvh;
+    }
+
+    /* Flip all text to white on mobile */
+    .cs-logo { filter: brightness(0) invert(1); opacity: 0.9; }
+    .cs-eyebrow { color: #C9A96E; }
+    .cs-headline { color: #ffffff; }
+    .cs-headline em { color: #C9A96E; }
+    .cs-rule { background: rgba(255,255,255,0.25); }
+    .cs-body { color: rgba(255,255,255,0.85); }
+    .cs-form-label { color: rgba(255,255,255,0.5); }
+    .cs-input {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.3);
+      border-right: none;
+      color: #ffffff;
+    }
+    .cs-input::placeholder { color: rgba(255,255,255,0.4); }
+    .cs-btn { background: #C9A96E; border-color: #C9A96E; color: #112250; }
+    .cs-privacy { color: rgba(255,255,255,0.3); }
+    .cs-contact-link { color: rgba(255,255,255,0.6); }
+    .cs-contact-sep { color: rgba(255,255,255,0.25); }
+    .cs-footer { border-top-color: rgba(255,255,255,0.1); }
+    .cs-footer-text { color: rgba(255,255,255,0.3); }
+
     .cs-input-row { flex-direction: column; }
-    .cs-input { border-right: 1px solid rgba(17,34,80,0.18); border-bottom: none; }
+    .cs-input-row .cs-input { border-right: 1px solid rgba(255,255,255,0.3); border-bottom: none; }
     .cs-btn { width: 100%; justify-content: center; }
   }
 </style>
