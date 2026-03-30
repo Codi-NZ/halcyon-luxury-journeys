@@ -3,6 +3,135 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+
+const items = [
+  // ─── New Zealand · Stays ────────────────────────
+  {
+    id:           'blanket-bay',
+    title:        'Blanket Bay',
+    location:     'Glenorchy, Otago',
+    country:      'new-zealand',
+    countryLabel: 'New Zealand',
+    type:         'stay',
+    description:  "A legendary alpine lodge on the shores of Lake Wakatipu, where the Dart Valley's peaks reflect in still water at dawn.",
+    image:        'https://picsum.photos/seed/blanket-bay-nz/600/750',
+  },
+  {
+    id:           'cape-kidnappers',
+    title:        'The Farm at Cape Kidnappers',
+    location:     'Hawke\'s Bay',
+    country:      'new-zealand',
+    countryLabel: 'New Zealand',
+    type:         'stay',
+    description:  'Perched on dramatic cliffs above the Pacific, this award-winning lodge redefines what barefoot luxury truly means.',
+    image:        'https://picsum.photos/seed/cape-kidnappers-nz/600/750',
+  },
+  {
+    id:           'huka-lodge',
+    title:        'Huka Lodge',
+    location:     'Taupō',
+    country:      'new-zealand',
+    countryLabel: 'New Zealand',
+    type:         'stay',
+    description:  "New Zealand's most storied lodge, set beside the thundering Waikato River in a haven of ancient native forest.",
+    image:        'https://picsum.photos/seed/huka-lodge-nz/600/750',
+  },
+  // ─── New Zealand · Experiences ──────────────────
+  {
+    id:           'fiordland-heli',
+    title:        'Fiordland by Private Helicopter',
+    location:     'Fiordland National Park',
+    country:      'new-zealand',
+    countryLabel: 'New Zealand',
+    type:         'experience',
+    description:  'Soar above ancient fjords, glaciers, and untouched wilderness that reveals itself only from the air.',
+    image:        'https://picsum.photos/seed/fiordland-heli/600/750',
+  },
+  {
+    id:           'milford-charter',
+    title:        'Private Milford Sound Charter',
+    location:     'Milford Sound',
+    country:      'new-zealand',
+    countryLabel: 'New Zealand',
+    type:         'experience',
+    description:  "Glide through Fiordland's most iconic waterway on a vessel reserved entirely for your party, in silence.",
+    image:        'https://picsum.photos/seed/milford-sound-nz/600/750',
+  },
+  {
+    id:           'waiheke-wine',
+    title:        'Waiheke Island — Wine & Dining',
+    location:     'Waiheke Island, Auckland',
+    country:      'new-zealand',
+    countryLabel: 'New Zealand',
+    type:         'experience',
+    description:  "A curated day of cellar-door discoveries and private chef-led dining on New Zealand's sun-drenched island of wine.",
+    image:        'https://picsum.photos/seed/waiheke-wine-nz/600/750',
+  },
+  // ─── Australia · Stays ──────────────────────────
+  {
+    id:           'longitude-131',
+    title:        'Longitude 131°',
+    location:     'Uluru, Northern Territory',
+    country:      'australia',
+    countryLabel: 'Australia',
+    type:         'stay',
+    description:  'Fifteen tented pavilions facing Uluru at dusk — a singular outback encounter at the edge of the world.',
+    image:        'https://picsum.photos/seed/longitude-131-au/600/750',
+  },
+  {
+    id:           'qualia',
+    title:        'qualia',
+    location:     'Hamilton Island, Queensland',
+    country:      'australia',
+    countryLabel: 'Australia',
+    type:         'stay',
+    description:  "Australia's most awarded luxury resort on a private headland, overlooking the infinite blues of the Coral Sea.",
+    image:        'https://picsum.photos/seed/qualia-hamilton/600/750',
+  },
+  {
+    id:           'sal-salis',
+    title:        'Sal Salis Ningaloo Reef',
+    location:     'Ningaloo, Western Australia',
+    country:      'australia',
+    countryLabel: 'Australia',
+    type:         'stay',
+    description:  "A wilderness camp on the shore of one of the world's last pristine coral reefs, where whale sharks gather each year.",
+    image:        'https://picsum.photos/seed/sal-salis-au/600/750',
+  },
+  // ─── Australia · Experiences ────────────────────
+  {
+    id:           'barrier-reef',
+    title:        'Great Barrier Reef — Private Dive',
+    location:     'Cairns, Queensland',
+    country:      'australia',
+    countryLabel: 'Australia',
+    type:         'experience',
+    description:  "Descend into the world's largest coral reef system with a private marine biologist — unhurried and entirely exclusive.",
+    image:        'https://picsum.photos/seed/barrier-reef-au/600/750',
+  },
+  {
+    id:           'kimberley-air',
+    title:        'The Kimberley by Private Aircraft',
+    location:     'The Kimberley, Western Australia',
+    country:      'australia',
+    countryLabel: 'Australia',
+    type:         'experience',
+    description:  'Ancient gorges, cascading waterfalls, and endless ochre landscapes stretch to the horizon from your private plane.',
+    image:        'https://picsum.photos/seed/kimberley-gorge-au/600/750',
+  },
+  {
+    id:           'brae-dining',
+    title:        'Degustation at Brae',
+    location:     'Birregurra, Victoria',
+    country:      'australia',
+    countryLabel: 'Australia',
+    type:         'experience',
+    description:  "One of the world's 50 best restaurants, set on a working organic farm — a dining encounter without parallel in Australia.",
+    image:        'https://picsum.photos/seed/brae-farm-au/600/750',
+  },
+];
+
+const totalCount = items.length;
 ---
 
 <Layout
@@ -13,7 +142,7 @@ import '../styles/global.css';
 
   <main>
 
-    <!-- ── Page Hero ─────────────────────────────── -->
+    <!-- ── Page Hero ──────────────────────────────────── -->
     <section class="page-hero">
       <div class="page-hero-inner">
         <p class="eyebrow" data-reveal>Destinations</p>
@@ -27,10 +156,163 @@ import '../styles/global.css';
       </div>
     </section>
 
-    <!-- ── Content placeholder ───────────────────── -->
-    <section class="destinations-content">
-      <div class="destinations-inner">
-        <!-- Destination content goes here -->
+    <!-- ── Filter Bar ──────────────────────────────────── -->
+    <section class="filter-section" aria-label="Filter destinations">
+      <div class="filter-inner">
+
+        <div class="filter-controls">
+
+          <!-- Country Filter Group -->
+          <div class="filter-group">
+            <span class="filter-group-label" id="country-filter-label">Country</span>
+            <div class="filter-pills" role="group" aria-labelledby="country-filter-label">
+              <button
+                class="filter-pill is-active"
+                data-filter="country"
+                data-value="all"
+                aria-pressed="true"
+              >All Countries</button>
+              <button
+                class="filter-pill"
+                data-filter="country"
+                data-value="new-zealand"
+                aria-pressed="false"
+              >New Zealand</button>
+              <button
+                class="filter-pill"
+                data-filter="country"
+                data-value="australia"
+                aria-pressed="false"
+              >Australia</button>
+            </div>
+          </div>
+
+          <!-- Vertical divider (desktop only) -->
+          <div class="filter-divider" aria-hidden="true"></div>
+
+          <!-- Type Filter Group -->
+          <div class="filter-group">
+            <span class="filter-group-label" id="type-filter-label">Type</span>
+            <div class="filter-pills" role="group" aria-labelledby="type-filter-label">
+              <button
+                class="filter-pill is-active"
+                data-filter="type"
+                data-value="all"
+                aria-pressed="true"
+              >All Types</button>
+              <button
+                class="filter-pill"
+                data-filter="type"
+                data-value="stay"
+                aria-pressed="false"
+              >Places to Stay</button>
+              <button
+                class="filter-pill"
+                data-filter="type"
+                data-value="experience"
+                aria-pressed="false"
+              >Experiences</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Results count -->
+        <p class="filter-count" aria-live="polite" aria-atomic="true">
+          <span id="dest-count">{totalCount}</span>
+          <span class="filter-count-label">destinations</span>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ── Destinations Grid ──────────────────────────── -->
+    <section class="dest-section">
+      <div class="dest-inner">
+
+        <div class="dest-grid" id="dest-grid">
+          {items.map((item) => (
+            <article
+              class="dest-item"
+              data-country={item.country}
+              data-type={item.type}
+            >
+              <!-- Image -->
+              <div class="dest-img-wrap">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  class="dest-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+
+                <!-- Hover overlay -->
+                <div class="dest-overlay" aria-hidden="true">
+                  <a href="/enquire" class="dest-enquire-link" tabindex="-1">
+                    Enquire about this
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                      <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
+                  </a>
+                </div>
+
+                <!-- Type badge -->
+                <div class={`dest-badge dest-badge--${item.type}`}>
+                  {item.type === 'stay' ? 'Stay' : 'Experience'}
+                </div>
+              </div>
+
+              <!-- Card body -->
+              <div class="dest-info">
+                <div class="dest-meta-row">
+                  <span class="dest-country-tag">{item.countryLabel}</span>
+                  <span class="dest-sep" aria-hidden="true">·</span>
+                  <span class="dest-location">{item.location}</span>
+                </div>
+                <h3 class="dest-name">{item.title}</h3>
+                <p class="dest-desc">{item.description}</p>
+                <a href="/enquire" class="dest-card-cta btn-luxury">
+                  Enquire
+                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- Empty state -->
+        <div class="dest-empty" id="dest-empty" hidden>
+          <div class="rule" style="margin: 0 auto 28px;"></div>
+          <p class="dest-empty-msg">No destinations match your current filters.</p>
+          <button class="dest-reset-btn btn-luxury" id="dest-reset">
+            Clear all filters
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+              <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Begin Planning CTA ─────────────────────────── -->
+    <section class="plan-cta" data-reveal>
+      <div class="plan-cta-inner">
+        <div class="rule" style="margin-bottom: 32px;"></div>
+        <p class="plan-cta-eyebrow">Ready to explore?</p>
+        <h2 class="plan-cta-heading">Every journey begins with a conversation.</h2>
+        <p class="plan-cta-body">
+          Tell us where you'd like to go — and we'll take care of everything else.
+        </p>
+        <a href="/enquire" class="btn-filled">
+          Begin Your Journey
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+            <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+        </a>
       </div>
     </section>
 
@@ -39,14 +321,15 @@ import '../styles/global.css';
   <Footer />
 </Layout>
 
+<!-- ─────────────────────────────────────────────────── -->
 <style>
-  /* ── Page hero ── */
+
+  /* ── Page Hero ── */
   .page-hero {
     background: #F5F0E9;
     padding: clamp(80px, 12vw, 160px) 0 clamp(60px, 8vw, 100px);
     border-bottom: 1px solid rgba(17, 34, 80, 0.08);
   }
-
   .page-hero-inner {
     max-width: 1200px;
     margin: 0 auto;
@@ -77,12 +360,12 @@ import '../styles/global.css';
     margin-bottom: 32px;
     opacity: 0;
     transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
   }
   .page-title.revealed { opacity: 1; transform: translateY(0); }
 
   .page-intro {
-    font-family: 'Cormorant Unicase', serif;
+    font-family: 'Lato', sans-serif;
     font-size: clamp(15px, 1.2vw, 18px);
     font-weight: 300;
     line-height: 1.8;
@@ -90,20 +373,518 @@ import '../styles/global.css';
     max-width: 520px;
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
   }
   .page-intro.revealed { opacity: 1; transform: translateY(0); }
 
-  /* ── Content ── */
-  .destinations-content {
+  /* ── Filter Section ── */
+  .filter-section {
     background: #F5F0E9;
-    padding: clamp(60px, 8vw, 120px) 0;
-    min-height: 40vh;
+    border-bottom: 1px solid rgba(17, 34, 80, 0.1);
+    position: sticky;
+    top: 72px; /* height of site header */
+    z-index: 100;
   }
 
-  .destinations-inner {
+  .filter-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 6vw, 100px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 80px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .filter-controls {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 3vw, 48px);
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .filter-group-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(17, 34, 80, 0.38);
+    white-space: nowrap;
+    min-width: 52px;
+  }
+
+  .filter-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .filter-pill {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: rgba(17, 34, 80, 0.65);
+    background: transparent;
+    border: 1px solid rgba(17, 34, 80, 0.2);
+    padding: 7px 16px;
+    cursor: pointer;
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .filter-pill:hover {
+    border-color: rgba(17, 34, 80, 0.5);
+    color: #112250;
+  }
+  .filter-pill.is-active {
+    background: #112250;
+    border-color: #112250;
+    color: #F5F0E9;
+  }
+  .filter-pill.is-active:hover {
+    background: #1a3270;
+    border-color: #1a3270;
+  }
+
+  /* Vertical rule between groups */
+  .filter-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(17, 34, 80, 0.12);
+    flex-shrink: 0;
+  }
+
+  /* Results count */
+  .filter-count {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(17, 34, 80, 0.38);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  #dest-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    color: #112250;
+    line-height: 1;
+  }
+  .filter-count-label {
+    font-size: 11px;
+  }
+
+  /* ── Destinations Grid Section ── */
+  .dest-section {
+    background: #F5F0E9;
+    padding: clamp(56px, 8vw, 112px) 0 clamp(72px, 10vw, 140px);
+  }
+  .dest-inner {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 clamp(24px, 6vw, 100px);
   }
+
+  /* Grid */
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(40px, 5vw, 64px) clamp(24px, 3vw, 40px);
+    transition: opacity 0.22s ease;
+  }
+  .dest-grid.is-fading { opacity: 0; }
+
+  /* ── Destination Card ── */
+  .dest-item {
+    display: flex;
+    flex-direction: column;
+    animation: itemReveal 0.55s ease both;
+  }
+
+  @keyframes itemReveal {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Image wrapper */
+  .dest-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background: rgba(17, 34, 80, 0.06);
+  }
+
+  .dest-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .dest-item:hover .dest-img { transform: scale(1.06); }
+
+  /* Hover overlay */
+  .dest-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 40%,
+      rgba(17, 34, 80, 0.72) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 28px 24px;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
+  .dest-item:hover .dest-overlay { opacity: 1; }
+
+  .dest-enquire-link {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-style: italic;
+    letter-spacing: 0.18em;
+    color: #F5F0E9;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(245, 240, 233, 0.4);
+    padding-bottom: 3px;
+    transform: translateY(8px);
+    transition: gap 0.3s ease, border-color 0.3s ease, transform 0.45s ease;
+  }
+  .dest-item:hover .dest-enquire-link {
+    transform: translateY(0);
+  }
+  .dest-enquire-link:hover {
+    gap: 16px;
+    border-color: rgba(245, 240, 233, 0.85);
+  }
+
+  /* Type badge */
+  .dest-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: 'Lato', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    line-height: 1;
+  }
+  .dest-badge--stay {
+    background: #112250;
+    color: #F5F0E9;
+  }
+  .dest-badge--experience {
+    background: #C9A96E;
+    color: #112250;
+  }
+
+  /* Card body */
+  .dest-info {
+    padding: 22px 0 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .dest-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .dest-country-tag {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #C9A96E;
+  }
+  .dest-sep {
+    color: rgba(17, 34, 80, 0.25);
+    font-size: 10px;
+  }
+  .dest-location {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: rgba(17, 34, 80, 0.45);
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .dest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 1.6vw, 24px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    color: #112250;
+    margin-bottom: 12px;
+  }
+
+  .dest-desc {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    line-height: 1.72;
+    color: rgba(17, 34, 80, 0.55);
+    margin-bottom: 18px;
+    flex: 1;
+  }
+
+  .dest-card-cta {
+    margin-top: auto;
+  }
+
+  /* ── Empty State ── */
+  .dest-empty {
+    text-align: center;
+    padding: clamp(60px, 8vw, 100px) 0;
+  }
+  .dest-empty-msg {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 1.6vw, 24px);
+    font-weight: 400;
+    color: rgba(17, 34, 80, 0.5);
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+  .dest-reset-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  /* ── Plan CTA ── */
+  .plan-cta {
+    background: #112250;
+    padding: clamp(72px, 10vw, 120px) 0;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .plan-cta.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .plan-cta .rule {
+    background: rgba(201, 169, 110, 0.4);
+  }
+  .plan-cta-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 6vw, 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .plan-cta-eyebrow {
+    font-family: 'Cormorant Unicase', serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    margin-bottom: 20px;
+  }
+  .plan-cta-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    color: #F5F0E9;
+    margin-bottom: 20px;
+  }
+  .plan-cta-body {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(14px, 1.1vw, 17px);
+    line-height: 1.72;
+    color: rgba(245, 240, 233, 0.55);
+    margin-bottom: 40px;
+  }
+
+  /* ── Responsive ── */
+
+  /* Tablet: 2 columns */
+  @media (max-width: 900px) {
+    .dest-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .filter-divider {
+      display: none;
+    }
+    .filter-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      padding-top: 18px;
+      padding-bottom: 18px;
+    }
+    .filter-controls {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .filter-count {
+      align-self: flex-end;
+    }
+  }
+
+  /* Mobile: 1 column */
+  @media (max-width: 560px) {
+    .dest-grid {
+      grid-template-columns: 1fr;
+      gap: clamp(40px, 8vw, 56px) 0;
+    }
+    .filter-section {
+      top: 0;
+      position: relative; /* don't sticky on mobile — too cramped */
+    }
+    .filter-pills {
+      gap: 6px;
+    }
+    .filter-pill {
+      font-size: 10px;
+      padding: 6px 12px;
+    }
+    .filter-group {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .dest-img-wrap {
+      aspect-ratio: 3 / 2; /* wider on mobile for single column */
+    }
+    .plan-cta-inner {
+      align-items: flex-start;
+      text-align: left;
+    }
+    .plan-cta .rule { margin: 0 0 28px; }
+  }
 </style>
+
+<!-- ─────────────────────────────────────────────────── -->
+<script>
+  // ── State ────────────────────────────────────────────
+  let activeCountry = 'all';
+  let activeType    = 'all';
+
+  const grid      = document.getElementById('dest-grid')!;
+  const countEl   = document.getElementById('dest-count')!;
+  const emptyEl   = document.getElementById('dest-empty')!;
+  const resetBtn  = document.getElementById('dest-reset')!;
+
+  // ── Filter logic ─────────────────────────────────────
+  function getItems(): HTMLElement[] {
+    return Array.from(grid.querySelectorAll<HTMLElement>('.dest-item'));
+  }
+
+  function matches(item: HTMLElement): boolean {
+    const c = item.dataset.country ?? '';
+    const t = item.dataset.type ?? '';
+    return (activeCountry === 'all' || c === activeCountry)
+        && (activeType    === 'all' || t === activeType);
+  }
+
+  function applyFilters() {
+    const items = getItems();
+
+    // Fade grid out
+    grid.classList.add('is-fading');
+
+    setTimeout(() => {
+      let visible = 0;
+
+      items.forEach((item, idx) => {
+        if (matches(item)) {
+          item.hidden = false;
+          // Re-trigger entry animation with stagger
+          item.style.animation = 'none';
+          // Force reflow synchronously (one per item is fine here)
+          void item.offsetWidth;
+          item.style.animation = `itemReveal 0.5s ease ${idx * 45}ms both`;
+          visible++;
+        } else {
+          item.hidden = true;
+          item.style.animation = 'none';
+        }
+      });
+
+      countEl.textContent = String(visible);
+      emptyEl.hidden = visible > 0;
+      grid.hidden    = visible === 0;
+
+      // Fade grid back in
+      grid.classList.remove('is-fading');
+    }, 230);
+  }
+
+  // ── Pill button handlers ──────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>('.filter-pill').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filterGroup = btn.dataset.filter!;
+      const value       = btn.dataset.value!;
+
+      // Update active state within this group
+      document.querySelectorAll<HTMLButtonElement>(
+        `.filter-pill[data-filter="${filterGroup}"]`
+      ).forEach((b) => {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('is-active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      if (filterGroup === 'country') activeCountry = value;
+      if (filterGroup === 'type')    activeType    = value;
+
+      applyFilters();
+    });
+  });
+
+  // ── Reset handler ─────────────────────────────────────
+  resetBtn.addEventListener('click', () => {
+    activeCountry = 'all';
+    activeType    = 'all';
+
+    document.querySelectorAll<HTMLButtonElement>('.filter-pill').forEach((btn) => {
+      const isAll = btn.dataset.value === 'all';
+      btn.classList.toggle('is-active', isAll);
+      btn.setAttribute('aria-pressed', String(isAll));
+    });
+
+    applyFilters();
+  });
+</script>

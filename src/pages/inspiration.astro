@@ -3,6 +3,154 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+
+const articles = [
+  // ─── New Zealand ────────────────────────────────────────
+  {
+    id:            'fiordland-silence',
+    title:         'The Silence of Fiordland',
+    excerpt:       'There are places on earth that feel like the world before people. Fiordland is one of them — and it asks nothing of you except that you pay attention.',
+    country:       'new-zealand',
+    countryLabel:  'New Zealand',
+    category:      'places',
+    categoryLabel: 'Places',
+    readTime:      '5 min read',
+    image:         'https://picsum.photos/seed/fiordland-inspire/800/530',
+  },
+  {
+    id:            'maori-hospitality',
+    title:         'A Private Introduction to Māori Hospitality',
+    excerpt:       'Beyond the haka and the hāngī lies a living culture that welcomes the curious with extraordinary warmth. We arranged an introduction you will not forget.',
+    country:       'new-zealand',
+    countryLabel:  'New Zealand',
+    category:      'culture',
+    categoryLabel: 'Culture',
+    readTime:      '7 min read',
+    image:         'https://picsum.photos/seed/maori-culture/800/530',
+  },
+  {
+    id:            'central-otago-wine',
+    title:         'The Cellar Doors of Central Otago',
+    excerpt:       "The world's southernmost wine region rewards those who find their way to it. These are the estates we open privately for our guests.",
+    country:       'new-zealand',
+    countryLabel:  'New Zealand',
+    category:      'food-wine',
+    categoryLabel: 'Food & Wine',
+    readTime:      '6 min read',
+    image:         'https://picsum.photos/seed/otago-wine/800/530',
+  },
+  {
+    id:            'kaikoura-whales',
+    title:         'Whale Watch Kaikōura — Up Close',
+    excerpt:       'A sperm whale surfaces forty metres from your vessel. Nothing prepares you for the scale of it — or the quiet after it submerges.',
+    country:       'new-zealand',
+    countryLabel:  'New Zealand',
+    category:      'wildlife',
+    categoryLabel: 'Wildlife',
+    readTime:      '4 min read',
+    image:         'https://picsum.photos/seed/kaikoura-whale/800/530',
+  },
+  {
+    id:            'heli-skiing-alps',
+    title:         'Heli-Skiing the Southern Alps',
+    excerpt:       'The helicopter rises and the valley below shrinks to a crease in the snow. Then the doors open, and the mountain is entirely yours.',
+    country:       'new-zealand',
+    countryLabel:  'New Zealand',
+    category:      'experiences',
+    categoryLabel: 'Experiences',
+    readTime:      '5 min read',
+    image:         'https://picsum.photos/seed/heli-skiing-nz/800/530',
+  },
+  {
+    id:            'abel-tasman',
+    title:         "Abel Tasman — New Zealand's Golden Coast",
+    excerpt:       'Jade water, golden sand, and a coastal track so beautiful it has its own waiting list. We take you to the parts that do not.',
+    country:       'new-zealand',
+    countryLabel:  'New Zealand',
+    category:      'places',
+    categoryLabel: 'Places',
+    readTime:      '6 min read',
+    image:         'https://picsum.photos/seed/abel-tasman-nz/800/530',
+  },
+  // ─── Australia ──────────────────────────────────────────
+  {
+    id:            'uluru-first-light',
+    title:         'First Light at Uluru',
+    excerpt:       'Set your alarm. Walk out before sunrise. The rock changes colour seventeen times before 8am, and each one feels like something you were never meant to see.',
+    country:       'australia',
+    countryLabel:  'Australia',
+    category:      'places',
+    categoryLabel: 'Places',
+    readTime:      '4 min read',
+    image:         'https://picsum.photos/seed/uluru-dawn/800/530',
+  },
+  {
+    id:            'ningaloo-whale-sharks',
+    title:         'Swimming with Whale Sharks, Ningaloo',
+    excerpt:       "The largest fish in the ocean moves with total indifference to your presence. That, precisely, is the gift of it — you are briefly part of something ancient.",
+    country:       'australia',
+    countryLabel:  'Australia',
+    category:      'wildlife',
+    categoryLabel: 'Wildlife',
+    readTime:      '5 min read',
+    image:         'https://picsum.photos/seed/ningaloo-shark/800/530',
+  },
+  {
+    id:            'brae-restaurant',
+    title:         "The World's Best Restaurant on a Farm",
+    excerpt:       "Brae was named among the world's 50 best for a reason. The reason changes with every season, because the farm does — and the kitchen follows faithfully.",
+    country:       'australia',
+    countryLabel:  'Australia',
+    category:      'food-wine',
+    categoryLabel: 'Food & Wine',
+    readTime:      '6 min read',
+    image:         'https://picsum.photos/seed/brae-farm-dining/800/530',
+  },
+  {
+    id:            'mona-hobart',
+    title:         'After Dark at MONA, Hobart',
+    excerpt:       "Tasmania's museum of old and new art is unlike anything else in the Southern Hemisphere. After hours, with a private curator, it becomes something else entirely.",
+    country:       'australia',
+    countryLabel:  'Australia',
+    category:      'culture',
+    categoryLabel: 'Culture',
+    readTime:      '7 min read',
+    image:         'https://picsum.photos/seed/mona-hobart/800/530',
+  },
+  {
+    id:            'kimberley-from-air',
+    title:         'The Kimberley from the Air',
+    excerpt:       'From the ground, the Kimberley is vast beyond comprehension. From a private plane at 500 feet, it becomes something you can almost hold.',
+    country:       'australia',
+    countryLabel:  'Australia',
+    category:      'places',
+    categoryLabel: 'Places',
+    readTime:      '5 min read',
+    image:         'https://picsum.photos/seed/kimberley-air/800/530',
+  },
+  {
+    id:            'reef-diving-private',
+    title:         'Private Reef Diving, the Whitsundays',
+    excerpt:       'Skip the day boats. A private vessel and a marine biologist changes everything about how you experience the Great Barrier Reef.',
+    country:       'australia',
+    countryLabel:  'Australia',
+    category:      'experiences',
+    categoryLabel: 'Experiences',
+    readTime:      '5 min read',
+    image:         'https://picsum.photos/seed/whitsunday-reef/800/530',
+  },
+];
+
+const totalCount = articles.length;
+
+// Category badge color mapping
+const categoryColors: Record<string, string> = {
+  'places':      '#112250',
+  'experiences': '#2C4A7C',
+  'food-wine':   '#8B6914',
+  'culture':     '#4A5568',
+  'wildlife':    '#2D6A4F',
+};
 ---
 
 <Layout
@@ -10,34 +158,173 @@ import '../styles/global.css';
   description="The Art of Extraordinary — stories, ideas and perspectives to inspire your next journey."
 >
   <Header />
+
   <main>
+
+    <!-- ── Page Hero ──────────────────────────────────────── -->
     <section class="page-hero">
       <div class="page-hero-inner">
         <p class="eyebrow" data-reveal>Inspiration</p>
-        <h1 class="page-title" data-reveal data-delay="100">The Art of Extraordinary</h1>
+        <h1 class="page-title" data-reveal data-delay="100">
+          The Art of Extraordinary
+        </h1>
         <p class="page-intro" data-reveal data-delay="200">
-          Stories, perspectives and hidden discoveries — curated to spark the journey only you can take.
+          Stories, perspectives and hidden discoveries — curated to spark
+          the journey only you can take.
         </p>
       </div>
     </section>
+
+    <!-- ── Filter Bar ──────────────────────────────────────── -->
+    <section class="filter-section" aria-label="Filter articles">
+      <div class="filter-inner">
+
+        <div class="filter-controls">
+
+          <!-- Country -->
+          <div class="filter-group">
+            <span class="filter-group-label" id="country-label">Country</span>
+            <div class="filter-pills" role="group" aria-labelledby="country-label">
+              <button class="filter-pill is-active" data-filter="country" data-value="all" aria-pressed="true">All Countries</button>
+              <button class="filter-pill" data-filter="country" data-value="new-zealand" aria-pressed="false">New Zealand</button>
+              <button class="filter-pill" data-filter="country" data-value="australia" aria-pressed="false">Australia</button>
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div class="filter-group">
+            <span class="filter-group-label" id="category-label">Category</span>
+            <div class="filter-pills" role="group" aria-labelledby="category-label">
+              <button class="filter-pill is-active" data-filter="category" data-value="all" aria-pressed="true">All</button>
+              <button class="filter-pill" data-filter="category" data-value="places" aria-pressed="false">Places</button>
+              <button class="filter-pill" data-filter="category" data-value="experiences" aria-pressed="false">Experiences</button>
+              <button class="filter-pill" data-filter="category" data-value="food-wine" aria-pressed="false">Food & Wine</button>
+              <button class="filter-pill" data-filter="category" data-value="culture" aria-pressed="false">Culture</button>
+              <button class="filter-pill" data-filter="category" data-value="wildlife" aria-pressed="false">Wildlife</button>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="filter-count" aria-live="polite" aria-atomic="true">
+          <span id="insp-count">{totalCount}</span>
+          <span class="filter-count-label">stories</span>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ── Articles Grid ───────────────────────────────────── -->
+    <section class="insp-section">
+      <div class="insp-inner">
+
+        <div class="insp-grid" id="insp-grid">
+          {articles.map((article) => (
+            <article
+              class="insp-card"
+              data-country={article.country}
+              data-category={article.category}
+            >
+              <!-- Image -->
+              <div class="insp-img-wrap">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  class="insp-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <!-- Hover overlay -->
+                <div class="insp-overlay" aria-hidden="true">
+                  <span class="insp-overlay-text">
+                    Read story
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                      <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
+                  </span>
+                </div>
+                <!-- Category badge -->
+                <div
+                  class="insp-cat-badge"
+                  style={`background:${categoryColors[article.category] ?? '#112250'};`}
+                >
+                  {article.categoryLabel}
+                </div>
+              </div>
+
+              <!-- Card body -->
+              <div class="insp-body">
+                <div class="insp-meta">
+                  <span class="insp-country">{article.countryLabel}</span>
+                  <span class="insp-sep" aria-hidden="true">·</span>
+                  <span class="insp-readtime">{article.readTime}</span>
+                </div>
+                <h3 class="insp-title">{article.title}</h3>
+                <p class="insp-excerpt">{article.excerpt}</p>
+                <a href="/enquire" class="insp-cta btn-luxury">
+                  Read story
+                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- Empty state -->
+        <div class="insp-empty" id="insp-empty" hidden>
+          <div class="rule" style="margin: 0 auto 28px;"></div>
+          <p class="insp-empty-msg">No stories match your current filters.</p>
+          <button class="insp-reset btn-luxury" id="insp-reset">
+            Clear all filters
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+              <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Stay Inspired CTA ──────────────────────────────── -->
+    <section class="stay-cta" data-reveal>
+      <div class="stay-cta-inner">
+        <div class="rule" style="margin-bottom: 32px;"></div>
+        <p class="stay-eyebrow">Begin your journey</p>
+        <h2 class="stay-heading">Something here caught your eye?</h2>
+        <p class="stay-body">
+          Every story on this page is a door. Tell us which one you'd like to walk through.
+        </p>
+        <a href="/enquire" class="btn-filled">
+          Start the conversation
+          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+            <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
   </main>
+
   <Footer />
 </Layout>
 
+<!-- ─────────────────────────────────────────────────────── -->
 <style>
+
+  /* ── Page Hero ── */
   .page-hero {
     background: #F5F0E9;
     padding: clamp(80px, 12vw, 160px) 0 clamp(60px, 8vw, 100px);
     border-bottom: 1px solid rgba(17, 34, 80, 0.08);
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
   }
   .page-hero-inner {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 clamp(24px, 6vw, 100px);
   }
+
   .eyebrow {
     font-family: 'Cormorant Unicase', serif;
     font-size: 11px;
@@ -50,26 +337,435 @@ import '../styles/global.css';
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
   .eyebrow.revealed { opacity: 1; transform: translateY(0); }
+
   .page-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(42px, 6vw, 88px);
     font-weight: 400;
     line-height: 1.05;
+    letter-spacing: -0.01em;
     color: #112250;
     margin-bottom: 32px;
     opacity: 0; transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
   }
   .page-title.revealed { opacity: 1; transform: translateY(0); }
+
   .page-intro {
-    font-family: 'Cormorant Unicase', serif;
+    font-family: 'Lato', sans-serif;
     font-size: clamp(15px, 1.2vw, 18px);
     font-weight: 300;
     line-height: 1.8;
     color: rgba(17, 34, 80, 0.6);
     max-width: 520px;
     opacity: 0; transform: translateY(16px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
   }
   .page-intro.revealed { opacity: 1; transform: translateY(0); }
+
+  /* ── Filter Bar ── */
+  .filter-section {
+    background: #F5F0E9;
+    border-bottom: 1px solid rgba(17, 34, 80, 0.1);
+    position: sticky;
+    top: 72px;
+    z-index: 100;
+  }
+  .filter-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(18px, 2vw, 24px) clamp(24px, 6vw, 100px);
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  /* Two-column grid — Country left, Category right */
+  .filter-controls {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0;
+    flex: 1;
+    position: relative;
+  }
+
+  /* Vertical rule between the two columns */
+  .filter-controls::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: calc(var(--country-col-width, 260px));
+    width: 1px;
+    background: rgba(17, 34, 80, 0.1);
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: clamp(20px, 3vw, 48px);
+  }
+  .filter-group:last-child {
+    padding-right: 0;
+    padding-left: clamp(20px, 3vw, 48px);
+  }
+
+  .filter-group-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(17, 34, 80, 0.35);
+  }
+  .filter-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .filter-pill {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: rgba(17, 34, 80, 0.65);
+    background: transparent;
+    border: 1px solid rgba(17, 34, 80, 0.2);
+    padding: 7px 16px;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .filter-pill:hover { border-color: rgba(17, 34, 80, 0.5); color: #112250; }
+  .filter-pill.is-active { background: #112250; border-color: #112250; color: #F5F0E9; }
+  .filter-pill.is-active:hover { background: #1a3270; border-color: #1a3270; }
+
+  .filter-count {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(17, 34, 80, 0.38);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    flex-shrink: 0;
+    padding-top: 4px;
+  }
+  #insp-count {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: normal;
+    color: #112250;
+    line-height: 1;
+  }
+
+  /* ── Articles Grid ── */
+  .insp-section {
+    background: #F5F0E9;
+    padding: clamp(56px, 8vw, 112px) 0 clamp(72px, 10vw, 140px);
+  }
+  .insp-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 6vw, 100px);
+  }
+  .insp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(40px, 5vw, 60px) clamp(24px, 3vw, 40px);
+    transition: opacity 0.22s ease;
+  }
+  .insp-grid.is-fading { opacity: 0; }
+
+  /* ── Article Card ── */
+  .insp-card {
+    display: flex;
+    flex-direction: column;
+    animation: cardIn 0.55s ease both;
+  }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Image */
+  .insp-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 / 2;
+    background: rgba(17, 34, 80, 0.06);
+  }
+  .insp-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .insp-card:hover .insp-img { transform: scale(1.05); }
+
+  /* Hover overlay */
+  .insp-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(17, 34, 80, 0.68) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 24px 22px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .insp-card:hover .insp-overlay { opacity: 1; }
+  .insp-overlay-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-style: italic;
+    letter-spacing: 0.16em;
+    color: #F5F0E9;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(245, 240, 233, 0.4);
+    padding-bottom: 3px;
+    transform: translateY(6px);
+    transition: gap 0.3s ease, transform 0.4s ease;
+  }
+  .insp-card:hover .insp-overlay-text { transform: translateY(0); }
+
+  /* Category badge — top-left, clear of hover overlay */
+  .insp-cat-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    color: #F5F0E9;
+    font-family: 'Lato', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    line-height: 1;
+  }
+
+  /* Card body */
+  .insp-body {
+    padding: 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .insp-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .insp-country {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #C9A96E;
+  }
+  .insp-sep { color: rgba(17, 34, 80, 0.25); font-size: 10px; }
+  .insp-readtime {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: rgba(17, 34, 80, 0.42);
+    text-transform: uppercase;
+  }
+
+  .insp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 1.6vw, 23px);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    color: #112250;
+    margin-bottom: 10px;
+  }
+  .insp-excerpt {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    line-height: 1.75;
+    color: rgba(17, 34, 80, 0.62);
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .insp-cta { margin-top: auto; font-size: 11px; }
+
+  /* ── Empty state ── */
+  .insp-empty {
+    text-align: center;
+    padding: clamp(60px, 8vw, 100px) 0;
+  }
+  .insp-empty-msg {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 1.6vw, 24px);
+    font-style: italic;
+    color: rgba(17, 34, 80, 0.5);
+    margin-bottom: 28px;
+  }
+  .insp-reset {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  /* ── Stay Inspired CTA ── */
+  .stay-cta {
+    background: #112250;
+    padding: clamp(72px, 10vw, 120px) 0;
+    text-align: center;
+    opacity: 0; transform: translateY(36px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .stay-cta.revealed { opacity: 1; transform: translateY(0); }
+  .stay-cta .rule { background: rgba(201, 169, 110, 0.4); margin: 0 auto 32px; }
+  .stay-cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 6vw, 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .stay-eyebrow {
+    font-family: 'Cormorant Unicase', serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    margin-bottom: 20px;
+  }
+  .stay-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 3.2vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    color: #F5F0E9;
+    margin-bottom: 18px;
+  }
+  .stay-body {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.75;
+    color: rgba(245, 240, 233, 0.52);
+    margin-bottom: 36px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .insp-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 720px) {
+    /* Stack filter columns on smaller screens */
+    .filter-controls {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .filter-controls::after { display: none; }
+    .filter-group { padding-right: 0; }
+    .filter-group:last-child { padding-left: 0; }
+    .filter-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .filter-count { align-self: flex-end; }
+  }
+
+  @media (max-width: 560px) {
+    .insp-grid { grid-template-columns: 1fr; }
+    .filter-section { position: relative; top: 0; }
+    .filter-pill { font-size: 10px; padding: 6px 12px; }
+    .stay-cta-inner { align-items: flex-start; text-align: left; }
+    .stay-cta .rule { margin: 0 0 32px; }
+  }
 </style>
+
+<script>
+  let activeCountry  = 'all';
+  let activeCategory = 'all';
+
+  const grid     = document.getElementById('insp-grid')!;
+  const countEl  = document.getElementById('insp-count')!;
+  const emptyEl  = document.getElementById('insp-empty')!;
+  const resetBtn = document.getElementById('insp-reset')!;
+
+  function getCards(): HTMLElement[] {
+    return Array.from(grid.querySelectorAll<HTMLElement>('.insp-card'));
+  }
+
+  function matches(card: HTMLElement): boolean {
+    const c = card.dataset.country  ?? '';
+    const t = card.dataset.category ?? '';
+    return (activeCountry  === 'all' || c === activeCountry)
+        && (activeCategory === 'all' || t === activeCategory);
+  }
+
+  function applyFilters() {
+    const cards = getCards();
+    grid.style.opacity    = '0';
+    grid.style.transition = 'opacity 0.2s ease';
+
+    setTimeout(() => {
+      let visible = 0;
+      cards.forEach((card, idx) => {
+        if (matches(card)) {
+          card.style.display = '';
+          card.style.animation = 'none';
+          void card.offsetWidth;
+          card.style.animation = `cardIn 0.5s ease ${idx * 45}ms both`;
+          visible++;
+        } else {
+          card.style.display = 'none';
+          card.style.animation = 'none';
+        }
+      });
+
+      countEl.textContent = String(visible);
+      emptyEl.hidden = visible > 0;
+      grid.hidden    = visible === 0;
+      grid.style.opacity = '1';
+    }, 220);
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.filter-pill').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const group = btn.dataset.filter!;
+      const value = btn.dataset.value!;
+
+      document.querySelectorAll<HTMLButtonElement>(
+        `.filter-pill[data-filter="${group}"]`
+      ).forEach((b) => {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('is-active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      if (group === 'country')  activeCountry  = value;
+      if (group === 'category') activeCategory = value;
+
+      applyFilters();
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    activeCountry  = 'all';
+    activeCategory = 'all';
+    document.querySelectorAll<HTMLButtonElement>('.filter-pill').forEach((btn) => {
+      const isAll = btn.dataset.value === 'all';
+      btn.classList.toggle('is-active', isAll);
+      btn.setAttribute('aria-pressed', String(isAll));
+    });
+    applyFilters();
+  });
+</script>
