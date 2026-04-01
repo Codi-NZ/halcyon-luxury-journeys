@@ -11,6 +11,8 @@ import '../styles/global.css';
 >
   <Header />
   <main>
+
+    <!-- ── Page Hero ─────────────────────────────────────── -->
     <section class="page-hero">
       <div class="page-hero-inner">
         <p class="eyebrow" data-reveal>About</p>
@@ -21,16 +23,360 @@ import '../styles/global.css';
         </p>
       </div>
     </section>
+
+    <!-- ── Origin Story ──────────────────────────────────── -->
+    <section class="origin-section" aria-label="Our founding story">
+
+      <!-- Left: full-bleed image with parallax -->
+      <div class="origin-image-wrap">
+        <img
+          src="https://picsum.photos/seed/halcyon-origin-nz/1200/900"
+          alt="New Zealand landscape at golden hour"
+          class="origin-image"
+          id="origin-img"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="origin-image-fade"></div>
+      </div>
+
+      <!-- Right: Editorial text -->
+      <div class="origin-text-col">
+
+        <!-- Decorative NZ map -->
+        <svg
+          viewBox="0 0 200 420"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          class="origin-map-svg"
+          fill="none"
+          stroke="#C9E9FF"
+          stroke-width="1.2"
+        >
+          <path d="M 88,12 C 92,8 99,6 106,10 C 118,16 128,30 132,48 C 136,64 138,72 148,86 C 158,100 162,116 158,132 C 154,148 144,160 136,170 C 126,180 116,184 106,184 C 94,184 82,176 72,162 C 62,148 56,130 58,112 C 60,94 68,78 70,62 C 72,46 76,28 88,12 Z" />
+          <path d="M 108,210 C 118,206 132,208 144,216 C 156,224 164,238 166,254 C 168,268 164,282 160,296 C 156,308 148,318 144,330 C 138,344 136,358 128,370 C 120,382 108,390 96,390 C 82,390 68,380 58,368 C 48,356 42,340 42,324 C 42,308 48,292 50,276 C 52,260 48,244 52,228 C 56,214 70,206 86,206 C 96,206 104,208 108,210 Z" />
+          <ellipse cx="112" cy="410" rx="10" ry="7" />
+          <line x1="106" y1="192" x2="108" y2="204" stroke-dasharray="3,4" />
+        </svg>
+
+        <div class="overline-light mb-6" data-reveal>The founding</div>
+
+        <h2 class="origin-heading" data-reveal data-delay="100">
+          Born from a<br />
+          <em>love of place.</em>
+        </h2>
+
+        <div class="origin-rule" data-reveal data-delay="150"></div>
+
+        <p class="origin-body" data-reveal data-delay="200">
+          Halcyon was born from a single conviction: that the places you return to in memory are never the famous sights — they are the private moments. The unexpected clearing. The innkeeper who handed you something local and unnamed. The hour before dawn when you had a glacier entirely to yourself.
+        </p>
+
+        <p class="origin-body-muted" data-reveal data-delay="280">
+          We founded Halcyon to seek out those moments, hold them in trust, and return them to our travellers as the foundation of every journey we design. New Zealand is where it began. The world is where it led us.
+        </p>
+
+        <div data-reveal data-delay="360">
+          <a href="/destinations" class="btn-luxury btn-luxury-light">
+            Explore our destinations
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+              <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Philosophy Quote Strip ────────────────────────── -->
+    <section class="philosophy-strip">
+      <div class="philosophy-inner">
+        <div class="philosophy-rule" data-reveal></div>
+        <blockquote class="philosophy-quote" data-reveal data-delay="80">
+          "We believe the world reveals itself most fully to those who move through it slowly,
+          with intention — and with someone who has already gone before."
+        </blockquote>
+        <p class="philosophy-attribution" data-reveal data-delay="180">
+          — The Halcyon Philosophy
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Our Approach (Pillars) ────────────────────────── -->
+    <section class="pillars-section">
+      <div class="container-xl">
+
+        <div class="pillars-header">
+          <div class="overline mb-6" data-reveal>our approach</div>
+          <h2 class="pillars-heading" data-reveal data-delay="100">
+            Travel as it Was<br />Meant to Be
+          </h2>
+          <div class="pillars-heading-rule" data-reveal data-delay="200"></div>
+        </div>
+
+        <div class="pillars-grid">
+
+          <div class="pillar" data-reveal data-delay="0">
+            <div class="pillar-icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="18" cy="20" r="8" stroke="#112250" stroke-width="1.2"/>
+                <circle cx="18" cy="20" r="3.5" stroke="#112250" stroke-width="1" opacity="0.4"/>
+                <line x1="24.5" y1="20" x2="38" y2="20" stroke="#112250" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="34" y1="20" x2="34" y2="24" stroke="#112250" stroke-width="1.2" stroke-linecap="round"/>
+                <line x1="38" y1="20" x2="38" y2="24" stroke="#112250" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="pillar-rule"></div>
+            <h3 class="pillar-title">Completely Private</h3>
+            <p class="pillar-body">Your journey belongs only to you. No shared itineraries, no compromise on preference — ever.</p>
+          </div>
+
+          <div class="pillar" data-reveal data-delay="120">
+            <div class="pillar-icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="18" stroke="#112250" stroke-width="1.2"/>
+                <circle cx="24" cy="24" r="3" fill="#112250" opacity="0.25"/>
+                <polygon points="24,6 26.5,21 24,18 21.5,21" fill="#112250" opacity="0.9"/>
+                <polygon points="24,42 21.5,27 24,30 26.5,27" fill="#112250" opacity="0.3"/>
+                <polygon points="6,24 21,21.5 18,24 21,26.5" fill="#112250" opacity="0.3"/>
+                <polygon points="42,24 27,26.5 30,24 27,21.5" fill="#112250" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="pillar-rule"></div>
+            <h3 class="pillar-title">Insider Access</h3>
+            <p class="pillar-body">Deep relationships with lodges, guides, and operators unlock experiences beyond public reach.</p>
+          </div>
+
+          <div class="pillar" data-reveal data-delay="240">
+            <div class="pillar-icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="24,5 40,20 24,43 8,20" stroke="#112250" stroke-width="1.2" fill="none"/>
+                <polygon points="24,5 40,20 24,43 8,20" stroke="#112250" stroke-width="0.5" fill="#112250" opacity="0.04"/>
+                <line x1="8" y1="20" x2="40" y2="20" stroke="#112250" stroke-width="0.8" opacity="0.25"/>
+                <line x1="24" y1="5" x2="24" y2="20" stroke="#112250" stroke-width="0.8" opacity="0.2"/>
+              </svg>
+            </div>
+            <div class="pillar-rule"></div>
+            <h3 class="pillar-title">Exceptional Quality</h3>
+            <p class="pillar-body">Every lodge, transfer, and experience is handpicked against the highest standards of luxury.</p>
+          </div>
+
+          <div class="pillar" data-reveal data-delay="360">
+            <div class="pillar-icon">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 36 C 8 36, 16 12, 24 20 S 36 8 40 12" stroke="#112250" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.35"/>
+                <circle cx="8" cy="36" r="3.5" stroke="#112250" stroke-width="1.2"/>
+                <circle cx="24" cy="20" r="2.5" stroke="#112250" stroke-width="1" fill="#112250" opacity="0.2"/>
+                <circle cx="40" cy="12" r="3.5" stroke="#112250" stroke-width="1.2" fill="#112250" opacity="0.15"/>
+                <circle cx="40" cy="12" r="1.5" fill="#112250" opacity="0.5"/>
+              </svg>
+            </div>
+            <div class="pillar-rule"></div>
+            <h3 class="pillar-title">End-to-End Care</h3>
+            <p class="pillar-body">From first enquiry to final farewell, our team is present — and available — at every step.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── The Team ──────────────────────────────────────── -->
+    <section class="team-section">
+      <div class="container-xl">
+
+        <div class="team-header">
+          <div class="overline mb-6" data-reveal>the people behind halcyon</div>
+          <h2 class="team-heading" data-reveal data-delay="100">
+            Founded on a shared<br />love of extraordinary travel.
+          </h2>
+          <p class="team-intro" data-reveal data-delay="180">
+            Halcyon was built by people who travel — not as observers, but as participants.
+            Every recommendation comes from personal experience.
+          </p>
+        </div>
+
+        <div class="team-grid">
+
+          <article class="team-card" data-reveal data-delay="0">
+            <div class="team-card-image-wrap">
+              <img
+                src="https://picsum.photos/seed/portrait-woman-luxury/600/740"
+                alt="Tracey Burfield-Mills, Co-Founder & Director"
+                class="team-card-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="team-card-body">
+              <p class="team-card-role">Co-Founder & Director</p>
+              <h3 class="team-card-name">Tracey Burfield-Mills</h3>
+              <div class="team-card-rule"></div>
+              <p class="team-card-bio">Tracey's passion for travel has taken her to the far edges of New Zealand and beyond — and it is that firsthand knowledge that shapes every journey Halcyon designs. She believes the most meaningful travel happens when every detail is personal, considered, and quietly extraordinary.</p>
+            </div>
+          </article>
+
+          <article class="team-card" data-reveal data-delay="150">
+            <div class="team-card-image-wrap">
+              <img
+                src="https://picsum.photos/seed/portrait-man-travel/600/740"
+                alt="Steve Burfield-Mills, CFO & Client Experience Lead"
+                class="team-card-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="team-card-body">
+              <p class="team-card-role">CFO & Client Experience Lead</p>
+              <h3 class="team-card-name">Steve Burfield-Mills</h3>
+              <div class="team-card-rule"></div>
+              <p class="team-card-bio">Steve controls the budget with the same precision he applies to a good wine list — carefully, and with strong opinions. As CFO, he ensures every extraordinary experience remains financially defensible. As Client Experience Lead, he promptly overrides himself. Guests have described him as "surprisingly charming for someone who asks about invoices."</p>
+            </div>
+          </article>
+
+          <article class="team-card" data-reveal data-delay="300">
+            <div class="team-card-image-wrap">
+              <img
+                src="https://picsum.photos/seed/portrait-woman-professional/600/740"
+                alt="Priya Nguyen, Client Experience Lead"
+                class="team-card-image"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="team-card-body">
+              <p class="team-card-role">Tech Support</p>
+              <h3 class="team-card-name">Priti</h3>
+              <div class="team-card-rule"></div>
+              <p class="team-card-bio">She just makes it work.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── How We Work ───────────────────────────────────── -->
+    <section class="process-section">
+      <div class="container-xl">
+
+        <div class="process-header">
+          <div class="overline-light mb-6" data-reveal>how we work</div>
+          <h2 class="process-heading" data-reveal data-delay="100">
+            From first word<br />to fond memory.
+          </h2>
+          <p class="process-intro" data-reveal data-delay="180">
+            Every Halcyon journey begins with a conversation and ends with
+            something you carry for the rest of your life.
+          </p>
+        </div>
+
+        <div class="process-steps">
+
+          <div class="process-step" data-reveal data-delay="0">
+            <div class="process-step-num">01</div>
+            <div class="process-step-divider" aria-hidden="true"></div>
+            <div class="process-step-content">
+              <h3 class="process-step-title">The Conversation</h3>
+              <p class="process-step-body">We begin by listening. A call or meeting — no agenda, no pitch. Just a genuine exchange about where you want to go, who you are as a traveller, and what would make this journey unforgettable.</p>
+            </div>
+          </div>
+
+          <div class="process-step" data-reveal data-delay="100">
+            <div class="process-step-num">02</div>
+            <div class="process-step-divider" aria-hidden="true"></div>
+            <div class="process-step-content">
+              <h3 class="process-step-title">The Proposal</h3>
+              <p class="process-step-body">We disappear briefly, then return with a bespoke itinerary built entirely around your story. Not a brochure — a composed work. Refined through dialogue until it is unmistakably, exactly yours.</p>
+            </div>
+          </div>
+
+          <div class="process-step" data-reveal data-delay="200">
+            <div class="process-step-num">03</div>
+            <div class="process-step-divider" aria-hidden="true"></div>
+            <div class="process-step-content">
+              <h3 class="process-step-title">The Journey</h3>
+              <p class="process-step-body">You travel with confidence, knowing every detail has been attended to. Our team is reachable at any hour — not as a call centre, but as a knowledgeable friend who knows every operator on your itinerary personally.</p>
+            </div>
+          </div>
+
+          <div class="process-step" data-reveal data-delay="300">
+            <div class="process-step-num">04</div>
+            <div class="process-step-content">
+              <h3 class="process-step-title">The Return</h3>
+              <p class="process-step-body">When you're home, we check in — not out of obligation, but because we genuinely want to know what stayed with you. The answers inform every journey that follows. Including, perhaps, yours.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Testimonial Pull Quote ─────────────────────────── -->
+    <section class="testimonial-section">
+      <div class="testimonial-quote-mark" aria-hidden="true">"</div>
+      <div class="testimonial-inner">
+        <blockquote class="testimonial-quote" data-reveal>
+          From first email to final farewell, Halcyon made us feel that the entire world
+          had been arranged just for us. I've never travelled this way before.
+          <em>I will never travel any other way again.</em>
+        </blockquote>
+        <div class="testimonial-rule" data-reveal data-delay="100"></div>
+        <div class="testimonial-attribution" data-reveal data-delay="180">
+          <span class="testimonial-name">S. & M. R.</span>
+          <span class="testimonial-sep">·</span>
+          <span class="testimonial-journey">South Island Grand Tour, New Zealand</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Final CTA ─────────────────────────────────────── -->
+    <section class="about-cta">
+      <img
+        src="https://picsum.photos/seed/halcyon-about-cta-fjord/2400/1100"
+        alt="Milford Sound, Fiordland New Zealand"
+        class="about-cta-bg"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="about-cta-overlay"></div>
+      <div class="container-lg about-cta-content">
+        <div class="overline-light mb-8" data-reveal>begin your journey</div>
+        <h2 class="about-cta-heading" data-reveal data-delay="100">
+          Your journey<br />
+          <em>awaits.</em>
+        </h2>
+        <p class="about-cta-body" data-reveal data-delay="200">
+          Tell us what calls to you — a landscape, a season, a feeling — and we will build something entirely new, entirely yours.
+        </p>
+        <div class="about-cta-actions" data-reveal data-delay="300">
+          <a href="/contact" class="btn-filled btn-filled-light">
+            Begin an Enquiry
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+              <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </a>
+          <a href="/itineraries" class="btn-luxury btn-luxury-light">
+            View Signature Journeys
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+              <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
   <Footer />
 </Layout>
 
 <style>
+
+  /* ── Page Hero ─────────────────────────────────────────── */
   .page-hero {
     background: #F5F0E9;
     padding: clamp(80px, 12vw, 160px) 0 clamp(60px, 8vw, 100px);
     border-bottom: 1px solid rgba(17, 34, 80, 0.08);
-    min-height: 60vh;
+    min-height: 52vh;
     display: flex;
     align-items: center;
   }
@@ -59,18 +405,608 @@ import '../styles/global.css';
     color: #112250;
     margin-bottom: 32px;
     opacity: 0; transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
   }
   .page-title.revealed { opacity: 1; transform: translateY(0); }
   .page-intro {
-    font-family: 'Cormorant Unicase', serif;
+    font-family: 'Lato', sans-serif;
     font-size: clamp(15px, 1.2vw, 18px);
     font-weight: 300;
     line-height: 1.8;
     color: rgba(17, 34, 80, 0.6);
     max-width: 520px;
     opacity: 0; transform: translateY(16px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
   }
   .page-intro.revealed { opacity: 1; transform: translateY(0); }
+
+  /* ── Origin Story ──────────────────────────────────────── */
+  .origin-section {
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #112250;
+  }
+
+  .origin-image-wrap {
+    position: relative;
+    min-height: 560px;
+    overflow: hidden;
+  }
+  .origin-image {
+    width: 100%;
+    height: 120%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    position: absolute;
+    top: -10%;
+  }
+  .origin-image-fade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(17,34,80,0) 65%, rgba(17,34,80,1) 100%);
+  }
+
+  .origin-text-col {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(56px, 8vw, 110px) clamp(36px, 6vw, 88px);
+    z-index: 1;
+  }
+
+  .origin-map-svg {
+    position: absolute;
+    right: -6%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(240px, 22vw);
+    opacity: 0.07;
+    pointer-events: none;
+  }
+
+  .origin-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4.2vw, 62px);
+    font-weight: 400;
+    line-height: 1.12;
+    color: #F5F0E9;
+    margin-bottom: 28px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+  }
+  .origin-heading.revealed { opacity: 1; transform: translateY(0); }
+  .origin-heading em { font-style: italic; color: rgba(201, 233, 255, 0.8); }
+
+  .origin-rule {
+    width: 36px;
+    height: 1px;
+    background: rgba(245, 240, 233, 0.2);
+    margin-bottom: 28px;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.15s;
+  }
+  .origin-rule.revealed { opacity: 1; }
+
+  .origin-body {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.95;
+    color: rgba(245, 240, 233, 0.65);
+    margin-bottom: 22px;
+    max-width: 440px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+  }
+  .origin-body.revealed { opacity: 1; transform: translateY(0); }
+
+  .origin-body-muted {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    font-style: italic;
+    line-height: 1.95;
+    color: rgba(245, 240, 233, 0.45);
+    margin-bottom: 40px;
+    max-width: 440px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.7s ease 0.28s, transform 0.7s ease 0.28s;
+  }
+  .origin-body-muted.revealed { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    .origin-section { grid-template-columns: 1fr; }
+    .origin-image-wrap { min-height: 300px; }
+    .origin-image-fade {
+      background: linear-gradient(to bottom, rgba(17,34,80,0) 55%, rgba(17,34,80,1) 100%);
+    }
+    .origin-map-svg { display: none; }
+  }
+
+  /* ── Philosophy Strip ──────────────────────────────────── */
+  .philosophy-strip {
+    background: #F5F0E9;
+    padding: clamp(56px, 8vw, 100px) 0;
+    border-bottom: 1px solid rgba(17, 34, 80, 0.07);
+  }
+  .philosophy-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 6vw, 60px);
+  }
+  .philosophy-rule {
+    width: 48px;
+    height: 1px;
+    background: rgba(17, 34, 80, 0.18);
+    margin-bottom: 40px;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .philosophy-rule.revealed { opacity: 1; }
+  .philosophy-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 1.8vw, 26px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.7;
+    color: rgba(17, 34, 80, 0.72);
+    margin: 0 0 28px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.85s ease 0.08s, transform 0.85s ease 0.08s;
+  }
+  .philosophy-quote.revealed { opacity: 1; transform: translateY(0); }
+  .philosophy-attribution {
+    font-family: 'Cormorant Unicase', serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.7s ease 0.18s, transform 0.7s ease 0.18s;
+  }
+  .philosophy-attribution.revealed { opacity: 1; transform: translateY(0); }
+
+  /* ── Pillars ───────────────────────────────────────────── */
+  .pillars-section {
+    background: #F5F0E9;
+    padding: clamp(64px, 9vw, 120px) 0;
+  }
+  .pillars-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: clamp(48px, 6vw, 80px);
+  }
+  .pillars-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 72px);
+    font-weight: 400;
+    line-height: 1.05;
+    color: #112250;
+    max-width: 640px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+  }
+  .pillars-heading.revealed { opacity: 1; transform: translateY(0); }
+  .pillars-heading-rule {
+    width: 1px;
+    height: 48px;
+    background: rgba(17, 34, 80, 0.15);
+    margin-top: 32px;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.2s;
+  }
+  .pillars-heading-rule.revealed { opacity: 1; }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(32px, 4vw, 48px) clamp(20px, 3vw, 36px);
+  }
+  .pillar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .pillar.revealed { opacity: 1; transform: translateY(0); }
+  .pillar-icon { margin-bottom: 28px; }
+  .pillar-rule {
+    width: 36px;
+    height: 1px;
+    background: rgba(17, 34, 80, 0.18);
+    margin-bottom: 24px;
+  }
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: #112250;
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .pillar-body {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.9;
+    color: rgba(17, 34, 80, 0.58);
+  }
+
+  @media (max-width: 820px) {
+    .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .pillars-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── Team ──────────────────────────────────────────────── */
+  .team-section {
+    background: #fff;
+    padding: clamp(64px, 9vw, 120px) 0;
+    border-top: 1px solid rgba(17, 34, 80, 0.07);
+    border-bottom: 1px solid rgba(17, 34, 80, 0.07);
+  }
+  .team-header {
+    margin-bottom: clamp(44px, 6vw, 72px);
+  }
+  .team-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4.2vw, 60px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #112250;
+    margin-bottom: 20px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+  }
+  .team-heading.revealed { opacity: 1; transform: translateY(0); }
+  .team-intro {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(14px, 1.1vw, 17px);
+    font-style: italic;
+    line-height: 1.8;
+    color: rgba(17, 34, 80, 0.55);
+    max-width: 480px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.7s ease 0.18s, transform 0.7s ease 0.18s;
+  }
+  .team-intro.revealed { opacity: 1; transform: translateY(0); }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(28px, 4vw, 52px);
+  }
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .team-card.revealed { opacity: 1; transform: translateY(0); }
+
+  .team-card-image-wrap {
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    margin-bottom: 28px;
+    background: #F5F0E9;
+  }
+  .team-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .team-card:hover .team-card-image { transform: scale(1.04); }
+
+  .team-card-body { flex: 1; }
+  .team-card-role {
+    font-family: 'Cormorant Unicase', serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    margin-bottom: 10px;
+  }
+  .team-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 1.8vw, 26px);
+    font-weight: 400;
+    color: #112250;
+    margin-bottom: 18px;
+    letter-spacing: 0.01em;
+  }
+  .team-card-rule {
+    width: 36px;
+    height: 1px;
+    background: rgba(17, 34, 80, 0.15);
+    margin-bottom: 18px;
+  }
+  .team-card-bio {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(13px, 1vw, 15px);
+    line-height: 1.82;
+    color: rgba(17, 34, 80, 0.62);
+  }
+
+  @media (max-width: 768px) {
+    .team-grid { grid-template-columns: 1fr; max-width: 420px; }
+  }
+
+  /* ── Process / How We Work ─────────────────────────────── */
+  .process-section {
+    background: #112250;
+    padding: clamp(64px, 9vw, 120px) 0;
+  }
+  .process-header {
+    margin-bottom: clamp(48px, 6vw, 80px);
+    max-width: 560px;
+  }
+  .process-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4.2vw, 58px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: #F5F0E9;
+    margin-bottom: 20px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+  }
+  .process-heading.revealed { opacity: 1; transform: translateY(0); }
+  .process-intro {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(14px, 1.1vw, 17px);
+    font-style: italic;
+    line-height: 1.8;
+    color: rgba(245, 240, 233, 0.5);
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.7s ease 0.18s, transform 0.7s ease 0.18s;
+  }
+  .process-intro.revealed { opacity: 1; transform: translateY(0); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(245, 240, 233, 0.1);
+  }
+  .process-step {
+    padding: clamp(32px, 4vw, 52px) clamp(16px, 2.5vw, 36px) clamp(32px, 4vw, 52px) 0;
+    border-right: 1px solid rgba(245, 240, 233, 0.1);
+    padding-right: clamp(16px, 2.5vw, 36px);
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .process-step:last-child { border-right: none; padding-right: 0; }
+  .process-step.revealed { opacity: 1; transform: translateY(0); }
+
+  .process-step-num {
+    font-family: 'Cormorant Unicase', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(201, 169, 110, 0.22);
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+  .process-step-divider {
+    width: 24px;
+    height: 1px;
+    background: rgba(201, 169, 110, 0.35);
+    margin-bottom: 20px;
+    display: none;
+  }
+  .process-step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 1.4vw, 20px);
+    font-weight: 400;
+    color: #F5F0E9;
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+  .process-step-body {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(13px, 1vw, 14.5px);
+    line-height: 1.85;
+    color: rgba(245, 240, 233, 0.45);
+  }
+
+  @media (max-width: 900px) {
+    .process-steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .process-step {
+      border-bottom: 1px solid rgba(245, 240, 233, 0.1);
+    }
+    .process-step:nth-child(2) { border-right: none; }
+    .process-step:nth-child(3) { border-bottom: none; }
+    .process-step:last-child { border-bottom: none; }
+  }
+  @media (max-width: 520px) {
+    .process-steps { grid-template-columns: 1fr; }
+    .process-step { border-right: none; }
+    .process-step:nth-child(2) { border-bottom: 1px solid rgba(245, 240, 233, 0.1); }
+    .process-step:nth-child(3) { border-bottom: 1px solid rgba(245, 240, 233, 0.1); }
+    .process-step-divider { display: block; }
+  }
+
+  /* ── Testimonial Pull Quote ────────────────────────────── */
+  .testimonial-section {
+    background: #F5F0E9;
+    padding: clamp(72px, 10vw, 130px) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonial-quote-mark {
+    position: absolute;
+    top: -0.05em;
+    left: clamp(24px, 6vw, 100px);
+    font-family: 'Cormorant Unicase', serif;
+    font-size: clamp(180px, 22vw, 320px);
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(17, 34, 80, 0.05);
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.05em;
+  }
+  .testimonial-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 6vw, 100px);
+    position: relative;
+    z-index: 1;
+  }
+  .testimonial-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.4vw, 32px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.65;
+    color: rgba(17, 34, 80, 0.75);
+    margin: 0 0 36px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .testimonial-quote.revealed { opacity: 1; transform: translateY(0); }
+  .testimonial-quote em { color: #112250; font-style: italic; }
+  .testimonial-rule {
+    width: 48px;
+    height: 1px;
+    background: #C9A96E;
+    margin-bottom: 28px;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.1s;
+  }
+  .testimonial-rule.revealed { opacity: 1; }
+  .testimonial-attribution {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 0.7s ease 0.18s, transform 0.7s ease 0.18s;
+  }
+  .testimonial-attribution.revealed { opacity: 1; transform: translateY(0); }
+  .testimonial-name {
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #112250;
+  }
+  .testimonial-sep {
+    color: rgba(17, 34, 80, 0.22);
+    font-size: 12px;
+  }
+  .testimonial-journey {
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    color: rgba(17, 34, 80, 0.45);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Final CTA ─────────────────────────────────────────── */
+  .about-cta {
+    position: relative;
+    min-height: 580px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .about-cta-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .about-cta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(17,34,80,0.82) 0%, rgba(17,34,80,0.6) 100%);
+  }
+  .about-cta-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .about-cta-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+    line-height: 1;
+    color: #F5F0E9;
+    margin-bottom: 24px;
+    max-width: 700px;
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+  }
+  .about-cta-heading.revealed { opacity: 1; transform: translateY(0); }
+  .about-cta-heading em { font-style: italic; color: #C9A96E; }
+  .about-cta-body {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(14px, 1.4vw, 17px);
+    font-style: italic;
+    line-height: 1.9;
+    color: rgba(245, 240, 233, 0.72);
+    max-width: 560px;
+    margin-bottom: 48px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+  }
+  .about-cta-body.revealed { opacity: 1; transform: translateY(0); }
+  .about-cta-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(20px, 3vw, 36px);
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s;
+  }
+  .about-cta-actions.revealed { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 480px) {
+    .about-cta-actions { flex-direction: column; align-items: center; gap: 20px; }
+  }
+
 </style>
+
+<script>
+  // Parallax on origin image
+  const originImg = document.getElementById('origin-img') as HTMLElement | null;
+  if (originImg) {
+    window.addEventListener('scroll', () => {
+      const rect = originImg.parentElement!.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      if (rect.bottom > 0 && rect.top < viewH) {
+        const progress = (viewH - rect.top) / (viewH + rect.height);
+        originImg.style.transform = `translateY(${(progress - 0.5) * -60}px)`;
+      }
+    }, { passive: true });
+  }
+</script>
