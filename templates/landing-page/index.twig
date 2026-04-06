@@ -1,31 +1,35 @@
 <!doctype html>
 <html lang="{{ currentSite.language }}" id="html">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="origin-when-cross-origin">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="referrer" content="origin-when-cross-origin">
 
-    {% if not craft.vite.devServerRunning() %}
-        {{ craft.vite.script('src/index.js', false, { 'defer': true }) }}
-    {% else %}
-        {{ craft.vite.script('src/index.js') }}
-    {% endif %}
+		{% if not craft.vite.devServerRunning() %}
+			{{ craft.vite.script('src/index.js', false, { 'defer': true }) }}
+		{% else %}
+			{{ craft.vite.script('src/index.js') }}
+		{% endif %}
 
-    <title>{{ entry.title ?? 'Coming Soon — Halcyon Luxury Journeys' }}</title>
-    <meta name="description" content="Something extraordinary is on its way. Halcyon Luxury Journeys — bespoke private travel through New Zealand and Australia.">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    {# Favicon — same SVG as Astro `frontend/src/layouts/Layout.astro`; `.ico` fallback for older browsers #}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <link rel="icon" href="/favicon.ico" sizes="32x32"/>
-    <meta name="theme-color" content="#112250"/>
+		<link rel="icon" type="image/png" href="/dist/favicons/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/svg+xml" href="/dist/favicons/favicon.svg" />
+        <link rel="shortcut icon" href="/dist/favicons/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/dist/favicons/apple-touch-icon.png" />
+        <link rel="manifest" href="/dist/favicons/site.webmanifest" />
+		<meta name="theme-color" content="#112250"/>
 
-    {# SEO field #}
-    {# {% if entry.seo is defined %}{{ entry.seo }}{% endif %} #}
 
-    <style>
-        [x-cloak] { display: none !important; }
-    </style>
-</head>
+		<style>
+			[x-cloak] {
+				display: none !important
+			}
+		</style>
+	</head>
+
 
 <body style="margin:0; padding:0; overflow-x:hidden;">
 
