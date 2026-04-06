@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: heroHeading
+instructions: 'The main H1 heading displayed over the hero video'
+name: 'Hero Heading'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 200
+  code: false
+  initialRows: 2
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

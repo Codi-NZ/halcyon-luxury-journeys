@@ -1,0 +1,70 @@
+{% set label = label|default %}
+{% set value = value|default %}
+{% set instructions = instructions|default %}
+{% set id = id|default("select" ~ random(5000)) %}
+{% set name = name|default(id) %}
+{% set error = error|default %}
+{% set isMultiSelect = isMultiSelect|default(false) %}
+{% set isDisabled = isDisabled|default(false) %}
+{% set isRequired = isRequired|default(false) %}
+{% set options = options|default([]) %}
+{% set hideLabel = hideLabel|default %}
+{% set attributes = attributes ?? {} %}
+{% set classes = classes|default %}
+{% set ariaControls = ariaControls|default %}
+
+{% import "macros" as macros %}
+
+<div class="{{ classes }}">
+    <label class="{{ hideLabel ? "sr-only" }}" for="{{ id }}">
+        {{ label }}
+
+        {% if isRequired %}
+			<span class="required">*</span>
+		{% endif %}
+    </label>
+
+    <div class="">
+        <select
+            id="{{ id }}"
+            name="{{ name }}"
+            {{ isMultiSelect ? "data-multi-select" }}
+            {{ isDisabled ? "disabled" }}
+            {{ isRequired ? "required" }}
+            {{ attr(attributes) }}
+            {% if ariaControls %}
+                aria-controls="{{ ariaControls }}"
+            {% endif %}
+        >
+            {% for option in options %}
+                {% if option.group|default %}
+                    <optgroup label="{{ option.group.label }}">
+                        {% for groupOption in option.group.options %}
+                            {% set isSelected = groupOption.value in value|split(",") %}
+                            <option value="{{ groupOption.value }}"{{ isSelected ? " selected" }}>
+                                {{ groupOption.label }}
+                            </option>
+                        {% endfor %}
+                    </optgroup>
+                {% else %}
+                    {% set isSelected = option.value in value|split(",") %}
+                    <option value="{{ option.value }}"{{ isSelected ? " selected" }}>
+                        {{ option.label }}
+                    </option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+
+    {% if instructions %}
+        <div class="">
+            {{ instructions }}
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="">
+            {{ error }}
+        </div>
+    {% endif %}
+</div>

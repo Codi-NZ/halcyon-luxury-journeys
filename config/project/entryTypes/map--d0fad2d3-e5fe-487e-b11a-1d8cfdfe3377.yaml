@@ -1,0 +1,64 @@
+color: blue
+fieldLayouts:
+  608dc7a2-881a-43fd-b588-4b34660c022c:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2024-10-25T00:47:51+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: f2947826-f5da-4f00-a263-1f4b7391afd0
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T00:49:34+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a0e23cc1-0f0e-4c56-999b-a6fc0c07df71 # Geolocation
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c830ba73-52bd-419f-b679-c2a4553c301a
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 5bc9f419-9ad1-4a37-97e9-0ab8572a2756
+        userCondition: null
+handle: map
+hasTitleField: false
+icon: map-pin
+name: Map
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

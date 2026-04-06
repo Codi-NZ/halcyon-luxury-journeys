@@ -1,0 +1,591 @@
+color: orange
+fieldLayouts:
+  241ea478-5c46-465e-9503-742a685c6803:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0001-4000-8000-000000000001 # Hero Tagline
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1010001-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0001-4000-8000-000000000002 # Hero Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1010001-0000-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0001-4000-8000-000000000003 # Hero Subheading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1010001-0000-4000-8000-000000000003
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0001-4000-8000-000000000008 # Hero Video URL
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1010001-0000-4000-8000-000000000004
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0001-4000-8000-000000000004 # Hero Primary Button Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1010001-0000-4000-8000-000000000005
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0001-4000-8000-000000000005 # Hero Primary Button URL
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1010001-0000-4000-8000-000000000006
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0001-4000-8000-000000000006 # Hero Secondary Button Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1010001-0000-4000-8000-000000000007
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0001-4000-8000-000000000007 # Hero Secondary Button URL
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1010001-0000-4000-8000-000000000008
+            userCondition: null
+            warning: null
+            width: 50
+        name: Hero
+        uid: e1010001-0000-4000-8000-000000000099
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0002-4000-8000-000000000001 # Brand Intro Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1020001-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0002-4000-8000-000000000002 # Brand Intro Body
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1020001-0000-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Brand Intro'
+        uid: e1020001-0000-4000-8000-000000000099
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0003-4000-8000-000000000001 # Destinations Intro Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1030001-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0003-4000-8000-000000000002 # Destinations Intro Copy
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1030001-0000-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0003-4000-8000-000000000003 # Featured Destinations
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1030001-0000-4000-8000-000000000003
+            userCondition: null
+            warning: null
+            width: 100
+        name: Destinations
+        uid: e1030001-0000-4000-8000-000000000099
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0004-4000-8000-000000000001 # Cinematic Video URL
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1040001-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Cinematic Video'
+        uid: e1040001-0000-4000-8000-000000000099
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0005-4000-8000-000000000001 # Experiences Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1050001-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0005-4000-8000-000000000002 # Experiences Copy
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1050001-0000-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Experiences Carousel'
+        uid: e1050001-0000-4000-8000-000000000099
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0006-4000-8000-000000000001 # Signature Journeys Intro Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1060001-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0006-4000-8000-000000000002 # Signature Journeys Copy
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1060001-0000-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0006-4000-8000-000000000003 # Featured Signature Journeys
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1060001-0000-4000-8000-000000000003
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Signature Journeys'
+        uid: e1060001-0000-4000-8000-000000000099
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0007-4000-8000-000000000001 # Why Halcyon Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1070001-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Why Halcyon'
+        uid: e1070001-0000-4000-8000-000000000099
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0008-4000-8000-000000000001 # Story Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1080001-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0008-4000-8000-000000000002 # Story Body
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1080001-0000-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0008-4000-8000-000000000003 # Story Body 2
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1080001-0000-4000-8000-000000000003
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0008-4000-8000-000000000004 # Story Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1080001-0000-4000-8000-000000000004
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0008-4000-8000-000000000005 # Story Link Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1080001-0000-4000-8000-000000000005
+            userCondition: null
+            warning: null
+            width: 50
+        name: Story
+        uid: e1080001-0000-4000-8000-000000000099
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0009-4000-8000-000000000001 # Testimonials Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1090001-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-0009-4000-8000-000000000002 # Featured Testimonials
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1090001-0000-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+        name: Testimonials
+        uid: e1090001-0000-4000-8000-000000000099
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-000a-4000-8000-000000000001 # CTA Overline
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1100001-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-000a-4000-8000-000000000002 # CTA Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1100001-0000-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-000a-4000-8000-000000000003 # CTA Body
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1100001-0000-4000-8000-000000000003
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-000a-4000-8000-000000000004 # CTA Button Text
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1100001-0000-4000-8000-000000000004
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-000a-4000-8000-000000000005 # CTA Button URL
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1100001-0000-4000-8000-000000000005
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a1b2c3d4-000a-4000-8000-000000000006 # CTA Background Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e1100001-0000-4000-8000-000000000006
+            userCondition: null
+            warning: null
+            width: 100
+        name: CTA
+        uid: e1100001-0000-4000-8000-000000000099
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-10-25T04:54:27+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 77a6b143-7b84-4a6d-ac43-41b0b71bc123
+            userCondition: null
+            warning: null
+            width: 100
+        name: SEO
+        uid: 5a633033-6287-43ee-a401-b7b82c5b1289
+        userCondition: null
+handle: homepage
+hasTitleField: false
+icon: house
+name: Homepage
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: '{section.name|raw}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

@@ -1,0 +1,119 @@
+{#
+  Destination Story — navy section, parallax image left + editorial text right.
+  Expects: entry.storyHeading, entry.storyBody, entry.storyBody2,
+           entry.storyImage, entry.storyLinkText
+#}
+
+{% set heading   = entry.storyHeading  ?? 'The Halcyon Story' %}
+{% set body1     = entry.storyBody     ?? 'New Zealand is not merely our home — it is our inspiration. From the ancient ferns of the West Coast to the turquoise silence of a private fiord, we have spent years learning the landscapes, the people, and the quiet places that make this country extraordinary.' %}
+{% set body2     = entry.storyBody2    ?? 'This knowledge is what we bring to every journey we design — not as guides, but as confidants who have gone before you and know exactly what awaits.' %}
+{% set linkText  = entry.storyLinkText ?? 'Our story' %}
+{% set storyImg  = entry.storyImage.one() ?? null %}
+
+{# NZ map paths #}
+{% set nzMapPaths %}
+<path d="M 88,12 C 92,8 99,6 106,10 C 118,16 128,30 132,48 C 136,64 138,72 148,86 C 158,100 162,116 158,132 C 154,148 144,160 136,170 C 126,180 116,184 106,184 C 94,184 82,176 72,162 C 62,148 56,130 58,112 C 60,94 68,78 70,62 C 72,46 76,28 88,12 Z" />
+<path d="M 108,210 C 118,206 132,208 144,216 C 156,224 164,238 166,254 C 168,268 164,282 160,296 C 156,308 148,318 144,330 C 138,344 136,358 128,370 C 120,382 108,390 96,390 C 82,390 68,380 58,368 C 48,356 42,340 42,324 C 42,308 48,292 50,276 C 52,260 48,244 52,228 C 56,214 70,206 86,206 C 96,206 104,208 108,210 Z" />
+<ellipse cx="112" cy="410" rx="10" ry="7" />
+<line x1="106" y1="192" x2="108" y2="204" stroke-dasharray="3,4" />
+{% endset %}
+
+<section
+    aria-label="Destination story"
+    style="position:relative; overflow:hidden; min-height:600px; display:grid; grid-template-columns:1fr 1fr; background:#112250;"
+>
+    {# Left: full-bleed image with parallax #}
+    <div style="position:relative; min-height:560px; overflow:hidden;">
+        {% if storyImg %}
+            <img
+                src="{{ storyImg.url }}"
+                alt="{{ storyImg.title ?? 'New Zealand landscape' }}"
+                style="width:100%; height:120%; object-fit:cover; object-position:center; display:block; position:absolute; top:-10%;"
+                id="story-img"
+                loading="lazy"
+            />
+        {% else %}
+            <div id="story-img" style="width:100%; height:120%; position:absolute; top:-10%; background:rgba(17,34,80,0.5);"></div>
+        {% endif %}
+        <div style="position:absolute; inset:0; background:linear-gradient(to right, rgba(17,34,80,0) 70%, rgba(17,34,80,1) 100%);"></div>
+    </div>
+
+    {# Right: Editorial text #}
+    <div
+        style="position:relative; display:flex; flex-direction:column; justify-content:center; padding:clamp(48px,7vw,100px) clamp(32px,6vw,80px); z-index:1;"
+    >
+        {# Decorative NZ map #}
+        <svg viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+             style="position:absolute; right:-8%; top:50%; transform:translateY(-50%); width:min(260px,24vw); opacity:0.08; fill:none; stroke:#C9E9FF; stroke-width:1.2; pointer-events:none;">
+            {{ nzMapPaths }}
+        </svg>
+
+        <div class="overline-light" style="margin-bottom:24px;" data-reveal>the halcyon story</div>
+
+        <h2
+            class="display"
+            style="font-size:clamp(36px,4.5vw,64px); color:#F5F0E9; line-height:1.1; margin-bottom:28px;"
+            data-reveal data-delay="100"
+        >
+            {{ heading }}<br/>
+            <em style="font-style:italic; color:rgba(201,233,255,0.8);"></em>
+        </h2>
+
+        <div style="width:36px; height:1px; background:rgba(245,240,233,0.2); margin-bottom:28px;" data-reveal data-delay="150"></div>
+
+        {% if body1 %}
+            <p
+                class="type-body-font"
+                style="font-size:15px; font-style:italic; line-height:1.95; color:rgba(245,240,233,0.65); margin-bottom:24px; max-width:440px;"
+                data-reveal data-delay="200"
+            >
+                {{ body1 }}
+            </p>
+        {% endif %}
+
+        {% if body2 %}
+            <p
+                class="type-body-font"
+                style="font-size:15px; font-style:italic; line-height:1.95; color:rgba(245,240,233,0.5); margin-bottom:40px; max-width:440px;"
+                data-reveal data-delay="280"
+            >
+                {{ body2 }}
+            </p>
+        {% endif %}
+
+        <div data-reveal data-delay="360">
+            <a href="/about" class="btn-luxury btn-luxury-light">
+                {{ linkText }}
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+                </svg>
+            </a>
+        </div>
+
+    </div>
+
+    <style>
+        @media (max-width: 768px) {
+            section[aria-label="Destination story"] {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</section>
+
+<script>
+(function() {
+    var storyImg = document.getElementById('story-img');
+    if (!storyImg) return;
+    window.addEventListener('scroll', function() {
+        var parent = storyImg.parentElement;
+        if (!parent) return;
+        var rect = parent.getBoundingClientRect();
+        var viewH = window.innerHeight;
+        if (rect.bottom > 0 && rect.top < viewH) {
+            var progress = (viewH - rect.top) / (viewH + rect.height);
+            storyImg.style.transform = 'translateY(' + ((progress - 0.5) * -60) + 'px)';
+        }
+    }, { passive: true });
+})();
+</script>

@@ -1,0 +1,11 @@
+.icon {
+    @apply inline-block align-middle fill-current stroke-current shrink-0 *:fill-none size-12;
+}
+
+.icon[class*='icon-author'] .icon[class*='icon-ui'] {
+    @apply stroke-current fill-none;
+}
+
+.icon svg {
+    @apply block w-full h-full;
+}

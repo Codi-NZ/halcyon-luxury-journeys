@@ -1,0 +1,25 @@
+{% set id = id ?? 'sticky-overlay' %}
+{% set containerId = containerId ?? 'blocks' %}
+
+<div class="sticky-overlay">
+    <div
+        class="sticky-overlay__content"
+        data-copy-size-mirror="{{ id }}"
+        data-copy-offset-item="{{ id }}"
+        data-copy-offset-item-container="{{ containerId }}"
+    ></div>
+
+    <div class="sticky-overlay__overlay">
+        <div class="sticky-overlay__sticky">
+            <div
+                class="sticky-overlay__sticky__content"
+                data-copy-size-item="{{ id }}"
+                data-copy-offset-mirror="{{ id }}"
+            >
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>

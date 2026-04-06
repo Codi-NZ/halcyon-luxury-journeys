@@ -1,0 +1,369 @@
+{#
+	First occurrance data
+	=====================
+
+   	This macro will return only one date or time for display
+
+	Syntax: eventMacros.eventDate(occurrences, eventDateSettings)
+
+	Example:
+	{% set occurrences = item.eventsDates.futureOccurrences(now|date('Y-m-d')~' 00:00:00') %}
+	{% set eventDateSettings = {
+		showDate: true,
+		eventsDateOverride: item.eventsDateOverride,
+		eventsTimeOverride: item.eventsTimeOverride
+	} %}
+	{% set eventTimeSettings = {
+		showTime: true
+	} %}
+
+#}
+{% macro eventDate(occurrences, config) %}{% apply spaceless %}
+{% import _self as macros %}
+
+	{% set defaults = {
+		title: '',
+		showDate: null,
+		showTime: null,
+		showDateTime: null,
+		eventsDateOverride: null,
+		eventsTimeOverride: null,
+		isShort: false,
+		isLong: false,
+		isAt: false,
+		showAddToLink: false
+	} %}
+
+	{% set self = defaults|merge(config) %}
+
+
+	{% if self.eventsDateOverride|length %}
+
+		{% set overrideData = {
+			eventsDateOverride: self.eventsDateOverride,
+			eventsTimeOverride: self.eventsTimeOverride
+		} %}
+		{{ macros.eventDateOverride(overrideData) }}
+
+	{% else %}
+
+		{% set dateFormat = self.isShort ? 'd M' : 'd F Y'  %}
+		{% set dateFormat = self.isLong ? 'l, d F Y' : dateFormat  %}
+		{% set timeFormat = 'g:ia' %}
+		{% set timeFormatLong = ' \\a\\t g:ia' %}
+		{% set startDate = date('today') %}
+		{% set endDate = date('today') %}
+		{% set time = "now"|date(timeFormat) %}
+		{% set occurrencesCount = 0 %}
+		{% set when = null %}
+
+		{#
+			This line must stay outside and do it once and pass the occurennces to the macro to less the DB reads:
+			{% set allFutureOccurrences = eventDates.futureOccurrences(now|date('Y-m-d')~' 00:00:00') %}
+		#}
+		{% for occurrence in occurrences %}
+			{% if occurrencesCount < 1 %}
+
+				{% set startDate = occurrence.from %}
+				{% set endDate = occurrence.to %}
+
+				{% set time %}
+					{% if startDate|date(timeFormat) != "12:00am" %}
+						{{ startDate|date(self.showDateTime ? timeFormatLong : timeFormat) }} - {{ endDate|date(timeFormat) }}
+					{% else %}
+						(all day)
+					{% endif %}
+				{% endset %}
+
+				{% set occurrencesCount = occurrencesCount + 1 %}
+
+				{% if self.showDate %}
+					{{ startDate|date(dateFormat) }}
+				{% endif %}
+
+				{% if self.showTime %}
+					{{ time }}
+				{% endif %}
+
+				{% if self.showDateTime %}
+					{% set when = startDate|date(dateFormat) ~ ' ' ~ time %}
+					{{ when }}
+				{% endif %}
+
+				{% if self.showAddToLink %}
+					{% set config = {
+						title: self.title,
+						startDate: startDate,
+						endDate: endDate,
+					} %}
+					{{ macros.eventAddToCalenderLink( config ) }}
+				{% endif %}
+
+			{% endif %}
+
+		{% endfor %}
+
+	{% endif %}
+
+{% endapply %}{% endmacro %}
+
+
+
+
+{#
+	Add to Calendar Link
+	====================
+
+	Syntax: eventMacros.eventAddToCalenderLink(occurrences, eventDateSettings)
+
+#}
+{% macro eventAddToCalenderLink(config) %}{% apply spaceless %}
+{% import _self as macros %}
+
+	{% set defaults = {
+		title: "",
+		type: "ics",
+		timeZone: "Australia/Adelaide",
+		startDate: null,
+		endDate: null,
+		description: null,
+		address: null,
+	} %}
+
+	{% set self = defaults|merge(config) %}
+
+	{% set link = craft.calendarLinks.create({
+		text: self.title,
+		from: create("DateTime",[self.startDate, create("DateTimeZone",[self.timeZone])]),
+		to: create("DateTime", [self.endDate, create("DateTimeZone",[self.timeZone])]),
+	}) %}
+
+	{% if self.description %}
+		{% do link.description(self.description) %}
+	{% endif %}
+
+	{% if self.address %}
+		{% do link.address(self.address) %}
+	{% endif %}
+
+	{% switch self.type %}
+		{% case "google" %}
+			{{ link.google() }}
+		{% case "yahoo" %}
+			{{ link.yahoo() }}
+		{% default %}
+			{{ link.ics() }}
+	{% endswitch %}
+
+{% endapply %}{% endmacro %}
+
+
+{#
+================================================================================
+Event Build URL's
+================================================================================
+#}
+
+{% macro getUrl(params, month, year, url) %}{% apply spaceless %}
+{% autoescape false %}
+
+    {% set view = "?view=" ~ params.view %}
+    {% set url = url ~ view ~ "&month=" ~ month ~ "&year=" ~ year %}
+    {{ url }}
+
+{% endautoescape %}
+{% endapply %}{% endmacro %}
+
+
+
+{#
+================================================================================
+Event Calendar Navigation Links
+================================================================================
+#}
+
+{% macro calendarNavigationLinks(params, action, url, maxDate = null) %}
+    {% import 'macros/index' as utils %}
+    {% import _self as macros %}
+
+    {% set month = params.month %}
+    {% set year = params.year %}
+
+    {% if maxDate is null %}
+        {% set maxDate = now | date_modify('+12 months') %}
+    {% endif %}
+
+    {% set maxYear = maxDate|date('Y') %}
+    {% set maxMonth = maxDate|date('n') %}
+
+    {% if action == "previous" %}
+        {% set month = params.month - 1 %}
+        {% if month == 0 %}
+            {% set month = 12 %}
+            {% set year = params.year - 1 %}
+        {% endif %}
+    {% elseif action == "next" %}
+        {% set month = params.month + 1 %}
+        {% if month == 13 %}
+            {% set month = 1 %}
+            {% set year = params.year + 1 %}
+        {% endif %}
+    {% endif %}
+
+    {% if not (action == "next" and (year > maxYear or (year == maxYear and month > maxMonth))) %}
+        {% set calendarMonth = "01-" ~ month ~ '-' ~ year %}
+
+        {% include "_atoms/buttons/pagination/" ~ action with { self: {
+            text: calendarMonth|date('F Y'),
+            url: macros.getUrl(params, month, year, url),
+        }} %}
+    {% endif %}
+
+{% endmacro %}
+
+
+
+{#
+================================================================================
+Event Calendar Grid
+================================================================================
+#}
+
+{% macro buildCalendarGrid(params, validMonth, allEvents, pageUrl) %}
+    {% import _self as macros %}
+
+    {% set time = validMonth|date('U') %}
+    {% set yearMonth = time|date('Y-m') %}
+    {% set today = 'now'|date('Y-m-d') %}
+    {% set daysOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'] %}
+
+	{% set sectionPages = {
+		eventsListing: craft.entries.id(2151).one|default,
+	} %}
+
+    {# Prepare all the info in order to generate the calendar grid #}
+    {% set eventsInfo = craft.simple.prepareDataForEventsCalendarView(allEvents, validMonth|date('Y-m-d')) %}
+
+	{% set cRow = 'grid grid-cols-7 gap-1' %}
+	{% set cCell = 'aspect-square p-2 bg-subtle' %}
+	{% set cCellOR = 'aspect-square p-2 bg-subtle/30' %}
+
+	<div class="flex flex-col gap-1">
+		<div class="{{ cRow }}">
+			{% for name in daysOfWeek %}
+				<div class="mb-4">
+					<span class="" data-name="{{ name }}" data-name-short="{{ name|slice(0, 3) }}">
+						{{ name }}
+					</span>
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="{{ cRow }}">
+			{% set daysInMonth = time|date('t') %}
+			{% set startDow = time|date('F 1\\s\\t Y')|date('w') %}
+			{% set dow = startDow %}
+			{% set daysWithEvents = [] %}
+
+			{% set dateCountPreviousMonth = 0 %}
+
+			{% set outOfRangeStart = [] %}
+			{% set dateCountNextMonth = 0 %}
+
+			{% set outOfRangeEnd = [] %}
+			{% set dateCountNextMonth = 0 %}
+
+			{% if startDow != 0 %}
+				{% set dateCountPreviousMonth = validMonth|date_modify('-1 month')|date('t') * 1%}
+				{% set previousMonthOutOfRangeStart = dateCountPreviousMonth - startDow%}
+
+				{% for item in previousMonthOutOfRangeStart..dateCountPreviousMonth %}
+					{% set outOfRangeStart = outOfRangeStart|merge([item]) %}
+				{% endfor %}
+			{% endif %}
+
+			{% for day in range(1,daysInMonth) %}
+				{% if loop.first and startDow != 0 %}
+					{% for item in 1..startDow %}
+						<div class="{{ cCellOR }}">
+							<div class="">
+								{# <span class="">{{ item }}</span> #}
+							</div>
+						</div>
+					{% endfor %}
+				{% endif %}
+
+				{% set formattedDay = "%02d"|format(day) %}
+				{% set dayOfMonth = yearMonth ~ "-" ~ formattedDay %}
+
+				{% for eventInfo in eventsInfo %}
+					{% if eventInfo.hasOccurrencesByDate[dayOfMonth] %}
+						{% set daysWithEvents = daysWithEvents|merge([dayOfMonth]) %}
+					{% endif %}
+				{% endfor %}
+
+
+				<div class="{{ cCell }}{{ dayOfMonth < today ? " event-calendar__cell--past-date" }}{{ dayOfMonth == today ? ' event-calendar__cell--today' }}{{ dayOfMonth not in daysWithEvents ? ' event-calendar__cell--no-events'}}">
+					<div class="event-calendar__date">
+						<span class="event-calendar__text">
+							{{ day }}
+						</span>
+					</div>
+					{% for eventInfo in eventsInfo %}
+						{% set event = eventInfo.event %}
+
+						{% if eventInfo.hasOccurrencesByDate[dayOfMonth] %}
+							<div class="event-calendar__line">
+								{% set linkData = {
+									text: event.title|raw,
+									url: event.url,
+									modifiers: "link event-calendar__link",
+									attributes: {
+										"rel": "modal:open",
+									},
+								} %}
+
+								{# Events w/o contentBlocks - Modal #}
+								{% if not event.contentBlocks|length %}
+									{% set id = "event-" ~ event.id %}
+									{% set linkData = linkData|merge({
+										isButton: true,
+										url: null,
+										attributes: {
+											"data-fancybox": id ~ random(9999),
+											"data-src": "#" ~ id,
+										},
+									}) %}
+								{% endif %}
+
+								{% include "_atoms/buttons/link" with { self: linkData} %}
+							</div>
+						{% endif %}
+
+					{% endfor %}
+
+				</div>
+
+				{% if loop.last and dow != 6 %}
+					{% for item in 1..6 - dow %}
+						<div class="{{ cCellOR }}">
+							<div class="">
+								{# <span class="">{{ item }}</span> #}
+							</div>
+						</div>
+					{% endfor %}
+				{% endif %}
+
+				{% if dow == 6 %}
+					{% set dow = 0 %}
+					</div>
+					<div class="{{ cRow }}">
+				{% else %}
+					{% set dow = dow + 1 %}
+				{% endif %}
+
+			{% endfor %}
+		</div>
+    </div>
+
+{% endmacro %}

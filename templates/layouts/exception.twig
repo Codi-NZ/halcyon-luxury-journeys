@@ -1,0 +1,32 @@
+{% extends 'layouts/base' %}
+
+{% block content %}
+
+    <div class="space-y-5 inner inner-y">
+		{% include '_molecules/breadcrumbs' with { crumbs: exception.crumbs } %}
+		<{{ headingTag1 }} class="font-semibold semit-h1">{{ exception.heading }}</{{ headingTag1 }}>
+		<div class="richtext">
+			{{ exception.text|raw }}
+		</div>
+        {% if exception.button.url %}
+            <div>
+                {% include "_atoms/button" with {
+                    self: {
+                        url: exception.button.url,
+                        text: exception.button.text,
+                        style: exception.button.style,
+                        class: exception.button.class
+                    }
+                } %}
+            </div>
+        {% endif %}
+        {% if exception.code %}
+            <div class="p-2 font-mono text-xs bg-slate-100">
+                {{ statusCode }} - {{ message }}<br>
+                (Line {{ line }}) {{ file }}
+            </div>
+        {% endif %}
+	</div>
+
+
+{% endblock %}

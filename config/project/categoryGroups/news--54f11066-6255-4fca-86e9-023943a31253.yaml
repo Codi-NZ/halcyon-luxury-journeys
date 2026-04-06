@@ -1,0 +1,48 @@
+defaultPlacement: end
+fieldLayouts:
+  4114cac3-737f-45a5-bafc-c6a213ccd6a0:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2024-10-29T22:28:00+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\TitleField
+            uid: fa03fa18-3f98-47e8-b406-3016744c58f9
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 2a2240c1-b9a7-44ee-af59-967a2a436fd9
+        userCondition: null
+handle: news
+name: News
+siteSettings:
+  24a9a722-d230-49d0-8693-6825092a5675: # $CRAFT_DEFAULT_SITE_NAME
+    hasUrls: true
+    template: null
+    uriFormat: '{{ craft.entries.section("sitemap").type("newsListing").one().uri|default("news") }}?category={{slug}}'
+structure:
+  maxLevels: null
+  uid: ad6ef5b5-aa50-4ba2-9c9b-fa521cbbea6a

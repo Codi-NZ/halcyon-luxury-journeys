@@ -1,0 +1,9 @@
+{% set defaults = {
+    class: 'button--pill',
+    extend: 'theme-fill',
+    modifiers: 'button--ani-icon'
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% include '_atoms/buttons/default' with self %}

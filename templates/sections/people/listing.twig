@@ -1,0 +1,52 @@
+{% extends 'layouts/base' %}
+
+{% set ariaControls = 'people-listing' %}
+{% set people = craft.simple.filterPeople() %}
+{% paginate people.results.limit(3) as pageInfo, entries %}
+
+{% block content %}
+    <div class="inner">
+        <form class="flex gap-4 mt-8" data-filters="change">
+            {% include '_atoms/forms/text' with {
+                ariaControls: ariaControls,
+                name: 'keywords',
+                label: 'Keywords',
+                placeholder: 'Enter keywords...',
+                value: people.params.keywords,
+                ariaControls: ariaControls
+            } %}
+
+            {% include '_atoms/forms/select' with {
+                ariaControls: ariaControls,
+                name: 'category',
+                label: 'Category',
+                value: people.params.category,
+                options: people.categories
+                    |map(
+                        e => {
+                            label: e.title,
+                            value: e.slug
+                        }
+                    )
+                    |unshift({
+                        label: 'All',
+                        value: null
+                    })
+            } %}
+        </form>
+
+        <ul id="{{ ariaControls }}" class="grid grid-cols-3 gap-8 my-16">
+            {% for item in entries %}
+                <li>
+                    {% include '_molecules/cards/person' with {
+                        self: {
+                            entry: item
+                        }
+                    } %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% include '_molecules/pagination' %}
+    </div>
+{% endblock %}

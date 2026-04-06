@@ -1,0 +1,60 @@
+{% import 'macros' as macros %}
+
+{% set classes = classes|default ? ' ' ~ classes %}
+{% set modifiers = modifiers|default ? ' ' ~ modifiers %}
+{% set hideCurrentCrumb = hideCurrentCrumb is defined ? hideCurrentCrumb : false %}
+
+{% if crumbs is not defined %}
+    {% set result = currentEntry ?? entry %}
+    {% set resultType = result.type.handle %}
+    {% set defaultCrumbs = [craft.entries.section('homepage').one|default] %}
+    {% set listing = craft.simple.globals.listingByEntryType[resultType] ?? result %}
+    {% set entryCrumbs = (listing['level']|default) > 1 ? defaultCrumbs|merge(listing.ancestors.all) : defaultCrumbs %}
+    {% set entryCrumbs = entryCrumbs|merge([listing]) %}
+
+    {% if not ((listing.slug|default) == result.slug) %}
+        {% set entryCrumbs = entryCrumbs|merge([result]) %}
+    {% endif %}
+{% endif %}
+
+{% if entryCrumbs|default %}
+    {% set crumbs = [] %}
+    {% for item in entryCrumbs %}
+        {% set crumb = {
+            text: item.title,
+            url: not loop.last ? item.url : null
+        } %}
+        {% set crumbs = crumbs|merge([crumb]) %}
+    {% endfor %}
+{% endif %}
+
+{% if (crumbs|length) > 1 %}
+    <nav
+        class="breadcrumbs{{ classes }}{{ modifiers }}{{ hideCurrentCrumb ? ' --hide-current' }}"
+        aria-label="Breadcrumbs"
+    >
+        <ul class="breadcrumbs__list">
+            {% for item in crumbs %}
+                {% set attr = loop.last and item.url == null
+                    ? {
+                        'aria-current': 'page'
+                    }
+                %}
+                <li class="breadcrumbs__item">
+                    {% include '_atoms/buttons/link' with {
+                        self: {
+                            modifiers: '--small',
+                            text: item.text,
+                            url: item.url|default,
+                            attributes: attr
+                        }
+                    } %}
+
+                    {% if not loop.last and not (hideCurrentCrumb and loop.index == (crumbs|length) - 1) %}
+                        <span class="breadcrumbs__separator">{{ macros.icon('outline/chevron-right') }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}

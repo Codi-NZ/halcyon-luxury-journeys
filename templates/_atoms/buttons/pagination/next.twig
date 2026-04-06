@@ -1,0 +1,10 @@
+{% set defaults = {
+    extend: 'theme-outline',
+    modifiers: '--primary',
+    text: 'Next',
+    icon: 'outline/arrow-right'
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% include '_atoms/buttons/pill' with self %}

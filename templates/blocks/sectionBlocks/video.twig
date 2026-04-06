@@ -1,0 +1,10 @@
+{% include '_atoms/video' with {
+    self: {
+        image: block.image[0] ?? null,
+        video: block.video|length ? craft.embeddedAssets.get(block.video[0]) : null,
+        autoplay: block.autoplay ?? null,
+        caption: block.caption ?? null,
+        showCaption: block.showCaption ?? null,
+        videoModal: block.videoModal|length ? craft.embeddedAssets.get(block.videoModal[0]) : null
+    }
+} %}

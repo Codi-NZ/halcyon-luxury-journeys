@@ -1,0 +1,318 @@
+{#
+================================================================================
+Add Attributes
+================================================================================
+
+Converts an object to a list of attributes. Great for keeping things clean when
+working with a bunch of values. If value is falsy then it won't output the
+attribute.
+
+Usage:
+
+{% import '_macros' as macros %}
+{% set attributes = {
+	class: 'link'
+	href: '#',
+	target: link.blank ? "_blank",
+} %}
+<a {{ macros.addAttributes(attributes) }}>Text</a>
+
+#}
+
+{% macro addAttributes(attributes) %}{% apply spaceless %}
+	{% set output %}
+		{% for key, value in attributes %}
+			{{ key }}="{{ value|default }}"
+		{% endfor %}
+	{% endset %}
+	{{ output | trim | raw }}
+{% endapply %}{% endmacro %}
+
+
+{#
+================================================================================
+SVG Icons
+================================================================================
+
+Add new icons by dropping a svg into the 'src/icons' folder.
+
+Usage:
+
+{% import 'macros' as macros %}
+{{ macros.icon("outline/iconFilename") }}
+
+#}
+
+{% macro icon(iconFilename, classes, attributes) %}
+	{% import _self as macros %}
+	<span class="icon {{ "icon-#{iconFilename|replace('/', '-')}" }}{{ classes ? ' ' ~ classes }}"{{ macros.addAttributes(attributes) }}>
+		<svg><use xlink:href="{{ "##{iconFilename}" }}"/></svg>
+	</span>
+{% endmacro %}
+
+
+{#
+================================================================================
+Filesize
+================================================================================
+
+Converts byes to human-readable format.
+
+Usage:
+
+{% import 'macros' as macros %}
+{{ macros.bytesToSize(bytes) }}
+
+#}
+
+{% macro bytesToSize(bytes) %}{% apply spaceless %}
+	{% set kilobyte = 1024 %}
+	{% set megabyte = kilobyte * 1024 %}
+	{% set gigabyte = megabyte * 1024 %}
+	{% set terabyte = gigabyte * 1024 %}
+
+	{% if bytes < kilobyte %}
+		{{ bytes ~ 'B' }}
+	{% elseif bytes < megabyte %}
+		{{ (bytes / kilobyte)|number_format(0, '.') ~ 'KB' }}
+	{% elseif bytes < gigabyte %}
+		{{ (bytes / megabyte)|number_format(1, '.') ~ 'MB' }}
+	{% elseif bytes < terabyte %}
+		{{ (bytes / gigabyte)|number_format(2, '.') ~ 'GB' }}
+	{% else %}
+		{{ (bytes / terabyte)|number_format(2, '.') ~ 'TB' }}
+	{% endif %}
+{% endapply %}{% endmacro %}
+
+
+{#
+================================================================================
+Asset detail
+================================================================================
+
+Get asset extension and filesize
+
+Usage:
+
+{% import 'macros' as macros %}
+{{ macros.getAssetDetail(asset) }}
+
+#}
+
+{% macro getAssetDetail(asset, type) %}{% apply spaceless %}
+	{% import _self as macros %}
+	{% switch type %}
+		{% case "clean" %}
+			{{ macros.bytesToSize(asset.size)|trim ~ " " ~ asset.extension|upper }}
+
+		{% default %}
+			{{ asset.extension|upper ~ " • " ~ macros.bytesToSize(asset.size)|trim }}
+
+	{% endswitch %}
+{% endapply %}{% endmacro %}
+
+
+{#
+================================================================================
+Http prefix checker
+================================================================================
+
+This makes sure a url has a http(s) prefix and helps avoid broken links.
+
+#}
+
+{% macro parseUrl(url, prefix) -%}
+{{- url starts with 'http://' or url starts with 'https://'
+	? url
+	: (prefix ? prefix ~ url : 'http://' ~ url)
+-}}
+{%- endmacro %}
+
+
+{#
+================================================================================
+Format a full address
+================================================================================
+
+#}
+
+{% macro formatAddress(addressLine1, addressLine2, suburb, state, postcode) %}
+	{% set addressesSuburb = [addressLine1,addressLine2,suburb]|join(', ') %}
+	{% set fulladdress = (addressesSuburb ~ ' ' ~ (state|upper) ~ ' ' ~ postcode)|trim|replace({' , ':' '}) %}
+	{# This removes empty addresses - a little nasty but works #}
+	{{ fulladdress|replace({',':''})|trim|length == 0 ? '' : fulladdress }}
+{% endmacro %}
+
+{% macro formatAddressParts(parts) %}
+	{{ parts.address ~ ", " ~ parts.city ~ " " ~ parts.state ~ " " ~ parts.postcode }}
+{% endmacro %}
+
+
+{#
+================================================================================
+Format hrefs
+================================================================================
+
+#}
+
+{% macro formatPhoneNumberHref(phoneNumber, areaCode = "", isdCode = "") %}
+	{% set phoneNumber = phoneNumber|replace(" ", "")|replace("(", "")|replace(")","") %}
+	{% if isdCode %}
+		{% if areaCode %}
+			{% set phoneNumber = "+" ~ isdCode ~ areaCode[1:] ~ phoneNumber %}
+		{% else %}
+			{% set phoneNumber = "+" ~ isdCode ~ phoneNumber[1:] %}
+		{% endif %}
+	{% else %}
+		{% set phoneNumber = areaCode ~ phoneNumber %}
+	{% endif %}
+
+	{{ "tel:" ~ phoneNumber }}
+{% endmacro %}
+
+{% macro formatFaxNumberHref(faxNumber) %}
+	{{ 'fax:' ~ faxNumber|replace(' ', '')|replace('(', '')|replace(')','') }}
+{% endmacro %}
+
+{% macro formatEmailHref(emailAddress) %}
+	{{ 'mailto:' ~ emailAddress }}
+{% endmacro %}
+
+{% macro formatMapHref(map, address) %}
+	{% set place = (address ?? map.address)|replace(" ", "+")|replace("/", "%2F") %}
+	{{ "https://www.google.com/maps/search/#{place}/@#{map.lat},#{map.lng}" }}
+{% endmacro %}
+
+{% macro formatMapAddressHref(address) %}
+	{% set place = address|replace("/", "%2F")|replace(" ", "+") %}
+	{{ "https://www.google.com/maps/search/#{place}" }}
+{% endmacro %}
+
+{% macro formatMapAddress(address) %}
+	{{ address|replace("/", "%2F")|replace(" ", "+") }}
+{% endmacro %}
+
+{% macro formatMapHrefLatLng(lat, lng) %}
+	{{ "https://www.google.com/maps/search/@#{lat},#{lng}" }}
+{% endmacro %}
+
+
+{#
+================================================================================
+Format with word wrap
+================================================================================
+
+#}
+
+{% macro formatEmailWithWordWrap(emailAddress) %}
+	{{ emailAddress|replace("@", "<wbr>@")|replace(".", "<wbr>.")|raw }}
+{% endmacro %}
+
+{% macro formatUrlWithWordWrap(url) %}
+	{{ url|replace("https://","")|replace("http://","")|replace("www.", "")|replace(".", "<wbr>.")|replace("/", "/<wbr>")|raw }}
+{% endmacro %}
+
+
+{#
+================================================================================
+Add to Calendar Link
+================================================================================
+
+#}
+
+{% macro addToCalenderLink(config) %}{% apply spaceless %}
+	{% set defaults = {
+		title: "",
+		type: "google",
+		timeZone: "UTC",
+		fromDate: null,
+		toDate: null,
+		description: null,
+		address: null,
+	} %}
+
+	{% set self = defaults|merge(config) %}
+
+	{% set link = craft.calendarLinks.create({
+		text: self.title,
+		from: create("DateTime",[self.fromDate, create("DateTimeZone",[self.timeZone])]),
+		to: create("DateTime", [self.toDate, create("DateTimeZone",[self.timeZone])]),
+	}) %}
+
+	{% if self.description %}
+		{% do link.description(self.description) %}
+	{% endif %}
+
+	{% if self.address %}
+		{% do link.address(self.address) %}
+	{% endif %}
+
+	{% switch self.type %}
+		{% case "google" %}
+			{{ link.google() }}
+		{% case "yahoo" %}
+			{{ link.yahoo() }}
+		{% default %}
+			{{ link.ics() }}
+	{% endswitch %}
+{% endapply %}{% endmacro %}
+
+
+{#
+================================================================================
+Links Downloads Icon
+================================================================================
+
+#}
+
+{% macro linksDownloadsIcon(linkType = "entry") %}{% apply spaceless %}
+	{% set iconsKey = {
+		"asset": "outline/download",
+		"email": "outline/mail",
+		"entry": "outline/arrow-right",
+		"phone": "outline/phone",
+		"url": "outline/link-external",
+	} %}
+	{{ iconsKey[linkType|replace("verbb\\hyper\\links\\", "")|kebab] }}
+{% endapply %}{% endmacro %}
+
+
+{#
+================================================================================
+Heading State Helpers
+================================================================================
+
+SEO-friendly heading progression. Use resolveHeading() to get the next heading
+tag in sequence.
+
+Usage:
+{% import 'macros' as macros %}
+{% set headingTag = macros.resolveHeading(1) %}
+<{{ headingTag }}>Your heading</{{ headingTag }}>
+
+#}
+
+{% macro resolveHeading(preferred = null, scoped = false) %}
+	{%- import 'macros/headingState' as _headingState -%}
+	{{- _headingState.resolveHeading(preferred, scoped) -}}
+{% endmacro %}
+
+{% macro resetHeadingSequence(startLevel) %}
+	{%- import 'macros/headingState' as _headingState -%}
+	{%- do _headingState.resetHeadingSequence(startLevel) -%}
+{% endmacro %}
+
+{% macro pushHeadingState() %}
+	{%- import 'macros/headingState' as _headingState -%}
+	{%- do _headingState.pushHeadingState() -%}
+{% endmacro %}
+
+{% macro popHeadingState() %}
+	{%- import 'macros/headingState' as _headingState -%}
+	{%- do _headingState.popHeadingState() -%}
+{% endmacro %}
+
+{% macro resolveRichTextHeading(content) %}
+	{%- import 'macros/headingState' as _headingState -%}
+	{{- _headingState.resolveRichTextHeading(content) -}}
+{% endmacro %}

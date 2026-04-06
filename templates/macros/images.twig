@@ -1,0 +1,130 @@
+{#
+================================================================================
+Imager Srcset
+================================================================================
+
+Generating background images and img tags
+$image {object} Asset model, or URL
+$imageType {string} imageType (controls sizes)
+$config {object} config (optional)
+$config.isBackground {boolean} (whether <div> with bg image or <img>) (optional)
+$config.classes {string} (optional)
+$config.alt {string} (optional)
+
+Usage:
+
+{% import 'macros/images' as imageMacros %}
+{{ imageMacros.imagerSrcset(image, 'banner', {
+	isBackground: false,
+	classes: '',
+	alt: '',
+}) }}
+
+#}
+
+{% macro imagerSrcset(image, transformHandle, config) %}{% apply spaceless %}
+	{# Set the default config #}
+	{% set defaultConfig = {
+		isBackground: false,
+		classes: [],
+		alt: image.alt ?? null,
+		transformDefaults: {
+			format: 'webp',
+		},
+		configOverrides: null,
+		isLazy: true,
+	} %}
+	{% set config = defaultConfig|merge(config|default({})) %}
+
+	{# Make sure the transform exists #}
+	{% set transform = craft.imager.getNamedTransform(transformHandle)|default(craft.imager.getNamedTransform('card')) %}
+	{% set transformHandle = craft.imager.hasNamedTransform(transformHandle) ? transformHandle : 'card' %}
+
+	{% if image|default %}
+		{# Set Srcset transform #}
+		{% set transformedImages = craft.imager.transformImage(
+			image,
+			transformHandle,
+			config.transformDefaults,
+			config.configOverrides,
+		) %}
+
+		{% set imageWidth = transform.transforms.0.width ?? 800 %}
+		{% set ratio = transform.defaults.ratio ?? (image.width / image.height) %}
+
+		<picture class="lazy lazy--{{ config.isBackground ? 'background' : 'img' }}{{ config.classes|default ? " #{config.classes|join(' ')}" }}"
+			data-transform="{{ transformHandle }}"
+		>
+			<img
+				{% if not config.isBackground %}
+					width="{{ imageWidth }}"
+					height="{{ imageWidth / ratio }}"
+				{% endif %}
+				class="{{ config.isLazy ? 'lazyload lazy__image' : 'eager__image' }}"
+				loading="{{ config.isLazy ? 'lazy' : 'eager' }}"
+				src="{{ craft.imager.placeholder({ width: imageWidth, height: imageWidth / ratio }) }}"
+				alt="{{ config.alt }}"
+				data-parent-fit="cover"
+				data-sizes="auto"
+				data-srcset="{{ craft.imager.srcset(transformedImages, 'w+h') }}" />
+			<div class="lazy__placeholder" aria-hidden="true"></div>
+		</picture>
+	{% endif %}
+{% endapply %}{% endmacro %}
+
+{#
+================================================================================
+Imager URL
+================================================================================
+
+Generates URL of image at given size
+$image {object} Asset model, or URL
+$width {numeral} controls size
+$height {numeral} controls size
+$mode {string} "crop", "fit", "letterbox" (optional)
+$format {string} "png","jpg" (optional)
+
+Usage:
+
+{% import 'macros/images' as imageMacros %}
+{{ imageMacros.imagerUrl(image, { width: 600, height: 380 }) }}
+
+#}
+
+{% macro imagerUrl(image, config) %}{% apply spaceless %}
+	{% set default = {
+		width: 1600,
+		mode: 'fit',
+		fallback: false,
+		format: 'webp',
+	} %}
+	{% set config = default|merge(config|default({})) %}
+	{% set transformedImage = craft.imager.transformImage(image, config) %}
+
+	{{ transformedImage.url }}
+{% endapply %}{% endmacro %}
+
+{#
+================================================================================
+Imager URL Image
+================================================================================
+
+Same as ImagerUrl, but will render picture and img
+
+#}
+
+{% macro imagerUrlImage(image, config) %}{% apply spaceless %}
+	{% set default = {
+		isBackground: true,
+		alt: '',
+		format: 'webp',
+	} %}
+	{% set config = default|merge(config|default({})) %}
+
+	<picture class="lazy lazy--{{ config.isBackground ? "background" : "img" }}{{ config.classes|default ? " #{config.classes|join(' ')}" }}">
+		<img class="lazyload lazy__image"
+			src="{{ _self.imagerUrl(image, config) }}"
+			alt="{{ config.alt }}"
+		/>
+	</picture>
+{% endapply %}{% endmacro %}

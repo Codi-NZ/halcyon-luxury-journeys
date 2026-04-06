@@ -1,0 +1,10 @@
+{% set heroImage = image ?? entry.image[0] ?? craft.simple.globals.fallbacks.images.banner %}
+{% set imageUrl = heroImage ? heroImage.url() : null %}
+
+<section class="w-full bg-grey-900 text-white">
+    <div class="relative h-[calc(100dvh-5rem)] overflow-hidden">
+        {% if imageUrl %}
+            <img src="{{ imageUrl }}" alt="{{ heroImage.title ?? 'Hero Image' }}" class="w-full h-full object-cover" />
+        {% endif %}
+    </div>
+</section>

@@ -1,0 +1,38 @@
+color: blue
+description: null
+fieldLayouts:
+  9a0f495f-95d3-4f9b-b21d-052b70686219:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-04-15T01:58:34+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 03e38e55-ec9f-4c48-8398-b00a51c40db4 # Links
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4c90f690-e0b6-4b5a-a0ee-93d62202c350
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 3f04a4ed-6595-4c79-9d23-61145099d7a7
+        userCondition: null
+handle: linksDownloads
+hasTitleField: false
+icon: link
+name: 'Links & Downloads'
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

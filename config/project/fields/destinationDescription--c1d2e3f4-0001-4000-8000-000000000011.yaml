@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: destinationDescription
+instructions: 'Description paragraph shown in the accordion panel when this destination is expanded'
+name: 'Destination Description'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 800
+  code: false
+  initialRows: 5
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

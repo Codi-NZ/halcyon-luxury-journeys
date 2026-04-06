@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: destinationRegion
+instructions: 'Sub-region label shown under the destination name (e.g. "Aotearoa", "The Great South Land")'
+name: 'Destination Region'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 100
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: experiencesHeading
+instructions: 'Heading for the experiences carousel section'
+name: 'Experiences Heading'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 150
+  code: false
+  initialRows: 2
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

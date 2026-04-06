@@ -1,0 +1,88 @@
+color: teal
+fieldLayouts:
+  c1d2e3f4-0001-4000-8000-000000000003:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: c1d2e3f4-0001-4000-8000-000000000010 # Destination Region
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d1a00001-0001-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: c1d2e3f4-0001-4000-8000-000000000012 # Destination Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d1a00001-0001-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: c1d2e3f4-0001-4000-8000-000000000011 # Destination Description
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d1a00001-0001-4000-8000-000000000003
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: d1a00001-0001-4000-8000-000000000010
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d1a00001-0001-4000-8000-000000000011
+            userCondition: null
+            warning: null
+            width: 100
+        name: SEO
+        uid: d1a00001-0001-4000-8000-000000000012
+        userCondition: null
+handle: destination
+hasTitleField: true
+icon: globe
+name: Destination
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleLabel: 'Destination Name'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

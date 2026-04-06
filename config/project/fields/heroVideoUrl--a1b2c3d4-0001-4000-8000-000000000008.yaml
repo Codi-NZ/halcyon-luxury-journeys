@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: heroVideoUrl
+instructions: 'Path to the hero background video file (relative to web root, e.g. /14861093_3840_2160_30fps.mp4)'
+name: 'Hero Video URL'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 255
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: /14861093_3840_2160_30fps.mp4
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

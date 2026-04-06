@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: lpFormLabel
+instructions: 'Small label displayed above the newsletter form (e.g. "Be the first to know when we launch")'
+name: 'LP Form Label'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 120
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: 'Be the first to know when we launch'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

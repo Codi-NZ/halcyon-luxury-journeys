@@ -1,0 +1,90 @@
+{# Extend the base layout #}
+{% extends 'layouts/base' %}
+
+{# Set a unique ID for aria controls (used in form inputs and content targeting) #}
+{% set ariaControls = 'news-listing' %}
+
+{# Call the PHP service method to get filtered news data #}
+{% set news = craft.simple.filterNews() %}
+
+{# Paginate the filtered results (3 items per page) #}
+{% paginate news.results.limit(3) as pageInfo, entries %}
+
+{% block content %}
+    <div class="inner">
+        {# Filter form: handles keywords and category selection #}
+        <form
+            class="flex flex-col md:flex-row gap-4 mt-8 bg-white/90 p-6 rounded-2xl border border-grey-100 shadow-lg items-end md:items-center"
+            data-filters="change"
+        >
+            {# Keywords input field #}
+            <div class="flex-1 flex flex-col gap-1 md:pr-4 md:border-r md:border-grey-200">
+                <label for="keywords" class="text-sm font-medium text-grey-700 mb-1">Keywords</label>
+                {% include '_atoms/forms/text' with {
+                    ariaControls: ariaControls,
+                    name: 'keywords',
+                    label: false,
+                    placeholder: 'Enter keywords...',
+                    value: news.params.keywords,
+                    inputClass: 'w-full px-4 py-2 border border-grey-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-grey-400 focus:border-grey-400 transition bg-white shadow-sm'
+                } %}
+            </div>
+
+            {# Category dropdown select #}
+            <div class="flex-1 flex flex-col gap-1 md:pl-4">
+                <label for="category" class="text-sm font-medium text-grey-700 mb-1">Category</label>
+                {% include '_atoms/forms/select' with {
+                    ariaControls: ariaControls,
+                    name: 'category',
+                    label: false,
+                    value: news.params.category,
+                    options: news.categories
+                        |map(
+                            e => {
+                                label: e.title,
+                                value: e.slug
+                            }
+                        )
+                        |unshift({
+                            label: 'All',
+                            value: null
+                        }),
+                    selectClass: 'w-full px-4 py-2 border border-grey-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-grey-400 focus:border-grey-400 transition bg-white shadow-sm'
+                } %}
+            </div>
+
+            {# Submit button to trigger filtering #}
+            <button
+                type="submit"
+                class="mt-4 md:mt-0 px-8 py-2 bg-gradient-to-r from-grey-800 to-grey-900 text-white rounded-lg shadow font-semibold hover:from-grey-700 hover:to-grey-800 focus:outline-none focus:ring-2 focus:ring-grey-500 transition"
+            >
+                Filter
+            </button>
+        </form>
+
+        {# Render filtered news entries #}
+        <ul id="{{ ariaControls }}" class="grid grid-cols-3 gap-8 my-16" data-filtered-content>
+            {# If there are entries, loop through and render each card #}
+            {% if entries|length %}
+                {% for item in entries %}
+                    <li>
+                        {% include '_molecules/cards/article' with {
+                            self: {
+                                entry: item
+                            }
+                        } %}
+                    </li>
+                {% endfor %}
+
+                {# If no entries are found, show a fallback message #}
+            {% else %}
+                <li class="col-span-3 text-center py-12 text-lg text-grey-600">
+                    No results found for the selected filters.
+                </li>
+            {% endif %}
+        </ul>
+
+        {# Include pagination controls (based on paginate block above) #}
+        {% include '_molecules/pagination' %}
+    </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% set defaults = {
+    extend: 'btn-social',
+    platform: 'youtube',
+    handle: null,
+    url: null,
+    isShareLink: false,
+    shareUrl: null,
+    isExternalLink: true,
+    modifiers: null,
+    buttonType: null
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+{% set shareUrl = self.shareUrl ?? craft.app.request.absoluteUrl %}
+
+{% set platforms = {
+    facebook: {
+        url: self.url ?? 'https://www.facebook.com/' ~ self.handle,
+        shareUrl: 'https://www.facebook.com/sharer/sharer.php?u=' ~ shareUrl,
+        label: 'Facebook'
+    },
+    instagram: {
+        url: self.url ?? 'https://www.instagram.com/' ~ self.handle,
+        shareUrl: null,
+        label: 'Instagram'
+    },
+    linkedin: {
+        url: self.url ?? 'https://www.linkedin.com/' ~ self.handle,
+        shareUrl: 'https://www.linkedin.com/sharing/share-offsite/?url=' ~ shareUrl,
+        label: 'LinkedIn'
+    },
+    x: {
+        url: self.url ?? 'https://www.twitter.com/' ~ self.handle,
+        shareUrl: 'https://twitter.com/intent/tweet?text='
+            ~ (('Check out ' ~ (entry.title|default('this page')) ~ ' on ' ~ siteName ~ ': ' ~ shareUrl)|url_encode),
+        label: 'Twitter'
+    },
+    youtube: {
+        url: self.url ?? 'https://www.youtube.com/' ~ self.handle,
+        shareUrl: null,
+        label: 'YouTube'
+    }
+} %}
+
+{% set data = platforms[self.platform] %}
+
+{% if not self.isShareLink or (self.isShareLink and data.shareUrl) %}
+    {% set self =
+        self|merge({
+            class: '',
+            iconClass: 'icon-md',
+            text: not '--icon-only' in self.modifiers ? data.label,
+            icon: 'social/' ~ self.platform,
+            url: self.isShareLink ? data.shareUrl : data.url,
+            attributes: {
+                'aria-label': data.label
+            }
+        })
+    %}
+
+    {% include '_atoms/buttons/' ~ self.buttonType ?? 'default' with self %}
+{% endif %}

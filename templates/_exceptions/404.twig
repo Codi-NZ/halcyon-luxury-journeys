@@ -1,0 +1,16 @@
+{% extends 'layouts/exception' %}
+
+{% set exception = {
+    crumbs: '404',
+    heading: 'Page not found'|t,
+    text: 'You have reached a page that does not exist on this website. <br>
+          If you typed the web address, check it is correct. <br>
+          If you pasted the web address, check you copied the entire address. <br>'|t,
+    code: false,
+    button: {
+        url: '/',
+        text: 'Home',
+        style: 'small',
+        class: 'mt-6'
+    }
+} %}

@@ -1,0 +1,36 @@
+color: blue
+fieldLayouts:
+  2229245e-80fb-40dd-ad36-0d8e933d5fa8:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-12-13T05:53:25+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 80a10322-1b5c-4e4b-b1bd-0238c4e585a0 # Table
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: a8e1e93d-0d9a-44d5-8cf2-7f3f6cc2b7f4
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 8b5e4a03-9daa-441e-9039-4fa102205f76
+        userCondition: null
+handle: table
+hasTitleField: false
+icon: table
+name: Table
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

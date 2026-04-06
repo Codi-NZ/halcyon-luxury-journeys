@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: lpContactEmail
+instructions: 'Contact email address displayed at the bottom of the left panel'
+name: 'LP Contact Email'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 255
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: hello@halcyonluxuryjourneys.co.nz
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

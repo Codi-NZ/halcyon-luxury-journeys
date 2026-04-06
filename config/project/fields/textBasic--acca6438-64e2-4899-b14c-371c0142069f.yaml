@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: textBasic
+instructions: null
+name: 'Text Basic'
+searchable: true
+settings:
+  availableTransforms: ''
+  availableVolumes:
+    - 669f3bb2-1c56-4b3b-8acb-8a63e1d4cf64 # Documents
+  characterLimit: null
+  ckeConfig: 9ac7d0b0-87f9-487d-a990-f718fdcdf4fd # Basic
+  createButtonLabel: null
+  defaultTransform: null
+  fullGraphqlData: false
+  purifierConfig: null
+  purifyHtml: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  showWordCount: false
+  sourceEditingGroups:
+    - __ADMINS__
+  wordLimit: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\ckeditor\Field

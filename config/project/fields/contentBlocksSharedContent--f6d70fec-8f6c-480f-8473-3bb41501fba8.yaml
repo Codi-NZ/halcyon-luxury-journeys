@@ -1,0 +1,71 @@
+columnSuffix: null
+handle: contentBlocksSharedContent
+instructions: null
+name: 'Content Blocks Shared Content'
+searchable: false
+settings:
+  createButtonLabel: null
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - fb06b793-2038-479d-8cbf-98092b08ba2e # Heading
+    -
+      __assoc__:
+        -
+          - uid
+          - d1a32ced-eb4e-4005-8ead-bef8e2a5a65c
+    -
+      __assoc__:
+        -
+          - uid
+          - 7c1bc3f3-9531-4b93-90bc-3f91a5201fa5 # Accordion
+    -
+      __assoc__:
+        -
+          - uid
+          - d473b784-8d70-40d9-92a2-941f139ea7e0 # Blockquote
+    -
+      __assoc__:
+        -
+          - uid
+          - 17602dc9-b8d7-416f-93ab-cd8467d9b76f # Call To Action
+    -
+      __assoc__:
+        -
+          - uid
+          - 3be3c4c6-0838-4340-a6a3-1858bdf8d955 # Form
+    -
+      __assoc__:
+        -
+          - uid
+          - 694fbcbc-c6a1-4224-b3ae-c5e747346b5c # Image
+    -
+      __assoc__:
+        -
+          - uid
+          - 7988a81d-958b-43e2-906e-98e06ed8f309 # Image Gallery
+    -
+      __assoc__:
+        -
+          - uid
+          - fc9c28af-2def-4c85-9022-985bd6c28fb5 # Links & Downloads
+    -
+      __assoc__:
+        -
+          - uid
+          - f422c2a6-e83d-46e8-a486-84e060efa559 # Video
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: blocks
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

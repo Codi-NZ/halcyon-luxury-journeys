@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: testimonialJourney
+instructions: 'Name of the journey this testimonial relates to (e.g. "South Island Grand Tour")'
+name: 'Testimonial Journey'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 150
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

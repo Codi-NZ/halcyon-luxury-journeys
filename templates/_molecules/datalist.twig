@@ -1,0 +1,86 @@
+{% import "macros" as macros %}
+{% import "macros/images" as imageMacros %}
+
+{% set items = items ?? null %}
+{% set class = class|default ? " " ~ class : null %}
+{% set modifiers = modifiers|default ? " " ~ modifiers : null %}
+{% set attributes = attributes ?? null %}
+
+<dl class="datalist{{ class }}{{ modifiers }}"
+    {{ attributes ? attr(attributes) }}
+>
+	{% for item in items %}
+        {% set type = item.type ?? "label" %}
+        <div class="datalist__item --{{ type }}">
+            <dt class="datalist__title"
+                {% if item.tooltip|default %}
+                    data-tooltip="{{ item.tooltip }}"
+                {% endif %}
+            >
+                {% switch type %}
+                    {% case "icon" %}
+                        {{ macros.icon(item.icon, "datalist__icon") }}
+
+                        <span class="sr-only">
+                            {{ item.aria ?? item.label }}
+                        </span>
+
+                    {% case "label" %}
+                        {{ item.label }}
+
+                    {% case "feature" %}
+                        {{ macros.icon(item.icon, "datalist__icon") }}
+
+                        <span class="datalist__label">
+                            {{ item.label }}
+                        </span>
+
+                    {% default %}
+                {% endswitch %}
+            </dt>
+
+            <dd class="datalist__detail">
+                {% if item.url|default %}
+                    {% include "_atoms/buttons/link" with { self: {
+                        modifiers: "--caps --flood --flood-underline",
+                        text: item.value|raw,
+                        url: item.url,
+                        isExternalLink: item.isExternalLink|default,
+                        attributes: item.attributes|default,
+                    }} %}
+                {% elseif item.image|default %}
+                    {{ imageMacros.imagerSrcset(
+                        item.image,
+                        item.imageType|default("datalist-image"),
+                        {
+                            title: item.label,
+                            isBackground: false,
+                        },
+                    )}}
+                {% elseif item.rating|default %}
+                    <div class="datalist__rating" title="Rating: {{ item.rating }}">
+                        {% set total = 5 %}
+                        {% set full = item.rating|round(0, "floor") %}
+                        {% set remainder = item.rating - full %}
+                        {% for i in 1..(full) %}
+                            <div style="--percent:{{ 1 }}"></div>
+                        {% endfor %}
+
+                        {% if full != total %}
+                            {% for i in 1..(total - full) %}
+                                <div style="--percent:{{ i == 1 and remainder ? remainder : 0 }}"></div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <span class="sr-only">{{ item.rating }} rating</span>
+                    </div>
+                {% elseif item.valueIcon|default %}
+                    <span class="sr-only">{{ item.value }}</span>
+                    {{ macros.icon(item.valueIcon, "datalist__value-icon") }}
+                {% else %}
+                    {{ item.value|raw }}
+                {% endif %}
+            </dd>
+        </div>
+	{% endfor %}
+</dl>

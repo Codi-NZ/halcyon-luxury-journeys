@@ -1,0 +1,22 @@
+<div class="readable">
+
+	<{{ headingTag }} class="heading-2">Current navigation</{{ headingTag }}>
+
+	{% set sitemap = craft.entries({
+		section: "sitemap",
+		level: 1,
+	}).all() %}
+
+	<{{ headingTag }} class="heading-3">Primary</{{ headingTag }}>
+	<ul>
+	{% for item in sitemap[:5] %}
+		<li>
+			<strong>{{ item.getLink() }}</strong> (<a href="{{ item.cpEditUrl }}">Edit</a>)
+			{% if item.hasDescendants %}
+				<br>With {{ item.children.count() }} children
+			{% endif %}
+		</li>
+	{% endfor %}
+	</ul>
+	
+</div>

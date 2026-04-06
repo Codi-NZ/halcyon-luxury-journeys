@@ -1,0 +1,9 @@
+{% set heading = block.heading|default %}
+{% set level = block.headingLevel %}
+{% set showInTOC = block.showInTableOfContents ?? false %}
+
+<div class="richtext">
+	<{{ headingTag }} class="heading-level-{{ level }}" id="{{ heading|kebab }}"{% if showInTOC %} data-toc-heading="true"{% endif %}>
+		{{ heading }}
+	</{{ headingTag }}>
+</div>

@@ -1,0 +1,5 @@
+{% include '_molecules/imageGallery' with {
+    images: block.images.all,
+    display: block.galleryDisplay.value,
+    galleryId: 'gallery-section-' ~ blockIndex
+} %}

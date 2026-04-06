@@ -1,0 +1,19 @@
+#google-translate {
+    position: relative;
+
+    .goog-te-gadget {
+        position: absolute;
+        inset: 0;
+
+        a {
+            pointer-events: none; /* Prevent href="#" scrolling to top. Still triggers component */
+        }
+    }
+
+    .goog-te-gadget-simple {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+}

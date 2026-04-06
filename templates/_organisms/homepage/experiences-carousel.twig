@@ -1,0 +1,172 @@
+{#
+  Experiences Carousel — draggable card carousel with hover overlays.
+  Expects: entry.experiencesHeading, entry.experiencesCopy
+
+  The experience cards are static content (not a channel) as they represent
+  service types rather than individual entries. They can be moved to a channel
+  later if editorial control is needed.
+#}
+
+{% set sectionHeading = entry.experiencesHeading ?? 'The Art of Extraordinary' %}
+{% set sectionCopy    = entry.experiencesCopy    ?? 'From superyachts to secret cellars, every experience we arrange is private, considered, and entirely yours.' %}
+
+{% set experiences = [
+    {
+        title:   'Private Villa Estates',
+        tagline: 'Your sanctuary, entirely your own',
+        image:   'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=90',
+    },
+    {
+        title:   'Superyacht Charters',
+        tagline: 'The open sea, on your terms',
+        image:   'https://images.unsplash.com/photo-1605281317010-fe5ffe798166?auto=format&fit=crop&w=900&q=90',
+    },
+    {
+        title:   'Helicopter Escapes',
+        tagline: 'Land where others only dream of',
+        image:   'https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=900&q=90',
+    },
+    {
+        title:   'Private Chef & Dining',
+        tagline: 'Michelin-calibre, in complete privacy',
+        image:   'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=90',
+    },
+    {
+        title:   'Exclusive Lodge Retreats',
+        tagline: 'Seclusion without sacrifice',
+        image:   'https://images.unsplash.com/photo-1566073771259-dc8b40b4d6ae?auto=format&fit=crop&w=900&q=90',
+    },
+    {
+        title:   'Hot Air Balloon Journeys',
+        tagline: 'Above it all, at golden hour',
+        image:   'https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=900&q=90',
+    },
+    {
+        title:   'Private Cellar Doors',
+        tagline: 'Rare vintages, rarer access',
+        image:   'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=900&q=90',
+    },
+    {
+        title:   'Secluded Beach Access',
+        tagline: "Shores the world hasn't found yet",
+        image:   'https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?auto=format&fit=crop&w=900&q=90',
+    },
+] %}
+
+<section style="background:#F5F0E9; padding:clamp(64px,8vw,120px) 0; overflow:hidden;">
+
+    {# Header #}
+    <div class="container-xl" style="margin-bottom:clamp(40px,4.5vw,64px);">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+            <div>
+                <div class="overline" style="margin-bottom:16px;" data-reveal>curated for you</div>
+                <h2
+                    class="display text-navy"
+                    style="font-size:clamp(32px,3.5vw,52px); line-height:1.05; letter-spacing:0.02em;"
+                    data-reveal data-delay="100"
+                >
+                    {{ sectionHeading|nl2br }}
+                </h2>
+            </div>
+            <p
+                class="type-body-font"
+                style="font-size:clamp(14px,1vw,16px); line-height:1.8; color:rgba(17,34,80,0.6); max-width:380px; font-style:italic;"
+                data-reveal="right" data-delay="150"
+            >
+                {{ sectionCopy }}
+            </p>
+        </div>
+    </div>
+
+    {# Carousel #}
+    <div style="position:relative;">
+
+        <button id="exp-prev" class="exp-arrow" aria-label="Previous" style="left:clamp(12px,2vw,40px);">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+                <path d="M9 1L1 7l8 6M1 7h16" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+        </button>
+
+        <button id="exp-next" class="exp-arrow" aria-label="Next" style="right:clamp(12px,2vw,40px);">
+            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true">
+                <path d="M9 1l8 6-8 6M17 7H1" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+        </button>
+
+        <div id="exp-track"
+             style="display:flex; gap:clamp(8px,1vw,14px); overflow-x:scroll; scrollbar-width:none; padding:0 clamp(20px,5vw,80px); cursor:grab;">
+            {% for exp in experiences %}
+                <div class="exp-card" tabindex="0">
+                    <img src="{{ exp.image }}" alt="{{ exp.title }}" class="exp-img" loading="lazy" width="900" height="1200" />
+                    <div class="exp-overlay">
+                        <div class="exp-overlay-inner">
+                            <span class="exp-overlay-top-rule"></span>
+                            <h3 class="exp-overlay-title">{{ exp.title }}</h3>
+                            <div class="exp-overlay-rule"></div>
+                            <p class="exp-overlay-tagline">{{ exp.tagline }}</p>
+                            <span class="exp-overlay-cta">
+                                Explore More
+                                <svg width="12" height="8" viewBox="0 0 14 10" fill="none" style="margin-left:6px;" aria-hidden="true">
+                                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+<script>
+(function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        var track   = document.getElementById('exp-track');
+        var prevBtn = document.getElementById('exp-prev');
+        var nextBtn = document.getElementById('exp-next');
+        if (!track || !prevBtn || !nextBtn) return;
+
+        // Infinite loop: clone all cards
+        var origCards = Array.from(track.querySelectorAll('.exp-card'));
+        var gap = function() { return parseFloat(getComputedStyle(track).gap) || 12; };
+        var cardW = function() { return origCards[0].offsetWidth + gap(); };
+
+        // Prepend + append clones
+        var clonesEnd   = origCards.map(function(c) { var cl = c.cloneNode(true); cl.setAttribute('aria-hidden','true'); return cl; });
+        var clonesStart = origCards.map(function(c) { var cl = c.cloneNode(true); cl.setAttribute('aria-hidden','true'); return cl; });
+
+        clonesEnd.forEach(function(c) { track.appendChild(c); });
+        clonesStart.reverse().forEach(function(c) { track.insertBefore(c, track.firstChild); });
+
+        // Jump to real start
+        track.scrollLeft = cardW() * origCards.length;
+
+        // Seamless loop check
+        track.addEventListener('scroll', function() {
+            var total = cardW() * origCards.length;
+            if (track.scrollLeft >= total * 2) { track.scrollLeft -= total; }
+            else if (track.scrollLeft <= 0)    { track.scrollLeft += total; }
+        }, { passive: true });
+
+        // Buttons
+        nextBtn.addEventListener('click', function() { track.scrollBy({ left: cardW(), behavior: 'smooth' }); });
+        prevBtn.addEventListener('click', function() { track.scrollBy({ left: -cardW(), behavior: 'smooth' }); });
+
+        // Drag to scroll
+        var isDown = false, startX = 0, scrollLeft = 0;
+        track.addEventListener('mousedown', function(e) {
+            isDown = true;
+            track.classList.add('is-dragging');
+            startX = e.pageX - track.offsetLeft;
+            scrollLeft = track.scrollLeft;
+        });
+        document.addEventListener('mouseup', function() { isDown = false; track.classList.remove('is-dragging'); });
+        track.addEventListener('mousemove', function(e) {
+            if (!isDown) return;
+            e.preventDefault();
+            track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
+        });
+    });
+})();
+</script>

@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: brandIntroHeading
+instructions: 'Large centred heading in the brand intro section'
+name: 'Brand Intro Heading'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 200
+  code: false
+  initialRows: 2
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

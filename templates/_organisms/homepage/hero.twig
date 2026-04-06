@@ -1,0 +1,83 @@
+{#
+  Hero section — full-height video hero.
+  Expects: entry with heroTagline, heroHeading, heroSubheading,
+           heroVideoUrl, heroPrimaryButtonText, heroPrimaryButtonUrl,
+           heroSecondaryButtonText, heroSecondaryButtonUrl fields.
+#}
+
+{% set videoUrl   = entry.heroVideoUrl   ?? '/14861093_3840_2160_30fps.mp4' %}
+{% set tagline    = entry.heroTagline    ?? 'Tailor-made New Zealand & Australia' %}
+{% set heading    = entry.heroHeading    ?? 'Luxury Journeys Crafted for Discerning Travelers' %}
+{% set subheading = entry.heroSubheading ?? 'Journeys through New Zealand and Australia, tailored with care for those who travel with intention.' %}
+{% set primaryText  = entry.heroPrimaryButtonText  ?? 'Start Planning' %}
+{% set primaryUrl   = entry.heroPrimaryButtonUrl   ?? '/destinations' %}
+{% set secondText   = entry.heroSecondaryButtonText ?? 'View Signature Journeys' %}
+{% set secondUrl    = entry.heroSecondaryButtonUrl  ?? '/signature-journeys' %}
+
+<section id="hero" class="layout-outer bg-cream" aria-label="Halcyon hero">
+    <article class="relative" style="min-height:78vh; width:100%; overflow:hidden; background:#112250;">
+
+        <video
+            class="absolute inset-0"
+            style="width:100%; height:100%; object-fit:cover;"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Scenic New Zealand and Australia travel footage"
+        >
+            <source src="{{ videoUrl }}" type="video/mp4" />
+        </video>
+
+        <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(11,23,56,0.88) 0%, rgba(11,23,56,0.55) 50%, rgba(11,23,56,0.20) 100%);"></div>
+
+        <div class="relative" style="z-index:10; display:flex; min-height:78vh; align-items:flex-end; padding:clamp(24px,5vw,64px);">
+            <div style="max-width:820px;">
+
+                <p class="type-body-font" style="margin-bottom:clamp(16px,2vw,24px); font-size:11px; text-transform:uppercase; letter-spacing:0.18em; color:rgba(255,255,255,0.8);">
+                    {{ tagline }}
+                </p>
+
+                <h1 class="type-heading-font" style="margin:0; max-width:820px; font-size:clamp(42px,6vw,80px); font-weight:400; line-height:1.05; letter-spacing:0.02em; color:#ffffff;">
+                    {{ heading }}
+                </h1>
+
+                <p class="type-body-font" style="margin-top:clamp(20px,2vw,24px); max-width:640px; font-size:clamp(15px,1.6vw,19px); font-style:italic; line-height:1.8; color:rgba(255,255,255,0.85);">
+                    {{ subheading }}
+                </p>
+
+                <div style="margin-top:clamp(28px,3vw,36px); display:flex; flex-wrap:wrap; align-items:center; gap:16px;">
+                    <a href="{{ primaryUrl }}"
+                       style="display:inline-flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.6); background:rgba(255,255,255,0.1); padding:12px 24px; font-family:'Lato',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:#ffffff; text-decoration:none; transition:background 0.3s ease, color 0.3s ease;"
+                       onmouseover="this.style.background='#ffffff'; this.style.color='#112250';"
+                       onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.color='#ffffff';">
+                        {{ primaryText }}
+                    </a>
+                    <a href="{{ secondUrl }}"
+                       class="type-body-font"
+                       style="display:inline-flex; align-items:center; gap:8px; border-bottom:1px solid rgba(255,255,255,0.45); padding-bottom:2px; font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.9); text-decoration:none; transition:gap 0.3s ease, border-color 0.3s ease;"
+                       onmouseover="this.style.gap='16px'; this.style.borderColor='rgba(255,255,255,0.85)';"
+                       onmouseout="this.style.gap='8px'; this.style.borderColor='rgba(255,255,255,0.45)';">
+                        {{ secondText }}
+                        <span aria-hidden="true">→</span>
+                    </a>
+                </div>
+
+                <ul style="margin-top:clamp(32px,3vw,40px); display:flex; flex-wrap:wrap; gap:clamp(16px,2vw,24px) clamp(12px,1.5vw,16px); padding:0; list-style:none;">
+                    <li class="type-body-font" style="font-size:10px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.7);">Custom Itinerary Design</li>
+                    <li class="type-body-font" style="font-size:10px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.7);">24/7 In-Journey Support</li>
+                    <li class="type-body-font" style="font-size:10px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.7);">Local Knowledge and Expertise</li>
+                </ul>
+
+            </div>
+        </div>
+
+        {# Scroll indicator #}
+        <div class="scroll-indicator" aria-hidden="true">
+            <span>scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+
+    </article>
+</section>

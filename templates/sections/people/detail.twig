@@ -1,0 +1,78 @@
+{% extends 'layouts/base' %}
+
+{% block content %}
+    {% embed 'layouts/internalPage' %}
+        {% block aside %}
+            {% set details = [] %}
+
+            {% set details =
+                details|merge(
+                    [
+                        {
+                            type: 'icon',
+                            label: 'Name',
+                            value: entry.title,
+                            icon: 'outline/user'
+                        }
+                    ]
+                )
+            %}
+
+            {% if entry.jobTitle|default %}
+                {% set details =
+                    details|merge(
+                        [
+                            {
+                                type: 'icon',
+                                label: 'Job Title',
+                                value: entry.jobTitle,
+                                icon: 'outline/identification'
+                            }
+                        ]
+                    )
+                %}
+            {% endif %}
+
+            {% if entry.categories|default %}
+                {% set categoryLinks %}
+                    <ul class="inline-links">
+                        {% for item in entry.categories.all %}
+                            <li>
+                                {% include '_atoms/buttons/link' with {
+                                    self: {
+                                        text: item,
+                                        url: item.url
+                                    }
+                                } %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endset %}
+
+                {% set details =
+                    details|merge(
+                        [
+                            {
+                                type: 'icon',
+                                label: 'Categories',
+                                value: categoryLinks,
+                                icon: 'outline/tag'
+                            }
+                        ]
+                    )
+                %}
+            {% endif %}
+
+            {% include '_atoms/buttons/back' with {
+                self: {
+                    text: 'View all people',
+                    url: craft.simple.globals.listings.all.people.url
+                }
+            } %}
+
+            {% include '_molecules/datalist' with {
+                items: details
+            } %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

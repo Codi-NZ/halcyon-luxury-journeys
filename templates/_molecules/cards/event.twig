@@ -1,0 +1,47 @@
+{% import 'macros/events' as eventMacros %}
+
+{% set defaults = {
+    buttonText: 'View event',
+    tags: self.entry.categories.all,
+    occurrence: null,
+    innerTheme: 'subtle'
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% set occurrences = self.occurrence ? [self.occurrence] : self.entry.eventDates.futureOccurrences %}
+{% set eventDate =
+    eventMacros.eventDate(
+        occurrences,
+        {
+            showDate: true
+        }
+    )|date('j M')
+%}
+{% set eventTime =
+    eventMacros.eventDate(
+        occurrences,
+        {
+            showTime: true
+        }
+    )
+%}
+
+{% embed '_molecules/cards/base' %}
+    {% block details %}
+        <div class="flex flex-col gap-2 z-1">
+            {{ eventDate }} {{ eventTime }}
+
+            {% include '_atoms/tags' with {
+                tags: self.tags|map(
+                    e => {
+                        text: e.title,
+                        url: e.url
+                    }
+                )
+            } %}
+        </div>
+
+        {{ parent() }}
+    {% endblock %}
+{% endembed %}

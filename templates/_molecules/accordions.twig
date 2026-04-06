@@ -1,0 +1,24 @@
+<ul class="flex flex-col gap-4">
+    {% for item in items %}
+        <li>
+            {% embed '_molecules/accordion'
+                with {
+                    heading: item.heading
+                }
+            %}
+                {% block main %}
+                    <div class="richtext">
+                        {{ item.richText|raw }}
+                    </div>
+
+                    {% if item.links %}
+                        {% include '_molecules/links' with {
+                            style: 'pill',
+                            links: item.links
+                        } %}
+                    {% endif %}
+                {% endblock %}
+            {% endembed %}
+        </li>
+    {% endfor %}
+</ul>

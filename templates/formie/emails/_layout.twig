@@ -1,0 +1,106 @@
+{% apply spaceless %}
+{% apply mjmlCli %}
+<mjml>
+    <mj-head>
+        <mj-title>
+            {{ craft.formie.getParsedValue(notification.subject, submission, submission.form) }}
+        </mj-title>
+        <mj-attributes>
+            <mj-all font-family="Arial, sans-serif"></mj-all>
+            <mj-text
+                font-weight="400"
+                font-size="14px"
+                color="#131313"
+                line-height="24px"
+                font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+            ></mj-text>
+        </mj-attributes>
+        <mj-style inline="inline">
+            .body-section { -webkit-box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15); -moz-box-shadow: 1px 4px 11px 0px
+            rgba(0, 0, 0, 0.15); box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15); } .body-section a { color: #131313;
+            font-weight: bold; text-decoration: underline; } .footer-link { color: #131313; }
+        </mj-style>
+    </mj-head>
+    <mj-body background-color="#F1F0E9" width="800px">
+        <mj-section>
+            <mj-column width="100%">
+                <mj-spacer height="20px" />
+                <mj-image
+                    src="{{ siteUrl }}/dist/email/email-logo.png"
+                    alt="{{ siteName }}"
+                    align="center"
+                    width="180px"
+                />
+            </mj-column>
+        </mj-section>
+
+        <mj-wrapper padding-top="0" padding-bottom="0" css-class="body-section">
+            <mj-section background-color="#ffffff" padding-left="15px" padding-right="15px">
+                <mj-column width="100%">
+                    <mj-text color="#131313" font-weight="bold" font-size="20px">
+                        {{ craft.formie.getParsedValue(notification.subject, submission, submission.form) }}
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+
+            <mj-section
+                background-color="#ffffff"
+                padding-top="0px"
+                padding-bottom="0px"
+                padding-left="15px"
+                padding-right="15px"
+            >
+                <mj-column width="100%">
+                    <mj-divider border-width="1px" border-color="#cecece"></mj-divider>
+                </mj-column>
+            </mj-section>
+
+            {% block content %}
+                <mj-section
+                    background-color="#ffffff"
+                    padding-top="0px"
+                    padding-bottom="0px"
+                    padding-left="15px"
+                    padding-right="15px"
+                >
+                    <mj-column width="100%">
+                        <mj-text color="#131313" font-size="14px">
+                            {{ contentHtml }}
+                        </mj-text>
+                        <mj-spacer height="20px" />
+                    </mj-column>
+                </mj-section>
+            {% endblock %}
+        </mj-wrapper>
+
+        <mj-wrapper full-width="full-width">
+            <mj-section>
+                <mj-column width="100%" padding="0">
+                    <mj-text color="#131313" font-size="11px" align="center" line-height="14px">
+                        &copy; {{ now|date('Y') }} {{ siteName }}
+                    </mj-text>
+                </mj-column>
+            </mj-section>
+            <mj-section padding-top="0">
+                <mj-group>
+                    <mj-column width="100%" padding-right="0">
+                        <mj-text color="#131313" font-size="11px" align="center" line-height="14px" font-weight="bold">
+                            <mj-raw>
+                                {% set globalFooter = craft.globalSets().handle('globalFooter').siteId(1).one() %}
+                                {% for item in globalFooter.footerLinks %}
+                                    <a class="footer-link" href="{{ item.url }}">{{ item.text }}</a>{% if
+                                        not loop.last %}
+                                        &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;
+                                    {% endif %}
+                                {% endfor %}
+                            </mj-raw>
+                        </mj-text>
+                    </mj-column>
+                </mj-group>
+            </mj-section>
+        </mj-wrapper>
+    </mj-body>
+</mjml>
+
+{% endapply %}
+{% endapply %}

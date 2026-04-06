@@ -1,0 +1,5 @@
+@utility inset-media {
+    & :is(picture, img, video) {
+        @apply w-full h-full object-cover object-center;
+    }
+}

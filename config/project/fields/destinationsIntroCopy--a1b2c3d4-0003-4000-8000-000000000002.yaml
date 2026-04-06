@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: destinationsIntroCopy
+instructions: 'Right-column supporting paragraph in the destinations section header'
+name: 'Destinations Intro Copy'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 600
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

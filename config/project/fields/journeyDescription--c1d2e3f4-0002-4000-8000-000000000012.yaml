@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: journeyDescription
+instructions: 'Short editorial description of the journey (shown on card)'
+name: 'Journey Description'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 500
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

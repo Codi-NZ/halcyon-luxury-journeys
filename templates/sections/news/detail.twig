@@ -1,0 +1,76 @@
+{% extends 'layouts/base' %}
+
+{% block content %}
+    {% embed 'layouts/internalPage' %}
+        {% block aside %}
+            {% set details = [] %}
+
+            {% set details =
+                details|merge(
+                    [
+                        {
+                            type: 'icon',
+                            label: 'Name',
+                            value: entry.title,
+                            icon: 'outline/star'
+                        }
+                    ]
+                )
+            %}
+
+            {% set details =
+                details|merge(
+                    [
+                        {
+                            type: 'icon',
+                            label: 'Date',
+                            value: entry.postDate|date,
+                            icon: 'outline/calendar'
+                        }
+                    ]
+                )
+            %}
+
+            {% if entry.categories|default %}
+                {% set categoryLinks %}
+                    <ul class="inline-links">
+                        {% for item in entry.categories.all %}
+                            <li>
+                                {% include '_atoms/buttons/link' with {
+                                    self: {
+                                        text: item,
+                                        url: item.url
+                                    }
+                                } %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endset %}
+
+                {% set details =
+                    details|merge(
+                        [
+                            {
+                                type: 'icon',
+                                label: 'Categories',
+                                value: categoryLinks,
+                                icon: 'outline/tag'
+                            }
+                        ]
+                    )
+                %}
+            {% endif %}
+
+            {% include '_atoms/buttons/back' with {
+                self: {
+                    text: 'View all news',
+                    url: craft.simple.globals.listings.all.news.url
+                }
+            } %}
+
+            {% include '_molecules/datalist' with {
+                items: details
+            } %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

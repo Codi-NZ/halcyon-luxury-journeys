@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: lpEyebrow
+instructions: 'Small gold uppercase label above the headline (e.g. "Something extraordinary is coming")'
+name: 'LP Eyebrow'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 120
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: 'Something extraordinary is coming'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

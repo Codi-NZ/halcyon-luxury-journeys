@@ -1,0 +1,9 @@
+{% set defaults = {
+    extend: 'theme-outline',
+    text: '0',
+    icon: null
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% include '_atoms/buttons/pill' with self %}

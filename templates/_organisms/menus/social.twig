@@ -1,0 +1,33 @@
+{% set defaults = {
+    isShareLink: null,
+    shareUrl: null,
+    isFullUrl: false,
+    items: [],
+    buttonModifiers: 'button--ani-icon',
+    buttonType: 'default',
+    modifiers: null
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+{% set platforms = self.platforms ?? (self.items|keys) %}
+
+{% if platforms|default %}
+    <nav class="flex flex-wrap gap-4" aria-label="Social media links">
+        {% for platform in platforms %}
+            {% set value = self.items[platform] %}
+            {% if value|default %}
+                {% include '_atoms/buttons/social' with {
+                    self: {
+                        platform: platform,
+                        handle: not self.isFullUrl ? value : null,
+                        isShareLink: self.isShareLink,
+                        shareUrl: self.shareUrl,
+                        url: self.isFullUrl ? value : null,
+                        modifiers: self.buttonModifiers,
+                        buttonType: self.buttonType ?? null
+                    }
+                } %}
+            {% endif %}
+        {% endfor %}
+    </nav>
+{% endif %}

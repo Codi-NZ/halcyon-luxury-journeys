@@ -1,0 +1,12 @@
+{% requireLogin %}
+
+{% if not entry.userGroups|default or not entry.userGroups.inGroup(currentUser) %}
+    {% exit 403 %}
+{% endif %}
+
+{% switch entry.type %}
+
+{% default %}
+{% include 'sections/general/generalContent' %}
+
+{% endswitch %}

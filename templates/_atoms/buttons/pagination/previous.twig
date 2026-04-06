@@ -1,0 +1,11 @@
+{% set defaults = {
+    contentClass: 'flex-row-reverse',
+    extend: 'theme-outline',
+    modifiers: '--primary',
+    text: 'Previous',
+    icon: 'outline/arrow-left'
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% include '_atoms/buttons/pill' with self %}

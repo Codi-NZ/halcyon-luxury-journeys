@@ -1,0 +1,32 @@
+{% extends 'layouts/base' %}
+	{% import 'macros' as macros %}
+    {% block banner %}
+    <div class="outer min-h-screen flex justify-center items-center p-8 bg-grey-100">
+        <div class="bg-white border border-grey-200 p-6 sm:p-10 rounded-3xl max-w-xl w-full shadow-xl">
+            <div class="w-48 mx-auto">
+                <img class="w-full" src="https://gifdb.com/images/high/hello-cute-chick-kfte1eke27ff5385.gif" alt="">
+            </div>
+            <{{ headingTag1 }} class="text-xl xl:text-2xl text-center text-grey-900">Welcome to Aurora!</{{ headingTag1 }}>
+            <p class="text-base xl:text-xl text-center text-grey-600">Craft 5 boilerplate</p>
+            <form method="post" accept-charset="utf-8" class="mt-6 md:mt-12 flex flex-col items-center gap-4">
+                <input type="hidden" name="action" value="knock-knock/default/answer">
+                <input type="hidden" name="redirect" value="{{ redirect | hash }}">
+                {{ csrfInput() }}
+
+                <div class="flex flex-col gap-2 items-center w-full max-w-sm relative">
+                    <label for="password" class="text-center">Password</label>
+                    <input class="bg-white shadow-inner rounded-xl py-3 px-4 w-full border border-grey-300 focus:border-grey-500 focus:ring-0" id="password" type="password" name="password" autocomplete="off" placeholder="Password" autofocus />
+                    {% if errors is defined %}
+                        <ul class="errors mt-2 text-sm text-error-600 text-center">
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <button type="submit" name="unlock" value="Unlock" class="btn">Unlock</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

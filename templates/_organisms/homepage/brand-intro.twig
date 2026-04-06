@@ -1,0 +1,32 @@
+{#
+  Brand Intro — centred heading + body, cream background.
+  Expects: entry.brandIntroHeading, entry.brandIntroBody
+#}
+
+{% set heading = entry.brandIntroHeading ?? 'Experience the extraordinary' %}
+{% set body    = entry.brandIntroBody    ?? 'We don\'t sell packages. We listen, we design, and we bring the hidden side of these extraordinary lands to light — for travelers who know the difference.' %}
+
+<section id="brand-intro" class="section-pad" style="background:#F5F0E9;">
+    <div class="container-lg">
+        <div style="margin-left:auto; margin-right:auto; max-width:980px; text-align:center;">
+
+            <h2
+                class="display text-navy"
+                style="font-size:clamp(38px,5.6vw,78px); line-height:1.04;"
+                data-reveal
+            >
+                {{ heading|nl2br }}
+            </h2>
+
+            <p
+                class="type-body-font"
+                style="font-size:clamp(15px,1.35vw,18px); line-height:1.9; color:rgba(17,34,80,0.68); margin-top:clamp(24px,3vw,28px); margin-left:auto; margin-right:auto; max-width:860px;"
+                data-reveal
+                data-delay="120"
+            >
+                {{ body }}
+            </p>
+
+        </div>
+    </div>
+</section>

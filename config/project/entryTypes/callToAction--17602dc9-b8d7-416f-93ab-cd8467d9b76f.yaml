@@ -1,0 +1,94 @@
+color: blue
+fieldLayouts:
+  bb459daa-ffad-4687-af33-3cdd42d73e2d:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2024-10-25T05:46:45+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 84913548-f7c0-483a-850d-dea69cd91279
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:46:45+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: b8f875f4-12b1-4e54-9900-0335b3c8b0b7 # Heading
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 163d4538-6791-454c-acc8-03e347d75953
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:46:45+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: cc085bf4-81a3-4d07-8a13-fa1ade1087b4 # Body Text
+            handle: body
+            instructions: null
+            label: Body
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 852c072d-4275-4898-a9c2-be183b05c1f9
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:46:45+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 03e38e55-ec9f-4c48-8398-b00a51c40db4 # Links
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 60b2ff2d-7cfc-4962-8ec7-95b35e1892a2
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 321bf824-99cb-4445-92d5-e372dcd2d796
+        userCondition: null
+handle: callToAction
+hasTitleField: false
+icon: headset
+name: 'Call To Action'
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

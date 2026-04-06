@@ -1,0 +1,26 @@
+columnSuffix: null
+handle: featuredSignatureJourneys
+instructions: 'Select signature journey entries to feature on the homepage (typically 3)'
+name: 'Featured Signature Journeys'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: 'Add a Signature Journey'
+  showCardsInGrid: false
+  showSearchInput: true
+  showSiteMenu: true
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:c1d2e3f4-0002-4000-8000-000000000001' # Signature Journeys
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

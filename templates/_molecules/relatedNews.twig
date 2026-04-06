@@ -1,0 +1,13 @@
+{% set entries = entries ?? null %}
+
+<section class="related-news">
+    <div class="related-news__content">
+        {% include '_organisms/listing' with {
+            self: {
+                modifiers: '--single',
+                cards: entries,
+                cardType: 'article-list'
+            }
+        } %}
+    </div>
+</section>

@@ -1,0 +1,156 @@
+{#
+  Signature Journeys — navy section with horizontal editorial cards.
+  Expects: entry.signatureJourneysIntroHeading, entry.signatureJourneysCopy,
+           entry.featuredSignatureJourneys (Entries field → signatureJourneys channel)
+
+  Each journey entry needs: title, journeyCountry, journeyDuration,
+                            journeyDescription, journeyHighlights, journeyImage
+#}
+
+{% set sectionHeading = entry.signatureJourneysIntroHeading ?? 'Signature Journeys' %}
+{% set sectionCopy    = entry.signatureJourneysCopy         ?? 'Starting points, not blueprints — every journey begins with your story.' %}
+{% set journeys       = entry.featuredSignatureJourneys.all() ?? [] %}
+
+{# NZ map SVG path data — reusable decoration #}
+{% set nzMapPaths %}
+<path d="M 88,12 C 92,8 99,6 106,10 C 118,16 128,30 132,48 C 136,64 138,72 148,86 C 158,100 162,116 158,132 C 154,148 144,160 136,170 C 126,180 116,184 106,184 C 94,184 82,176 72,162 C 62,148 56,130 58,112 C 60,94 68,78 70,62 C 72,46 76,28 88,12 Z" />
+<path d="M 108,210 C 118,206 132,208 144,216 C 156,224 164,238 166,254 C 168,268 164,282 160,296 C 156,308 148,318 144,330 C 138,344 136,358 128,370 C 120,382 108,390 96,390 C 82,390 68,380 58,368 C 48,356 42,340 42,324 C 42,308 48,292 50,276 C 52,260 48,244 52,228 C 56,214 70,206 86,206 C 96,206 104,208 108,210 Z" />
+<ellipse cx="112" cy="410" rx="10" ry="7" />
+<line x1="106" y1="192" x2="108" y2="204" stroke-dasharray="3,4" />
+{% endset %}
+
+<section class="section-pad" style="background:#112250; position:relative; overflow:hidden;">
+
+    {# Decorative NZ map #}
+    <svg viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+         style="position:absolute; right:-2%; top:50%; transform:translateY(-50%); width:min(320px,28vw); opacity:0.07; fill:none; stroke:#F5F0E9; stroke-width:1.5; pointer-events:none;">
+        {{ nzMapPaths }}
+    </svg>
+
+    <div class="container-xl">
+
+        {# Section header #}
+        <div style="display:flex; flex-direction:column; gap:32px; margin-bottom:clamp(48px,6vw,80px);">
+            <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:32px;">
+                <div>
+                    <div class="overline-light" style="margin-bottom:16px;" data-reveal>exclusive collections</div>
+                    <h2
+                        class="display"
+                        style="font-size:clamp(48px,6vw,88px); color:#F5F0E9; line-height:1;"
+                        data-reveal data-delay="100"
+                    >
+                        {{ sectionHeading|nl2br }}
+                    </h2>
+                </div>
+                <p
+                    class="type-body-font"
+                    style="font-size:15px; font-style:italic; line-height:1.8; color:rgba(245,240,233,0.6); max-width:360px;"
+                    data-reveal="right" data-delay="200"
+                >
+                    {{ sectionCopy }}
+                </p>
+            </div>
+        </div>
+
+        {# Journey cards #}
+        <div style="display:flex; flex-direction:column; gap:clamp(32px,4vw,48px);">
+            {% for journey in journeys %}
+                {% set image       = journey.journeyImage.one() ?? null %}
+                {% set country     = journey.journeyCountry     ?? '' %}
+                {% set duration    = journey.journeyDuration    ?? '' %}
+                {% set description = journey.journeyDescription ?? '' %}
+                {% set highlights  = journey.journeyHighlights  ?? '' %}
+                {% set highlights  = highlights ? highlights|split('\n')|filter(h => h|trim) : [] %}
+                {% set isOdd       = loop.index is odd %}
+
+                <a
+                    href="{{ journey.url }}"
+                    class="journey-card"
+                    data-reveal
+                    data-delay="{{ loop.index0 * 150 }}"
+                >
+                    {# Image side #}
+                    <div style="overflow:hidden; {{ not isOdd ? 'order:2;' : '' }}">
+                        {% if image %}
+                            <img
+                                src="{{ image.url }}"
+                                alt="{{ image.title ?? journey.title }}"
+                                class="journey-img"
+                                loading="lazy"
+                                width="1200"
+                                height="800"
+                            />
+                        {% else %}
+                            <div style="width:100%; height:100%; min-height:360px; background:rgba(245,240,233,0.06);"></div>
+                        {% endif %}
+                    </div>
+
+                    {# Content side #}
+                    <div style="padding:clamp(32px,4vw,60px); display:flex; flex-direction:column; justify-content:center; gap:20px; {{ not isOdd ? 'order:1;' : '' }}">
+
+                        <div style="display:flex; align-items:center; gap:16px;">
+                            <span style="font-family:'Cormorant Unicase',serif; font-size:11px; font-weight:400; letter-spacing:0.3em; color:rgba(245,240,233,0.3);">
+                                0{{ loop.index }}
+                            </span>
+                            <span style="width:24px; height:1px; background:rgba(245,240,233,0.2);"></span>
+                            <span class="type-body-font" style="font-size:10px; font-style:italic; letter-spacing:0.2em; color:rgba(245,240,233,0.45);">
+                                {{ country }}{% if country and duration %} · {% endif %}{{ duration }}
+                            </span>
+                        </div>
+
+                        <h3
+                            class="type-heading-font"
+                            style="font-size:clamp(24px,2.5vw,36px); font-weight:300; color:#F5F0E9; letter-spacing:0.05em; line-height:1.2;"
+                        >
+                            {{ journey.title }}
+                        </h3>
+
+                        {% if description %}
+                            <p class="type-body-font"
+                               style="font-size:14px; font-style:italic; color:rgba(245,240,233,0.6); line-height:1.85;">
+                                {{ description }}
+                            </p>
+                        {% endif %}
+
+                        {% if highlights|length %}
+                            <ul style="display:flex; flex-direction:column; gap:8px; margin:4px 0; padding:0; list-style:none;">
+                                {% for h in highlights %}
+                                    <li style="display:flex; align-items:center; gap:10px;">
+                                        <span style="width:16px; height:1px; background:rgba(201,233,255,0.5); flex-shrink:0;"></span>
+                                        <span class="type-body-font"
+                                              style="font-size:12px; font-style:italic; color:rgba(245,240,233,0.5); letter-spacing:0.06em;">{{ h|trim }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        <div style="margin-top:8px;">
+                            <span class="btn-luxury btn-luxury-light" style="font-size:11px;">
+                                View journey
+                                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+                                </svg>
+                            </span>
+                        </div>
+
+                    </div>
+                </a>
+            {% else %}
+                <p class="type-body-font" style="color:rgba(245,240,233,0.4); font-style:italic; font-size:14px; padding:40px 0;">
+                    No journeys configured yet. Add Signature Journey entries and relate them to this page.
+                </p>
+            {% endfor %}
+        </div>
+
+        {# View all CTA #}
+        <div style="display:flex; justify-content:center; margin-top:clamp(48px,6vw,64px);" data-reveal>
+            <a href="/signature-journeys" class="btn-filled btn-filled-light">
+                View All Signature Journeys
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+                </svg>
+            </a>
+        </div>
+
+    </div>
+</section>

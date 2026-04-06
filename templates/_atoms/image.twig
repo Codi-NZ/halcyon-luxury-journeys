@@ -1,0 +1,53 @@
+{% import "macros/images" as imageMacros %}
+
+{% set defaults = {
+    image: "",
+	caption: self.image.caption ?? null,
+    type: "fullwidth-contain",
+    imageSet: null,
+    galleryId: null,
+    hidden: false,
+    zoom: false,
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% if self.galleryId %}
+<a class="cursor-zoom-in"
+    data-fancybox="{{ self.galleryId }}"
+    data-caption="{{ self.caption }}"
+    href='{{ imageMacros.imagerUrl(self.image) }}'
+    {% if self.hidden %}
+        hidden
+    {% endif %}
+>
+{% endif %}
+
+{% if self.hidden %}
+    {{ self.caption|default("image") }}
+{% else %}
+    <figure class="rounded-xl overflow-hidden">
+        {% if self.imageSet %}
+            {% include "_atoms/image-set" with {
+                image: self.image,
+                id: self.type,
+                variances: self.imageSet,
+            } %}
+        {% else %}
+            {{ imageMacros.imagerSrcset(
+                self.image,
+                self.type,
+            )}}
+        {% endif %}
+
+        {% if self.caption %}
+            <figcaption class="">
+                {{ self.caption }}
+            </figcaption>
+        {% endif %}
+    </figure>
+{% endif %}
+
+{% if self.galleryId %}
+</a>
+{% endif %}

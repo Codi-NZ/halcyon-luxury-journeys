@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="{{ currentSite.language }}" id="html">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin-when-cross-origin">
+
+    {% if not craft.vite.devServerRunning() %}
+        {{ craft.vite.script('src/index.js', false, { 'defer': true }) }}
+    {% else %}
+        {{ craft.vite.script('src/index.js') }}
+    {% endif %}
+
+    <title>{{ entry.title ?? 'Coming Soon — Halcyon Luxury Journeys' }}</title>
+    <meta name="description" content="Something extraordinary is on its way. Halcyon Luxury Journeys — bespoke private travel through New Zealand and Australia.">
+
+    {# SEO field #}
+    {% if entry.seo is defined %}{{ entry.seo }}{% endif %}
+
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+
+<body style="margin:0; padding:0; overflow-x:hidden;">
+
+{# ── Content variables ──────────────────────────────────────────────── #}
+{% set eyebrow     = entry.lpEyebrow     ?? 'Something extraordinary is coming' %}
+{% set headline    = entry.lpHeadline    ?? "Launching\nSoon" %}
+{% set body        = entry.lpBody        ?? 'We are putting the finishing touches on something truly special — bespoke private journeys through New Zealand & Australia.' %}
+{% set formLabel   = entry.lpFormLabel   ?? 'Be the first to know when we launch' %}
+{% set privacyNote = entry.lpPrivacyNote ?? 'No spam. Unsubscribe at any time.' %}
+{% set contactEmail = entry.lpContactEmail ?? 'hello@halcyonluxuryjourneys.co.nz' %}
+{% set bgImage     = entry.image.one()   ?? null %}
+{% set bgVideo     = entry.video.one()   ?? null %}
+{% set formEntry   = entry.form.one()    ?? null %}
+
+{# Split headline into two lines for the gold-italic treatment #}
+{% set headlineLines = headline|split('\n') %}
+
+<main class="cs-root">
+
+    {# ── Left: cream text panel ──────────────────────────────────────── #}
+    <div class="cs-left">
+
+        {# Logo #}
+        <a href="/" class="cs-logo-link" aria-label="Halcyon Luxury Journeys — Home">
+            <img src="/halcyon-logo.svg" alt="Halcyon Luxury Journeys" class="cs-logo" />
+        </a>
+
+        {# Centre text block #}
+        <div class="cs-text">
+
+            {% if eyebrow %}
+                <p class="cs-eyebrow">{{ eyebrow }}</p>
+            {% endif %}
+
+            <h1 class="cs-headline">
+                {% if headlineLines|length > 1 %}
+                    {{ headlineLines[0] }}<br/>
+                    <em>{{ headlineLines[1:] | join('\n') | trim }}</em>
+                {% else %}
+                    {{ headline }}
+                {% endif %}
+            </h1>
+
+            <div class="cs-rule" aria-hidden="true"></div>
+
+            {% if body %}
+                <p class="cs-body">{{ body }}</p>
+            {% endif %}
+
+            {# Newsletter form via Formie #}
+            <div class="cs-form-wrap">
+                {% if formLabel %}
+                    <p class="cs-form-label">{{ formLabel }}</p>
+                {% endif %}
+
+                {% if formEntry %}
+                    <div class="cs-formie-wrap">
+                        {{ craft.formie.renderForm(formEntry) }}
+                    </div>
+                {% endif %}
+
+                {% if privacyNote %}
+                    <p class="cs-privacy">{{ privacyNote }}</p>
+                {% endif %}
+            </div>
+
+            {# Contact link #}
+            {% if contactEmail %}
+                <div class="cs-contact">
+                    <a href="mailto:{{ contactEmail }}" class="cs-contact-link">{{ contactEmail }}</a>
+                </div>
+            {% endif %}
+
+        </div>
+
+        {# Footer inside left panel #}
+        <div class="cs-footer">
+            <span class="cs-footer-text">New Zealand · Australia</span>
+            <span class="cs-footer-text">&copy; {{ now|date('Y') }} Halcyon Luxury Journeys</span>
+        </div>
+
+    </div>
+
+    {# ── Right: media panel ──────────────────────────────────────────── #}
+    <div class="cs-right" aria-hidden="true">
+
+        {# Mobile/fallback: photo #}
+        {% if bgImage %}
+            <img
+                src="{{ bgImage.url }}"
+                alt="{{ bgImage.title ?? '' }}"
+                class="cs-mobile-photo"
+                loading="eager"
+                decoding="async"
+                width="{{ bgImage.width ?? 900 }}"
+                height="{{ bgImage.height ?? 1400 }}"
+            />
+        {% else %}
+            <img
+                src="https://images.unsplash.com/photo-1652344433425-e4103642510d?q=80&w=2370&auto=format&fit=crop"
+                alt="Queenstown, New Zealand"
+                class="cs-mobile-photo"
+                loading="eager"
+                decoding="async"
+                width="900"
+                height="1400"
+            />
+        {% endif %}
+
+        {# Desktop: video #}
+        {% if bgVideo %}
+            <video id="cs-video" autoplay muted loop playsinline class="cs-video">
+                <source src="{{ bgVideo.url }}" type="video/mp4" />
+            </video>
+        {% else %}
+            <video id="cs-video" autoplay muted loop playsinline class="cs-video">
+                <source src="/14861093_3840_2160_30fps.mp4" type="video/mp4" />
+            </video>
+        {% endif %}
+
+    </div>
+
+</main>
+
+<style>
+/* ── Root ─────────────────────────────────────────── */
+.cs-root {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100dvh;
+}
+
+/* ══════════════════════
+   LEFT PANEL — cream
+══════════════════════ */
+.cs-left {
+    background: #F5F0E9;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(36px, 4vw, 60px) clamp(36px, 5vw, 72px);
+}
+
+/* Logo */
+.cs-logo-link { display: block; margin-bottom: clamp(48px, 7vw, 88px); text-decoration: none; }
+.cs-logo { width: min(190px, 42vw); height: auto; }
+
+/* Text block */
+.cs-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Eyebrow */
+.cs-eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C9A96E;
+    margin: 0 0 18px;
+}
+
+/* Headline */
+.cs-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 5.5vw, 84px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: #112250;
+    margin: 0 0 24px;
+}
+.cs-headline em {
+    font-style: italic;
+    color: #C9A96E;
+}
+
+/* Rule */
+.cs-rule {
+    width: 40px;
+    height: 1px;
+    background: rgba(17, 34, 80, 0.2);
+    margin-bottom: 22px;
+}
+
+/* Body */
+.cs-body {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(14px, 1.1vw, 16px);
+    font-style: italic;
+    line-height: 1.85;
+    color: #112250;
+    max-width: 400px;
+    margin: 0 0 clamp(32px, 4vw, 48px);
+}
+
+/* Form wrapper */
+.cs-form-wrap { max-width: 440px; margin-bottom: clamp(24px, 3vw, 36px); }
+.cs-form-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(17, 34, 80, 0.7);
+    margin: 0 0 12px;
+}
+
+/* Formie overrides — match the Astro inline form style */
+.cs-formie-wrap .fui-form { margin: 0; }
+.cs-formie-wrap .fui-page-container,
+.cs-formie-wrap .fui-row { display: flex; gap: 0; margin: 0; }
+.cs-formie-wrap .fui-field { margin: 0; flex: 1; }
+.cs-formie-wrap .fui-input {
+    width: 100%;
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid rgba(17, 34, 80, 0.18);
+    border-right: none;
+    color: #112250;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 13px 16px;
+    outline: none;
+    border-radius: 0;
+    transition: border-color 0.25s ease;
+    box-shadow: none;
+    -webkit-appearance: none;
+}
+.cs-formie-wrap .fui-input::placeholder { color: rgba(17, 34, 80, 0.3); }
+.cs-formie-wrap .fui-input:focus { border-color: #C9A96E; }
+.cs-formie-wrap .fui-submit,
+.cs-formie-wrap .fui-btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #112250;
+    border: 1px solid #112250;
+    color: #F5F0E9;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 13px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 0;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+.cs-formie-wrap .fui-submit:hover,
+.cs-formie-wrap .fui-btn-submit:hover {
+    background: #C9A96E;
+    border-color: #C9A96E;
+    color: #112250;
+}
+.cs-formie-wrap .fui-error-message,
+.cs-formie-wrap .fui-alert { font-family: 'Lato', sans-serif; font-size: 11px; }
+.cs-formie-wrap .fui-label { display: none; } /* label hidden — we use cs-form-label above */
+
+/* Privacy note */
+.cs-privacy {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    color: rgba(17, 34, 80, 0.3);
+    margin: 10px 0 0;
+    font-style: italic;
+    letter-spacing: 0.04em;
+}
+
+/* Contact */
+.cs-contact { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.cs-contact-link {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-style: italic;
+    color: #112250;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+.cs-contact-link:hover { color: #C9A96E; }
+
+/* Footer */
+.cs-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: clamp(20px, 3vw, 32px);
+    margin-top: clamp(28px, 4vw, 48px);
+    border-top: 1px solid rgba(17, 34, 80, 0.1);
+}
+.cs-footer-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(17, 34, 80, 0.55);
+    font-style: italic;
+}
+
+/* ══════════════════════
+   RIGHT PANEL — media
+══════════════════════ */
+.cs-right {
+    position: relative;
+    overflow: hidden;
+}
+.cs-video { display: none; }
+
+/* Photo shown on all sizes by default */
+.cs-mobile-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+/* Desktop: show video, hide static photo */
+@media (min-width: 769px) {
+    .cs-video {
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .cs-mobile-photo { display: none; }
+}
+
+/* ── Mobile: full-screen background, text overlaid ─── */
+@media (max-width: 768px) {
+    .cs-root {
+        display: block;
+        position: relative;
+        min-height: 100dvh;
+    }
+
+    .cs-right {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+    }
+    .cs-right::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(17, 34, 80, 0.45) 0%,
+            rgba(17, 34, 80, 0.55) 60%,
+            rgba(17, 34, 80, 0.75) 100%
+        );
+    }
+
+    .cs-left {
+        position: relative;
+        z-index: 1;
+        background: transparent;
+        min-height: 100dvh;
+    }
+
+    /* Flip text to white on mobile */
+    .cs-logo        { filter: brightness(0) invert(1); opacity: 0.9; }
+    .cs-eyebrow     { color: #C9A96E; }
+    .cs-headline    { color: #ffffff; }
+    .cs-headline em { color: #C9A96E; }
+    .cs-rule        { background: rgba(255, 255, 255, 0.25); }
+    .cs-body        { color: rgba(255, 255, 255, 0.85); }
+    .cs-form-label  { color: rgba(255, 255, 255, 0.5); }
+
+    .cs-formie-wrap .fui-input {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.3);
+        border-right: none;
+        color: #ffffff;
+    }
+    .cs-formie-wrap .fui-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+    .cs-formie-wrap .fui-submit,
+    .cs-formie-wrap .fui-btn-submit {
+        background: #C9A96E;
+        border-color: #C9A96E;
+        color: #112250;
+        width: 100%;
+        justify-content: center;
+    }
+    .cs-formie-wrap .fui-row { flex-direction: column; }
+    .cs-formie-wrap .fui-input { border-right: 1px solid rgba(255, 255, 255, 0.3); border-bottom: none; }
+
+    .cs-privacy          { color: rgba(255, 255, 255, 0.3); }
+    .cs-contact-link     { color: rgba(255, 255, 255, 0.6); }
+    .cs-footer           { border-top-color: rgba(255, 255, 255, 0.1); }
+    .cs-footer-text      { color: rgba(255, 255, 255, 0.3); }
+}
+</style>
+
+<script>
+(function() {
+    var vid = document.getElementById('cs-video');
+    if (vid) {
+        vid.loop = true;
+        vid.addEventListener('ended', function() { vid.currentTime = 0; vid.play(); });
+    }
+})();
+</script>
+
+{{ endBody() }}
+</body>
+</html>

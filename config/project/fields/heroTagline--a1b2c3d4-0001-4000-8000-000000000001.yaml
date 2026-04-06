@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: heroTagline
+instructions: 'Small label shown above the main headline (e.g. "Tailor-made New Zealand & Australia")'
+name: 'Hero Tagline'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 120
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

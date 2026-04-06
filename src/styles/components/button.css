@@ -1,0 +1,15 @@
+.btn {
+    @apply py-2 px-6 inline-flex items-center justify-center copy cursor-pointer rounded-4xl border-2 border-grey-300 bg-grey-200 text-grey-900 transition-colors hover:bg-grey-300 hover:border-grey-400 gap-2;
+
+    & .icon {
+        @apply size-6;
+    }
+}
+
+.btn-border {
+    @apply py-2 px-6 inline-flex items-center justify-center copy cursor-pointer rounded-4xl border-2 border-grey-400 bg-transparent text-grey-700 hover:bg-grey-50 hover:text-grey-900 transition-colors gap-2;
+}
+
+.link {
+    @apply text-lg leading-none border-b border-dashed border-grey-300 pb-2 inline-flex text-grey-700 hover:text-grey-900 cursor-pointer transition-colors;
+}

@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: storyBody
+instructions: 'First paragraph of the story section (italic, cream text)'
+name: 'Story Body'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 600
+  code: false
+  initialRows: 5
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

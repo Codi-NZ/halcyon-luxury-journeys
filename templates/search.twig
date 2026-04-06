@@ -1,0 +1,55 @@
+{% extends 'layouts/base' %}
+
+{% do seomatic.meta.seoTitle('Search') %}
+
+{% set sectionId = 'search' %}
+{% set ariaControls = 'search-results' %}
+{% set keywords = craft.app.request.param('q')|default %}
+{% set results =
+    craft.entries({
+        section: ['sitemap', 'miscPages', 'news', 'people', 'contact', 'homepage'],
+        search: keywords,
+        orderBy: 'score'
+    }).with(
+        'featureImage'
+    )
+%}
+{% paginate results.limit(12) as pageInfo, entries %}
+
+{% block banner %}
+    {% include '_organisms/banners/basic' with {
+        title: 'Search',
+        summary: keywords
+            ? "Your search for '" ~ keywords ~ "' returned " ~ (results|length) ~ ' results'
+            : 'Search the site'
+    } %}
+{% endblock %}
+
+{% block content %}
+    <div class="inner">
+        <form method="get" action="{{ siteUrl('search') }}" class="flex gap-4 mt-8">
+            {% include '_atoms/forms/text' with {
+                ariaControls: ariaControls,
+                name: 'q',
+                label: 'Keywords',
+                placeholder: 'Enter keywords...',
+                value: keywords
+            } %}
+            <button type="submit" class="btn">Search</button>
+        </form>
+
+        <ul id="{{ ariaControls }}" class="grid grid-cols-3 gap-8 my-16">
+            {% for item in entries %}
+                <li>
+                    {% include '_molecules/cards/base' with {
+                        self: {
+                            entry: item
+                        }
+                    } %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% include '_molecules/pagination' %}
+    </div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% set table = table ?? null %}
+
+{% set alignment = {
+	"right": "text-right",
+	"center": "text-center",
+	"left": "text-left",
+} %}
+
+<div class="table-wrapper" x-data="{
+	showLeftFade: false,
+	showRightFade: true,
+	checkScroll() {
+		const el = this.$refs.scrollContainer;
+		if (!el) return;
+
+		const { scrollLeft, scrollWidth, clientWidth } = el;
+		this.showLeftFade = scrollLeft > 10;
+		this.showRightFade = scrollLeft < (scrollWidth - clientWidth - 10);
+	}
+}" x-init="
+	setTimeout(() => checkScroll(), 100);
+	window.addEventListener('resize', () => checkScroll());
+">
+	<p class="text-[10px] text-black/60 mb-2 text-right md:hidden">*Scroll horizontally</p>
+	<div
+		class="table-wrapper-inner"
+		x-ref="scrollContainer"
+		@scroll="checkScroll()"
+	>
+		<table class="table w-full">
+			<thead class="bg-black text-white">
+				<tr>
+					{% for column in table.columns|default %}
+						<th class="p-4 heading-5 {{ alignment[column.align|default("left")] }}"{{ column.width ? " width=\"#{column.width} \""|raw }}>
+							{{ column.heading }}
+						</th>
+					{% endfor %}
+				</tr>
+			</thead>
+
+			<tbody class="divide-y divide-black">
+				{% for row in table.rows %}
+					<tr>
+						{% for key, column in row %}
+							{% set headingData = table.columns[key]|default %}
+							<td class="p-4 copy-lg {{ alignment[headingData.align|default("left")] }}" data-th="{{ headingData.heading|default }}">
+								{{ column }}
+							</td>
+						{% endfor %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Scroll indicators -->
+	<div
+		class="table-scroll-indicator table-scroll-indicator--left"
+		:aria-hidden="!showLeftFade"
+		:class="showLeftFade ? '' : 'opacity-0'"
+	></div>
+	<div
+		class="table-scroll-indicator table-scroll-indicator--right"
+		:aria-hidden="!showRightFade"
+		:class="showRightFade ? '' : 'opacity-0'"
+	></div>
+</div>

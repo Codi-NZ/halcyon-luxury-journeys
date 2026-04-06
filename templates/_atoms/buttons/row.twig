@@ -1,0 +1,8 @@
+{% set defaults = {
+    class: 'button--row button--ani-dual-icon',
+    extend: 'theme-row'
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% include '_atoms/buttons/default' with self %}

@@ -1,0 +1,11 @@
+@utility outer {
+    @apply max-w-screen-4xl w-full mx-auto;
+}
+
+@utility inner {
+    @apply outer px-6 md:px-12 xl:px-16 2xl:px-24;
+}
+
+@utility inner-y {
+    @apply outer py-6 md:py-12 xl:py-24;
+}

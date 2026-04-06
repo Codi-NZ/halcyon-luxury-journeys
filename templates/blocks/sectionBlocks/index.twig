@@ -1,0 +1,20 @@
+{% set blocks = blocks ?? entry.sectionBlocks.with(craft.app.config.custom.eager.sectionBlocks).all ?? null %}
+{% set modifiers = modifiers|default ? ' ' ~ modifiers %}
+
+{% for block in blocks %}
+    {% set nextBlock = loop.index < (blocks|length) ? blocks[loop.index] : null %}
+
+    <div
+        class="section-block section-block--{{ block.type.handle|kebab }}{{
+        nextBlock
+            ? ' next--' ~ (nextBlock.type.handle|kebab)
+        }}{{ modifiers }}"
+    >
+        <div class="section-block__content">
+            {% include ['/blocks/sections/' ~ (block.type.handle|kebab), '/blocks/_missing'] ignore missing with {
+                block: block,
+                blockIndex: loop.index
+            } %}
+        </div>
+    </div>
+{% endfor %}

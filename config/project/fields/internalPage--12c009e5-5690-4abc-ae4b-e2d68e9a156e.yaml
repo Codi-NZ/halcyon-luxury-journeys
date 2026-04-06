@@ -1,0 +1,30 @@
+columnSuffix: null
+handle: internalPage
+instructions: 'Visitors will be redirected to the selected page. The Feature Image and Summary of that page will be used on Listing Pages or the Homepage, unless overrides are provided below.'
+name: 'Internal Page'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: 1
+  selectionLabel: null
+  showCardsInGrid: false
+  showSearchInput: true
+  showSiteMenu: true
+  showUnpermittedEntries: true
+  showUnpermittedSections: true
+  sources:
+    - 'section:4d1b8d52-6b6b-46a7-9c08-f136d72499cd' # Misc Pages
+    - 'section:62333b6e-9380-4bb6-9103-37699143de7e'
+    - 'section:b0c5d611-6882-4a2b-8e12-3e743a96937e'
+    - singles
+    - 'section:bcf2c6bd-6a49-4563-9e25-2e4478a661fe' # Sitemap
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

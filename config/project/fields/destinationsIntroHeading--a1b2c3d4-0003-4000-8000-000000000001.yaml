@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: destinationsIntroHeading
+instructions: 'Heading for the destinations accordion section'
+name: 'Destinations Intro Heading'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 150
+  code: false
+  initialRows: 2
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

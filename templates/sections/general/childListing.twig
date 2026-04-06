@@ -1,0 +1,29 @@
+{% extends 'layouts/base' %}
+
+{% set children =
+    craft.entries({
+        descendantOf: entry,
+        descendantDist: 1,
+        with: ['image']
+    }).all
+%}
+
+{% block content %}
+    {% embed 'layouts/internalPage' %}
+        {% block article %}
+            {{ parent() }}
+
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {% for item in children %}
+                    <li>
+                        {% include '_molecules/cards/base' with {
+                            self: {
+                                entry: item
+                            }
+                        } %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

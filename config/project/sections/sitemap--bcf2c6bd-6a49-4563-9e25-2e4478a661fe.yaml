@@ -1,0 +1,34 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 9eaebdd0-e760-4fd3-a207-d2dffd3e3cc9 # Content Page
+  -
+    uid: 2575f49a-5928-4e08-8fac-d331e748d3c3 # Landing Page
+  -
+    uid: bac5c8c2-ebad-4210-b8de-091b5001da27 # Listing - Children
+  -
+    uid: 4b338ba8-633c-4ea2-a1fe-f3a65505675d # Listing - News
+  -
+    uid: adf7f667-9d76-4a53-82ed-e638f459b770 # Listing – People
+  -
+    uid: 8d675c1b-010a-4f71-bcf8-b6fa04bcdb0b # Mirrored Page
+handle: sitemap
+maxAuthors: 1
+name: Sitemap
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  24a9a722-d230-49d0-8693-6825092a5675: # $CRAFT_DEFAULT_SITE_NAME
+    enabledByDefault: true
+    hasUrls: true
+    template: routing/sitemap
+    uriFormat: '{parent.uri}/{slug}'
+structure:
+  maxLevels: 4
+  uid: 2dd90ae1-5af7-4e65-b5dc-bfcbbc9081b7
+type: structure

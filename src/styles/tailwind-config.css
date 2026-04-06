@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+@import 'tailwindcss';
+
+@source "../../templates/**/*";
+
+@theme {
+    --breakpoint-xs: 360px;
+    --breakpoint-sm: 480px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1440px;
+    --breakpoint-3xl: 1680px;
+    --breakpoint-4xl: 1920px;
+
+    /* Halcyon brand fonts */
+    --font-cormorant: 'Cormorant Unicase', serif;
+    --font-playfair: 'Playfair Display', serif;
+    --font-lato: 'Lato', sans-serif;
+    --font-funnel: 'Playfair Display', serif; /* fallback alias */
+
+    /* Halcyon brand colors */
+    --color-navy: #112250;
+    --color-cream: #F5F0E9;
+    --color-skyblue: #C9E9FF;
+    --color-sand: #FFF1DA;
+    --color-gold: #C9A96E;
+
+    --default-transition-duration: 500ms;
+    --default-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.47, 1.64, 0.41, 0.8);
+
+    --color-*: initial;
+    /* Base */
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    /* Wireframe */
+    --color-grey-25: #fcfcfd;
+    --color-grey-50: #f9fafb;
+    --color-grey-100: #f2f4f7;
+    --color-grey-200: #e4e7ec;
+    --color-grey-300: #d0d5dd;
+    --color-grey-400: #98a2b3;
+    --color-grey-500: #667085;
+    --color-grey-600: #475467;
+    --color-grey-700: #344054;
+    --color-grey-800: #1d2939;
+    --color-grey-900: #101828;
+
+    /* Error */
+    --color-error-25: #fffbfa;
+    --color-error-50: #fef3f2;
+    --color-error-100: #fee4e2;
+    --color-error-200: #fecdca;
+    --color-error-300: #fda29b;
+    --color-error-400: #f97066;
+    --color-error-500: #f04438;
+    --color-error-600: #d92d20;
+    --color-error-700: #b42318;
+    --color-error-800: #912018;
+    --color-error-900: #7a271a;
+
+    /* Success */
+    --color-success-25: #f6fef9;
+    --color-success-50: #ecfdf3;
+    --color-success-100: #d1fadf;
+    --color-success-200: #a6f4c5;
+    --color-success-300: #6ce9a6;
+    --color-success-400: #32d583;
+    --color-success-500: #12b76a;
+    --color-success-600: #039855;
+    --color-success-700: #027a48;
+    --color-success-800: #05603a;
+    --color-success-900: #054f31;
+}

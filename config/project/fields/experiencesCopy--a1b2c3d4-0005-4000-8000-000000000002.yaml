@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: experiencesCopy
+instructions: 'Supporting italic copy beside the experiences heading'
+name: 'Experiences Copy'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 300
+  code: false
+  initialRows: 3
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

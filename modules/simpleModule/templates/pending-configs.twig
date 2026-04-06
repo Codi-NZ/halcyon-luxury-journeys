@@ -1,0 +1,10 @@
+{% extends "_layouts/cp.twig" %}
+{% set title = "Pending Project Config Changes"|t('simple') %}
+
+{% block content %}
+<h1>Hold up!</h1>
+<p>You have pending changes to project config files. Please apply them before making any changes to site settings.</p>
+<p>
+    <a href="{{ url('utilities/project-config') }}">Review Pending Changes</a>
+</p>
+{% endblock %}

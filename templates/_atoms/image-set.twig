@@ -1,0 +1,19 @@
+{% import 'macros/images' as imageMacros %}
+
+{% set image = image ?? null %}
+{% set id = id ?? null %}
+{% set variances = variances ?? ['mobile', 'tablet', 'desktop'] %}
+
+{% if image and id and variances %}
+    {% for item in variances %}
+        {{
+            imageMacros.imagerSrcset(
+                image,
+                id ~ '-' ~ item,
+                {
+                    classes: '--' ~ item
+                }
+            )
+        }}
+    {% endfor %}
+{% endif %}

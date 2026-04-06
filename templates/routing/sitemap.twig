@@ -1,0 +1,27 @@
+{% switch entry.type %}
+
+{# Redirect to first child #}
+{% case 'redirectToFirstChild' %}
+{% if entry.hasDescendants() %}
+    {% redirect entry.getChildren.one.url %}
+{% endif %}
+
+{% case 'mirroredPage' %}
+{% redirect entry.internalPage.one.url %}
+
+{% case 'childListing' %}
+{% include 'sections/general/childListing' %}
+
+{% case 'landingPage' %}
+{% include 'sections/general/landingPage' %}
+
+{% case 'newsListing' %}
+{% include 'sections/news/listing' %}
+
+{% case 'peopleListing' %}
+{% include 'sections/people/listing' %}
+
+{% default %}
+{% include 'sections/general/generalContent' %}
+
+{% endswitch %}

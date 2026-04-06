@@ -1,0 +1,15 @@
+{% set links = links ?? null %}
+
+{% if links %}
+    <ul class="flex flex-wrap gap-x-8 gap-y-2">
+        {% for link in links %}
+            <li>
+                {% include '_atoms/buttons/linksDownloads' with {
+                    self: {
+                        link: link
+                    }
+                } %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

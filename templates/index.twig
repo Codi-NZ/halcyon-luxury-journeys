@@ -1,0 +1,41 @@
+{% extends 'layouts/base' %}
+
+{# Override the banner block — homepage has no standard banner #}
+{% block banner %}{% endblock %}
+
+{% block content %}
+
+    {# ── Loading screen ────────────────────────────────────────────── #}
+    {% include '_organisms/homepage/loading-screen' %}
+
+    {# ── Hero ──────────────────────────────────────────────────────── #}
+    {% include '_organisms/homepage/hero' %}
+
+    {# ── Brand Intro ───────────────────────────────────────────────── #}
+    {% include '_organisms/homepage/brand-intro' %}
+
+    {# ── Destinations Accordion ────────────────────────────────────── #}
+    {% include '_organisms/homepage/destinations-accordion' %}
+
+    {# ── Cinematic Video ───────────────────────────────────────────── #}
+    {% include '_organisms/homepage/cinematic-video' %}
+
+    {# ── Experiences Carousel ──────────────────────────────────────── #}
+    {% include '_organisms/homepage/experiences-carousel' %}
+
+    {# ── Signature Journeys ────────────────────────────────────────── #}
+    {% include '_organisms/homepage/signature-journeys' %}
+
+    {# ── Why Halcyon ───────────────────────────────────────────────── #}
+    {% include '_organisms/homepage/why-halcyon' %}
+
+    {# ── Destination Story ─────────────────────────────────────────── #}
+    {% include '_organisms/homepage/destination-story' %}
+
+    {# ── Testimonials ──────────────────────────────────────────────── #}
+    {% include '_organisms/homepage/testimonials' %}
+
+    {# ── CTA Section ───────────────────────────────────────────────── #}
+    {% include '_organisms/homepage/cta-section' %}
+
+{% endblock %}

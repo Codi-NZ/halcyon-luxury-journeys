@@ -1,0 +1,45 @@
+html {
+    @apply antialiased scroll-smooth;
+    font-feature-settings: 'kern', 'liga', 'pnum';
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    @apply relative min-h-screen;
+    font-family: 'Playfair Display', serif;
+    color: #112250;
+    background-color: #F5F0E9;
+    overflow-x: hidden;
+}
+
+::-moz-selection {
+    @apply bg-grey-200 text-grey-900 text-shadow-none;
+}
+
+::selection {
+    @apply bg-grey-200 text-grey-900 text-shadow-none;
+}
+
+svg[aria-hidden],
+svg[display='none'] {
+    display: none;
+}
+
+:is(a, button, input) {
+    @apply focus:outline-hidden focus-visible:ring-2 focus-visible:ring-grey-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+}
+
+.video {
+    @apply relative w-full m-0 aspect-video;
+}
+
+.video iframe,
+.video object,
+.video embed {
+    @apply absolute inset-0 w-full h-full;
+}
+
+:root::after {
+    z-index: 999999;
+    @apply fixed top-0 left-2 py-1 px-2 text-[10px] leading-none rounded-b-sm pointer-events-none select-none bg-white text-black content-['Mobile'] md:content-['Tablet_(portrait)'] lg:content-['Tablet_(landscape)'] xl:content-['Desktop'] 2xl:content-['Desktop_1440'] 3xl:content-['Desktop_1680+'];
+}

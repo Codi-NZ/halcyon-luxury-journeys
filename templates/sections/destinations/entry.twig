@@ -1,0 +1,36 @@
+{% extends 'layouts/base' %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+{#
+  Destination entry template — stub for future implementation.
+  Fields available on this entry:
+    - entry.title             (Destination Name)
+    - entry.destinationRegion (Sub-region label)
+    - entry.destinationImage  (Assets field)
+    - entry.destinationDescription (Description text)
+#}
+
+<section class="section-pad" style="background:#F5F0E9;">
+    <div class="container-lg">
+        <h1 class="display text-navy" style="font-size:clamp(40px,6vw,80px); line-height:1.05;">
+            {{ entry.title }}
+        </h1>
+        {% if entry.destinationRegion %}
+            <p class="overline" style="margin-top:12px;">{{ entry.destinationRegion }}</p>
+        {% endif %}
+        {% set image = entry.destinationImage.one() ?? null %}
+        {% if image %}
+            <img src="{{ image.url }}" alt="{{ image.title ?? entry.title }}"
+                 style="width:100%; aspect-ratio:16/9; object-fit:cover; margin-top:40px;" />
+        {% endif %}
+        {% if entry.destinationDescription %}
+            <p class="type-body-font" style="font-size:clamp(15px,1.3vw,18px); line-height:1.85; color:rgba(17,34,80,0.7); margin-top:32px; max-width:760px;">
+                {{ entry.destinationDescription }}
+            </p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

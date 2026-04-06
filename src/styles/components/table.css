@@ -1,0 +1,94 @@
+/* Responsive Table Styles */
+
+.table-wrapper {
+    @apply relative w-full;
+}
+
+.table-wrapper-inner {
+    @apply relative overflow-x-auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+.table-wrapper-inner::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-wrapper-inner::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+.table-wrapper-inner::-webkit-scrollbar-thumb {
+    @apply bg-black/30 rounded-full;
+}
+
+.table-wrapper-inner::-webkit-scrollbar-thumb:hover {
+    @apply bg-black/50;
+}
+
+.table {
+    @apply w-full border-collapse min-w-full;
+    white-space: nowrap;
+}
+
+.table th,
+.table td {
+    white-space: nowrap;
+}
+
+/* Scroll indicators - fade gradients */
+.table-scroll-indicator {
+    @apply absolute top-0 bottom-0 w-6 pointer-events-none z-10 transition-opacity duration-300;
+}
+
+.table-scroll-indicator--left {
+    @apply left-0;
+    background: linear-gradient(
+        to right,
+        rgba(249, 250, 251, 0.95) 0%,
+        rgba(249, 250, 251, 0.5) 15%,
+        rgba(249, 250, 251, 0.05) 35%,
+        transparent 50%
+    );
+}
+
+.table-scroll-indicator--right {
+    @apply right-0;
+    background: linear-gradient(
+        to left,
+        rgba(249, 250, 251, 0.95) 0%,
+        rgba(249, 250, 251, 0.5) 15%,
+        rgba(249, 250, 251, 0.05) 35%,
+        transparent 50%
+    );
+}
+
+.table-scroll-indicator[aria-hidden='true'] {
+    @apply opacity-0;
+}
+
+/* Make scroll indicators slightly wider on mobile */
+@media (max-width: 767px) {
+    .table-scroll-indicator {
+        @apply w-8;
+    }
+}
+
+/* Mobile and tablet: Horizontal scroll */
+@media (max-width: 1023px) {
+    .table-wrapper-inner {
+        @apply overflow-x-auto;
+    }
+}
+
+/* Desktop: Remove horizontal scroll for normal tables */
+@media (min-width: 1024px) {
+    .table-wrapper-inner {
+        overflow-x: visible;
+    }
+
+    .table-scroll-indicator {
+        @apply hidden;
+    }
+}

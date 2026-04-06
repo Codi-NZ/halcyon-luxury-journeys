@@ -1,0 +1,136 @@
+color: blue
+fieldLayouts:
+  e033022f-4ba5-44de-bcfd-27c827227ebe:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2024-10-25T04:54:26+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 54e2af56-4e46-41fe-98de-b02ffd0d9367
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T04:58:12+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 7318ab83-35e9-49f3-bee0-be852a027231 # Image
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 93d21f2f-c108-44ba-8182-29042c452597
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2024-10-25T04:58:12+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: ceca07e6-941b-4381-8e36-e6b760f5f0a6 # Video
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ee6f4c4c-85fc-41c5-ab6d-84e02fa67308
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2024-10-25T04:54:26+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: ae962a30-32f5-4f16-a15d-80f6f7a3f2d9 # Summary
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 10c14c73-7315-4484-b38c-4fd75902c210
+            userCondition: null
+            warning: null
+            width: 100
+        name: General
+        uid: 120eb3e1-e63b-45ea-96f7-f53d9bba9c5f
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-10-25T04:54:26+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 80801f65-acf2-4d04-92c0-df213deaed64 # Content Blocks
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 75f950c1-e4fe-4f23-b94d-f671e569fd6d
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: b69af6d2-f5e6-4fed-a394-34b4b9a88323
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-10-25T04:54:26+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 62a879f6-f629-48ec-8d2d-3bf1f9353c6a
+            userCondition: null
+            warning: null
+            width: 100
+        name: SEO
+        uid: 1f715ad4-79aa-4bd6-bf01-3383e791ae89
+        userCondition: null
+handle: contact
+hasTitleField: true
+icon: address-book
+name: Contact
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

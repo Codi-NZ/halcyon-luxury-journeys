@@ -1,0 +1,77 @@
+{#
+  CTA Section — full-bleed image with dark overlay and centred content.
+  Expects: entry.ctaOverline, entry.ctaHeading, entry.ctaBody,
+           entry.ctaButtonText, entry.ctaButtonUrl, entry.ctaBackgroundImage
+#}
+
+{% set overline  = entry.ctaOverline         ?? 'work with us' %}
+{% set heading   = entry.ctaHeading          ?? "Partner\nWith Us" %}
+{% set body      = entry.ctaBody             ?? 'We love partnering with travel professionals who share our passion for exceptional journeys, and we\'re proud to be your trusted experts in New Zealand and Australia.' %}
+{% set btnText   = entry.ctaButtonText       ?? 'Begin an Enquiry' %}
+{% set btnUrl    = entry.ctaButtonUrl        ?? '/contact' %}
+{% set bgImage   = entry.ctaBackgroundImage.one() ?? null %}
+
+{# Split the heading: last word gets gold italic treatment #}
+{% set headingWords = heading|trim|split('\n') %}
+
+<section style="position:relative; min-height:560px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+
+    {# Background image #}
+    {% if bgImage %}
+        <img
+            src="{{ bgImage.url }}"
+            alt="{{ bgImage.title ?? '' }}"
+            style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;"
+            loading="lazy"
+        />
+    {% else %}
+        <div style="position:absolute; inset:0; background:#112250;"></div>
+    {% endif %}
+
+    {# Overlay #}
+    <div style="position:absolute; inset:0; background:linear-gradient(135deg, rgba(17,34,80,0.78) 0%, rgba(17,34,80,0.55) 100%);"></div>
+
+    {# Content #}
+    <div
+        class="container-lg"
+        style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center; padding-top:80px; padding-bottom:80px;"
+    >
+        <div class="overline-light" style="margin-bottom:32px;" data-reveal>{{ overline }}</div>
+
+        <h2
+            class="display"
+            style="font-size:clamp(48px,7vw,96px); color:#F5F0E9; line-height:1; margin-bottom:24px; max-width:800px;"
+            data-reveal data-delay="100"
+        >
+            {% if headingWords|length > 1 %}
+                {% for line in headingWords %}
+                    {% if loop.last %}
+                        <em style="font-style:italic; color:#C9A96E;">{{ line }}</em>
+                    {% else %}
+                        {{ line }}<br/>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {{ heading }}
+            {% endif %}
+        </h2>
+
+        <p
+            class="type-body-font"
+            style="font-size:clamp(14px,1.5vw,17px); font-style:italic; color:rgba(245,240,233,0.75); line-height:1.9; max-width:600px; margin-bottom:48px;"
+            data-reveal data-delay="200"
+        >
+            {{ body }}
+        </p>
+
+        <div data-reveal data-delay="300">
+            <a href="{{ btnUrl }}" class="btn-filled btn-filled-light">
+                {{ btnText }}
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,51 @@
+{% set defaults = {
+    contentClass: null,
+    textClass: null,
+    iconClass: 'icon-d',
+    icon: null,
+    pretext: null,
+    detail: null,
+    nestDetail: true
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% embed '_atoms/buttons/base' with self %}
+    {% block content %}
+        {% import 'macros' as macros %}
+
+        {% if self.pretext %}
+            <span class="button__pretext">{{ self.pretext|raw }}</span>
+        {% endif %}
+
+        {% if self.text %}
+            <span class="button__text{{ self.textClass ? ' ' ~ self.textClass }}">
+                {% apply spaceless %}
+                {% if self.detail and self.nestDetail %}
+                    <span class="button__text__label">{{ self.text|raw }}</span>
+                    <span class="button__text__detail">{{ self.detail|raw }}</span>
+                {% else %}
+                    {{ self.text|raw }}
+                {% endif %}
+                {% endapply %}
+            </span>
+        {% endif %}
+
+        {% if self.detail and not self.nestDetail %}
+            <span class="button__detail">{{ self.detail|raw }}</span>
+        {% endif %}
+
+        {% if self.icon %}
+            {% if 'dual-icon' in self.modifiers %}
+                <span
+                    class="button__icon --{{ self.icon|replace('/', '-') }}{{ self.iconClass ? ' ' ~ self.iconClass }}"
+                >
+                    {{ macros.icon(self.icon, 'button__icon__a') }}
+                    {{ macros.icon(self.icon, 'button__icon__b') }}
+                </span>
+            {% else %}
+                {{ macros.icon(self.icon, 'button__icon' ~ (self.iconClass ? ' ' ~ self.iconClass)) }}
+            {% endif %}
+        {% endif %}
+    {% endblock %}
+{% endembed %}

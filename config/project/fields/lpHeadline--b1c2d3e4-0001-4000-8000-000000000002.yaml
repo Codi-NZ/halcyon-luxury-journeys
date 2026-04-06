@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: lpHeadline
+instructions: 'Main large heading. Use two lines separated by a line break — the second line renders in gold italic (e.g. "Launching" on line 1, "Soon" on line 2).'
+name: 'LP Headline'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 120
+  code: false
+  initialRows: 2
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

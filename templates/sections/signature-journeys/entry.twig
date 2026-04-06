@@ -1,0 +1,58 @@
+{% extends 'layouts/base' %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+{#
+  Signature Journey entry template — stub for future implementation.
+  Fields available on this entry:
+    - entry.title               (Journey Title)
+    - entry.journeyCountry      (Country)
+    - entry.journeyDuration     (Duration, e.g. "14 nights")
+    - entry.journeyDescription  (Short description)
+    - entry.journeyHighlights   (Multiline text, one highlight per line)
+    - entry.journeyImage        (Assets field)
+#}
+
+{% set image = entry.journeyImage.one() ?? null %}
+
+<section class="section-pad" style="background:#112250; position:relative; overflow:hidden;">
+    <div class="container-lg">
+
+        <div class="overline-light" style="margin-bottom:16px;">
+            {{ entry.journeyCountry }}{% if entry.journeyCountry and entry.journeyDuration %} · {% endif %}{{ entry.journeyDuration }}
+        </div>
+
+        <h1 class="display" style="font-size:clamp(40px,6vw,80px); line-height:1.05; color:#F5F0E9;">
+            {{ entry.title }}
+        </h1>
+
+        {% if image %}
+            <img src="{{ image.url }}" alt="{{ image.title ?? entry.title }}"
+                 style="width:100%; aspect-ratio:16/9; object-fit:cover; margin-top:40px;" />
+        {% endif %}
+
+        {% if entry.journeyDescription %}
+            <p class="type-body-font"
+               style="font-size:clamp(15px,1.3vw,18px); font-style:italic; line-height:1.85; color:rgba(245,240,233,0.7); margin-top:32px; max-width:760px;">
+                {{ entry.journeyDescription }}
+            </p>
+        {% endif %}
+
+        {% if entry.journeyHighlights %}
+            {% set highlights = entry.journeyHighlights|split('\n')|filter(h => h|trim) %}
+            <ul style="margin-top:32px; display:flex; flex-direction:column; gap:12px; padding:0; list-style:none;">
+                {% for h in highlights %}
+                    <li style="display:flex; align-items:center; gap:12px;">
+                        <span style="width:20px; height:1px; background:rgba(201,233,255,0.4); flex-shrink:0;"></span>
+                        <span class="type-body-font"
+                              style="font-size:14px; font-style:italic; color:rgba(245,240,233,0.55); letter-spacing:0.06em;">{{ h|trim }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

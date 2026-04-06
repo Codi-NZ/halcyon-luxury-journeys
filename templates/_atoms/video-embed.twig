@@ -1,0 +1,11 @@
+{% import 'macros' as macros %}
+
+{% set video = video ?? null %}
+{% set autoplay = autoplay ?? true %}
+{% set classes = classes ?? 'absolute inset-0' %}
+
+{% if video %}
+    <div class="{{ classes }}" data-video-fit>
+        {{ video.getIFrameCode(autoplay ? ['background=1&autoplay=1'] : []) }}
+    </div>
+{% endif %}

@@ -1,0 +1,73 @@
+columnSuffix: null
+handle: headingLevel
+instructions: null
+name: 'Heading Level'
+searchable: true
+settings:
+  customOptions: false
+  displayAsGraphic: null
+  displayFullwidth: null
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - 'Heading Two'
+        -
+          - showLabel
+          - '1'
+        -
+          - value
+          - h2
+        -
+          - imageUrl
+          - ''
+        -
+          - imageAlign
+          - left
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - 'Heading Three'
+        -
+          - showLabel
+          - '1'
+        -
+          - value
+          - h3
+        -
+          - imageUrl
+          - ''
+        -
+          - imageAlign
+          - left
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - 'Heading Four'
+        -
+          - showLabel
+          - '1'
+        -
+          - value
+          - h4
+        -
+          - imageUrl
+          - ''
+        -
+          - imageAlign
+          - left
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: verbb\buttonbox\fields\Buttons

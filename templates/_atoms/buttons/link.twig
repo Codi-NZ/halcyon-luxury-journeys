@@ -1,0 +1,7 @@
+{% set defaults = {
+    extend: 'text-grey-700 hover:text-grey-900'
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% include '_atoms/buttons/base' with self %}

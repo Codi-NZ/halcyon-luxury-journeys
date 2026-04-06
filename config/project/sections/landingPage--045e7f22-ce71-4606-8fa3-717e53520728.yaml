@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 2575f49a-5928-4e08-8fac-d331e748d3c3 # Landing Page
+handle: landingPage
+maxAuthors: 1
+name: 'Landing Page'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  24a9a722-d230-49d0-8693-6825092a5675: # $CRAFT_DEFAULT_SITE_NAME
+    enabledByDefault: true
+    hasUrls: true
+    template: landing-page/index.twig
+    uriFormat: __home__
+type: single

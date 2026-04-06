@@ -1,0 +1,63 @@
+color: blue
+description: null
+fieldLayouts:
+  1a5c020d-4f32-4c22-938f-a8cdb0ee9d90:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-10-25T04:21:37+00:00'
+            dismissible: false
+            elementCondition: null
+            style: tip
+            tip: '###A video and/or video modal must be selected to display this block.'
+            type: craft\fieldlayoutelements\Tip
+            uid: 3c8e44b9-10cf-4f60-a7bf-18c226adb7dc
+            userCondition: null
+          -
+            dateAdded: '2024-10-25T04:21:37+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: ceca07e6-941b-4381-8e36-e6b760f5f0a6 # Video
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ac86ab40-bc37-4679-94a4-5f8f49f68d23
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2024-10-25T06:01:38+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: caption
+            instructions: null
+            label: Caption
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d0ae4294-9230-41f1-b61c-f4ad4ed4cac7
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 884eb4fa-5273-428b-af8c-4e002edc75eb
+        userCondition: null
+    thumbFieldKey: 'layoutElement:ac86ab40-bc37-4679-94a4-5f8f49f68d23'
+handle: video
+hasTitleField: false
+icon: camcorder
+name: Video
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

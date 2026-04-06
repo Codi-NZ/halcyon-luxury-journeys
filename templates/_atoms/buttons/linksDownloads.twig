@@ -1,0 +1,72 @@
+{% set defaults = {
+    link: null,
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% import "macros"  as macros %}
+
+{% set link = self.link ?? null %}
+{% set linkType = link.type|replace("verbb\\hyper\\links\\", "")|kebab %}
+{% set linkText = link.text ?? null %}
+{% set detail = null %}
+{% set attributes = attributes ?? null %}
+{% set url = link.url ?? null %}
+
+{% if url %}
+    {% switch linkType %}
+        {% case "asset" %}
+            {% set asset = link.getElement() ?? null %}
+            {% if asset %}
+                {% set detail = macros.getAssetDetail(asset) %}
+                {# {% set defaultText = asset.title %}
+                {% set preText = linkText != defaultText ? linkText : "Download" %}
+                {% set overrideText = defaultText %} #}
+            {% endif %}
+
+        {% case "email" %}
+            {% set defaultText = url|replace("mailto:", "") %}
+            {% set preText = linkText != "Read more" ? linkText : "Email" %}
+            {% set overrideText = macros.formatEmailWithWordWrap(defaultText) %}
+
+        {% case "entry" %}
+            {# {% set preText = "View" %} #}
+
+        {% case "phone" %}
+            {% set defaultText = url|replace("tel:", "") %}
+            {% set preText = linkText != "Read more" ? linkText : "Call" %}
+            {% set overrideText = defaultText %}
+
+        {% case "url" %}
+            {% if linkText == "Read more" %}
+                {% set defaultText = macros.formatUrlWithWordWrap(url) %}
+                {% set preText = linkText != "Read more" ? linkText : "Visit" %}
+                {% set overrideText = defaultText %}
+            {% endif %}
+
+        {% default %}
+    {% endswitch %}
+
+    {% set icon = link.icon|default ? link.icon : null %}
+
+    {% set linkAttributes = attributes ?? {} %}
+    {% if link.newWindow is defined and link.newWindow %}
+        {% set linkAttributes = linkAttributes|merge({
+            target: "_blank",
+            rel: "noopener noreferrer",
+        }) %}
+    {% endif %}
+
+    {% set config = {
+        text: overrideText ?? linkText,
+        pretext: preText ?? null,
+        detail: detail|default,
+        icon: icon,
+        url: url,
+        linkType: linkType,
+        attributes: linkAttributes|length > 0 ? linkAttributes : attributes,
+        isExternalLink: false,
+    } %}
+
+    {% include "_atoms/buttons/link" with { self: config } %}
+{% endif %}

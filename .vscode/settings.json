@@ -1,0 +1,25 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[twig]": {
+        "editor.defaultFormatter": null,
+        "editor.formatOnSave": false
+    },
+    "eslint.useFlatConfig": true,
+    "files.associations": {
+        "*.twig": "twig"
+    },
+    "css.validate": false,
+    "tailwindCSS.includeLanguages": {
+        "twig": "html"
+    }
+}

@@ -1,0 +1,27 @@
+{% set defaults = {
+    buttonText: 'View profile',
+    tags: self.entry.categories.all,
+    jobTitle: self.entry.jobTitle ?? null,
+    innerTheme: 'subtle'
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% embed '_molecules/cards/base' %}
+    {% block details %}
+        <div class="flex flex-col gap-2 z-1">
+            {{ self.jobTitle }}
+
+            {% include '_atoms/tags' with {
+                tags: self.tags|map(
+                    e => {
+                        text: e.title,
+                        url: e.url
+                    }
+                )
+            } %}
+        </div>
+
+        {{ parent() }}
+    {% endblock %}
+{% endembed %}

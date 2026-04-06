@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: ctaOverline
+instructions: 'Small italic overline above the CTA heading (e.g. "work with us")'
+name: 'CTA Overline'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 60
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: 'work with us'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

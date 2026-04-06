@@ -1,0 +1,174 @@
+definitions:
+  steps:
+    - step: &composer
+        size: 2x
+        name: Composer install
+        image: composer:2
+        script:
+          - echo "Starting composer install..."
+          - composer install --ignore-platform-reqs --no-interaction --prefer-dist
+          - echo "Composer install completed"
+        artifacts:
+          - vendor/**
+        caches:
+          - composer
+    - step: &npm
+        size: 2x
+        name: NPM install & build
+        image: node:20
+        script:
+          - echo "Starting npm install..."
+          - npm ci
+          - echo "Starting npm build..."
+          - npm run build
+          - echo "NPM build completed"
+          - ls -la web/dist/
+        artifacts:
+          - web/dist/**
+        caches:
+          - node
+pipelines:
+  branches:
+    production:
+      - parallel:
+          - step: *composer
+          - step: *npm
+      - step:
+          size: 2x
+          name: Deploy to production server
+          deployment: production
+          image: alpine
+          caches:
+            - docker
+          runs-on:
+            - self.hosted
+            - linux
+          script:
+            - echo "Starting deployment step..."
+            - pwd
+            - echo "Directory contents:"
+            - ls -la
+            - echo "Checking for required artifacts..."
+            - ls -la vendor/ || echo "vendor/ not found"
+            - ls -la web/dist/ || echo "web/dist/ not found"
+            - mkdir release
+            - cp -r ./config ./release
+            - cp -r ./modules ./release
+            - cp -r ./templates ./release
+            - cp -r ./vendor ./release
+            - cp -r ./web ./release/web
+            - rm ./release/web/.htaccess # remove .htaccess from web as we copy it over in the next step
+            - cp bootstrap.php ./release
+            - cp composer.json ./release
+            - cp composer.lock ./release
+            - cp craft ./release
+            - tar -zcf release.tar.gz ./release/.
+            - pipe: atlassian/scp-deploy:1.5.0
+              variables:
+                USER: $PROD_USER
+                SERVER: $PROD_HOST
+                REMOTE_PATH: $PROD_PATH/deployment/release.tar.gz
+                LOCAL_PATH: "release.tar.gz"
+                DEBUG: 'true'
+                EXTRA_ARGS: ['-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null']
+            - pipe: atlassian/ssh-run:0.8.1
+              variables:
+                SSH_USER: $PROD_USER
+                SERVER: $PROD_HOST
+                EXTRA_ARGS: '-T -o IPQoS=none -o ControlMaster=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10'
+                COMMAND: |
+                  rm -rf $PROD_PATH/deployment/release &&
+                  tar -xzf $PROD_PATH/deployment/release.tar.gz -C $PROD_PATH/deployment &&
+                  mv $PROD_PATH/deployment/release $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER &&
+                  cp $PROD_PATH/persist/.env $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/.env &&
+                  cp $PROD_PATH/persist/web/.htaccess $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/web/.htaccess &&
+                  ln -s $PROD_PATH/persist/storage $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/storage &&
+                  ln -s $PROD_PATH/persist/web/assets $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/web/assets &&
+                  ln -s $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/web $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/public &&
+                  php$PROD_PHP_VERSION-sp $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/craft db/backup --interactive=0 &&
+                  CRAFT_ALLOW_ADMIN_CHANGES=true php$PROD_PHP_VERSION-sp $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/craft migrate/all --interactive=0 &&
+                  php$PROD_PHP_VERSION-sp $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/craft project-config/apply --quiet --interactive=0 &&
+                  php$PROD_PHP_VERSION-sp $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/craft clear-caches/all --interactive=0 &&
+                  ln -sfn $PROD_PATH/releases/release-$BITBUCKET_BUILD_NUMBER $PROD_PATH/current &&
+                  ln -sfn $PROD_PATH/current/public $PROD_PATH/public &&
+                  ls -dt $PROD_PATH/releases/*/ | tail -n +11 | xargs rm -rf &&
+                  ls -dt $PROD_PATH/persist/storage/backups/* 2>/dev/null | tail -n +11 | xargs rm -rf
+    staging:
+      - parallel:
+          - step: *composer
+          - step: *npm
+      - step:
+          size: 2x
+          name: Deploy to staging server
+          deployment: staging
+          image: alpine
+          caches:
+            - docker
+          runs-on:
+            - self.hosted
+            - linux
+          script:
+            - echo "Starting deployment step..."
+            - pwd
+            - echo "Directory contents:"
+            - ls -la
+            - echo "Checking for required artifacts..."
+            - ls -la vendor/ || echo "vendor/ not found"
+            - ls -la web/dist/ || echo "web/dist/ not found"
+            - mkdir release
+            - cp -r ./config ./release
+            - cp -r ./modules ./release
+            - cp -r ./templates ./release
+            - cp -r ./vendor ./release
+            - cp -r ./web ./release/web
+            - rm ./release/web/.htaccess # remove .htaccess from web as we copy it over in the next step
+            - cp bootstrap.php ./release
+            - cp composer.json ./release
+            - cp composer.lock ./release
+            - cp craft ./release
+            - tar -zcf release.tar.gz ./release/.
+            - pipe: atlassian/scp-deploy:1.5.0
+              variables:
+                USER: $STAGE_USER
+                SERVER: $STAGE_HOST
+                REMOTE_PATH: $STAGE_PATH/deployment/release.tar.gz
+                LOCAL_PATH: "release.tar.gz"
+                DEBUG: 'true'
+                EXTRA_ARGS: ['-o', 'StrictHostKeyChecking=no', '-o', 'UserKnownHostsFile=/dev/null']
+            - pipe: atlassian/ssh-run:0.8.1
+              variables:
+                SSH_USER: $STAGE_USER
+                SERVER: $STAGE_HOST
+                EXTRA_ARGS: '-T -o IPQoS=none -o ControlMaster=no -o ServerAliveInterval=60 -o ServerAliveCountMax=10'
+                COMMAND: |
+                  rm -rf $STAGE_PATH/deployment/release &&
+                  tar -xzf $STAGE_PATH/deployment/release.tar.gz -C $STAGE_PATH/deployment &&
+                  mv $STAGE_PATH/deployment/release $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER &&
+                  cp $STAGE_PATH/persist/.env $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/.env &&
+                  cp $STAGE_PATH/persist/web/.htaccess $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/web/.htaccess &&
+                  ln -s $STAGE_PATH/persist/storage $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/storage &&
+                  ln -s $STAGE_PATH/persist/web/assets $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/web/assets &&
+                  ln -s $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/web $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/public &&
+                  php$STAGE_PHP_VERSION-sp $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/craft db/backup --interactive=0 &&
+                  CRAFT_ALLOW_ADMIN_CHANGES=true php$STAGE_PHP_VERSION-sp $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/craft migrate/all --interactive=0 &&
+                  php$STAGE_PHP_VERSION-sp $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/craft project-config/apply --quiet --interactive=0 &&
+                  php$STAGE_PHP_VERSION-sp $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER/craft clear-caches/all --interactive=0 &&
+                  ln -sfn $STAGE_PATH/releases/release-$BITBUCKET_BUILD_NUMBER $STAGE_PATH/current &&
+                  ln -sfn $STAGE_PATH/current/public $STAGE_PATH/public &&
+                  ls -dt $STAGE_PATH/releases/*/ | tail -n +11 | xargs rm -rf &&
+                  ls -dt $STAGE_PATH/persist/storage/backups/* 2>/dev/null | tail -n +11 | xargs rm -rf
+  custom:
+    my-custom-pipeline:
+      - step:
+          script:
+            - echo "Manual triggers are awesome! (this pipeline doesn't do anything yet)"
+    test-deployment:
+      - step:
+          name: Test deployment step
+          image: alpine
+          script:
+            - echo "Testing deployment step..."
+            - pwd
+            - echo "Environment check:"
+            - env | grep STAGE || echo "No STAGE environment variables found (this is expected for test deployment)"
+            - echo "Test deployment step completed successfully"

@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: lpPrivacyNote
+instructions: 'Small italic note displayed below the form (e.g. "No spam. Unsubscribe at any time.")'
+name: 'LP Privacy Note'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 120
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: 'No spam. Unsubscribe at any time.'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

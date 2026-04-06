@@ -1,0 +1,144 @@
+{#
+  Destinations Accordion — white background, two expandable rows.
+  Expects: entry.destinationsIntroHeading, entry.destinationsIntroCopy,
+           entry.featuredDestinations (Entries field → destinations channel)
+
+  Each destination entry needs: title, destinationRegion, destinationImage, destinationDescription
+#}
+
+{% set sectionHeading = entry.destinationsIntroHeading ?? 'Two Countries. Infinite Journeys.' %}
+{% set sectionCopy    = entry.destinationsIntroCopy    ?? 'We operate exclusively across New Zealand and parts of Australia, drawing on deep regional expertise and strong local partnerships to deliver seamless, high‑quality experiences.' %}
+{% set destinations   = entry.featuredDestinations.all() ?? [] %}
+
+<section class="section-pad" style="background:#ffffff;">
+    <div class="container-xl">
+
+        {# Section header — two column #}
+        <div
+            style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,6vw,120px); align-items:start; padding-bottom:clamp(56px,7vw,96px); border-bottom:1px solid rgba(17,34,80,0.12);"
+        >
+            <div>
+                <div class="overline" style="margin-bottom:16px;" data-reveal>our destinations</div>
+                <h2
+                    class="display text-navy"
+                    style="font-size:clamp(32px,3.5vw,52px); line-height:1.05; letter-spacing:0.02em;"
+                    data-reveal
+                    data-delay="100"
+                >
+                    {{ sectionHeading|nl2br }}
+                </h2>
+            </div>
+            <div data-reveal="right" data-delay="150">
+                <p class="type-body-font" style="font-size:clamp(15px,1.1vw,18px); line-height:1.8; color:rgba(17,34,80,0.68);">
+                    {{ sectionCopy }}
+                </p>
+            </div>
+        </div>
+
+        {# Accordion rows #}
+        <div>
+            {% for destination in destinations %}
+                {% set region = destination.destinationRegion ?? '' %}
+                {% set description = destination.destinationDescription ?? '' %}
+                {% set image = destination.destinationImage.one() ?? null %}
+
+                <div class="accordion-item" data-reveal data-delay="{{ loop.index0 * 80 }}">
+
+                    <button
+                        class="accordion-trigger"
+                        aria-expanded="false"
+                        aria-controls="dest-panel-{{ loop.index0 }}"
+                        id="dest-trigger-{{ loop.index0 }}"
+                    >
+                        <span class="accordion-num">0{{ loop.index }}</span>
+                        <span class="accordion-name">{{ destination.title }}</span>
+                        <span class="accordion-sub">{{ region }}</span>
+                        <span class="accordion-icon" aria-hidden="true">+</span>
+                    </button>
+
+                    <div
+                        class="accordion-panel"
+                        id="dest-panel-{{ loop.index0 }}"
+                        role="region"
+                        aria-labelledby="dest-trigger-{{ loop.index0 }}"
+                    >
+                        <div class="accordion-panel-inner">
+                            <div class="accordion-panel-grid">
+                                <div class="accordion-img-wrap">
+                                    {% if image %}
+                                        <img
+                                            src="{{ image.url }}"
+                                            alt="{{ image.title ?? destination.title }}"
+                                            class="accordion-img"
+                                            loading="lazy"
+                                            width="700"
+                                            height="437"
+                                        />
+                                    {% endif %}
+                                </div>
+                                <div class="accordion-content">
+                                    {% if description %}
+                                        <p class="accordion-description">{{ description }}</p>
+                                    {% endif %}
+                                    <div class="accordion-categories">
+                                        <a href="{{ destination.url }}/places-to-stay" class="accordion-category-btn">
+                                            Exceptional Places to Stay
+                                            <span aria-hidden="true">→</span>
+                                        </a>
+                                        <a href="{{ destination.url }}/experiences" class="accordion-category-btn">
+                                            Exceptional Experiences
+                                            <span aria-hidden="true">→</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            {% else %}
+                {# Fallback when no entries are related yet #}
+                <p class="type-body-font" style="color:rgba(17,34,80,0.4); font-style:italic; padding:40px 0; font-size:14px;">
+                    No destinations configured yet. Add destination entries and relate them to this page.
+                </p>
+            {% endfor %}
+            <div style="border-top:1px solid rgba(17,34,80,0.12);"></div>
+        </div>
+
+    </div>
+</section>
+
+<script>
+(function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        var triggers = document.querySelectorAll('.accordion-trigger');
+
+        triggers.forEach(function(trigger) {
+            var icon = trigger.querySelector('.accordion-icon');
+            if (icon) icon.textContent = '+';
+
+            trigger.addEventListener('click', function() {
+                var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+                var panelId = trigger.getAttribute('aria-controls');
+                var panel = document.getElementById(panelId);
+
+                // Close all others
+                triggers.forEach(function(t) {
+                    if (t !== trigger) {
+                        t.setAttribute('aria-expanded', 'false');
+                        var otherPanel = document.getElementById(t.getAttribute('aria-controls'));
+                        if (otherPanel) otherPanel.classList.remove('is-open');
+                        var otherIcon = t.querySelector('.accordion-icon');
+                        if (otherIcon) otherIcon.textContent = '+';
+                    }
+                });
+
+                var next = !isOpen;
+                trigger.setAttribute('aria-expanded', String(next));
+                if (panel) panel.classList.toggle('is-open', next);
+                if (icon) icon.textContent = next ? '−' : '+';
+            });
+        });
+    });
+})();
+</script>

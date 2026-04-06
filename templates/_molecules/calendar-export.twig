@@ -1,0 +1,24 @@
+{% import 'macros' as macros %}
+
+{# config = {
+    title           {string}
+    type            {string} google | ics
+    timeZone        {sting} UTC,
+    startDate       {date:timeZone}
+    endDate         {date:timeZone}
+    description     {string}
+    address         {string}
+} #}
+
+{% set config = config ?? null %}
+
+{% if config %}
+    {% include '_atoms/buttons/pill' with {
+        self: {
+            text: 'Add to calendar',
+            url: macros.addToCalenderLink(config),
+            icon: 'solid/calendar-add',
+            isExternalLink: true
+        }
+    } %}
+{% endif %}

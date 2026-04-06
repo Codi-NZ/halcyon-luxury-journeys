@@ -1,0 +1,23 @@
+.block {
+    & + & {
+        @apply mt-16;
+    }
+
+    .block--heading + & {
+        @apply mt-10;
+    }
+}
+
+.section-block {
+    & + & {
+        @apply mt-32;
+    }
+
+    .section-block--heading + & {
+        @apply mt-12;
+    }
+
+    .section-block--rich-text + & {
+        @apply mt-24;
+    }
+}

@@ -1,17 +1,61 @@
 {
-  "name": "halcyon-luxury-journeys",
-  "type": "module",
-  "version": "1.0.0",
-  "scripts": {
-    "dev": "astro dev --host",
-    "start": "astro dev --host",
-    "build": "astro build",
-    "preview": "astro preview"
-  },
-  "dependencies": {
-    "@tailwindcss/vite": "^4.1.12",
-    "astro": "^4.16.0",
-    "gsap": "^3.14.2",
-    "tailwindcss": "^4.1.12"
-  }
+	"name": "aurora",
+	"type": "module",
+	"description": "Aurora starter project for Simple with Tailwind CSS",
+	"version": "1.0.0",
+	"author": "Simple Integrated Marketing",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://bitbucket.org/SimpleIM/aurora.git"
+	},
+	"scripts": {
+		"setup": "ddev npm install && ddev composer install",
+		"dev": "concurrently 'nodemon --watch src/icons/ --ext svg --exec node svg.js' 'npx vite'",
+		"build": "node svg.js && npx vite build",
+		"lint": "eslint src/",
+		"lint:fix": "eslint src/ --fix",
+		"format": "prettier --write 'src/**/*.{js,css}' 'templates/**/*.twig'",
+		"format:check": "prettier --check 'src/**/*.{js,css}' 'templates/**/*.twig'"
+	},
+	"dependencies": {
+		"@alpinejs/collapse": "^3.15.0",
+		"@alpinejs/focus": "^3.15.0",
+		"@alpinejs/intersect": "^3.15.0",
+		"@fancyapps/ui": "^6.0.34",
+		"@googlemaps/js-api-loader": "^2.0.1",
+		"@tailwindcss/vite": "^4.1.14",
+		"alpinejs": "^3.15.0",
+		"alpinejs-breakpoints": "^2.1.1",
+		"gsap": "^3.13.0",
+		"js-cookie": "^3.0.5",
+		"lazysizes": "^5.3.2",
+		"swiper": "^12.0.2"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.28.4",
+		"@babel/preset-env": "^7.28.3",
+		"@babel/register": "^7.28.3",
+		"@eslint/js": "^10.0.1",
+		"@vitejs/plugin-legacy": "^7.2.1",
+		"@zackad/prettier-plugin-twig": "^0.16.3",
+		"concurrently": "^9.2.1",
+		"core-js": "^3.46.0",
+		"eslint": "^10.0.0",
+		"glob": "^13.0.1",
+		"globals": "^17.3.0",
+		"lodash": "^4.17.21",
+		"nodemon": "^3.1.10",
+		"prettier": "^3.4.2",
+		"rollup-plugin-copy": "^3.5.0",
+		"svgo": "^4.0.0",
+		"svgstore": "^3.0.1",
+		"tailwindcss": "^4.1.14",
+		"vite": "^7.1.9",
+		"vite-plugin-image-optimizer": "^2.0.2",
+		"vite-plugin-restart": "^2.0.0"
+	},
+	"overrides": {
+		"esbuild": "^0.27.2"
+	}
 }

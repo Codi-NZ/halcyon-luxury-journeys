@@ -1,0 +1,255 @@
+color: purple
+fieldLayouts:
+  f37a17a1-42d4-4ae3-9a04-96ba0124f183:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-10-25T05:05:14+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: b060df82-d82d-4b9a-9fca-1c9fb98a03b3 # Label
+            handle: honorific
+            instructions: null
+            label: Honorific
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5d0d0afa-1e8f-457d-8567-944c999e7e81
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:05:14+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: firstName
+            instructions: null
+            label: 'First Name'
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5d3ac30a-7fa8-49f5-aeb5-50eccc1ff1be
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:05:14+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: lastName
+            instructions: null
+            label: 'Last Name'
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 64e7a932-6cb1-4a05-8348-4b2a6f222bbe
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:05:14+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: jobTitle
+            instructions: null
+            label: 'Job Title'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e4f409b1-83e4-4049-b2f6-d0c4d4d801dd
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-16T00:04:49+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 2c94cf41-f69a-4ae1-a226-93d6b6ef7b8c # People - Categories
+            handle: categories
+            instructions: null
+            label: Categories
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 3f995dba-9101-40e9-93a8-2e39ff63e7ab
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-16T00:04:49+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: b4bd62ee-6be8-4524-981e-871d0341766e # Gender
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fe91f449-aabe-44c4-a864-1ad58258cc80
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:05:14+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 7318ab83-35e9-49f3-bee0-be852a027231 # Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: fb618f65-3b7e-46fa-8ef2-bf55a37efa21
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-09-16T00:04:49+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: ae962a30-32f5-4f16-a15d-80f6f7a3f2d9 # Summary
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9961b90d-2837-438a-90bc-3b281e796912
+            userCondition: null
+            warning: null
+            width: 100
+        name: Details
+        uid: cfb23f90-c8d4-4bd9-94ea-0779a65539b2
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-09-16T00:04:49+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 194fbaee-c76c-4faf-b869-08ca938d3fe7 # Email Address
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 8e4e3b81-fcd9-410f-bf54-824a20dd9398
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:05:14+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: phoneNumber
+            instructions: null
+            label: 'Phone Number'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d060c47f-526d-4547-9ebc-c9c1fdb38db5
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:05:14+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: mobileNumber
+            instructions: null
+            label: 'Mobile Number'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: cbc05b19-b271-4f61-9de0-f21955e729ca
+            userCondition: null
+            warning: null
+            width: 100
+        name: Contact
+        uid: a6168ebe-0531-4f4f-9c1f-d33992d5dcc7
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-09-16T00:04:49+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: acca6438-64e2-4899-b14c-371c0142069f # Text Basic
+            handle: bio
+            instructions: null
+            label: Biography
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c6eb8787-178a-41e6-9cf6-bbcc5b409821
+            userCondition: null
+            warning: null
+            width: 100
+        name: Bio
+        uid: 0ec89503-2648-4ae0-9908-ef976a827c54
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-09-16T00:04:49+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 80801f65-acf2-4d04-92c0-df213deaed64 # Content Blocks
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 996dffef-96fc-4711-b115-75591b98cd73
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 3bb02b38-365e-40e5-97d4-d05033e6077c
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-09-16T00:04:49+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2d3fb8d7-b735-40a6-9ebb-2dbf429be5fa
+            userCondition: null
+            warning: null
+            width: 100
+        name: SEO
+        uid: ace72f11-4da0-4ba5-a459-534b90f168ad
+        userCondition: null
+handle: person
+hasTitleField: false
+icon: person
+name: Person
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: "{honorific ? honorific ~ ' '}{firstName} {lastName}"
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

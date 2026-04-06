@@ -1,0 +1,27 @@
+fieldLayouts:
+  96eff5e5-0b1e-4bd3-865d-cfdba8819bbc:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-10-28T04:01:03+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 482f35bf-5e32-4ce7-8982-1a0755932b77 # Text Block
+            handle: acknowledgement
+            instructions: null
+            label: Acknowledgement
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 4a496982-2cc1-450d-a94b-30757bbef01a
+            userCondition: null
+            warning: null
+            width: 100
+        name: General
+        uid: 1c6057d8-3018-40b9-bb21-dd8bad6f088c
+        userCondition: null
+handle: misc
+name: Misc
+sortOrder: 3

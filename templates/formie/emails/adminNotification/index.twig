@@ -1,0 +1,31 @@
+{% extends 'formie/emails/_layout' %}
+
+{% block content %}
+    {{ parent() }}
+
+    <mj-section background-color="#ffffff" padding-top="0px" padding-left="15px" padding-right="15px">
+        <mj-column width="100%">
+            <mj-button
+                background-color="#093565"
+                align="left"
+                color="#f1f0e9"
+                font-size="14px"
+                font-weight="bold"
+                href="{{ siteUrl }}admin/formie/submissions/{{ submission.form.handle }}/{{ submission.id }}"
+            >
+                View submission in CMS
+            </mj-button>
+            <mj-button
+                background-color="#093565"
+                align="left"
+                color="#f1f0e9"
+                font-size="14px"
+                font-weight="bold"
+                href="{{ siteUrl }}admin/formie/submissions"
+            >
+                View all submissions
+            </mj-button>
+            <mj-spacer height="20px" />
+        </mj-column>
+    </mj-section>
+{% endblock %}

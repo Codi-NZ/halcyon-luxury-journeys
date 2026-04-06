@@ -1,0 +1,136 @@
+color: green
+fieldLayouts:
+  807a1fdb-4d9a-4075-8c39-6a89507d6c96:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2024-10-25T04:54:28+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: e53a3628-4c32-4b57-b8a4-77dd8bfeea86
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:00:26+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 7318ab83-35e9-49f3-bee0-be852a027231 # Image
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 301da07b-9c2b-41f4-925f-ae7b31f000fa
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2024-10-25T05:00:26+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: ceca07e6-941b-4381-8e36-e6b760f5f0a6 # Video
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ed305801-3f43-4a1e-beb6-3820d8d17f8e
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2024-10-25T04:54:28+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: ae962a30-32f5-4f16-a15d-80f6f7a3f2d9 # Summary
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: df0a0ecd-bb16-4e70-a7e5-a1cb91931aa9
+            userCondition: null
+            warning: null
+            width: 100
+        name: General
+        uid: 27815d7d-dcea-41b9-8d26-17ac7ca4c909
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-10-25T04:54:28+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 80801f65-acf2-4d04-92c0-df213deaed64 # Content Blocks
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 45188224-9d42-4074-9627-c75dd005a178
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 2a4e9bb2-6d62-46dc-ab8c-fab6c0bc4133
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-10-25T04:54:28+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 613699ee-68d2-41e7-b440-4c9cb2778b65
+            userCondition: null
+            warning: null
+            width: 100
+        name: SEO
+        uid: ac74be64-fdd7-447b-b4ef-9f656659c3dc
+        userCondition: null
+handle: newsListing
+hasTitleField: true
+icon: list-tree
+name: 'Listing - News'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

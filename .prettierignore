@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build output
+web/dist/
+web/cpresources/
+
+# Generated files
+src/sprite.svg
+package-lock.json
+composer.lock
+
+# Craft CMS
+storage/
+config/project/
+
+# Other
+*.min.js
+*.min.css
+
+# Twig files with dynamic tag patterns unsupported by prettier-plugin-twig
+templates/_atoms/buttons/base.twig
+templates/_atoms/buttons/linksDownloads.twig
+templates/_atoms/forms/checkbox-radio.twig
+templates/_atoms/forms/select.twig
+templates/_atoms/image.twig
+templates/_molecules/accordion.twig
+templates/_molecules/callToAction.twig
+templates/_molecules/cards/base.twig
+templates/_molecules/datalist.twig
+templates/_molecules/map.twig
+templates/_molecules/tableOfContent.twig
+templates/_organisms/banners/basic.twig
+templates/blocks/contentBlocks/heading.twig
+templates/cp/globals/navigationPreview.twig
+templates/index.twig
+templates/knock-knock/index.twig
+templates/layouts/exception.twig
+templates/layouts/header.twig
+templates/macros/events.twig
+templates/macros/headingState.twig
+templates/macros/images.twig
+templates/macros/index.twig
+templates/_atoms/table.twig
+templates/layouts/base.twig

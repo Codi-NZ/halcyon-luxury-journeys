@@ -1,0 +1,41 @@
+{% import 'macros' as macros %}
+
+{% set tags = tags ?? null %}
+{% set icon = icon ?? null %}
+{% set class = class ?? 'flex flex-wrap gap-2' %}
+
+{% if tags %}
+    {% set limit = limit ?? (tags|length) %}
+    {% set display = tags[:limit] %}
+    {% set remainder = tags[limit:]|map(e => e.text ?? e) %}
+
+    <ul class="{{ class }}">
+        {% for item in display %}
+            {% set tagText = item.text ?? item %}
+            {% set tagIcon = item.icon ?? icon %}
+            {% set tagUrl = item.url ?? null %}
+
+            <li class="">
+                {% include '_atoms/buttons/pill' with {
+                    self: {
+                        modifiers: '--slim',
+                        text: tagText,
+                        icon: tagIcon,
+                        url: tagUrl
+                    }
+                } %}
+            </li>
+        {% endfor %}
+
+        {% if remainder|length %}
+            <li class="" title="{{ remainder|join(', ') }}">
+                {% include '_atoms/buttons/pill' with {
+                    self: {
+                        modifiers: '--slim',
+                        text: '…'
+                    }
+                } %}
+            </li>
+        {% endif %}
+    </ul>
+{% endif %}

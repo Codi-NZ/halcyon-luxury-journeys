@@ -1,0 +1,64 @@
+color: yellow
+fieldLayouts:
+  3f1903ff-9e71-41bc-8605-fc223934e8d6:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-04-15T01:58:34+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 83e4bc50-b803-4d35-ad62-cf04291f3cb1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-04-15T01:58:34+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: f6d70fec-8f6c-480f-8473-3bb41501fba8 # Content Blocks Shared Content
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d523ce7e-fd10-4d01-8879-1b88d09d1fd4
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: f433799c-c283-4bf7-b677-a47240879bed
+        userCondition: null
+handle: sharedContent
+hasTitleField: true
+icon: copy
+name: 'Shared Content'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

@@ -1,0 +1,74 @@
+{% set googleMapsApiKey = getenv("GOOGLE_MAPS_API_KEY") %}
+{% import "macros" as macros %}
+
+{% set defaults = {
+	gmap: null,
+    size: "1920x1080",
+    zoom: 17,
+    static: true,
+    staticMapId: "bae68d64b84a49a8",
+    staticMapType: "roadmap",
+    staticMapScale: 2,
+    modifiers: null,
+    attributes: {},
+    includeLink: true,
+    showAddress: false,
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% if self.gmap|default %}
+    {% set url = self.url ?? macros.formatMapAddressHref(self.gmap.address) ?? null %}
+    {% set isExternalLink = self.url is not defined %}
+
+    <div class="map{{ self.modifiers ? " " ~ self.modifiers }}">
+        {% if self.showAddress %}
+            <div class="map__header">
+                <{{ headingTag }} class="map__heading">
+                    {% include "_atoms/buttons/link" with { self: {
+                        text: self.gmap.address,
+                        url: url,
+                        attributes: self.attributes,
+                        isExternalLink: true,
+                    }} %}
+                </{{ headingTag }}>
+            </div>
+        {% endif %}
+
+        <div class="map__content">
+            <div class="g-map"
+                data-map="{{ self.static ? "static" : "interactive" }}"
+                title="{{ self.gmap.address }}"
+            >
+                {% if self.static %}
+                    {% set center = self.gmap.lat and self.gmap.lng
+                    ?   (self.gmap.lat ~ "%2c%20" ~ self.gmap.lng)
+                    :   macros.formatMapAddress(self.gmap.address)
+                    %}
+
+                    <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ center }}&zoom={{ self.zoom }}&size={{ self.size }}&scale={{ self.staticMapScale }}&key={{ googleMapsApiKey }}&map_id={{ self.staticMapId }}&maptype={{ self.staticMapType }}" alt="Google Maps static">
+
+                    {{ macros.icon("outline/map-pin") }}
+
+                    {% if self.includeLink %}
+                        {% include "_atoms/buttons/link" with { self: {
+                            modifiers: "--ninja",
+                            text: "View in Google Maps",
+                            url: url,
+                            isExternalLink: isExternalLink,
+                            attributes: self.attributes|merge({
+                                "aria-label": "View in Google Maps",
+                                "title": self.gmap.address ~ " (View in Google Maps)",
+                            }),
+                        }} %}
+                    {% endif %}
+                {% else %}
+                    <div class="marker"
+                        data-lat="{{ self.gmap.lat }}"
+                        data-lng="{{ self.gmap.lng }}"
+                    ></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}

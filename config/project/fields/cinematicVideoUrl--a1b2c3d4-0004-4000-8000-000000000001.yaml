@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: cinematicVideoUrl
+instructions: 'Path to the cinematic full-width video displayed between the destinations accordion and experiences carousel (e.g. /207717_medium.mp4)'
+name: 'Cinematic Video URL'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 255
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: /207717_medium.mp4
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

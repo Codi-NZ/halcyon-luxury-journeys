@@ -1,0 +1,67 @@
+color: yellow
+fieldLayouts:
+  c1d2e3f4-0003-4000-8000-000000000003:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: c1d2e3f4-0003-4000-8000-000000000011 # Testimonial Quote
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d3a00001-0003-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: c1d2e3f4-0003-4000-8000-000000000010 # Testimonial Origin
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d3a00001-0003-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-06T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: c1d2e3f4-0003-4000-8000-000000000012 # Testimonial Journey
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d3a00001-0003-4000-8000-000000000003
+            userCondition: null
+            warning: null
+            width: 50
+        name: Content
+        uid: d3a00001-0003-4000-8000-000000000010
+        userCondition: null
+handle: testimonial
+hasTitleField: true
+icon: chat
+name: Testimonial
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleLabel: 'Client Name'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

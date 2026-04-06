@@ -1,0 +1,7 @@
+{% include '_atoms/fullwidth-image' with {
+    transform: 'section',
+    image: block.image[0],
+    caption: block.caption|default,
+    display: block.inset ? 'inset' : 'contain',
+    autoHeight: block.autoHeight
+} %}

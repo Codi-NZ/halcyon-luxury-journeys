@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: ctaButtonUrl
+instructions: 'URL for the CTA button'
+name: 'CTA Button URL'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 255
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: /contact
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

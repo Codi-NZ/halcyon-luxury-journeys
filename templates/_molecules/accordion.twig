@@ -1,0 +1,42 @@
+{% import "macros" as macros %}
+
+{% set heading = heading ?? null %}
+{% set id = (id ?? heading|default("accordion-" ~ random(9999)))|kebab ~ "-" ~ (blockIndex ?? random(9999)) %}
+{% set body = body ?? null %}
+{% set modifiers = modifiers|default ? " " ~ modifiers : null %}
+{% set attributes = attributes ?? {} %}
+
+<div class=""
+	x-data="{
+		expanded: false,
+		contentH: 0,
+	}"
+	{{ macros.addAttributes(attributes) }}
+	:class="expanded ? 'open' : ''"
+>
+	<div class="relative flex justify-between items-center border-b border-grey-200"
+		:class="{'border-grey-400': expanded}"
+	>
+		<button class="heading-4 pb-2 w-full text-left flex items-center justify-between gap-4 cursor-pointer transition-colors" id="{{ id }}-header" "id": id ~ "-trigger" data-accordion-trigger="true" aria-label="Toggle accordion" aria-controls="{{ id }}-content" :aria-expanded="expanded" @click="expanded = !expanded" :class="expanded ? 'text-grey-700' : 'text-grey-900'">
+			{{ heading|raw }}
+			<span class="transition-transform" :class="expanded ? '-rotate-180' : ''">
+				{{ macros.icon("outline/chevron-down", "size-6") }}
+			</span>
+		</button>
+	</div>
+
+	<div class="transition-[height] overflow-hidden"
+		x-show="expanded"
+		id="{{ id }}-content"
+		role="region"
+		aria-labelledby="{{ id }}-trigger"
+		:aria-hidden="!expanded"
+		x-collapse
+	>
+		<div class="py-4">
+			{% block main %}
+				{{ body|raw }}
+			{% endblock %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+columnSuffix: null
+handle: bodyRichText
+instructions: null
+name: 'Body Rich Text'
+searchable: true
+settings:
+  availableTransforms: ''
+  availableVolumes: '*'
+  characterLimit: null
+  ckeConfig: 86415a8b-91ea-47a9-87ec-12b73a5f2098 # Minimal
+  createButtonLabel: null
+  defaultTransform: null
+  fullGraphqlData: false
+  purifierConfig: null
+  purifyHtml: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  showWordCount: true
+  sourceEditingGroups:
+    - __ADMINS__
+  wordLimit: 250
+translationKeyFormat: null
+translationMethod: none
+type: craft\ckeditor\Field

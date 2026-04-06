@@ -1,0 +1,77 @@
+{% set type = type|default("checkbox") %}
+{% set label = label|default %}
+{% set value = value|default("") %}
+{% set id = id|default(type ~ random(5000)) %}
+{% set classes = classes|default %}
+{% set direction = direction|default("column") %}
+{% set isRequired = isRequired|default %}
+{% set instructions = instructions|default %}
+{% set error = error|default %}
+{% set options = options|default([]) %}
+{% set name = name|default(id) %}
+{% set asButtons = asButtons|default %}
+{% set ariaControls = ariaControls|default %}
+
+<fieldset class="form-checkbox-radio form-checkbox-radio--{{ type }} form-checkbox-radio--{{ direction }} {{ asButtons ? "form-checkbox-radio--as-buttons" }} {{ classes }}">
+	{% if label %}
+		<legend class="form-checkbox-radio__legend" id="{{ id }}">
+			{{ label }}
+
+			{% if isRequired %}
+				<span class="required">*</span>
+			{% endif %}
+		</legend>
+	{% endif %}
+
+	<div class="form-checkbox-radio__list">
+		{% for option in options %}
+			{% set optionId = id ~ "-" ~ loop.index %}
+			{% set optionLabel = option.label|default("Label") %}
+			{% set optionValue = option.value|default(optionLabel) %}
+			{% set isDisabled = option.isDisabled|default(false) %}
+			{% set isChecked = optionValue in value|split(",") %}
+
+			<div class="form-checkbox-radio__item">
+				<input
+					type="{{ type }}"
+					class="form-checkbox-radio__item__input"
+					id="{{ optionId }}"
+					name="{{ name }}"
+					value="{{ optionValue }}"
+					aria-labelledby="{{ id }}"
+					{% if ariaControls %}
+						aria-controls="{{ ariaControls }}"
+					{% endif %}
+					{{ isDisabled ? "disabled" }}
+					{{ isRequired ? "required" }}
+					{{ isChecked ? "checked" }}
+				>
+
+				<label for="{{ optionId }}" class="form-checkbox-radio__item__label">
+					{# TODO: REVIEW -- custom buttons or style variances -- going to render with defined style for now #}
+					{% if asButtons %}
+						{% include "_atoms/buttons/cta-primary" with { self: {
+							modifiers: "--force-interaction --" ~ type ~ (isChecked ? " --active" ),
+							text: optionLabel,
+							icon: option.icon|default(type == "checkbox" ? "solid/tick" : null),
+						}} %}
+					{% else %}
+						{{ optionLabel }}
+					{% endif %}
+				</label>
+			</div>
+		{% endfor %}
+	</div>
+
+	{% if instructions %}
+		<div class="form-checkbox-radio__instructions">
+			{{ instructions }}
+		</div>
+	{% endif %}
+
+	{% if error %}
+		<div class="form-checkbox-radio__error">
+			{{ error }}
+		</div>
+	{% endif %}
+</fieldset>

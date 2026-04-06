@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: whyHalcyonHeading
+instructions: 'Main heading for the Why Halcyon pillars section'
+name: 'Why Halcyon Heading'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 150
+  code: false
+  initialRows: 2
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

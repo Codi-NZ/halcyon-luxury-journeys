@@ -1,0 +1,78 @@
+{#
+  Testimonials — cream background, three-column grid.
+  Expects: entry.testimonialsHeading,
+           entry.featuredTestimonials (Entries field → testimonials channel)
+
+  Each testimonial entry needs: title (client name), testimonialQuote,
+                                testimonialOrigin, testimonialJourney
+#}
+
+{% set sectionHeading = entry.testimonialsHeading ?? 'What Our Partners Say' %}
+{% set testimonials   = entry.featuredTestimonials.all() ?? [] %}
+
+<section class="section-pad" style="background:#F5F0E9; position:relative; overflow:hidden;">
+
+    {# Decorative large quote mark #}
+    <div
+        class="quote-mark"
+        style="position:absolute; top:40px; left:50%; transform:translateX(-50%); pointer-events:none; user-select:none;"
+        aria-hidden="true"
+    >&ldquo;</div>
+
+    <div class="container-lg">
+
+        <div style="display:flex; flex-direction:column; align-items:center; text-align:center; margin-bottom:clamp(40px,5vw,64px);">
+            <div class="overline" style="margin-bottom:24px;" data-reveal>partner stories</div>
+            <h2
+                class="display text-navy"
+                style="font-size:clamp(40px,5vw,72px); line-height:1.05;"
+                data-reveal data-delay="100"
+            >
+                {{ sectionHeading }}
+            </h2>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:clamp(32px,4vw,40px);">
+            {% for testimonial in testimonials %}
+                <div
+                    style="display:flex; flex-direction:column;"
+                    data-reveal
+                    data-delay="{{ loop.index0 * 140 }}"
+                >
+                    <div style="width:100%; height:1px; background:rgba(17,34,80,0.12); margin-bottom:28px;"></div>
+
+                    <p
+                        class="type-body-font"
+                        style="font-size:clamp(15px,1.5vw,17px); font-style:italic; line-height:1.9; color:rgba(17,34,80,0.75); flex:1; margin-bottom:28px;"
+                    >
+                        &ldquo;{{ testimonial.testimonialQuote }}&rdquo;
+                    </p>
+
+                    <div style="display:flex; flex-direction:column; gap:4px;">
+                        <div class="type-heading-font text-navy"
+                             style="font-size:15px; font-weight:400; letter-spacing:0.08em;">
+                            {{ testimonial.title }}
+                        </div>
+                        {% if testimonial.testimonialOrigin %}
+                            <div class="type-body-font"
+                                 style="font-size:11px; font-style:italic; letter-spacing:0.12em; color:rgba(17,34,80,0.4);">
+                                {{ testimonial.testimonialOrigin }}
+                            </div>
+                        {% endif %}
+                        {% if testimonial.testimonialJourney %}
+                            <div class="type-body-font"
+                                 style="font-size:10px; font-style:italic; letter-spacing:0.15em; color:rgba(17,34,80,0.35); margin-top:6px;">
+                                {{ testimonial.testimonialJourney }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <p class="type-body-font" style="color:rgba(17,34,80,0.4); font-style:italic; font-size:14px; padding:40px 0; grid-column:1/-1;">
+                    No testimonials configured yet. Add Testimonial entries and relate them to this page.
+                </p>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>

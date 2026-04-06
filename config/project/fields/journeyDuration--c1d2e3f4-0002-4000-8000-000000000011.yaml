@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: journeyDuration
+instructions: 'Duration of the journey (e.g. "14 nights")'
+name: 'Journey Duration'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 40
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

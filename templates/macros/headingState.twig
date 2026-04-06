@@ -1,0 +1,149 @@
+{#
+    Heading state helper macros
+
+    Handles SEO-friendly heading progression across a rendered request. Use the
+    `resolveHeading` macro to compute the safest level for the next heading and
+    return the tag name (e.g. `h2`). Pass `scoped = true` when you need to
+    compute a heading without advancing the shared sequence (e.g. card grids), plus
+    `resetHeadingSequence` when you intentionally start a fresh hierarchy (for
+    example after rendering a full page hero).
+
+    Rich text content (CKEditor/WYSIWYG output) can be normalised via
+    `resolveRichTextHeading`, which rewrites heading tags in the provided HTML to
+    respect the current sequence and updates the shared state based on the final
+    heading encountered in the fragment.
+#}
+
+{% macro resolveHeading(preferred = null, scoped = false) %}
+    {%- set currentLevel = craft.heading.getVariable('seoHeadingLast') ?? 0 -%}
+    {%- set currentH1 = craft.heading.getVariable('seoHeadingH1') ?? false -%}
+    {%- set previousState = scoped ? {
+        level: currentLevel,
+        h1: currentH1,
+        stack: craft.heading.getVariable('seoHeadingStack') ?? []
+    } : null -%}
+    {%- set lastLevel = currentLevel -%}
+    {%- set h1Used = currentH1 -%}
+
+    {# Normalise preferred input (# or "h#") #}
+    {%- if preferred is null or preferred is same as('') -%}
+        {%- set requested = lastLevel + 1 -%}
+    {%- elseif preferred is string -%}
+        {%- set normalised = preferred|lower|trim -%}
+        {%- if normalised starts with 'h' -%}
+            {%- set normalised = normalised|slice(1) -%}
+        {%- endif -%}
+        {%- if normalised matches '/^\d+$/' -%}
+            {%- set requested = normalised + 0 -%}
+        {%- else -%}
+            {%- set requested = lastLevel + 1 -%}
+        {%- endif -%}
+    {%- elseif preferred is numeric -%}
+        {%- set requested = preferred + 0 -%}
+    {%- else -%}
+        {%- set requested = lastLevel + 1 -%}
+    {%- endif -%}
+
+    {# Clamp to valid range #}
+    {%- if requested < 1 -%}
+        {%- set requested = 1 -%}
+    {%- elseif requested > 6 -%}
+        {%- set requested = 6 -%}
+    {%- endif -%}
+
+    {# Enforce single H1 #}
+    {%- if requested == 1 and h1Used -%}
+        {%- if lastLevel >= 1 -%}
+            {%- set requested = lastLevel + 1 -%}
+        {%- else -%}
+            {%- set requested = 2 -%}
+        {%- endif -%}
+    {%- endif -%}
+
+    {# Prevent skipping levels or going backwards #}
+    {%- if lastLevel == 0 -%}
+        {%- set actual = requested -%}
+    {%- elseif requested <= lastLevel -%}
+        {%- set actual = lastLevel -%}
+    {%- elseif requested > lastLevel + 1 -%}
+        {%- set actual = lastLevel + 1 -%}
+    {%- else -%}
+        {%- set actual = requested -%}
+    {%- endif -%}
+
+    {# Final clamp to 1..6 #}
+    {%- if actual < 1 -%}{%- set actual = 1 -%}{%- endif -%}
+    {%- if actual > 6 -%}{%- set actual = 6 -%}{%- endif -%}
+
+    {# Persist state for subsequent headings #}
+    {%- do craft.heading.setVariable('seoHeadingLast', actual) -%}
+    {%- if actual == 1 -%}
+        {%- do craft.heading.setVariable('seoHeadingH1', true) -%}
+    {%- endif -%}
+
+    {%- set headingTag = 'h' ~ actual -%}
+
+    {%- if scoped and previousState is not same as(null) -%}
+        {%- do craft.heading.setVariable('seoHeadingLast', previousState.level) -%}
+        {%- do craft.heading.setVariable('seoHeadingH1', previousState.h1) -%}
+        {%- do craft.heading.setVariable('seoHeadingStack', previousState.stack) -%}
+    {%- endif -%}
+
+    {{- headingTag -}}
+{% endmacro %}
+
+{% macro resetHeadingSequence(startLevel) %}
+    {%- set initial = 0 -%}
+    {%- if startLevel is defined and startLevel is not same as(null) -%}
+        {%- if startLevel is numeric -%}
+            {%- set initial = startLevel + 0 -%}
+        {%- elseif startLevel is string -%}
+            {%- set candidate = startLevel|lower|trim -%}
+            {%- if candidate starts with 'h' -%}
+                {%- set candidate = candidate|slice(1) -%}
+            {%- endif -%}
+            {%- if candidate matches '/^\d+$/' -%}
+                {%- set initial = candidate + 0 -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endif -%}
+    {%- do craft.heading.setVariable('seoHeadingLast', initial) -%}
+    {%- if initial == 1 -%}
+        {%- do craft.heading.setVariable('seoHeadingH1', true) -%}
+    {%- else -%}
+        {%- do craft.heading.setVariable('seoHeadingH1', false) -%}
+    {%- endif -%}
+    {%- do craft.heading.setVariable('seoHeadingStack', []) -%}
+{% endmacro %}
+
+{% macro pushHeadingState() %}
+    {%- set stack = craft.heading.getVariable('seoHeadingStack') ?? [] -%}
+    {%- set snapshot = {
+        level: craft.heading.getVariable('seoHeadingLast') ?? 0,
+        h1: craft.heading.getVariable('seoHeadingH1') ?? false
+    } -%}
+    {%- set newStack = stack|merge([snapshot]) -%}
+    {%- do craft.heading.setVariable('seoHeadingStack', newStack) -%}
+{% endmacro %}
+
+{% macro popHeadingState() %}
+    {%- set stack = craft.heading.getVariable('seoHeadingStack') ?? [] -%}
+    {%- if stack|length -%}
+        {%- set restored = stack|last -%}
+        {%- set remainder = stack|slice(0, stack|length - 1) -%}
+        {%- do craft.heading.setVariable('seoHeadingStack', remainder) -%}
+        {%- do craft.heading.setVariable('seoHeadingLast', restored.level ?? 0) -%}
+        {%- do craft.heading.setVariable('seoHeadingH1', restored.h1 ?? false) -%}
+    {%- else -%}
+        {%- do craft.heading.setVariable('seoHeadingLast', 0) -%}
+        {%- do craft.heading.setVariable('seoHeadingH1', false) -%}
+    {%- endif -%}
+{% endmacro %}
+
+{#
+    Rich text heading revision - returns content as-is for now.
+    TODO: Implement HTML parsing to rewrite heading tags based on current state.
+#}
+{% macro resolveRichTextHeading(content) %}
+    {{- content|raw -}}
+{% endmacro %}

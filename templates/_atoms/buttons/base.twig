@@ -1,0 +1,46 @@
+{% import "macros" as macros %}
+
+{% set defaults = {
+    id: null,
+    class: "",
+    extend: "",
+    modifiers: "",
+    attributes: null,
+    text: null,
+    url: null,
+    value: null,
+    isExternalLink: self.isExternalLink|default or "asset" in self.linkType|default|kebab or "url" in self.linkType|default|kebab,
+    isButton: self.type|default == "button" or self.type|default == "submit",
+    type: "button",
+    disabled: false,
+    active: false,
+    flood: false,
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+<{%- if self.url -%}
+    a
+    href="{{ self.url }}"
+{%- elseif self.isButton -%}
+    button type="{{ self.type }}"
+{%- else -%}
+    span
+{%- endif %}
+    class="btn {{ self.class }}{{ self.extend ? " " ~ self.extend }}{{ self.modifiers ? " " ~ self.modifiers }}{{ self.active ? " --active" }}{{ self.flood ? " before:absolute before:inset-0" }}"
+    {{ self.id ? "id=" ~ self.id }}
+    {% if self.attributes %}
+        {{ attr(self.attributes) }}
+    {% endif %}
+    {{ self.disabled ? "disabled=disabled" }}
+    {% if self.isExternalLink %}
+        rel=noopener rel=noreferrer target="_blank"
+    {% endif %}
+    {% if self.value %}
+        value="{{ self.value }}"
+    {% endif %}
+>
+    {% block content %}
+        {{ self.text }}
+    {% endblock %}
+</{{ self.url ? "a" : self.isButton ? "button" : "span"}}>

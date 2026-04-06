@@ -1,0 +1,176 @@
+{#
+	Date formats
+#}
+{% macro formatDate(key) %}
+    {% apply spaceless %}
+    {% set dateFormats = {
+        default: 'd F Y',
+        short: 'd M',
+        long: 'l, d F Y',
+        raw: 'y-m-d'
+    } %}
+
+    {{ key is defined and key in (dateFormats|keys) ? attribute(dateFormats, key) : dateFormats['default'] }}
+
+    {% endapply %}
+{% endmacro %}
+
+{#
+	Time formats
+#}
+{% macro formatTime(key) %}
+    {% apply spaceless %}
+    {% set timeFormats = {
+        default: 'g:ia',
+        short: 'g:ia',
+        long: ' \\a\\t g:ia'
+    } %}
+
+    {{ key is defined and key in (timeFormats|keys) ? attribute(timeFormats, key) : timeFormats['default'] }}
+
+    {% endapply %}
+{% endmacro %}
+
+{#
+	Output a single date
+#}
+{% macro singleDate(start, config) %}
+    {% apply spaceless %}
+    {% import _self as macros %}
+
+    {% set defaults = {
+        dateFormat: _self.formatDate('long'),
+        timeFormat: _self.formatTime(),
+        showDate: true,
+        showTime: true
+    } %}
+
+    {% set config = config and (config.dateFormat|default)
+        ? config|merge({
+            dateFormat: _self.formatDate(config.dateFormat)
+        })
+        : config|withoutKey('dateFormat')
+    %}
+    {% set config = config and (config.timeFormat|default)
+        ? config|merge({
+            timeFormat: _self.formatTime(config.timeFormat)
+        })
+        : config|withoutKey('timeFormat')
+    %}
+
+    {% set self = defaults|merge(config|default({})) %}
+
+    {% set output = null %}
+
+    {% if self.showDate and (start|default) %}
+        {% set output = start|date(self.dateFormat) %}
+    {% endif %}
+
+    {% if self.showTime and (start|default) %}
+        {% set output = (output|default ? output ~ ' &mdash; ') ~ (start|date(self.timeFormat)) %}
+    {% endif %}
+
+    {{ output ? raw(output) }}
+
+    {% endapply %}
+{% endmacro %}
+
+{#
+	Output a single date + occurrences
+#}
+{% macro singleDateAndOccurrences(occurrences, config) %}
+    {% apply spaceless %}
+    {% import _self as macros %}
+
+    {% set defaults = {
+        dateFormat: _self.formatDate()
+    } %}
+
+    {% set config = config and (config.dateFormat|default)
+        ? config|merge({
+            dateFormat: _self.formatDate[config.dateFormat]
+        })
+        : config|withoutKey('dateFormat')
+    %}
+
+    {% set self = defaults|merge(config|default({})) %}
+
+    {% set output = null %}
+
+    {% if occurrences[0].from|default %}
+        {% set output = occurrences[0].from|date(self.dateFormat) %}
+    {% endif %}
+    {% if (occurrences|length) > 2 %}
+        {% set output = output ~ " <span class='datalist__meta'>+#{(occurrences|length) - 1} more dates</span>" %}
+    {% elseif (occurrences|length) > 1 and (occurrences[0].from|date('y-F-j')) != (occurrences[1].from|date('y-F-j')) %}
+        {% set output = output ~ ' and ' ~ (occurrences[1].from|date(self.dateFormat)) %}
+    {% endif %}
+
+    {{ output ? raw(output) }}
+
+    {% endapply %}
+{% endmacro %}
+
+{#
+	Output a date span
+#}
+{% macro dateSpan(start, end, config) %}
+    {% apply spaceless %}
+    {% import _self as macros %}
+
+    {% set defaults = {
+        showWeekday: false
+    } %}
+
+    {% set self = defaults|merge(config|default({})) %}
+
+    {% set dayDateKey = self.showWeekday|default ? 'D j' : 'j' %}
+    {% set rawFormat = _self.formatDate('raw') %}
+    {% set output = null %}
+
+    {# Same date #}
+    {% if (start|date('j m y')) == (end|date('j m y')) %}
+        {% set startDate = start|date("#{dayDateKey} M 'y") %}
+        {% set endDate = null %}
+        {# If the month is the same #}
+    {% elseif end and (end|date('m')) == (start|date('m')) %}
+        {% set startDate = start|date(dayDateKey) %}
+        {% set endDate = end|date("#{dayDateKey} M 'y") %}
+        {# If the year is the same #}
+    {% elseif end and (end|date('Y')) == (start|date('Y')) %}
+        {% set startDate = start|date("#{dayDateKey} M") %}
+        {% set endDate = end|date("#{dayDateKey} M 'y") %}
+        {# If the year is different #}
+    {% elseif end and (end|date('Y')) != (start|date('Y')) %}
+        {% set startDate = start|date("#{dayDateKey} M 'y") %}
+        {% set endDate = end|date("#{dayDateKey} M 'y") %}
+        {# No end date #}
+    {% else %}
+        {% set startDate = start|date("#{dayDateKey} M 'y") %}
+        {% set endDate = null %}
+    {% endif %}
+
+    {% if endDate %}
+        {% set output %}
+            {% apply spaceless %}
+            <time datetime="{{ start|date(rawFormat) }}">{{ startDate }}</time> <span class="mx-2" aria-label="to">
+                &ndash;
+            </span> <time datetime="{{ end|date(rawFormat) }}">{{ endDate }}</time>
+            {% endapply %}
+        {% endset %}
+    {% else %}
+        {% set output %}
+            {% apply spaceless %}
+            <time datetime="{{ start|date(rawFormat) }}">{{ startDate }}</time>
+            {% endapply %}
+        {% endset %}
+    {% endif %}
+
+    {# {% if self.showTime and start|default %}
+		{% set output = (output|default ? output ~ " from " ) ~ start|date(self.timeFormat) ~ " &ndash; " ~ end|date(self.timeFormat) %}
+	{% endif %} #}
+
+    {{ output ? raw(output) }}
+
+    {% endapply %}
+{% endmacro %}

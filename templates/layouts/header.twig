@@ -1,0 +1,107 @@
+{# Halcyon Luxury Journeys — Site Header #}
+
+{% set navLinks = [
+    { href: '/destinations',       label: 'Destinations' },
+    { href: '/signature-journeys', label: 'Signature Journeys' },
+    { href: '/inspiration',        label: 'Inspiration' },
+    { href: '/about',              label: 'About' },
+    { href: '/testimonials',       label: 'Testimonials' },
+    { href: '/contact',            label: 'Contact Us' },
+] %}
+
+{# ── Utility bar ─────────────────────────────────────────────────────── #}
+<div class="layout-outer utility-bar">
+    <div class="layout-inner utility-bar-inner">
+        <span class="type-body-font utility-text">New Zealand · Australia</span>
+        <a href="tel:+64211398539" class="type-body-font utility-text utility-link">+64 21 139 8539</a>
+    </div>
+</div>
+
+{# ── Main header ─────────────────────────────────────────────────────── #}
+<header id="site-header" class="layout-outer site-header">
+    <div class="layout-inner site-header-inner">
+
+        <a href="/" class="logo-link" aria-label="Halcyon Luxury Journeys — Home">
+            <img src="/halcyon-logo.svg" alt="Halcyon Luxury Journeys" id="header-logo" class="header-logo" />
+        </a>
+
+        <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu-overlay">
+            <span id="menu-label" class="menu-toggle-label type-body-font">Menu</span>
+            <span class="burger">
+                <span id="m1" class="burger-line"></span>
+                <span id="m2" class="burger-line"></span>
+                <span id="m3" class="burger-line"></span>
+            </span>
+        </button>
+
+    </div>
+</header>
+
+{# ── Full-screen top-drop overlay ────────────────────────────────────── #}
+<div id="site-menu-overlay" class="menu-overlay" aria-hidden="true">
+
+    <div class="menu-overlay-grid">
+
+        {# Left: nav links #}
+        <nav class="menu-nav" aria-label="Main navigation">
+            {% for link in navLinks %}
+                <a href="{{ link.href }}" class="overlay-link display" style="transition-delay: {{ loop.index0 * 0.07 }}s;">
+                    {{ link.label }}
+                </a>
+            {% endfor %}
+        </nav>
+
+        {# Right: contact #}
+        <div class="menu-contact">
+            <div class="contact-block" style="transition-delay: 0.32s;">
+                <p class="contact-eyebrow">Get in Touch</p>
+                <a href="tel:+64211398539" class="contact-phone">+64 21 139 8539</a>
+                <a href="mailto:hello@halcyonluxuryjourneys.co.nz" class="contact-email">hello@halcyonluxuryjourneys.co.nz</a>
+            </div>
+            <div class="contact-block" style="transition-delay: 0.42s;">
+                <p class="contact-eyebrow">Where We Travel</p>
+                <p class="contact-destinations">New Zealand<br/>Australia</p>
+            </div>
+            <div class="contact-block" style="transition-delay: 0.52s;">
+                <a href="/contact" class="menu-cta">
+                    Begin Your Journey
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                        <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-footer">
+        <span class="menu-footer-text">Halcyon Luxury Journeys</span>
+    </div>
+</div>
+
+<script>
+(function() {
+    var header  = document.getElementById('site-header');
+    var toggle  = document.getElementById('menu-toggle');
+    var overlay = document.getElementById('site-menu-overlay');
+    var isOpen  = false;
+
+    function set(next) {
+        isOpen = next;
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        overlay.classList.toggle('open', isOpen);
+        overlay.setAttribute('aria-hidden', String(!isOpen));
+        header.classList.toggle('menu-open', isOpen);
+        document.documentElement.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    toggle.addEventListener('click', function() { set(!isOpen); });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isOpen) set(false);
+    });
+
+    overlay.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() { set(false); });
+    });
+})();
+</script>

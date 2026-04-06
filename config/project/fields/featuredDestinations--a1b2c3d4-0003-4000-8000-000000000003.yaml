@@ -1,0 +1,26 @@
+columnSuffix: null
+handle: featuredDestinations
+instructions: 'Select destination entries to feature in the accordion on the homepage'
+name: 'Featured Destinations'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: 'Add a Destination'
+  showCardsInGrid: false
+  showSearchInput: true
+  showSiteMenu: true
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:c1d2e3f4-0001-4000-8000-000000000001' # Destinations
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

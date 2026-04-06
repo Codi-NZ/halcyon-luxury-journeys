@@ -1,0 +1,38 @@
+{% set heading = heading ?? block.heading ?? "On this page" %}
+{% set sticky = sticky ?? true %}
+{% set modifiers = modifiers|default ? " " ~ modifiers %}
+{% set blockIndex = blockIndex ?? 0 %}
+
+{% set htmlToc %}
+	<nav aria-label="Table of contents">
+		<ul class="flex flex-col gap-3">
+			{% for item in entry.contentBlocks[blockIndex:]|filter( i => i.type.handle == "heading" and i['showInTableOfContents']|default(1) ) %}
+				<li>
+					<a href="{{ "#" ~ item.heading|kebab }}" class="block copy text-grey-600 underline decoration-transparent">
+						{{ item.heading }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</nav>
+{% endset %}
+
+<aside class="table-of-contents{{ modifiers }} rounded-2xl border border-grey-200 bg-grey-50 p-6"
+	aria-label="Table of contents"
+>
+	<div class="table-of-contents__content">
+		<{{ headingTag }} class="heading-4 text-grey-900 mb-4">
+			{{ heading }}
+		</{{ headingTag }}>
+
+		{% if sticky %}
+			{% embed "_molecules/sticky-overlay" %}
+				{% block content %}
+					{{ htmlToc }}
+				{% endblock %}
+			{% endembed %}
+		{% else %}
+			{{ htmlToc }}
+		{% endif %}
+	</div>
+</aside>

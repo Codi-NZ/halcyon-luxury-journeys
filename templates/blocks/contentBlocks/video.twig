@@ -1,0 +1,6 @@
+{% include '_atoms/video' with {
+    self: {
+        video: block.video|length ? craft.embeddedAssets.get(block.video[0]) : null,
+        caption: block.caption ?? null
+    }
+} %}

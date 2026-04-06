@@ -1,0 +1,76 @@
+{% import 'macros' as macros %}
+
+
+<!doctype html>
+<html lang="{{ currentSite.language }}" id="html">
+
+    <!--
+
+        Made by: Simple
+        Year: 2026
+        Apply: https://simple.com.au/
+    -->
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="referrer" content="origin-when-cross-origin">
+
+		{% if not craft.vite.devServerRunning() %}
+			{{ craft.vite.script('src/index.js', false, { 'defer': true }) }}
+		{% else %}
+			{{ craft.vite.script('src/index.js') }}
+		{% endif %}
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+		<style>
+			[x-cloak] {
+				display: none !important
+			}
+		</style>
+	</head>
+
+	{# Initialize heading state for SEO-friendly heading progression #}
+	{% if _headingState is not defined %}
+		{% set _headingState = { level: 0, h1: false, stack: [] } %}
+	{% endif %}
+
+	{% set pages = craft.entries.section("sitemap").with(['featureImage', 'children', 'children.children']).level(1).all() %}
+	{% set entry = entry ?? null %}
+	{% set parentEntry = entry ? entry.getAncestors().level(1).one() : null %}
+	{% set topLevelEntry = parentEntry ?? entry %}
+	{% set topLevelUri = '' %}
+	{% if topLevelEntry and topLevelEntry.hasDescendants() and topLevelEntry.uri != '__home__' %}
+		{% set topLevelUri = topLevelEntry.uri %}
+	{% endif %}
+
+	<body x-data="{
+		    menu: false,
+		    subMenu: '{{ topLevelUri }}',
+		    search: false
+		  }" data-icons="{{ craft.vite.asset('src/sprite.svg') }}">
+
+            <section id="site" class="flex flex-col min-h-screen">
+                {% include '_atoms/skip-to-content' %}
+
+                {% block header %}
+                    {% include 'layouts/header' %}
+                {% endblock %}
+
+                {% block banner %}
+                    {% include '_organisms/banners/basic' %}
+                {% endblock %}
+
+                <main id="main-content" class="flex-1"> {% block content %}{% endblock %}
+                </main>
+
+                {% block footer %}
+                    {% include 'layouts/footer' %}
+                {% endblock %}
+            </section>
+
+			{{ endBody() }}
+		</body>
+	</html>

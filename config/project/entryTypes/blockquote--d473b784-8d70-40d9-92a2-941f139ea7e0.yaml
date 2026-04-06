@@ -1,0 +1,79 @@
+color: blue
+fieldLayouts:
+  957cc566-8aa6-41d1-ac79-dcf763fa3f9d:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2024-10-25T05:33:39+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: __blank__
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: c0c05ddb-f127-40c2-ab6d-f4811f0c181b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:37:30+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 3c342a3d-4e8a-43d5-b952-a45e61022a5c # Body Rich Text
+            handle: quote
+            instructions: null
+            label: Quote
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 006b4a9e-ff03-4848-acbd-20bdcf252244
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2024-10-25T05:37:30+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: citation
+            instructions: null
+            label: Attribution
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: bedf93c4-a29b-4734-a31b-4fd96bb9fea6
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: b1760931-3af9-4ea8-8128-464399fe6447
+        userCondition: null
+handle: blockquote
+hasTitleField: false
+icon: quote-right
+name: Blockquote
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

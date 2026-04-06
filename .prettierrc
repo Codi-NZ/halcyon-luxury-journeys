@@ -1,0 +1,25 @@
+{
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "useTabs": false,
+    "trailingComma": "es5",
+    "printWidth": 100,
+    "endOfLine": "lf",
+    "plugins": ["@zackad/prettier-plugin-twig"],
+    "overrides": [
+        {
+            "files": ["*.yml", "*.yaml"],
+            "options": {
+                "tabWidth": 2
+            }
+        },
+        {
+            "files": ["*.twig", "*.html.twig"],
+            "options": {
+                "tabWidth": 4,
+                "printWidth": 120
+            }
+        }
+    ]
+}

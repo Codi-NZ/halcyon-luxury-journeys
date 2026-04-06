@@ -1,0 +1,52 @@
+{% set type = type|default('text') %}
+{% set label = label|default('') %}
+{% set value = value|default('') %}
+{% set instructions = instructions|default('') %}
+{% set id = id|default('text' ~ random(5000)) %}
+{% set name = name|default(id) %}
+{% set hideLabel = hideLabel|default %}
+{% set attributes = attributes ?? {} %}
+{% set placeholder = placeholder|default('') %}
+{% set error = error|default('') %}
+{% set isDisabled = isDisabled|default(false) %}
+{% set isRequired = isRequired|default(false) %}
+{% set classes = classes ?? '' %}
+
+{% import 'macros' as macros %}
+
+<div class="{{ classes }}">
+    <label class="{{ hideLabel ? 'sr-only' }}" for="{{ id }}">
+        {{ label }}
+
+        {% if isRequired %}
+            <span class="required">*</span>
+        {% endif %}
+    </label>
+
+    <div class="">
+        {% block input %}
+            <input
+                id="{{ id }}"
+                type="{{ type }}"
+                name="{{ name }}"
+                value="{{ value }}"
+                placeholder="{{ placeholder }}"
+                {{ attr(attributes) }}
+                {{ isDisabled ? 'disabled' }}
+                {{ isRequired ? 'required' }}
+            />
+        {% endblock %}
+    </div>
+
+    {% if instructions %}
+        <div class="">
+            {{ instructions }}
+        </div>
+    {% endif %}
+
+    {% if error %}
+        <div class="">
+            {{ error }}
+        </div>
+    {% endif %}
+</div>

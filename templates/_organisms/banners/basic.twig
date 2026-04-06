@@ -1,0 +1,28 @@
+{% import "macros/images" as imageMacros %}
+
+{% set title = title ?? entry.title %}
+{% set summary = summary ?? entry.summary %}
+{% set image = image ?? entry.image[0] ?? craft.simple.globals.fallbacks.images.banner %}
+{% set video = video ?? entry.video[0] ?? null %}
+
+<div class="inner grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-br from-grey-900 via-grey-800 to-grey-700 text-white pt-12 pb-6 md:pb-12 xl:pb-0 gap-8 lg:gap-16 xl:mb-16 rounded-3xl">
+    <div class="flex flex-col justify-center">
+        <div class="max-w-2xl xl:pb-16">
+            <{{ headingTag1 }} class="heading-1 font-semibold">
+                {{ title }}
+            </{{ headingTag1 }}>
+
+            <div class="copy mt-6">
+                {{ summary }}
+            </div>
+        </div>
+    </div>
+
+    <aside class="w-full xl:col-span-1 xl:-mb-16">
+        {{ imageMacros.imagerSrcset(
+            image,
+            "banner-basic",
+            { classes: "rounded-2xl overflow-hidden shadow-xl h-full" },
+        )}}
+    </aside>
+</div>

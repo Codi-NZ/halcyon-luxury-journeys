@@ -1,0 +1,74 @@
+{% if pageInfo.totalPages > 1 %}
+    {% set maxpages = 7 %}
+    {% set pagediff = pageInfo.totalPages - pageInfo.currentPage + 1 %}
+
+    <nav class="flex justify-between my-8" role="navigation" aria-label="Pagination">
+        {% include '_atoms/buttons/pagination/previous' with {
+            self: {
+                url: pageInfo.prevUrl|default,
+                disabled: pageInfo.currentPage == 1
+            }
+        } %}
+
+        <div class="flex flex-wrap gap-x-8 gap-y-4">
+            {% if pageInfo.currentPage > pageInfo.totalPages - 3 %}
+                {% for page, url in pageInfo.getPrevUrls(maxpages - pagediff) %}
+                    {% include '_atoms/buttons/pagination/page' with {
+                        self: {
+                            text: page,
+                            url: url,
+                            alt: 'Page ' ~ page
+                        }
+                    } %}
+                {% endfor %}
+            {% else %}
+                {% for page, url in pageInfo.getPrevUrls(3) %}
+                    {% include '_atoms/buttons/pagination/page' with {
+                        self: {
+                            text: page,
+                            url: url,
+                            alt: 'Page ' ~ page
+                        }
+                    } %}
+                {% endfor %}
+            {% endif %}
+
+            {% include '_atoms/buttons/pagination/page' with {
+                self: {
+                    text: pageInfo.currentPage,
+                    alt: 'Page ' ~ pageInfo.currentPage,
+                    active: true
+                }
+            } %}
+
+            {% if pageInfo.currentPage <= 3 %}
+                {% for page, url in pageInfo.getNextUrls(maxpages - pageInfo.currentPage) %}
+                    {% include '_atoms/buttons/pagination/page' with {
+                        self: {
+                            text: page,
+                            url: url,
+                            alt: 'Page ' ~ page
+                        }
+                    } %}
+                {% endfor %}
+            {% else %}
+                {% for page, url in pageInfo.getNextUrls(3) %}
+                    {% include '_atoms/buttons/pagination/page' with {
+                        self: {
+                            text: page,
+                            url: url,
+                            alt: 'Page ' ~ page
+                        }
+                    } %}
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        {% include '_atoms/buttons/pagination/next' with {
+            self: {
+                url: pageInfo.nextUrl|default,
+                disabled: pageInfo.currentPage == pageInfo.totalPages
+            }
+        } %}
+    </nav>
+{% endif %}

@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: brandIntroBody
+instructions: 'Supporting body paragraph in the brand intro section'
+name: 'Brand Intro Body'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 600
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

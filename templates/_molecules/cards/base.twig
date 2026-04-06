@@ -1,0 +1,74 @@
+{% import "macros" as macros %}
+{% import "macros/images" as imageMacros %}
+
+{% set defaults = {
+    entry: null,
+    class: "relative flex flex-col h-full bg-white text-medium rounded-lg",
+    modifiers: "",
+	attributes: {},
+    image: null,
+    imageType: "card",
+    title: null,
+    body: null,
+    buttonText: "Read more",
+    isButton: null,
+    url: null,
+    isExternalLink: false,
+    innerTheme: null,
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% if not self.image %}
+    {% if self.entry and self.entry.image[0] %}
+        {% set self = self|merge({ image: self.entry.image[0] }) %}
+    {% elseif self.fallbackImage %}
+        {% set self = self|merge({ image: self.fallbackImage }) %}
+    {% elseif craft.simple.globals.fallbacks.images.banner %}
+        {% set self = self|merge({ image: craft.simple.globals.fallbacks.images.banner }) %}
+    {% endif %}
+{% endif %}
+
+{% if not self.title and self.entry %}
+    {% set self = self|merge({ title: self.entry.title }) %}
+{% endif %}
+
+{% if not self.body and self.entry %}
+    {% set self = self|merge({ body: self.entry.summary|default|nl2br }) %}
+{% endif %}
+
+{% if not self.url and self.entry %}
+    {% set self = self|merge({ url: self.entry.url|default }) %}
+{% endif %}
+
+<article class="{{ self.class }}"
+    {{ attr(self.attributes) }}
+    {% if self.innerTheme %}
+        data-inner-theme="{{ self.innerTheme }}"
+    {% endif %}
+>
+    {% block content %}
+        {{ imageMacros.imagerSrcset(
+            self.image,
+            self.imageType,
+        )}}
+
+        <div class="flex flex-col gap-4 flex-1 p-4">
+            {% block details %}
+                <{{ headingTag }} class="t-h3 text-dark">
+                    {{ self.title }}
+                </{{ headingTag }}>
+
+                <div class="flex-1 text-md">
+                    {{ self.body }}
+                </div>
+
+                {% include "_atoms/buttons/link" with { self: {
+                    text: self.buttonText,
+                    url: self.url,
+                    flood: true,
+                }} %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+</article>

@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: journeyHighlights
+instructions: 'Journey highlights, one per line. These are displayed as bullet points on the card.'
+name: 'Journey Highlights'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: null
+  code: false
+  initialRows: 5
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

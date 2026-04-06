@@ -1,0 +1,22 @@
+{% set defaults = {
+    video: null,
+    caption: ''
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+{% if self.video %}
+    <figure class="" data-theme="overlay">
+        <div class="video">
+            {% include '_atoms/video-embed' with {
+                video: self.video,
+                autoplay: false
+            } %}
+        </div>
+
+        {% if self.caption %}
+            <figcaption class="">
+                {{ self.caption }}
+            </figcaption>
+        {% endif %}
+    </figure>
+{% endif %}

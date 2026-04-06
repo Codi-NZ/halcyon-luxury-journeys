@@ -1,0 +1,9 @@
+{% set defaults = {
+    contentClass: 'flex-row-reverse',
+    text: 'Back',
+    icon: 'outline/arrow-left'
+} %}
+
+{% set self = self is defined ? defaults|merge(self) : defaults %}
+
+{% include '_atoms/buttons/pill' with self %}

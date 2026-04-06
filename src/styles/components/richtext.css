@@ -1,0 +1,67 @@
+.richtext {
+    @apply text-grey-700;
+
+    & :is(h1, h2, h3, h4) {
+        @apply relative before:content-[''] before:h-0.5 before:w-full before:bg-gradient-to-r before:from-grey-400 before:to-grey-600 before:absolute before:bottom-0 before:inset-x-0 max-w-max pb-1 text-grey-900;
+    }
+
+    & h1 {
+        @apply heading-1;
+    }
+
+    & h2 {
+        @apply heading-2;
+    }
+
+    & h3 {
+        @apply heading-3;
+    }
+
+    & h4 {
+        @apply heading-4;
+    }
+
+    & p {
+        @apply copy;
+    }
+
+    & * + p {
+        @apply mt-4;
+    }
+
+    & p + h4 {
+        @apply mt-8;
+    }
+
+    & strong {
+        @apply font-semibold;
+    }
+
+    & a {
+        @apply underline;
+    }
+
+    & ol {
+        @apply relative pl-5 mt-4 list-decimal;
+    }
+
+    & ul {
+        @apply relative pl-5 mt-4 list-disc;
+    }
+
+    & .heading-level-h1 {
+        @apply heading-1;
+    }
+
+    & .heading-level-h2 {
+        @apply heading-2;
+    }
+
+    & .heading-level-h3 {
+        @apply heading-3;
+    }
+
+    & .heading-level-h4 {
+        @apply heading-4;
+    }
+}

@@ -1,0 +1,26 @@
+columnSuffix: null
+handle: featuredTestimonials
+instructions: 'Select testimonial entries to feature on the homepage (typically 3)'
+name: 'Featured Testimonials'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: null
+  minRelations: null
+  selectionLabel: 'Add a Testimonial'
+  showCardsInGrid: false
+  showSearchInput: true
+  showSiteMenu: true
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:c1d2e3f4-0003-4000-8000-000000000001' # Testimonials
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

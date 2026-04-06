@@ -1,0 +1,73 @@
+columnSuffix: null
+handle: galleryDisplay
+instructions: null
+name: 'Gallery Display'
+searchable: false
+settings:
+  customOptions: false
+  displayAsGraphic: null
+  displayFullwidth: null
+  options:
+    -
+      __assoc__:
+        -
+          - label
+          - Carousel
+        -
+          - showLabel
+          - '1'
+        -
+          - value
+          - carousel
+        -
+          - imageUrl
+          - ''
+        -
+          - imageAlign
+          - left
+        -
+          - default
+          - '1'
+    -
+      __assoc__:
+        -
+          - label
+          - Grid
+        -
+          - showLabel
+          - '1'
+        -
+          - value
+          - grid
+        -
+          - imageUrl
+          - ''
+        -
+          - imageAlign
+          - left
+        -
+          - default
+          - ''
+    -
+      __assoc__:
+        -
+          - label
+          - Filmstrip
+        -
+          - showLabel
+          - '1'
+        -
+          - value
+          - filmstrip
+        -
+          - imageUrl
+          - ''
+        -
+          - imageAlign
+          - left
+        -
+          - default
+          - ''
+translationKeyFormat: null
+translationMethod: none
+type: verbb\buttonbox\fields\Buttons

@@ -1,0 +1,80 @@
+{% import 'macros' as macros %}
+
+{% if pages is not defined %}
+    {% set parent = parent is defined ? parent : entry.parent|default(entry) %}
+    {% set pages = pages is defined ? pages : parent.children|default([]) %}
+    {% set isTopLevel = entry.id == parent.id %}
+
+    {% if isTopLevel %}
+        {% set pages = pages is defined ? pages : parent.children.all|default([]) %}
+    {% elseif entry.hasDescendants and not isTopLevel %}
+        {% set pages = entry.children|default([]) %}
+    {% elseif not entry.hasDescendants and not isTopLevel %}
+        {% set pages = parent.children.all|default([]) %}
+    {% elseif entry.section.handle in ['miscPage'] %}
+        {% set pages = craft.entries.section('miscPage').all()|default([]) %}
+    {% endif %}
+
+    {% set headingText = headingText ?? not isTopLevel ? parent.title %}
+    {% set headingUrl = headingUrl ?? not isTopLevel ? parent.url %}
+{% endif %}
+
+{% if (pages.all ?? pages)|length %}
+    <nav class="">
+        {% if (headingText|default) and (headingUrl|default) %}
+            <div class="mb-4">
+                {% include '_atoms/buttons/back' with {
+                    self: {
+                        text: headingText,
+                        url: headingUrl
+                    }
+                } %}
+            </div>
+        {% endif %}
+
+        <ul class="flex flex-col gap-2">
+            {% nav page in pages.all ?? pages %}
+            {% if (page.type.handle|default) == 'link' %}
+                {% set pageUrl = page.redirectLink.url %}
+                {% set pageTitle = page.redirectLink.getText()|length ? page.redirectLink.getText() : page.title %}
+            {% else %}
+                {% set pageUrl = page.url %}
+                {% set pageTitle = page.title %}
+            {% endif %}
+
+            {% set externalLink = siteUrl not in pageUrl %}
+            {% set isCurrent = (craft.app.request.segments|last) == page.slug
+                or (craft.app.request.segments[page.level - 1]|default) == page.slug
+            %}
+            {% set hasChildren = page.descendants|default %}
+
+            <li class="flex flex-col gap-2">
+                {% include '_atoms/buttons/row' with {
+                    self: {
+                        modifiers: (isCurrent ? '--active') ~ (hasChildren ? ' --has-children'),
+                        text: pageTitle,
+                        url: not isCurrent ? pageUrl,
+                        icon: 'outline/chevron-' ~ (hasChildren ? 'down' : 'right')
+                    }
+                } %}
+
+                {% if hasChildren %}
+                    <ul class="flex flex-col gap-2">
+                        {% for item in page.children.all %}
+                            <li>
+                                {% include '_atoms/buttons/row' with {
+                                    self: {
+                                        text: item.title,
+                                        url: item.url,
+                                        icon: 'outline/chevron-right'
+                                    }
+                                } %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+            {% endnav %}
+        </ul>
+    </nav>
+{% endif %}

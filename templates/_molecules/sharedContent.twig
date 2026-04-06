@@ -1,0 +1,7 @@
+{% set sharedContent = sharedContent ?? null %}
+
+{% for item in sharedContent %}
+    {% include 'blocks/contentBlocks' with {
+        blocks: item.contentBlocksSharedContent
+    } %}
+{% endfor %}
