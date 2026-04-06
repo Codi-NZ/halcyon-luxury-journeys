@@ -5,7 +5,7 @@
 @import './base/icons.css' layer(base);
 @import './base/typography.css';
 @import './base/block.css' layer(base);
-@import './base/formie.css' layer(base);
+@import './base/formie.css';
 
 /* Components */
 @import './components/halcyon.css' layer(components);

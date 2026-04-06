@@ -74,8 +74,9 @@ import '../styles/global.css';
 
       <!-- Footer inside left panel -->
       <div class="cs-footer">
-        <span class="cs-footer-text">New Zealand · Australia</span>
-        <span class="cs-footer-text">© 2025 Halcyon Luxury Journeys</span>
+        <span class="cs-footer-text cs-footer-region">New Zealand · Australia</span>
+        <span class="cs-footer-text cs-footer-credit">Website by <a href="https://codi.nz" target="_blank" rel="noopener noreferrer" class="cs-footer-credit-link">Codi</a></span>
+        <span class="cs-footer-text cs-footer-copy">© 2025 Halcyon Luxury Journeys</span>
       </div>
 
     </div>
@@ -255,12 +256,12 @@ import '../styles/global.css';
   .cs-contact-link:hover { color: #C9A96E; }
   .cs-contact-sep { color: rgba(17,34,80,0.5); font-size: 12px; }
 
-  /* ── Footer ── */
+  /* ── Footer — one row: region | Website by Codi (centre) | copyright ── */
   .cs-footer {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(8px, 2vw, 16px);
     padding-top: clamp(20px, 3vw, 32px);
     margin-top: clamp(28px, 4vw, 48px);
     border-top: 1px solid rgba(17,34,80,0.1);
@@ -271,6 +272,29 @@ import '../styles/global.css';
     letter-spacing: 0.12em;
     color: rgba(17,34,80,0.55);
     font-style: italic;
+  }
+  .cs-footer-region {
+    justify-self: start;
+    text-align: left;
+  }
+  .cs-footer-credit {
+    justify-self: center;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: rgba(17,34,80,0.45);
+  }
+  .cs-footer-copy {
+    justify-self: end;
+    text-align: right;
+  }
+  .cs-footer-credit-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  .cs-footer-credit-link:hover {
+    color: #c9a96e;
   }
 
   /* ══════════════════════
@@ -352,6 +376,7 @@ import '../styles/global.css';
     .cs-contact-sep { color: rgba(255,255,255,0.25); }
     .cs-footer { border-top-color: rgba(255,255,255,0.1); }
     .cs-footer-text { color: rgba(255,255,255,0.3); }
+    .cs-footer-credit { color: rgba(255,255,255,0.25); }
 
     .cs-input-row { flex-direction: column; }
     .cs-input-row .cs-input { border-right: 1px solid rgba(255,255,255,0.3); border-bottom: none; }

@@ -38,8 +38,8 @@ svg[display='none'] {
 .video embed {
     @apply absolute inset-0 w-full h-full;
 }
-
+/* 
 :root::after {
     z-index: 999999;
     @apply fixed top-0 left-2 py-1 px-2 text-[10px] leading-none rounded-b-sm pointer-events-none select-none bg-white text-black content-['Mobile'] md:content-['Tablet_(portrait)'] lg:content-['Tablet_(landscape)'] xl:content-['Desktop'] 2xl:content-['Desktop_1440'] 3xl:content-['Desktop_1680+'];
-}
+} */

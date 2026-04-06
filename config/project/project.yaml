@@ -1,4 +1,4 @@
-dateModified: 1775508505
+dateModified: 1775511437
 elementSources:
   craft\elements\Category:
     -
@@ -307,6 +307,7 @@ meta:
     bca8455c-17ea-494b-b21f-c138b8ce8961: Misc # Misc
     bcf2c6bd-6a49-4563-9e25-2e4478a661fe: Sitemap # Sitemap
     bda2da80-ad61-47e2-9388-753d954fc32b: $CRAFT_SYSTEM_NAME # $CRAFT_SYSTEM_NAME
+    bf5d2f1a-a152-4756-bfd5-e9df69fb1553: 'Campaign Monitor' # Campaign Monitor
     c1d2e3f4-0001-4000-8000-000000000001: Destinations # Destinations
     c1d2e3f4-0001-4000-8000-000000000002: Destination # Destination
     c1d2e3f4-0001-4000-8000-000000000010: 'Destination Region' # Destination Region
@@ -384,17 +385,14 @@ plugins:
   formie:
     edition: standard
     enabled: true
-    licenseKey: JEC03ROK531IY8OSLJ5QGTN4
     schemaVersion: 3.4.12
   hyper:
     edition: standard
     enabled: true
-    licenseKey: 96I1L3ZU8WBUOYNLU3W89Y4A
     schemaVersion: 1.0.0
   imager-x:
     edition: pro
     enabled: true
-    licenseKey: 58YOZ775GAYPRGP6HD2ID9HQ
     schemaVersion: 4.0.0
   knock-knock:
     edition: standard
@@ -407,7 +405,6 @@ plugins:
   seomatic:
     edition: standard
     enabled: true
-    licenseKey: N2HZ374E76WWWP5UMAC22V46
     schemaVersion: 3.0.13
   simplemap:
     edition: lite
@@ -431,4 +428,4 @@ system:
   name: $CRAFT_DEFAULT_SITE_NAME
   retryDuration: null
   schemaVersion: 5.9.0.8
-  timeZone: Australia/Adelaide
+  timeZone: Pacific/Auckland

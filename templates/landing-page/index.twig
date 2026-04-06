@@ -14,8 +14,13 @@
     <title>{{ entry.title ?? 'Coming Soon — Halcyon Luxury Journeys' }}</title>
     <meta name="description" content="Something extraordinary is on its way. Halcyon Luxury Journeys — bespoke private travel through New Zealand and Australia.">
 
+    {# Favicon — same SVG as Astro `frontend/src/layouts/Layout.astro`; `.ico` fallback for older browsers #}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <link rel="icon" href="/favicon.ico" sizes="32x32"/>
+    <meta name="theme-color" content="#112250"/>
+
     {# SEO field #}
-    {% if entry.seo is defined %}{{ entry.seo }}{% endif %}
+    {# {% if entry.seo is defined %}{{ entry.seo }}{% endif %} #}
 
     <style>
         [x-cloak] { display: none !important; }
@@ -98,17 +103,34 @@
 
         {# Footer inside left panel #}
         <div class="cs-footer">
-            <span class="cs-footer-text">New Zealand · Australia</span>
-            <span class="cs-footer-text">&copy; {{ now|date('Y') }} Halcyon Luxury Journeys</span>
+            <span class="cs-footer-text cs-footer-region">New Zealand · Australia</span>
+            <span class="cs-footer-text cs-footer-credit">Website by <a href="https://codi.nz" target="_blank" rel="noopener noreferrer" class="cs-footer-credit-link">Codi</a></span>
+            <span class="cs-footer-text cs-footer-copy">&copy; {{ now|date('Y') }} Halcyon Luxury Journeys</span>
         </div>
 
     </div>
 
     {# ── Right: media panel ──────────────────────────────────────────── #}
-    <div class="cs-right" aria-hidden="true">
-
-        {# Mobile/fallback: photo #}
-        {% if bgImage %}
+    {# Mode: CMS video → video everywhere; CMS image only (no video) → image everywhere; neither → stock image + stock video (mobile img / desktop video) #}
+    {% set _stockImg = 'https://images.unsplash.com/photo-1652344433425-e4103642510d?q=80&w=2370&auto=format&fit=crop' %}
+    {% set _stockVideo = '/14861093_3840_2160_30fps.mp4' %}
+    <div
+        class="cs-right cs-right--{% if bgVideo %}video{% elseif bgImage %}image{% else %}fallback{% endif %}"
+        aria-hidden="true"
+    >
+        {% if bgVideo %}
+            <video
+                id="cs-video"
+                autoplay
+                muted
+                loop
+                playsinline
+                class="cs-video"
+                {% if bgImage %}poster="{{ bgImage.url }}"{% endif %}
+            >
+                <source src="{{ bgVideo.url }}" type="video/mp4"/>
+            </video>
+        {% elseif bgImage %}
             <img
                 src="{{ bgImage.url }}"
                 alt="{{ bgImage.title ?? '' }}"
@@ -120,7 +142,7 @@
             />
         {% else %}
             <img
-                src="https://images.unsplash.com/photo-1652344433425-e4103642510d?q=80&w=2370&auto=format&fit=crop"
+                src="{{ _stockImg }}"
                 alt="Queenstown, New Zealand"
                 class="cs-mobile-photo"
                 loading="eager"
@@ -128,16 +150,8 @@
                 width="900"
                 height="1400"
             />
-        {% endif %}
-
-        {# Desktop: video #}
-        {% if bgVideo %}
             <video id="cs-video" autoplay muted loop playsinline class="cs-video">
-                <source src="{{ bgVideo.url }}" type="video/mp4" />
-            </video>
-        {% else %}
-            <video id="cs-video" autoplay muted loop playsinline class="cs-video">
-                <source src="/14861093_3840_2160_30fps.mp4" type="video/mp4" />
+                <source src="{{ _stockVideo }}" type="video/mp4"/>
             </video>
         {% endif %}
 
@@ -236,58 +250,7 @@
     margin: 0 0 12px;
 }
 
-/* Formie overrides — match the Astro inline form style */
-.cs-formie-wrap .fui-form { margin: 0; }
-.cs-formie-wrap .fui-page-container,
-.cs-formie-wrap .fui-row { display: flex; gap: 0; margin: 0; }
-.cs-formie-wrap .fui-field { margin: 0; flex: 1; }
-.cs-formie-wrap .fui-input {
-    width: 100%;
-    flex: 1;
-    background: #ffffff;
-    border: 1px solid rgba(17, 34, 80, 0.18);
-    border-right: none;
-    color: #112250;
-    font-family: 'Lato', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    padding: 13px 16px;
-    outline: none;
-    border-radius: 0;
-    transition: border-color 0.25s ease;
-    box-shadow: none;
-    -webkit-appearance: none;
-}
-.cs-formie-wrap .fui-input::placeholder { color: rgba(17, 34, 80, 0.3); }
-.cs-formie-wrap .fui-input:focus { border-color: #C9A96E; }
-.cs-formie-wrap .fui-submit,
-.cs-formie-wrap .fui-btn-submit {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: #112250;
-    border: 1px solid #112250;
-    color: #F5F0E9;
-    font-family: 'Lato', sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 13px 20px;
-    cursor: pointer;
-    white-space: nowrap;
-    border-radius: 0;
-    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
-}
-.cs-formie-wrap .fui-submit:hover,
-.cs-formie-wrap .fui-btn-submit:hover {
-    background: #C9A96E;
-    border-color: #C9A96E;
-    color: #112250;
-}
-.cs-formie-wrap .fui-error-message,
-.cs-formie-wrap .fui-alert { font-family: 'Lato', sans-serif; font-size: 11px; }
-.cs-formie-wrap .fui-label { display: none; } /* label hidden — we use cs-form-label above */
+/* Formie: `src/styles/base/formie.css` (scoped `.cs-formie-wrap`, matches Astro landing form) */
 
 /* Privacy note */
 .cs-privacy {
@@ -311,12 +274,12 @@
 }
 .cs-contact-link:hover { color: #C9A96E; }
 
-/* Footer */
+/* Footer — one row: region | Website by Codi (centre) | copyright */
 .cs-footer {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(8px, 2vw, 16px);
     padding-top: clamp(20px, 3vw, 32px);
     margin-top: clamp(28px, 4vw, 48px);
     border-top: 1px solid rgba(17, 34, 80, 0.1);
@@ -328,18 +291,43 @@
     color: rgba(17, 34, 80, 0.55);
     font-style: italic;
 }
+.cs-footer-region {
+    justify-self: start;
+    text-align: left;
+}
+.cs-footer-credit {
+    justify-self: center;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: rgba(17, 34, 80, 0.45);
+}
+.cs-footer-copy {
+    justify-self: end;
+    text-align: right;
+}
+.cs-footer-credit-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+.cs-footer-credit-link:hover {
+    color: #c9a96e;
+}
 
 /* ══════════════════════
    RIGHT PANEL — media
+   .cs-right--video   = CMS video (full bleed all breakpoints; optional poster if image also set)
+   .cs-right--image   = CMS image only (full bleed all breakpoints — desktop + mobile)
+   .cs-right--fallback = no CMS assets (stock image mobile, stock video desktop)
 ══════════════════════ */
 .cs-right {
     position: relative;
     overflow: hidden;
 }
-.cs-video { display: none; }
 
-/* Photo shown on all sizes by default */
-.cs-mobile-photo {
+.cs-right .cs-mobile-photo,
+.cs-right .cs-video {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -348,17 +336,30 @@
     object-position: center center;
 }
 
-/* Desktop: show video, hide static photo */
+/* Video from CMS: show at all sizes */
+.cs-right--video .cs-video {
+    display: block;
+}
+
+/* Image from CMS (no video): photo at all sizes */
+.cs-right--image .cs-video {
+    display: none;
+}
+.cs-right--image .cs-mobile-photo {
+    display: block;
+}
+
+/* Fallback: no uploads — mobile photo, desktop video (legacy) */
+.cs-right--fallback .cs-video {
+    display: none;
+}
 @media (min-width: 769px) {
-    .cs-video {
+    .cs-right--fallback .cs-video {
         display: block;
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
     }
-    .cs-mobile-photo { display: none; }
+    .cs-right--fallback .cs-mobile-photo {
+        display: none;
+    }
 }
 
 /* ── Mobile: full-screen background, text overlaid ─── */
@@ -402,28 +403,11 @@
     .cs-body        { color: rgba(255, 255, 255, 0.85); }
     .cs-form-label  { color: rgba(255, 255, 255, 0.5); }
 
-    .cs-formie-wrap .fui-input {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.3);
-        border-right: none;
-        color: #ffffff;
-    }
-    .cs-formie-wrap .fui-input::placeholder { color: rgba(255, 255, 255, 0.4); }
-    .cs-formie-wrap .fui-submit,
-    .cs-formie-wrap .fui-btn-submit {
-        background: #C9A96E;
-        border-color: #C9A96E;
-        color: #112250;
-        width: 100%;
-        justify-content: center;
-    }
-    .cs-formie-wrap .fui-row { flex-direction: column; }
-    .cs-formie-wrap .fui-input { border-right: 1px solid rgba(255, 255, 255, 0.3); border-bottom: none; }
-
     .cs-privacy          { color: rgba(255, 255, 255, 0.3); }
     .cs-contact-link     { color: rgba(255, 255, 255, 0.6); }
     .cs-footer           { border-top-color: rgba(255, 255, 255, 0.1); }
     .cs-footer-text      { color: rgba(255, 255, 255, 0.3); }
+    .cs-footer-credit    { color: rgba(255, 255, 255, 0.25); }
 }
 </style>
 
@@ -438,5 +422,182 @@
 </script>
 
 {{ endBody() }}
+
+{#
+  Formie injects its own CSS via endBody() above.
+  These overrides MUST come after that injection to win on source order.
+  Scoped to .cs-formie-wrap so they only affect the landing page form.
+#}
+<style>
+/*
+ * Formie override — landing page only (.cs-formie-wrap)
+ *
+ * Actual Formie HTML structure (from DevTools):
+ *   .fui-i > form > .fui-form-container > .fui-page
+ *     > .fui-page-container > .fui-row.fui-page-row > .fui-field (email)
+ *     > .fui-btn-wrapper                        ← sibling of fui-page-container!
+ *
+ * So .fui-page is the correct flex parent for [field-container] + [btn-wrapper].
+ */
+
+/* 1. Strip all default spacing from the form wrapper chain */
+.cs-formie-wrap .fui-form,
+.cs-formie-wrap .fui-form-container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 2. .fui-page is the real flex parent: holds fui-page-container + fui-btn-wrapper */
+.cs-formie-wrap .fui-page {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 3. fui-page-container takes all remaining width */
+.cs-formie-wrap .fui-page-container {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  /* remove any flex/grid Formie may add here */
+  display: block !important;
+}
+
+/* 4. The inner field row — just passthrough, no extra spacing */
+.cs-formie-wrap .fui-row,
+.cs-formie-wrap .fui-page-row {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  grid-template-columns: unset !important;
+  column-gap: 0 !important;
+}
+
+.cs-formie-wrap .fui-field {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.cs-formie-wrap .fui-field-container {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.cs-formie-wrap .fui-input-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hide the auto-generated field label */
+.cs-formie-wrap .fui-label {
+  display: none !important;
+}
+
+/* 5. Email input */
+.cs-formie-wrap .fui-input {
+  display: block !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(17,34,80,0.18) !important;
+  border-right: none !important;
+  border-radius: 0 !important;
+  color: #112250 !important;
+  font-family: 'Lato', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  padding: 13px 16px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+.cs-formie-wrap .fui-input::placeholder {
+  color: rgba(17,34,80,0.3) !important;
+}
+
+.cs-formie-wrap .fui-input:focus {
+  border-color: #c9a96e !important;
+}
+
+/* 6. Submit button wrapper — flush right, no gap */
+.cs-formie-wrap .fui-btn-wrapper {
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: stretch !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 7. Submit button */
+.cs-formie-wrap .fui-btn,
+.cs-formie-wrap .fui-submit,
+.cs-formie-wrap .fui-btn-submit {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  background: #112250 !important;
+  border: 1px solid #112250 !important;
+  border-radius: 0 !important;
+  color: #f5f0e9 !important;
+  font-family: 'Lato', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  padding: 13px 20px !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+
+.cs-formie-wrap .fui-btn:hover,
+.cs-formie-wrap .fui-submit:hover,
+.cs-formie-wrap .fui-btn-submit:hover {
+  background: #c9a96e !important;
+  border-color: #c9a96e !important;
+  color: #112250 !important;
+}
+
+/* ── Mobile: stack vertically ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .cs-formie-wrap .fui-page {
+    flex-direction: column !important;
+  }
+
+  .cs-formie-wrap .fui-btn-wrapper {
+    width: 100% !important;
+  }
+
+  .cs-formie-wrap .fui-input {
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    border-bottom: none !important;
+    color: #ffffff !important;
+  }
+
+  .cs-formie-wrap .fui-input::placeholder {
+    color: rgba(255,255,255,0.4) !important;
+  }
+
+  .cs-formie-wrap .fui-btn,
+  .cs-formie-wrap .fui-submit,
+  .cs-formie-wrap .fui-btn-submit {
+    width: 100% !important;
+    background: #c9a96e !important;
+    border-color: #c9a96e !important;
+    color: #112250 !important;
+  }
+}
+</style>
+
 </body>
 </html>

@@ -1,0 +1,184 @@
+/**
+ * Formie — landing page newsletter row
+ * Matches Astro `frontend/src/pages/landing-page.astro` (.cs-input-row / .cs-input / .cs-btn).
+ * Scoped to `.cs-formie-wrap` (see `templates/landing-page/index.twig`).
+ *
+ * Formie HTML structure:
+ *   .fui-form > .fui-form-container > .fui-page > .fui-page-container
+ *     > .fui-row.fui-page-row > .fui-field.fui-type-email > .fui-field-container > .fui-input-wrapper > input.fui-input
+ *     > .fui-btn-wrapper.fui-btn-left > button.fui-btn.fui-submit.fui-btn-submit
+ *
+ * .fui-page-container is the flex parent; .fui-row (email) + .fui-btn-wrapper (submit) sit side-by-side.
+ * !important is required on display/flex rules because Formie's own CSS loads later.
+ */
+
+/* ── Strip all default form chrome ──────────────────── */
+.cs-formie-wrap .fui-form {
+  margin: 0;
+}
+
+.cs-formie-wrap .fui-form-container,
+.cs-formie-wrap .fui-page {
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Main flex row: page-container holds [field-row] + [submit btn] ── */
+.cs-formie-wrap .fui-page-container {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ── Email field row: takes all remaining width ──────── */
+.cs-formie-wrap .fui-row,
+.cs-formie-wrap .fui-page-row {
+  display: flex !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  /* Formie sets grid on .fui-page-row — override it */
+  grid-template-columns: unset !important;
+}
+
+.cs-formie-wrap .fui-field {
+  margin: 0 !important;
+  flex: 1;
+  min-width: 0;
+}
+
+.cs-formie-wrap .fui-field-container {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-formie-wrap .fui-input-wrapper {
+  flex: 1;
+  display: flex;
+}
+
+/* ── Email input ─────────────────────────────────────── */
+.cs-formie-wrap .fui-input {
+  width: 100%;
+  flex: 1;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid rgba(17, 34, 80, 0.18);
+  border-right: none;
+  border-radius: 0;
+  color: #112250;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 13px 16px;
+  outline: none;
+  box-shadow: none !important;
+  transition: border-color 0.25s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cs-formie-wrap .fui-input::placeholder {
+  color: rgba(17, 34, 80, 0.3);
+}
+
+.cs-formie-wrap .fui-input:focus {
+  border-color: #c9a96e;
+}
+
+/* ── Hide Formie's field label (we use .cs-form-label above) ── */
+.cs-formie-wrap .fui-label {
+  display: none !important;
+}
+
+/* ── Submit button wrapper ───────────────────────────── */
+.cs-formie-wrap .fui-btn-wrapper {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: stretch !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ── Submit button ───────────────────────────────────── */
+.cs-formie-wrap .fui-btn,
+.cs-formie-wrap .fui-submit,
+.cs-formie-wrap .fui-btn-submit {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+  min-height: 100%;
+  background: #112250 !important;
+  border: 1px solid #112250 !important;
+  border-radius: 0 !important;
+  color: #f5f0e9 !important;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 13px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.cs-formie-wrap .fui-btn:hover,
+.cs-formie-wrap .fui-submit:hover,
+.cs-formie-wrap .fui-btn-submit:hover {
+  background: #c9a96e !important;
+  border-color: #c9a96e !important;
+  color: #112250 !important;
+}
+
+/* ── Validation messages ─────────────────────────────── */
+.cs-formie-wrap .fui-error-message,
+.cs-formie-wrap .fui-alert {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+}
+
+/* ── Mobile: stack vertically, adapt colours for dark overlay ── */
+@media (max-width: 768px) {
+  .cs-formie-wrap .fui-page-container {
+    flex-direction: column !important;
+  }
+
+  .cs-formie-wrap .fui-btn-wrapper {
+    width: 100% !important;
+  }
+
+  .cs-formie-wrap .fui-input {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: none;
+    color: #ffffff;
+  }
+
+  .cs-formie-wrap .fui-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .cs-formie-wrap .fui-btn,
+  .cs-formie-wrap .fui-submit,
+  .cs-formie-wrap .fui-btn-submit {
+    width: 100% !important;
+    background: #c9a96e !important;
+    border-color: #c9a96e !important;
+    color: #112250 !important;
+  }
+}
