@@ -1,14 +1,14 @@
 {% set quote = quote ?? null %}
 {% set citation = citation ?? null %}
 
-<figure class="bg-grey-50 border border-grey-200 rounded-2xl p-8 text-grey-900">
+<figure style="border-left:2px solid #C9A96E; padding-left:24px; padding-top:8px; padding-bottom:8px;">
     <blockquote class="blockquote">
-        {{ quote|replace('"', '')|replace('“', '')|replace('”', '')|raw }}
+        {{ quote|replace('"', '')|replace('"', '')|replace('"', '')|raw }}
     </blockquote>
 
     {% if citation|default %}
         <figcaption class="mt-4">
-            <cite class="not-italic">- {{ citation }}</cite>
+            <cite class="not-italic" style="font-family:'Lato',sans-serif; font-size:13px; letter-spacing:0.08em; color:rgba(17,34,80,0.45);">— {{ citation }}</cite>
         </figcaption>
     {% endif %}
 </figure>

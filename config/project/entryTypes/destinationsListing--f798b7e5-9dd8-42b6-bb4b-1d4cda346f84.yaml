@@ -1,0 +1,140 @@
+allowLineBreaksInTitles: false
+color: teal
+description: null
+fieldLayouts:
+  45d8f8bd-0e51-4253-b001-dc3b19d4d05d:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 36b63fc9-3b1a-41fe-87be-124d1e2be05d
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e5f6a7b8-0001-4000-8000-000000000001 # Page Eyebrow
+            handle: null
+            instructions: null
+            label: Eyebrow
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f798b7e5-0000-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: b8f875f4-12b1-4e54-9900-0335b3c8b0b7 # Heading
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f798b7e5-0000-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 7318ab83-35e9-49f3-bee0-be852a027231 # Image
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b87f2593-e5ee-4b43-9f09-f548d106f662
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: ae962a30-32f5-4f16-a15d-80f6f7a3f2d9 # Summary
+            handle: null
+            instructions: 'Intro paragraph displayed below the heading.'
+            label: Intro
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 5c9f9dba-899e-4b90-be84-77e900c70b99
+            userCondition: null
+            warning: null
+            width: 50
+        name: General
+        uid: 0d9c3d53-d3be-4e89-b1af-d72571674766
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9b1b116f-f645-48a4-849d-c69146bed33d
+            userCondition: null
+            warning: null
+            width: 100
+        name: SEO
+        uid: e17d8a41-9d63-4216-a510-9d9c0e1a91f2
+        userCondition: null
+    thumbFieldKey: null
+handle: destinationsListing
+hasTitleField: true
+icon: globe
+name: 'Listing - Destinations'
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: highlightText
+instructions: 'A single highlight item.'
+name: 'Highlight Text'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 200
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

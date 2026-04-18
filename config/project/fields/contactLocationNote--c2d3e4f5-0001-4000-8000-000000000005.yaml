@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: contactLocationNote
+instructions: 'Sub-text below the location (e.g. "Designing journeys across NZ & Australia")'
+name: 'Contact Location Note'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 120
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

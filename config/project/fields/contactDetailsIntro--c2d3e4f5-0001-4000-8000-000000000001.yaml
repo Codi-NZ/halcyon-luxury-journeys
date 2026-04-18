@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: contactDetailsIntro
+instructions: 'Italic introductory paragraph in the "Get in touch" column'
+name: 'Contact Details Intro'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 500
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

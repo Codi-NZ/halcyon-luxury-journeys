@@ -3,6 +3,11 @@
 {# Override the banner block — homepage has no standard banner #}
 {% block banner %}{% endblock %}
 
+{# Ensure entry is available — covers direct template rendering without Craft routing #}
+{% if entry is not defined or entry is null %}
+    {% set entry = craft.entries.section('homepage').one() %}
+{% endif %}
+
 {% block content %}
 
     {# ── Loading screen ────────────────────────────────────────────── #}

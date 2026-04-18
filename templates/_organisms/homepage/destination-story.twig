@@ -1,13 +1,15 @@
 {#
   Destination Story — navy section, parallax image left + editorial text right.
   Expects: entry.storyHeading, entry.storyBody, entry.storyBody2,
-           entry.storyImage, entry.storyLinkText
+           entry.storyImage, entry.linkItMinimal (Hyper single-link for story CTA)
 #}
 
 {% set heading   = entry.storyHeading  ?? 'The Halcyon Story' %}
 {% set body1     = entry.storyBody     ?? 'New Zealand is not merely our home — it is our inspiration. From the ancient ferns of the West Coast to the turquoise silence of a private fiord, we have spent years learning the landscapes, the people, and the quiet places that make this country extraordinary.' %}
 {% set body2     = entry.storyBody2    ?? 'This knowledge is what we bring to every journey we design — not as guides, but as confidants who have gone before you and know exactly what awaits.' %}
-{% set linkText  = entry.storyLinkText ?? 'Our story' %}
+{% set storyLink = entry.linkItMinimal.one() ?? null %}
+{% set linkText  = storyLink ? storyLink.text : 'Our story' %}
+{% set linkUrl   = storyLink ? storyLink.url  : '/about' %}
 {% set storyImg  = entry.storyImage.one() ?? null %}
 
 {# NZ map paths #}
@@ -25,9 +27,12 @@
     {# Left: full-bleed image with parallax #}
     <div style="position:relative; min-height:560px; overflow:hidden;">
         {% if storyImg %}
+            {% set transformed = storyImg.setTransform('fullBleed') %}
             <img
-                src="{{ storyImg.url }}"
-                alt="{{ storyImg.title ?? 'New Zealand landscape' }}"
+                src="{{ transformed.url }}"
+                alt="{{ storyImg.alt ?? storyImg.title ?? 'New Zealand landscape' }}"
+                width="{{ transformed.width }}"
+                height="{{ transformed.height }}"
                 style="width:100%; height:120%; object-fit:cover; object-position:center; display:block; position:absolute; top:-10%;"
                 id="story-img"
                 loading="lazy"
@@ -82,7 +87,7 @@
         {% endif %}
 
         <div data-reveal data-delay="360">
-            <a href="/about" class="btn-luxury btn-luxury-light">
+            <a href="{{ linkUrl }}" class="btn-luxury btn-luxury-light">
                 {{ linkText }}
                 <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
                     <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>

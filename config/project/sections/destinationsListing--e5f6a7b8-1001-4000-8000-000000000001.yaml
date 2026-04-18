@@ -1,0 +1,21 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: f798b7e5-9dd8-42b6-bb4b-1d4cda346f84 # Listing - Destinations
+handle: destinationsListing
+maxAuthors: 1
+name: 'Destinations Listing'
+previewTargets:
+  -
+    label: 'Primary entry page'
+    refresh: '1'
+    urlFormat: '{url}'
+propagationMethod: all
+siteSettings:
+  24a9a722-d230-49d0-8693-6825092a5675: # $CRAFT_DEFAULT_SITE_NAME
+    enabledByDefault: true
+    hasUrls: true
+    template: destinations/index
+    uriFormat: destinations
+type: single

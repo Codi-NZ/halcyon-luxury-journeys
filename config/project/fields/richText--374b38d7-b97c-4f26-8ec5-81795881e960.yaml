@@ -4,13 +4,26 @@ instructions: null
 name: 'Rich Text'
 searchable: false
 settings:
+  advancedLinkFields: null
   availableTransforms: ''
   availableVolumes: '*'
   characterLimit: null
-  ckeConfig: 9ac7d0b0-87f9-487d-a990-f718fdcdf4fd # Basic
-  createButtonLabel: null
+  css: null
+  cssFile: null
   defaultTransform: null
+  defaultUploadLocationSubpath: null
+  defaultUploadLocationVolume: null
   fullGraphqlData: true
+  headingLevels:
+    - '2'
+    - '3'
+  imageEntryTypeUid: null
+  imageFieldUid: null
+  imageMode: img
+  js: null
+  jsFile: null
+  options: null
+  parseEmbeds: false
   purifierConfig: null
   purifyHtml: true
   showUnpermittedFiles: false
@@ -18,6 +31,14 @@ settings:
   showWordCount: false
   sourceEditingGroups:
     - __ADMINS__
+  toolbar:
+    - heading
+    - '|'
+    - bold
+    - italic
+    - numberedList
+    - bulletedList
+    - link
   wordLimit: null
 translationKeyFormat: null
 translationMethod: none

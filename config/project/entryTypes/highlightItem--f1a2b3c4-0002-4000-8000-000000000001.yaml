@@ -1,0 +1,42 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  f1a2b3c4-0002-4000-8000-000000000002:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: f1a2b3c4-0001-4000-8000-000000000001 # Highlight Text
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: f1a2b3c4-0002-4000-8000-000000000010
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: f1a2b3c4-0002-4000-8000-000000000020
+        userCondition: null
+    thumbFieldKey: null
+handle: highlightItem
+hasTitleField: false
+icon: list-ul
+name: 'Highlight Item'
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: '{highlightText}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{highlightText}'

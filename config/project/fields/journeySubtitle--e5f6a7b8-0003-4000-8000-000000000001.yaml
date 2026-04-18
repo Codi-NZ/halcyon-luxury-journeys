@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: journeySubtitle
+instructions: 'Short subtitle shown beneath the journey title (e.g. "Alps, Fiordland & the Lodge Circuit").'
+name: 'Journey Subtitle'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 120
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: journeySeason
+instructions: 'Best season information (e.g. "Year-round · Peak: Oct – Apr").'
+name: 'Journey Season'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 80
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: 'Year-round · Peak: Oct – Apr'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

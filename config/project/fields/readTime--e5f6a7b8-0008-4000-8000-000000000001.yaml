@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: readTime
+instructions: 'Estimated reading time (e.g. "5 min read").'
+name: 'Read Time'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 20
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: '5 min read'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

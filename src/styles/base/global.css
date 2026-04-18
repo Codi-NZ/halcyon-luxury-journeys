@@ -20,7 +20,7 @@ body {
     @apply bg-grey-200 text-grey-900 text-shadow-none;
 }
 
-svg[aria-hidden],
+/* Do not hide svg[aria-hidden] visually — aria-hidden is for AT only; display:none breaks icons. */
 svg[display='none'] {
     display: none;
 }

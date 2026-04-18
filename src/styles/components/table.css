@@ -1,34 +1,42 @@
-/* Responsive Table Styles */
+/**
+ * Table — Halcyon Luxury Journeys
+ * Navy header, cream background, gold accents.
+ */
 
 .table-wrapper {
-    @apply relative w-full;
+    position: relative;
+    width: 100%;
 }
 
 .table-wrapper-inner {
-    @apply relative overflow-x-auto;
+    position: relative;
+    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+    scrollbar-color: rgba(17, 34, 80, 0.2) transparent;
 }
 
 .table-wrapper-inner::-webkit-scrollbar {
-    height: 8px;
+    height: 6px;
 }
 
 .table-wrapper-inner::-webkit-scrollbar-track {
-    @apply bg-transparent;
+    background: transparent;
 }
 
 .table-wrapper-inner::-webkit-scrollbar-thumb {
-    @apply bg-black/30 rounded-full;
+    background: rgba(17, 34, 80, 0.2);
+    border-radius: 3px;
 }
 
 .table-wrapper-inner::-webkit-scrollbar-thumb:hover {
-    @apply bg-black/50;
+    background: rgba(17, 34, 80, 0.35);
 }
 
 .table {
-    @apply w-full border-collapse min-w-full;
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 100%;
     white-space: nowrap;
 }
 
@@ -37,58 +45,76 @@
     white-space: nowrap;
 }
 
-/* Scroll indicators - fade gradients */
+.table th {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: #112250;
+    color: #F5F0E9;
+    padding: 14px 20px;
+    text-align: left;
+}
+
+.table td {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: rgba(17, 34, 80, 0.7);
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(17, 34, 80, 0.08);
+}
+
+.table tbody tr:hover td {
+    background: rgba(201, 169, 110, 0.06);
+}
+
+/* Scroll indicators — cream fade */
 .table-scroll-indicator {
-    @apply absolute top-0 bottom-0 w-6 pointer-events-none z-10 transition-opacity duration-300;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity 0.3s ease;
 }
 
 .table-scroll-indicator--left {
-    @apply left-0;
+    left: 0;
     background: linear-gradient(
         to right,
-        rgba(249, 250, 251, 0.95) 0%,
-        rgba(249, 250, 251, 0.5) 15%,
-        rgba(249, 250, 251, 0.05) 35%,
+        rgba(245, 240, 233, 0.95) 0%,
+        rgba(245, 240, 233, 0.5) 15%,
+        rgba(245, 240, 233, 0.05) 35%,
         transparent 50%
     );
 }
 
 .table-scroll-indicator--right {
-    @apply right-0;
+    right: 0;
     background: linear-gradient(
         to left,
-        rgba(249, 250, 251, 0.95) 0%,
-        rgba(249, 250, 251, 0.5) 15%,
-        rgba(249, 250, 251, 0.05) 35%,
+        rgba(245, 240, 233, 0.95) 0%,
+        rgba(245, 240, 233, 0.5) 15%,
+        rgba(245, 240, 233, 0.05) 35%,
         transparent 50%
     );
 }
 
 .table-scroll-indicator[aria-hidden='true'] {
-    @apply opacity-0;
+    opacity: 0;
 }
 
-/* Make scroll indicators slightly wider on mobile */
 @media (max-width: 767px) {
-    .table-scroll-indicator {
-        @apply w-8;
-    }
+    .table-scroll-indicator { width: 32px; }
 }
 
-/* Mobile and tablet: Horizontal scroll */
 @media (max-width: 1023px) {
-    .table-wrapper-inner {
-        @apply overflow-x-auto;
-    }
+    .table-wrapper-inner { overflow-x: auto; }
 }
 
-/* Desktop: Remove horizontal scroll for normal tables */
 @media (min-width: 1024px) {
-    .table-wrapper-inner {
-        overflow-x: visible;
-    }
-
-    .table-scroll-indicator {
-        @apply hidden;
-    }
+    .table-wrapper-inner { overflow-x: visible; }
+    .table-scroll-indicator { display: none; }
 }

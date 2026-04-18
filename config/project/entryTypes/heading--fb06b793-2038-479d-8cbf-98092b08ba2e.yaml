@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: blue
 description: null
 fieldLayouts:
@@ -11,6 +12,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:42:39+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: b8f875f4-12b1-4e54-9900-0335b3c8b0b7 # Heading
             handle: null
             instructions: null
@@ -26,6 +28,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:42:39+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 48a21ed2-840d-43e1-b045-29faa67454b4 # Heading Level
             handle: null
             instructions: null
@@ -41,6 +44,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:42:39+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 9c3d7bcb-b2bf-41e7-99e3-b7b91d9ea0e7 # Switch On
             handle: showInTableOfContents
             instructions: null
@@ -55,6 +59,7 @@ fieldLayouts:
         name: Content
         uid: 51b82914-8ef2-41fd-81f6-0bfe9feb329f
         userCondition: null
+    thumbFieldKey: null
 handle: heading
 hasTitleField: false
 icon: font
@@ -66,3 +71,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

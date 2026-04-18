@@ -86,8 +86,8 @@
                     <mj-column width="100%" padding-right="0">
                         <mj-text color="#131313" font-size="11px" align="center" line-height="14px" font-weight="bold">
                             <mj-raw>
-                                {% set globalFooter = craft.globalSets().handle('globalFooter').siteId(1).one() %}
-                                {% for item in globalFooter.footerLinks %}
+                                {% set globals = craft.entries().section('globals').one() %}
+                                {% for item in globals.legalLinks %}
                                     <a class="footer-link" href="{{ item.url }}">{{ item.text }}</a>{% if
                                         not loop.last %}
                                         &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;

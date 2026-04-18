@@ -1,6 +1,9 @@
+allowLineBreaksInTitles: false
 color: yellow
+description: null
 fieldLayouts:
   3f1903ff-9e71-41bc-8605-fc223934e8d6:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -37,6 +40,7 @@ fieldLayouts:
             dateAdded: '2025-04-15T01:58:34+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: f6d70fec-8f6c-480f-8473-3bb41501fba8 # Content Blocks Shared Content
             handle: null
             instructions: null
@@ -51,6 +55,7 @@ fieldLayouts:
         name: Content
         uid: f433799c-c283-4bf7-b677-a47240879bed
         userCondition: null
+    thumbFieldKey: null
 handle: sharedContent
 hasTitleField: true
 icon: copy
@@ -62,3 +67,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

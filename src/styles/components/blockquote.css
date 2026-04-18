@@ -1,7 +1,26 @@
+/**
+ * Blockquote — Halcyon Luxury Journeys
+ * Playfair Display italic, gold left border, navy text.
+ */
+
 .blockquote {
-    @apply heading-4;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.7;
+    color: rgba(17, 34, 80, 0.7);
 
     & a {
-        @apply underline;
+        color: #112250;
+        text-decoration: underline;
+        text-decoration-color: rgba(17, 34, 80, 0.3);
+        text-underline-offset: 3px;
+        transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+
+    & a:hover {
+        color: #C9A96E;
+        text-decoration-color: #C9A96E;
     }
 }

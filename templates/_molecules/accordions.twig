@@ -1,24 +1,22 @@
-<ul class="flex flex-col gap-4">
+<div class="cb-accordion-group">
     {% for item in items %}
-        <li>
-            {% embed '_molecules/accordion'
-                with {
-                    heading: item.heading
-                }
-            %}
-                {% block main %}
-                    <div class="richtext">
-                        {{ item.richText|raw }}
-                    </div>
+        {% embed '_molecules/accordion'
+            with {
+                heading: item.heading
+            }
+        %}
+            {% block main %}
+                <div class="richtext">
+                    {{ item.richText|raw }}
+                </div>
 
-                    {% if item.links %}
-                        {% include '_molecules/links' with {
-                            style: 'pill',
-                            links: item.links
-                        } %}
-                    {% endif %}
-                {% endblock %}
-            {% endembed %}
-        </li>
+                {% if item.links %}
+                    {% include '_molecules/links' with {
+                        style: 'pill',
+                        links: item.links
+                    } %}
+                {% endif %}
+            {% endblock %}
+        {% endembed %}
     {% endfor %}
-</ul>
+</div>

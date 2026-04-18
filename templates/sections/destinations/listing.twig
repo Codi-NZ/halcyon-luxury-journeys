@@ -1,0 +1,256 @@
+{#
+  Destinations Listing — filterable grid of destination entries.
+  Rendered via a Sitemap entry with type "destinationsListing" or as a standalone template.
+
+  Filters: country (new-zealand / australia), type (stay / experience)
+  Grid: 3-column responsive layout with card hover effects.
+#}
+
+{% extends 'layouts/base' %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+
+{% set allDestinations = craft.entries()
+    .section('destinations')
+    .with(['destinationImage'])
+    .orderBy('title asc')
+    .all()
+%}
+
+{# ── Page Hero ── #}
+<section class="dest-listing-hero">
+    <div class="dest-listing-hero-inner">
+        <p class="eyebrow" data-reveal>Destinations</p>
+        <h1 class="dest-listing-title" data-reveal data-delay="100">
+            Two Countries.<br>Infinite Journeys.
+        </h1>
+        <p class="dest-listing-intro" data-reveal data-delay="200">
+            New Zealand and Australia — two extraordinary nations, each with its own soul.
+            We know every corner intimately so you don't have to.
+        </p>
+    </div>
+</section>
+
+{# ── Filter Bar ── #}
+<section class="dest-filter-section" aria-label="Filter destinations">
+    <div class="dest-filter-inner">
+        <div class="dest-filter-controls">
+
+            {# Country Filter #}
+            <div class="dest-filter-group">
+                <span class="dest-filter-group-label" id="country-filter-label">Country</span>
+                <div class="dest-filter-pills" role="group" aria-labelledby="country-filter-label">
+                    <button class="dest-filter-pill is-active" data-filter="country" data-value="all" aria-pressed="true">All Countries</button>
+                    <button class="dest-filter-pill" data-filter="country" data-value="new-zealand" aria-pressed="false">New Zealand</button>
+                    <button class="dest-filter-pill" data-filter="country" data-value="australia" aria-pressed="false">Australia</button>
+                </div>
+            </div>
+
+            <div class="dest-filter-divider" aria-hidden="true"></div>
+
+            {# Type Filter #}
+            <div class="dest-filter-group">
+                <span class="dest-filter-group-label" id="type-filter-label">Type</span>
+                <div class="dest-filter-pills" role="group" aria-labelledby="type-filter-label">
+                    <button class="dest-filter-pill is-active" data-filter="type" data-value="all" aria-pressed="true">All Types</button>
+                    <button class="dest-filter-pill" data-filter="type" data-value="stay" aria-pressed="false">Places to Stay</button>
+                    <button class="dest-filter-pill" data-filter="type" data-value="experience" aria-pressed="false">Experiences</button>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="dest-filter-count" aria-live="polite" aria-atomic="true">
+            <span id="dest-count">{{ allDestinations|length }}</span>
+            <span class="dest-filter-count-label">destinations</span>
+        </p>
+    </div>
+</section>
+
+{# ── Destinations Grid ── #}
+<section class="dest-listing-section">
+    <div class="dest-listing-inner">
+
+        <div class="dest-listing-grid" id="dest-grid">
+            {% for destination in allDestinations %}
+                {% set country = destination.destinationCountry.value ?? '' %}
+                {% set type = destination.destinationType.value ?? '' %}
+                {% set countryLabel = destination.destinationCountry.label ?? '' %}
+                {% set location = destination.destinationLocation ?? '' %}
+                {% set image = destination.destinationImage.one() ?? null %}
+
+                <a
+                    href="{{ destination.url }}"
+                    class="dest-card"
+                    data-country="{{ country }}"
+                    data-type="{{ type }}"
+                >
+                    {# Image #}
+                    <div class="dest-card-img-wrap">
+                        {% if image %}
+                            <img
+                                src="{{ image.url }}"
+                                alt="{{ image.alt ?? image.title ?? destination.title }}"
+                                class="dest-card-img"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        {% endif %}
+
+                        {# Type badge #}
+                        {% if type %}
+                            <div class="dest-card-badge dest-card-badge--{{ type }}">
+                                {{ type == 'stay' ? 'Stay' : 'Experience' }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    {# Card body #}
+                    <div class="dest-card-info">
+                        {% if countryLabel or location %}
+                            <div class="dest-card-meta-row">
+                                {% if countryLabel %}
+                                    <span class="dest-card-country-tag">{{ countryLabel }}</span>
+                                {% endif %}
+                                {% if countryLabel and location %}
+                                    <span class="dest-card-sep" aria-hidden="true">·</span>
+                                {% endif %}
+                                {% if location %}
+                                    <span class="dest-card-location">{{ location }}</span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+
+                        <h3 class="dest-card-name">{{ destination.title }}</h3>
+
+                        {% if destination.destinationDescription %}
+                            <p class="dest-card-desc">{{ destination.destinationDescription }}</p>
+                        {% endif %}
+
+                        <span class="btn-luxury dest-card-cta">
+                            View More
+                            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
+        {# Empty state #}
+        <div class="dest-listing-empty" id="dest-empty" hidden>
+            <div class="rule" style="margin:0 auto 28px;"></div>
+            <p class="dest-listing-empty-msg">No destinations match your current filters.</p>
+            <button class="btn-luxury" id="dest-reset">
+                Clear all filters
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                </svg>
+            </button>
+        </div>
+
+    </div>
+</section>
+
+{# ── CTA Section ── #}
+<section class="dest-listing-cta" data-reveal>
+    <div class="dest-listing-cta-inner">
+        <div class="rule" style="margin-bottom:32px; background:rgba(201,169,110,0.4);"></div>
+        <p class="dest-listing-cta-eyebrow">Ready to explore?</p>
+        <h2 class="dest-listing-cta-heading">Every journey begins with a conversation.</h2>
+        <p class="dest-listing-cta-body">
+            Tell us where you'd like to go — and we'll take care of everything else.
+        </p>
+        <a href="/contact" class="btn-filled-light">
+            Begin Your Journey
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+        </a>
+    </div>
+</section>
+
+
+<script>
+(function() {
+    var activeCountry = 'all';
+    var activeType = 'all';
+    var grid = document.getElementById('dest-grid');
+    var countEl = document.getElementById('dest-count');
+    var emptyEl = document.getElementById('dest-empty');
+    var resetBtn = document.getElementById('dest-reset');
+    if (!grid || !countEl || !emptyEl || !resetBtn) return;
+
+    function getItems() {
+        return Array.from(grid.querySelectorAll('.dest-card'));
+    }
+
+    function matches(item) {
+        var c = item.dataset.country || '';
+        var t = item.dataset.type || '';
+        return (activeCountry === 'all' || c === activeCountry)
+            && (activeType === 'all' || t === activeType);
+    }
+
+    function applyFilters() {
+        var items = getItems();
+        grid.classList.add('is-fading');
+
+        setTimeout(function() {
+            var visible = 0;
+            items.forEach(function(item, idx) {
+                if (matches(item)) {
+                    item.hidden = false;
+                    item.style.animation = 'none';
+                    void item.offsetWidth;
+                    item.style.animation = 'destItemReveal 0.5s ease ' + (idx * 45) + 'ms both';
+                    visible++;
+                } else {
+                    item.hidden = true;
+                    item.style.animation = 'none';
+                }
+            });
+
+            countEl.textContent = String(visible);
+            emptyEl.hidden = visible > 0;
+            grid.hidden = visible === 0;
+            grid.classList.remove('is-fading');
+        }, 230);
+    }
+
+    document.querySelectorAll('.dest-filter-pill').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var filterGroup = btn.dataset.filter;
+            var value = btn.dataset.value;
+
+            document.querySelectorAll('.dest-filter-pill[data-filter="' + filterGroup + '"]').forEach(function(b) {
+                b.classList.remove('is-active');
+                b.setAttribute('aria-pressed', 'false');
+            });
+            btn.classList.add('is-active');
+            btn.setAttribute('aria-pressed', 'true');
+
+            if (filterGroup === 'country') activeCountry = value;
+            if (filterGroup === 'type') activeType = value;
+
+            applyFilters();
+        });
+    });
+
+    resetBtn.addEventListener('click', function() {
+        activeCountry = 'all';
+        activeType = 'all';
+        document.querySelectorAll('.dest-filter-pill').forEach(function(btn) {
+            var isAll = btn.dataset.value === 'all';
+            btn.classList.toggle('is-active', isAll);
+            btn.setAttribute('aria-pressed', String(isAll));
+        });
+        applyFilters();
+    });
+})();
+</script>
+
+{% endblock %}

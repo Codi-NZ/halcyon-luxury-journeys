@@ -1,16 +1,19 @@
 columnSuffix: null
 handle: journeyCountry
-instructions: 'Country this journey is based in (e.g. "New Zealand", "Australia")'
+instructions: 'Country this journey is based in.'
 name: 'Journey Country'
 searchable: false
 settings:
-  byteLimit: null
-  charLimit: 80
-  code: false
-  initialRows: 1
-  multiline: false
-  placeholder: null
-  uiMode: normal
+  optgroups: false
+  options:
+    -
+      default: true
+      label: 'New Zealand'
+      value: new-zealand
+    -
+      default: false
+      label: Australia
+      value: australia
 translationKeyFormat: null
 translationMethod: none
-type: craft\fields\PlainText
+type: craft\fields\Dropdown

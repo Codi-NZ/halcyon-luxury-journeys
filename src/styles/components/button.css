@@ -1,15 +1,78 @@
+/**
+ * Buttons — Halcyon Luxury Journeys
+ * Matches the luxury design: navy/gold palette, no border-radius.
+ */
+
 .btn {
-    @apply py-2 px-6 inline-flex items-center justify-center copy cursor-pointer rounded-4xl border-2 border-grey-300 bg-grey-200 text-grey-900 transition-colors hover:bg-grey-300 hover:border-grey-400 gap-2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: #112250;
+    background: transparent;
+    border: 1px solid rgba(17, 34, 80, 0.25);
+    padding: 12px 24px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 
     & .icon {
-        @apply size-6;
+        width: 18px;
+        height: 18px;
     }
 }
 
+.btn:hover {
+    background: #112250;
+    border-color: #112250;
+    color: #F5F0E9;
+}
+
 .btn-border {
-    @apply py-2 px-6 inline-flex items-center justify-center copy cursor-pointer rounded-4xl border-2 border-grey-400 bg-transparent text-grey-700 hover:bg-grey-50 hover:text-grey-900 transition-colors gap-2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: rgba(17, 34, 80, 0.7);
+    background: transparent;
+    border: 1px solid rgba(17, 34, 80, 0.2);
+    padding: 12px 24px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.btn-border:hover {
+    border-color: rgba(17, 34, 80, 0.5);
+    color: #112250;
 }
 
 .link {
-    @apply text-lg leading-none border-b border-dashed border-grey-300 pb-2 inline-flex text-grey-700 hover:text-grey-900 cursor-pointer transition-colors;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 0.12em;
+    color: #112250;
+    border-bottom: 1px solid rgba(17, 34, 80, 0.3);
+    padding-bottom: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, gap 0.3s ease;
+}
+
+.link:hover {
+    color: #C9A96E;
+    border-color: #C9A96E;
+    gap: 14px;
 }

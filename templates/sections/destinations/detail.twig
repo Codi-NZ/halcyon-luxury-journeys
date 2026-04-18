@@ -1,0 +1,137 @@
+{% extends 'layouts/base' %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+
+{% set image = entry.destinationImage.one() ?? null %}
+{% set countryField = entry.destinationCountry ?? null %}
+{% set country = countryField.label ?? '' %}
+{% set location = entry.destinationLocation ?? '' %}
+{% set types = entry.destinationType.all() ?? [] %}
+{% set description = entry.destinationDescription ?? '' %}
+
+{# ── Breadcrumbs + Hero Banner ── #}
+{% set homePage = craft.entries.section('homepage').one() ?? null %}
+
+<section class="dest-detail-hero">
+    {% if image %}
+        <div class="dest-detail-hero-img-wrap">
+            <img
+                src="{{ image.url }}"
+                alt="{{ image.alt ?? image.title ?? entry.title }}"
+                class="dest-detail-hero-img"
+            />
+            <div class="dest-detail-hero-gradient"></div>
+        </div>
+    {% endif %}
+
+    <div class="dest-detail-hero-content">
+        <div class="container-lg">
+
+            {# Breadcrumbs #}
+            <nav class="breadcrumbs-halcyon" style="margin-bottom:clamp(24px,3vw,40px);" aria-label="Breadcrumbs">
+                {% if homePage %}
+                    <a href="{{ homePage.url }}" style="color:rgba(245,240,233,0.45);">Home</a>
+                    <span class="breadcrumb-sep" style="color:rgba(245,240,233,0.25);" aria-hidden="true">/</span>
+                {% endif %}
+                <a href="/destinations" style="color:rgba(245,240,233,0.45);">Destinations</a>
+                <span class="breadcrumb-sep" style="color:rgba(245,240,233,0.25);" aria-hidden="true">/</span>
+                <span style="color:rgba(245,240,233,0.7);" aria-current="page">{{ entry.title }}</span>
+            </nav>
+
+            {# Type badges #}
+            {% if types|length %}
+                <div class="dest-detail-badges">
+                    {% for type in types %}
+                        <span class="dest-detail-badge">{{ type.title }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {# Title #}
+            <h1 class="dest-detail-hero-title">{{ entry.title }}</h1>
+
+            {# Key details bar #}
+            <div class="dest-detail-meta">
+                {% if country %}
+                    <div class="dest-detail-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1"/>
+                            <ellipse cx="8" cy="8" rx="3.5" ry="6.5" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
+                            <line x1="1.5" y1="8" x2="14.5" y2="8" stroke="currentColor" stroke-width="0.7" opacity="0.4"/>
+                        </svg>
+                        <span class="dest-detail-meta-label">Country</span>
+                        <span class="dest-detail-meta-value">{{ country }}</span>
+                    </div>
+                {% endif %}
+
+                {% if location %}
+                    <div class="dest-detail-meta-divider"></div>
+                    <div class="dest-detail-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M8 1.5a4.5 4.5 0 0 1 4.5 4.5c0 3-4.5 8.5-4.5 8.5S3.5 9 3.5 6A4.5 4.5 0 0 1 8 1.5Z" stroke="currentColor" stroke-width="1"/>
+                            <circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="0.8"/>
+                        </svg>
+                        <span class="dest-detail-meta-label">Location</span>
+                        <span class="dest-detail-meta-value">{{ location }}</span>
+                    </div>
+                {% endif %}
+
+                {# {% if types|length %}
+                    <div class="dest-detail-meta-divider"></div>
+                    <div class="dest-detail-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <rect x="2" y="4" width="12" height="10" rx="1" stroke="currentColor" stroke-width="1"/>
+                            <path d="M5 4V2.5a1 1 0 0 1 2 0V4M9 4V2.5a1 1 0 0 1 2 0V4" stroke="currentColor" stroke-width="0.8"/>
+                            <line x1="2" y1="7.5" x2="14" y2="7.5" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
+                        </svg>
+                        <span class="dest-detail-meta-label">Type</span>
+                        <span class="dest-detail-meta-value">{{ types|map(t => t.title)|join(', ') }}</span>
+                    </div>
+                {% endif %} #}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{# ── Description ── #}
+{% if description %}
+    <section class="bg-cream" style="padding:clamp(48px,6vw,80px) 0;">
+        <div class="container-lg">
+            <div class="dest-entry-body" data-reveal>
+                <p class="dest-entry-description">{{ description }}</p>
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+{# ── Content Blocks ── #}
+{% if entry.contentBlocks is defined and entry.contentBlocks.exists() %}
+    <section class="bg-cream section-pad" style="padding-top:0;">
+        <article class="container-lg">
+            {% include 'blocks/contentBlocks' %}
+        </article>
+    </section>
+{% endif %}
+
+{# ── CTA ── #}
+<section class="plan-cta" data-reveal>
+    <div class="plan-cta-inner">
+        <div class="rule" style="margin-bottom:32px; background:rgba(201,169,110,0.4);"></div>
+        <p class="plan-cta-eyebrow">Interested in {{ entry.title }}?</p>
+        <h2 class="plan-cta-heading">Let's plan your journey.</h2>
+        <p class="plan-cta-body">
+            Tell us what inspires you — and we'll craft a bespoke itinerary around it.
+        </p>
+        <a href="/contact" class="btn-filled-light">
+            Begin Your Journey
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

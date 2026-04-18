@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: categoryTag
+instructions: 'Short label displayed on cards as a badge (e.g. "Stay", "Experience"). If left blank, the category title is used.'
+name: Tag
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 30
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

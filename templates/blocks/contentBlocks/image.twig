@@ -1,7 +1,19 @@
-{% include '_atoms/fullwidth-image' with {
-    transform: 'block',
-    image: block.image[0],
-    caption: block.caption|default,
-    display: block.inset ? 'inset' : 'contain',
-    autoHeight: block.autoHeight
-} %}
+{% set blockImage = block.image.one() ?? null %}
+
+{% if blockImage %}
+    <figure class="w-full overflow-hidden">
+        <img
+            src="{{ blockImage.url }}"
+            alt="{{ blockImage.alt ?: blockImage.title }}"
+            style="width:100%; height:auto; object-fit:cover; display:block;"
+            loading="lazy"
+            decoding="async"
+        />
+
+        {% if block.caption ?? null %}
+            <figcaption style="font-family:'Lato',sans-serif; font-size:13px; font-style:italic; color:rgba(17,34,80,0.45); margin-top:12px; letter-spacing:0.02em;">
+                {{ block.caption }}
+            </figcaption>
+        {% endif %}
+    </figure>
+{% endif %}

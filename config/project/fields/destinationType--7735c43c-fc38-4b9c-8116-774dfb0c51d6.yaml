@@ -1,0 +1,22 @@
+columnSuffix: null
+handle: destinationType
+instructions: 'Select whether this is a place to stay or an experience.'
+name: 'Destination Type'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: 2
+  minRelations: null
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: true
+  source: 'group:d5931c81-8084-4100-bcb7-9186a1bbde45' # Destination Type
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Categories

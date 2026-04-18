@@ -1,15 +1,5 @@
-<section class="inner py-12 xl:py-24">
-    {# {% if block("aside")|default %}
-		<aside class="">
-			<div class="sticky-main">
-				{% block aside %}
-					{% include "_organisms/menus/subnav" %}
-				{% endblock %}
-			</div>
-		</aside>
-	{% endif %} #}
-
-    <article class="max-w-screen-lg mx-auto">
+<section class="bg-cream section-pad">
+    <article class="container-lg">
         {% block article %}
             {% include 'blocks/contentBlocks' %}
         {% endblock %}

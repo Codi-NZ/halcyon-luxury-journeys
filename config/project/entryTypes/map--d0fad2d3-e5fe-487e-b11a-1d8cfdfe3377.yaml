@@ -1,6 +1,9 @@
+allowLineBreaksInTitles: false
 color: blue
+description: null
 fieldLayouts:
   608dc7a2-881a-43fd-b588-4b34660c022c:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -37,6 +40,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T00:49:34+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: a0e23cc1-0f0e-4c56-999b-a6fc0c07df71 # Geolocation
             handle: null
             instructions: null
@@ -51,6 +55,7 @@ fieldLayouts:
         name: Content
         uid: 5bc9f419-9ad1-4a37-97e9-0ab8572a2756
         userCondition: null
+    thumbFieldKey: null
 handle: map
 hasTitleField: false
 icon: map-pin
@@ -62,3 +67,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

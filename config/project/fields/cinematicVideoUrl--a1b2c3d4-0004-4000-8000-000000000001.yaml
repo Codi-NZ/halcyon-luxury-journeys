@@ -1,16 +1,38 @@
 columnSuffix: null
 handle: cinematicVideoUrl
-instructions: 'Path to the cinematic full-width video displayed between the destinations accordion and experiences carousel (e.g. /207717_medium.mp4)'
-name: 'Cinematic Video URL'
+instructions: 'Full-width cinematic video displayed between the destinations accordion and experiences carousel. Upload an MP4 file.'
+name: 'Cinematic Video'
 searchable: false
 settings:
-  byteLimit: null
-  charLimit: 255
-  code: false
-  initialRows: 1
-  multiline: false
-  placeholder: /207717_medium.mp4
-  uiMode: normal
+  allowSelfRelations: false
+  allowSubfolders: false
+  allowUploads: true
+  allowedKinds:
+    - json
+    - video
+  branchLimit: null
+  defaultPlacement: end
+  defaultUploadLocationSource: 'volume:77dcf8f6-0eca-4d1a-a307-ce6088ed61f5' # Videos
+  defaultUploadLocationSubpath: null
+  maintainHierarchy: false
+  maxRelations: 1
+  minRelations: null
+  previewMode: full
+  restrictFiles: true
+  restrictLocation: false
+  restrictedDefaultUploadSubpath: null
+  restrictedLocationSource: 'volume:77dcf8f6-0eca-4d1a-a307-ce6088ed61f5' # Videos
+  restrictedLocationSubpath: null
+  selectionLabel: 'Select cinematic video'
+  showSearchInput: true
+  showSiteMenu: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  sources:
+    - 'volume:77dcf8f6-0eca-4d1a-a307-ce6088ed61f5' # Videos
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: thumbs
 translationKeyFormat: null
 translationMethod: none
-type: craft\fields\PlainText
+type: craft\fields\Assets

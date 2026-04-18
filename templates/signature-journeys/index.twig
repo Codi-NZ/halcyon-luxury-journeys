@@ -1,0 +1,165 @@
+{% extends 'layouts/base' %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+
+{# ── Hero area (from Single entry) ──────────────────── #}
+{% set eyebrow = entry is defined and entry ? entry.pageEyebrow ?? 'Signature Journeys' : 'Signature Journeys' %}
+{% set pageHeading = entry is defined and entry ? entry.heading ?? 'Curated for the\nendlessly curious.' : 'Curated for the\nendlessly curious.' %}
+{% set intro = entry is defined and entry ? entry.summary ?? 'Seven journeys across two extraordinary countries. Starting points, never blueprints — every one begins with your story.' : 'Seven journeys across two extraordinary countries. Starting points, never blueprints — every one begins with your story.' %}
+{% set quote = entry is defined and entry ? entry.philosophyQuote ?? '' : '"These are not packages. They are composed works — refined over years of access, shaped by ten thousand private moments, and presented to you as inspiration, not inventory. We will take any one of them and make it entirely, unmistakably yours."' %}
+
+{# ── Channel entries ────────────────────────────────── #}
+{% set journeys = craft.entries.section('signatureJourneys').all() %}
+
+<!-- Page Hero -->
+<section class="page-hero">
+    <div class="hero-inner">
+        <div class="hero-text">
+            <p class="eyebrow" data-reveal>{{ eyebrow }}</p>
+            <h1 class="page-title" data-reveal data-delay="80">
+                {{ pageHeading|nl2br }}
+            </h1>
+            <p class="page-intro" data-reveal data-delay="180">
+                {{ intro }}
+            </p>
+        </div>
+
+        {% if journeys|length %}
+            <nav class="hero-index" aria-label="Jump to journey" data-reveal="right" data-delay="300">
+                {% for journey in journeys %}
+                    <a href="#journey-{{ '%02d'|format(loop.index) }}" class="hero-index-link">
+                        <span class="hero-index-num">{{ '%02d'|format(loop.index) }}</span>
+                        <span class="hero-index-title">{{ journey.title }}</span>
+                        <span class="hero-index-country">{{ journey.journeyCountry ?? '' }}</span>
+                    </a>
+                {% endfor %}
+            </nav>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Philosophy Strip -->
+{% if quote %}
+    <section class="philosophy">
+        <div class="philosophy-inner">
+            <div class="rule" style="margin-bottom: 40px;"></div>
+            <blockquote class="philosophy-quote" data-reveal>
+                {{ quote }}
+            </blockquote>
+            <div class="philosophy-meta" data-reveal data-delay="100">
+                <span class="philosophy-count">{{ journeys|length }} journey{{ journeys|length != 1 ? 's' : '' }}</span>
+                <span class="philosophy-sep">&middot;</span>
+                <span class="philosophy-countries">New Zealand &amp; Australia</span>
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+<!-- Journey Cards -->
+<section class="journeys-section">
+    <div class="journeys-inner">
+        <div class="journeys-grid">
+            {% for journey in journeys %}
+                {% set image = journey.journeyImage.one() ?? null %}
+                {% set num = '%02d'|format(loop.index) %}
+
+                <a
+                    href="{{ journey.url }}"
+                    id="journey-{{ num }}"
+                    class="jcard"
+                    data-reveal
+                    data-delay="{{ loop.index0 * 70 }}"
+                >
+                    <div class="jcard-img-wrap">
+                        {% if image %}
+                            {% set transformed = image.setTransform('cardLarge') %}
+                            <img
+                                src="{{ transformed.url }}"
+                                alt="{{ image.alt ?? image.title ?? journey.title }}"
+                                class="jcard-img"
+                                loading="lazy"
+                                decoding="async"
+                                width="{{ transformed.width }}"
+                                height="{{ transformed.height }}"
+                            />
+                        {% endif %}
+                        <span class="jcard-num" aria-hidden="true">{{ num }}</span>
+                    </div>
+
+                    <div class="jcard-body">
+                        <div class="jcard-meta">
+                            {% if journey.journeyCountry %}
+                                <span class="jcard-country">{{ journey.journeyCountry }}</span>
+                            {% endif %}
+                            {% if journey.journeyRegion %}
+                                <span class="jcard-sep" aria-hidden="true">&middot;</span>
+                                <span class="jcard-region">{{ journey.journeyRegion }}</span>
+                            {% endif %}
+                            {% if journey.journeyDuration %}
+                                <span class="jcard-duration">{{ journey.journeyDuration }}</span>
+                            {% endif %}
+                        </div>
+
+                        <h3 class="jcard-title">{{ journey.title }}</h3>
+
+                        {% if journey.journeySubtitle %}
+                            <p class="jcard-subtitle">{{ journey.journeySubtitle }}</p>
+                        {% endif %}
+
+                        <div class="jcard-rule"></div>
+
+                        {% if journey.journeyDescription %}
+                            <p class="jcard-desc">{{ journey.journeyDescription }}</p>
+                        {% endif %}
+
+                        {% set highlights = journey.journeyHighlights.all() ?? [] %}
+                        {% if highlights|length %}
+                            <ul class="jcard-highlights">
+                                {% for h in highlights %}
+                                    <li class="jcard-highlight">{{ h.highlightText }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        <div class="jcard-footer">
+                            {% if journey.journeySeason %}
+                                <div class="jcard-season">
+                                    <span class="jcard-season-label">Best season</span>
+                                    <span class="jcard-season-value">{{ journey.journeySeason }}</span>
+                                </div>
+                            {% endif %}
+                            <span class="btn-luxury">
+                                View More
+                                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Bespoke CTA -->
+<section class="plan-cta" data-reveal>
+    <div class="plan-cta-inner">
+        <div class="rule" style="margin-bottom: 32px;"></div>
+        <p class="plan-cta-eyebrow">Don't see your journey here?</p>
+        <h2 class="plan-cta-heading">The most memorable journeys are the ones we design together.</h2>
+        <p class="plan-cta-body">
+            These seven are starting points. Tell us your story and we'll compose something entirely new.
+        </p>
+        <a href="/contact" class="btn-filled btn-filled-light">
+            Begin a Conversation
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+            </svg>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

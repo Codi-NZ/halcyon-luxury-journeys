@@ -23,7 +23,7 @@ settings:
   restrictedLocationSource: 'volume:46f2595c-2bd7-47fb-a8ad-7f432ce95b50' # Images
   restrictedLocationSubpath: null
   selectionLabel: 'Select journey image'
-  showCardsInGrid: false
+  showSearchInput: true
   showSiteMenu: true
   showUnpermittedFiles: false
   showUnpermittedVolumes: false
@@ -31,7 +31,7 @@ settings:
     - 'volume:46f2595c-2bd7-47fb-a8ad-7f432ce95b50' # Images
   targetSiteId: null
   validateRelatedElements: false
-  viewMode: large
+  viewMode: thumbs
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Assets

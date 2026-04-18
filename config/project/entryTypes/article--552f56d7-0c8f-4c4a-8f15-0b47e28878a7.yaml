@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: purple
 description: null
 fieldLayouts:
@@ -39,6 +40,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:57:22+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 7318ab83-35e9-49f3-bee0-be852a027231 # Image
             handle: null
             instructions: null
@@ -54,6 +56,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:57:22+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: ceca07e6-941b-4381-8e36-e6b760f5f0a6 # Video
             handle: null
             instructions: null
@@ -69,6 +72,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:54:25+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: ae962a30-32f5-4f16-a15d-80f6f7a3f2d9 # Summary
             handle: null
             instructions: null
@@ -84,6 +88,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:54:25+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e4e6cd78-eb0d-4cd5-99be-10c946b08f70 # News - Categories
             handle: categories
             instructions: null
@@ -105,6 +110,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:54:25+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 80801f65-acf2-4d04-92c0-df213deaed64 # Content Blocks
             handle: null
             instructions: null
@@ -126,6 +132,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:54:25+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
             handle: null
             instructions: null
@@ -140,6 +147,7 @@ fieldLayouts:
         name: SEO
         uid: eacd999a-f3c3-4569-a760-63e4ac25dab4
         userCondition: null
+    thumbFieldKey: null
 handle: article
 hasTitleField: true
 icon: newspaper
@@ -151,3 +159,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

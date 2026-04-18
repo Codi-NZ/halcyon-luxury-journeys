@@ -1,14 +1,62 @@
+allowLineBreaksInTitles: false
 color: blue
+description: null
 fieldLayouts:
   c1d2e3f4-0002-4000-8000-000000000003:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
         elements:
           -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2026-04-11T22:04:03+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: 98c2a061-0df0-4617-8ed8-765799f6bd4a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e5f6a7b8-0003-4000-8000-000000000001 # Journey Subtitle
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d2a00001-0002-4000-8000-000000000020
+            userCondition: null
+            warning: null
+            width: 100
+          -
             dateAdded: '2026-04-06T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: c1d2e3f4-0002-4000-8000-000000000013 # Journey Image
             handle: null
             instructions: null
@@ -24,6 +72,7 @@ fieldLayouts:
             dateAdded: '2026-04-06T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: c1d2e3f4-0002-4000-8000-000000000010 # Journey Country
             handle: null
             instructions: null
@@ -39,6 +88,7 @@ fieldLayouts:
             dateAdded: '2026-04-06T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: c1d2e3f4-0002-4000-8000-000000000011 # Journey Duration
             handle: null
             instructions: null
@@ -51,9 +101,42 @@ fieldLayouts:
             warning: null
             width: 25
           -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e5f6a7b8-0005-4000-8000-000000000001 # Journey Region
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d2a00001-0002-4000-8000-000000000021
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: e5f6a7b8-0004-4000-8000-000000000001 # Journey Season
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d2a00001-0002-4000-8000-000000000022
+            userCondition: null
+            warning: null
+            width: 50
+          -
             dateAdded: '2026-04-06T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: c1d2e3f4-0002-4000-8000-000000000012 # Journey Description
             handle: null
             instructions: null
@@ -69,6 +152,7 @@ fieldLayouts:
             dateAdded: '2026-04-06T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: c1d2e3f4-0002-4000-8000-000000000014 # Journey Highlights
             handle: null
             instructions: null
@@ -87,9 +171,32 @@ fieldLayouts:
         elementCondition: null
         elements:
           -
+            dateAdded: '2026-04-18T20:54:21+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 80801f65-acf2-4d04-92c0-df213deaed64 # Content Blocks
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: ee3f7612-b46c-4b19-a49f-44f7442bcc5d
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 90a1bc92-ee6a-4280-8c6f-2c682ce68d18
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
             dateAdded: '2026-04-06T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
             handle: null
             instructions: null
@@ -104,6 +211,7 @@ fieldLayouts:
         name: SEO
         uid: d2a00001-0002-4000-8000-000000000012
         userCondition: null
+    thumbFieldKey: null
 handle: signatureJourney
 hasTitleField: true
 icon: map
@@ -113,6 +221,6 @@ showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
 titleFormat: null
-titleLabel: 'Journey Title'
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

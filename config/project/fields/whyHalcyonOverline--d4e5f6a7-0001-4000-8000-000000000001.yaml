@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: whyHalcyonOverline
+instructions: 'Small overline text above the heading (e.g. "why halcyon")'
+name: 'Why Halcyon Overline'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 60
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: 'why halcyon'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

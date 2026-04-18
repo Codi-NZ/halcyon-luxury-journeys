@@ -1,6 +1,6 @@
 columnSuffix: null
 handle: ctaHeading
-instructions: 'Large heading in the full-bleed CTA section. The last word will render in gold italic.'
+instructions: 'Large heading in the full-bleed CTA section. The last 2 words will render in gold italic.'
 name: 'CTA Heading'
 searchable: false
 settings:

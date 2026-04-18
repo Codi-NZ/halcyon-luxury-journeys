@@ -1,0 +1,11 @@
+fill: null
+format: webp
+handle: contentBlockImage
+height: 900
+interlace: none
+mode: crop
+name: 'Content Block Image'
+position: center-center
+quality: 82
+upscale: true
+width: 1600

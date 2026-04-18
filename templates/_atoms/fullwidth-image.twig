@@ -3,16 +3,14 @@
 {% set transform = transform ?? 'section' %}
 {% set image = image ?? null %}
 {% set caption = caption ?? null %}
-{% set display = display ?? 'contain' %} {# contain | inset #}
-{% set autoHeight = autoHeight ?? false %}
 
 {% if image %}
-    <figure class="{{ display == 'inset' ? 'w-2/3 mx-auto' }}">
-        <div class="rounded-xl overflow-hidden">
+    <figure>
+        <div class="overflow-hidden">
             {{
                 imageMacros.imagerSrcset(
                     image,
-                    'fullwidth-' ~ transform ~ '-' ~ display ~ (autoHeight ? '-auto'),
+                    'fullwidth-' ~ transform ~ '-contain',
                     {
                         classes: 'hidden md:block w-full h-full object-cover object-center'
                     }
@@ -22,7 +20,7 @@
             {{
                 imageMacros.imagerSrcset(
                     image,
-                    'fullwidth-mobile' ~ (autoHeight ? '-auto'),
+                    'fullwidth-mobile',
                     {
                         classes: 'md:hidden w-full h-full object-cover object-center'
                     }
@@ -31,7 +29,7 @@
         </div>
 
         {% if caption %}
-            <figcaption class="copy mt-2 italic">
+            <figcaption style="font-family:'Lato',sans-serif; font-size:13px; font-style:italic; color:rgba(17,34,80,0.45); margin-top:12px; letter-spacing:0.02em;">
                 {{ caption }}
             </figcaption>
         {% endif %}

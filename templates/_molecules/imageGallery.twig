@@ -1,63 +1,20 @@
 {% import 'macros/images' as imageMacros %}
 
-{% set images = block.images.all %}
-{% set display = block.galleryDisplay.value %}
-{% set feature = images[0] %}
-{% set gridCount = 2 %}
-{% set filmstripCount = 4 %}
+{% set images = images ?? block.images.all %}
 {% set galleryId = galleryId ?? ('gallery-' ~ random(1000)) %}
 
-{% if display == 'carousel' %}
-    <div class="swiper image-carousel">
-        <ul class="swiper-wrapper">
-            {% for image in images %}
-                <li class="swiper-slide !h-auto">
-                    {% include '_atoms/image' with {
-                        self: {
-                            image: image,
-                            galleryId: galleryId,
-                            type: 'gallery-carousel'
-                        }
-                    } %}
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-{% else %}
-    <div class="flex flex-col gap-4">
-        <a
-            class="block w-full aspect-wide inset-image cursor-zoom-in rounded-xl overflow-hidden"
-            data-fancybox="{{ galleryId }}"
-            data-caption="{{ feature.title }}"
-            href="{{ imageMacros.imagerUrl(feature) }}"
-        >
-            {{ imageMacros.imagerSrcset(feature, 'gallery-feature') }}
-        </a>
-
-        {# TODO: Review - Tailwind v4 Safelist alternative - pattern "grid-cols-*" #}
-        <ul class="grid gap-4 {{ display == 'grid' ? 'grid-cols-2' : 'grid-cols-4' }}">
-            {% for image in images[1:] %}
-                <li class="relative {{ display == 'filmstrip' and loop.index > filmstripCount ? 'sr-only' }}">
-                    <a
-                        class="block w-full aspect-wide inset-image cursor-zoom-in rounded-xl overflow-hidden"
-                        data-fancybox="{{ galleryId }}"
-                        data-caption="{{ image.title }}"
-                        href="{{ imageMacros.imagerUrl(image) }}"
-                    >
-                        {{ imageMacros.imagerSrcset(image, 'gallery-' ~ display ~ '-thumb') }}
-                    </a>
-
-                    {% if
-                        display == 'filmstrip' and (images|length) > filmstripCount and loop.index == filmstripCount %}
-                        <div
-                            class="absolute inset-0 flex justify-center items-center bg-base/50 text-dark underline pointer-events-none"
-                            data-theme="overlay"
-                        >
-                            View all
-                        </div>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-{% endif %}
+<div class="swiper image-carousel">
+    <ul class="swiper-wrapper">
+        {% for image in images %}
+            <li class="swiper-slide !h-auto">
+                {% include '_atoms/image' with {
+                    self: {
+                        image: image,
+                        galleryId: galleryId,
+                        type: 'gallery-carousel'
+                    }
+                } %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

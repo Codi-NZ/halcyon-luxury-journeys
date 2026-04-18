@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: contactResponseNote
+instructions: 'Sub-text below the response time (e.g. "We read every enquiry personally")'
+name: 'Contact Response Note'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 120
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

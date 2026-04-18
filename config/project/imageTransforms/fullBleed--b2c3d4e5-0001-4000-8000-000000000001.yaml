@@ -1,0 +1,11 @@
+fill: null
+format: webp
+handle: fullBleed
+height: 1080
+interlace: none
+mode: crop
+name: 'Full Bleed'
+position: center-center
+quality: 82
+upscale: true
+width: 1920

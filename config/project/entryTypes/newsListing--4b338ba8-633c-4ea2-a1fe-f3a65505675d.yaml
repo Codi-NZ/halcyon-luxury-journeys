@@ -1,6 +1,9 @@
+allowLineBreaksInTitles: false
 color: green
+description: null
 fieldLayouts:
   807a1fdb-4d9a-4075-8c39-6a89507d6c96:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -37,6 +40,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:00:26+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 7318ab83-35e9-49f3-bee0-be852a027231 # Image
             handle: null
             instructions: null
@@ -52,6 +56,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:00:26+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: ceca07e6-941b-4381-8e36-e6b760f5f0a6 # Video
             handle: null
             instructions: null
@@ -67,6 +72,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:54:28+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: ae962a30-32f5-4f16-a15d-80f6f7a3f2d9 # Summary
             handle: null
             instructions: null
@@ -88,6 +94,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:54:28+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 80801f65-acf2-4d04-92c0-df213deaed64 # Content Blocks
             handle: null
             instructions: null
@@ -109,6 +116,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:54:28+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
             handle: null
             instructions: null
@@ -123,6 +131,7 @@ fieldLayouts:
         name: SEO
         uid: ac74be64-fdd7-447b-b4ef-9f656659c3dc
         userCondition: null
+    thumbFieldKey: null
 handle: newsListing
 hasTitleField: true
 icon: list-tree
@@ -134,3 +143,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

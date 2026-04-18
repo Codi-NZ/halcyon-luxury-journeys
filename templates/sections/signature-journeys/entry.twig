@@ -39,14 +39,14 @@
             </p>
         {% endif %}
 
-        {% if entry.journeyHighlights %}
-            {% set highlights = entry.journeyHighlights|split('\n')|filter(h => h|trim) %}
+        {% set highlights = entry.journeyHighlights.all() ?? [] %}
+        {% if highlights|length %}
             <ul style="margin-top:32px; display:flex; flex-direction:column; gap:12px; padding:0; list-style:none;">
                 {% for h in highlights %}
                     <li style="display:flex; align-items:center; gap:12px;">
                         <span style="width:20px; height:1px; background:rgba(201,233,255,0.4); flex-shrink:0;"></span>
                         <span class="type-body-font"
-                              style="font-size:14px; font-style:italic; color:rgba(245,240,233,0.55); letter-spacing:0.06em;">{{ h|trim }}</span>
+                              style="font-size:14px; font-style:italic; color:rgba(245,240,233,0.55); letter-spacing:0.06em;">{{ h.highlightText }}</span>
                     </li>
                 {% endfor %}
             </ul>

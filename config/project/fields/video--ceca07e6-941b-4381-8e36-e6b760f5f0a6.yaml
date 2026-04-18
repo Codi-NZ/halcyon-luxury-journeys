@@ -9,6 +9,7 @@ settings:
   allowUploads: true
   allowedKinds:
     - json
+    - video
   branchLimit: null
   defaultPlacement: end
   defaultUploadLocationSource: 'volume:77dcf8f6-0eca-4d1a-a307-ce6088ed61f5' # Videos
@@ -23,7 +24,7 @@ settings:
   restrictedLocationSource: 'volume:46f2595c-2bd7-47fb-a8ad-7f432ce95b50' # Images
   restrictedLocationSubpath: null
   selectionLabel: 'Select a video'
-  showCardsInGrid: false
+  showSearchInput: true
   showSiteMenu: true
   showUnpermittedFiles: false
   showUnpermittedVolumes: true
@@ -31,7 +32,7 @@ settings:
     - 'volume:77dcf8f6-0eca-4d1a-a307-ce6088ed61f5' # Videos
   targetSiteId: null
   validateRelatedElements: false
-  viewMode: large
+  viewMode: thumbs
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Assets

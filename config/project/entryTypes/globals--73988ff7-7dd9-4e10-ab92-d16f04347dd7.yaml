@@ -1,0 +1,414 @@
+allowLineBreaksInTitles: false
+color: null
+description: null
+fieldLayouts:
+  13e24659-d0d5-4080-899b-5ef949fb77bc:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: fullBusinessName
+            instructions: null
+            label: 'Full Business Name'
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 07342a20-f93f-4c6d-9912-47570b31ec24
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: tagline
+            instructions: null
+            label: Tagline
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9ad4248e-6f83-4b99-ae68-1945218b42c7
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 482f35bf-5e32-4ce7-8982-1a0755932b77 # Text Block
+            handle: businessDescription
+            instructions: null
+            label: 'Business Description'
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7f3b8e3a-c835-458a-921e-a2382b0a52f1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            elementCondition: null
+            heading: Contact
+            type: craft\fieldlayoutelements\Heading
+            uid: 55fe75b4-2503-4f56-995d-f2aa1e8cc07e
+            userCondition: null
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 194fbaee-c76c-4faf-b869-08ca938d3fe7 # Email Address
+            handle: null
+            instructions: null
+            label: 'Email Address'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: db041198-af20-4985-b2e7-cde159027ad4
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: phoneNumber
+            instructions: null
+            label: 'Phone Number'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 89d04d3c-7b14-4f93-892f-b87420cc1cc1
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: faxNumber
+            instructions: null
+            label: 'Fax Number'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 7a8be4bb-cbdd-4858-9945-677012ad46d2
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            elementCondition: null
+            heading: Address
+            type: craft\fieldlayoutelements\Heading
+            uid: 9591fd8e-078d-4acd-9840-5278b80c6d38
+            userCondition: null
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: addressLineOne
+            instructions: null
+            label: 'Address Line One'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 12ab9e49-f678-43ca-870e-96ee9e695d46
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: addressLineTwo
+            instructions: null
+            label: 'Address Line Two'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 42b32adf-5b8f-4aaa-8401-a9117689fc95
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: suburb
+            instructions: null
+            label: Suburb
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 2f0cbe4a-0306-4708-8435-82ded1f270c0
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: postcode
+            instructions: null
+            label: Postcode
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6e0d06a2-0e64-4da6-a12e-e0b546c122b5
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            elementCondition: null
+            heading: Social
+            type: craft\fieldlayoutelements\Heading
+            uid: 927fa693-5e06-4fd4-afa5-6fea637c640b
+            userCondition: null
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: facebookUsername
+            instructions: 'The username for your Facebook Page, without the preceding @.'
+            label: 'Facebook Username'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 53d07c85-b9ae-47da-a8d9-fd687eff3390
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: instagramUsername
+            instructions: 'The username for your Instagram Page, without the preceding @.'
+            label: 'Instagram Username'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 9059d292-bacc-458e-9378-80ebebb61ff8
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: linkedinPage
+            instructions: 'The slug for your LinkedIn Page, without https://linkedin.com/company/.'
+            label: 'LinkedIn Page'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 6a731c92-4240-4bbd-bc7d-22a6dee69842
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: xHandle
+            instructions: 'The handle for your Twitter profile, without the preceding @.'
+            label: 'X Handle'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c4a1b2d3-1001-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
+            handle: youtubeChannel
+            instructions: 'The channel for your YouTube Page, without https://www.youtube.com/.'
+            label: 'YouTube Channel'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c4a1b2d3-1002-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+        name: 'Business Details'
+        uid: c4a1b2d3-2001-4000-8000-000000000001
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 03e38e55-ec9f-4c48-8398-b00a51c40db4 # Links
+            handle: navigationLinks
+            instructions: 'Add the main navigation links for the site menu overlay.'
+            label: 'Navigation Links'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c4a1b2d3-1010-4000-8000-000000000001
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 62472b7c-fe20-44e4-baa5-48d17f09d31a # Link It - Minimal
+            handle: navigationCta
+            instructions: 'The call-to-action button shown in the menu overlay (e.g. "Begin Your Journey").'
+            label: 'CTA Link'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c4a1b2d3-1011-4000-8000-000000000002
+            userCondition: null
+            warning: null
+            width: 100
+        name: Navigation
+        uid: c4a1b2d3-2005-4000-8000-000000000005
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 03e38e55-ec9f-4c48-8398-b00a51c40db4 # Links
+            handle: legalLinks
+            instructions: null
+            label: 'Legal Links'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c4a1b2d3-1003-4000-8000-000000000003
+            userCondition: null
+            warning: null
+            width: 100
+        name: Footer
+        uid: c4a1b2d3-2002-4000-8000-000000000002
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 2aa7b689-24f8-48a6-8355-3d6e61be4c1f # Fallback Image
+            handle: fallbackBanner
+            instructions: null
+            label: Banner
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c4a1b2d3-1004-4000-8000-000000000004
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            elementCondition: null
+            heading: Video
+            type: craft\fieldlayoutelements\Heading
+            uid: c4a1b2d3-1006-4000-8000-000000000006
+            userCondition: null
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: ceca07e6-941b-4381-8e36-e6b760f5f0a6 # Video
+            handle: null
+            instructions: null
+            label: null
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c4a1b2d3-1007-4000-8000-000000000007
+            userCondition: null
+            warning: null
+            width: 100
+        name: Fallbacks
+        uid: c4a1b2d3-2003-4000-8000-000000000003
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2026-04-12T00:00:00+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 482f35bf-5e32-4ce7-8982-1a0755932b77 # Text Block
+            handle: acknowledgement
+            instructions: null
+            label: Acknowledgement
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: c4a1b2d3-1008-4000-8000-000000000008
+            userCondition: null
+            warning: null
+            width: 100
+        name: Misc
+        uid: c4a1b2d3-2004-4000-8000-000000000004
+        userCondition: null
+    thumbFieldKey: null
+handle: globals
+hasTitleField: false
+icon: globe
+name: Globals
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: '{section.name|raw}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site
+uiLabelFormat: '{title}'

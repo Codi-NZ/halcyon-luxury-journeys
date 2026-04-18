@@ -21,29 +21,29 @@
 	setTimeout(() => checkScroll(), 100);
 	window.addEventListener('resize', () => checkScroll());
 ">
-	<p class="text-[10px] text-black/60 mb-2 text-right md:hidden">*Scroll horizontally</p>
+	<p class="text-[10px] mb-2 text-right md:hidden" style="color:rgba(17,34,80,0.35); font-family:'Lato',sans-serif; font-style:italic;">*Scroll horizontally</p>
 	<div
 		class="table-wrapper-inner"
 		x-ref="scrollContainer"
 		@scroll="checkScroll()"
 	>
 		<table class="table w-full">
-			<thead class="bg-black text-white">
+			<thead>
 				<tr>
 					{% for column in table.columns|default %}
-						<th class="p-4 heading-5 {{ alignment[column.align|default("left")] }}"{{ column.width ? " width=\"#{column.width} \""|raw }}>
+						<th class="{{ alignment[column.align|default("left")] }}"{{ column.width ? " width=\"#{column.width} \""|raw }}>
 							{{ column.heading }}
 						</th>
 					{% endfor %}
 				</tr>
 			</thead>
 
-			<tbody class="divide-y divide-black">
+			<tbody>
 				{% for row in table.rows %}
 					<tr>
 						{% for key, column in row %}
 							{% set headingData = table.columns[key]|default %}
-							<td class="p-4 copy-lg {{ alignment[headingData.align|default("left")] }}" data-th="{{ headingData.heading|default }}">
+							<td class="{{ alignment[headingData.align|default("left")] }}" data-th="{{ headingData.heading|default }}">
 								{{ column }}
 							</td>
 						{% endfor %}

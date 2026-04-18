@@ -1,0 +1,22 @@
+columnSuffix: null
+handle: inspirationCategory
+instructions: 'Select 1–2 categories for filtering on the Inspiration listing page.'
+name: 'Inspiration Category'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: 2
+  minRelations: 1
+  selectionLabel: null
+  showSearchInput: true
+  showSiteMenu: true
+  source: 'group:42e3ced1-8c83-4e92-a1a8-6ff5e6a42f5b' # Inspiration
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Categories

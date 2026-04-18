@@ -1,6 +1,9 @@
+allowLineBreaksInTitles: false
 color: pink
+description: null
 fieldLayouts:
   e555b79e-d691-4896-b8ba-6518569ffb38:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -37,6 +40,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:54:29+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 12c009e5-5690-4abc-ae4b-e2d68e9a156e # Internal Page
             handle: null
             instructions: null
@@ -52,6 +56,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:01:28+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 7318ab83-35e9-49f3-bee0-be852a027231 # Image
             handle: null
             instructions: null
@@ -67,6 +72,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:54:29+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: ae962a30-32f5-4f16-a15d-80f6f7a3f2d9 # Summary
             handle: null
             instructions: null
@@ -81,6 +87,7 @@ fieldLayouts:
         name: Content
         uid: 2ceee740-49f0-4569-957c-b8ba1f6310c8
         userCondition: null
+    thumbFieldKey: null
 handle: mirroredPage
 hasTitleField: true
 icon: clone
@@ -92,3 +99,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

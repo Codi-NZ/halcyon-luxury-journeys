@@ -1,67 +1,134 @@
+/**
+ * Rich Text — Halcyon Luxury Journeys
+ * Navy text, Playfair Display headings, Lato body.
+ * No gradient underlines — clean, elegant typography.
+ */
+
 .richtext {
-    @apply text-grey-700;
+    color: rgba(17, 34, 80, 0.7);
+    font-family: 'Lato', sans-serif;
 
     & :is(h1, h2, h3, h4) {
-        @apply relative before:content-[''] before:h-0.5 before:w-full before:bg-gradient-to-r before:from-grey-400 before:to-grey-600 before:absolute before:bottom-0 before:inset-x-0 max-w-max pb-1 text-grey-900;
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+        color: #112250;
+        line-height: 1.15;
+        letter-spacing: 0.01em;
     }
 
     & h1 {
-        @apply heading-1;
+        font-size: clamp(2.25rem, 3vw, 3.375rem);
     }
 
     & h2 {
-        @apply heading-2;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin-bottom: 16px;
     }
 
     & h3 {
-        @apply heading-3;
+        font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+        margin-bottom: 12px;
     }
 
     & h4 {
-        @apply heading-4;
+        font-size: clamp(1.125rem, 2vw, 1.25rem);
+        margin-bottom: 8px;
     }
 
     & p {
-        @apply copy;
+        font-size: clamp(0.875rem, 1.1vw, 1rem);
+        line-height: 1.8;
     }
 
     & * + p {
-        @apply mt-4;
+        margin-top: 16px;
+    }
+
+    & * + :is(h2, h3, h4) {
+        margin-top: 40px;
     }
 
     & p + h4 {
-        @apply mt-8;
+        margin-top: 32px;
     }
 
     & strong {
-        @apply font-semibold;
+        font-weight: 600;
+        color: #112250;
     }
 
     & a {
-        @apply underline;
+        color: #112250;
+        text-decoration: underline;
+        text-decoration-color: rgba(17, 34, 80, 0.3);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 0.2s ease, color 0.2s ease;
+    }
+
+    & a:hover {
+        color: #C9A96E;
+        text-decoration-color: #C9A96E;
     }
 
     & ol {
-        @apply relative pl-5 mt-4 list-decimal;
+        position: relative;
+        padding-left: 24px;
+        margin-top: 16px;
+        list-style: decimal;
     }
 
     & ul {
-        @apply relative pl-5 mt-4 list-disc;
+        position: relative;
+        padding-left: 24px;
+        margin-top: 16px;
+        list-style: none;
     }
 
-    & .heading-level-h1 {
-        @apply heading-1;
+    & ul li {
+        position: relative;
+        padding-left: 4px;
     }
 
-    & .heading-level-h2 {
-        @apply heading-2;
+    & ul li::before {
+        content: '';
+        position: absolute;
+        left: -16px;
+        top: 0.65em;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #C9A96E;
     }
 
-    & .heading-level-h3 {
-        @apply heading-3;
+    & li {
+        line-height: 1.8;
+        margin-top: 8px;
     }
 
-    & .heading-level-h4 {
-        @apply heading-4;
+    & li:first-child {
+        margin-top: 0;
+    }
+
+    & .heading-level-h1 { font-size: clamp(2.25rem, 3vw, 3.375rem); }
+    & .heading-level-h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+    & .heading-level-h3 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); }
+    & .heading-level-h4 { font-size: clamp(1.125rem, 2vw, 1.25rem); }
+
+    & blockquote {
+        border-left: 2px solid #C9A96E;
+        padding-left: 24px;
+        margin: 32px 0;
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-size: clamp(1rem, 1.3vw, 1.25rem);
+        line-height: 1.7;
+        color: rgba(17, 34, 80, 0.65);
+    }
+
+    & hr {
+        border: none;
+        height: 1px;
+        background: rgba(17, 34, 80, 0.1);
+        margin: 40px 0;
     }
 }

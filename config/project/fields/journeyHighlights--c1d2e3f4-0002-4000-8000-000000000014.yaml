@@ -1,16 +1,29 @@
 columnSuffix: null
 handle: journeyHighlights
-instructions: 'Journey highlights, one per line. These are displayed as bullet points on the card.'
+instructions: 'Add journey highlights as a list. Each item is displayed as a bullet point on the card.'
 name: 'Journey Highlights'
 searchable: false
 settings:
-  byteLimit: null
-  charLimit: null
-  code: false
-  initialRows: 5
-  multiline: true
-  placeholder: null
-  uiMode: normal
+  createButtonLabel: 'Add a highlight'
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - f1a2b3c4-0002-4000-8000-000000000001 # Highlight Item
+        -
+          - group
+          - General
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: blocks
 translationKeyFormat: null
-translationMethod: none
-type: craft\fields\PlainText
+translationMethod: site
+type: craft\fields\Matrix

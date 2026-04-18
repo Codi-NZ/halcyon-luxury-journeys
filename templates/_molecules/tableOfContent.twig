@@ -5,10 +5,16 @@
 
 {% set htmlToc %}
 	<nav aria-label="Table of contents">
-		<ul class="flex flex-col gap-3">
+		<ul class="flex flex-col" style="gap:12px;">
 			{% for item in entry.contentBlocks[blockIndex:]|filter( i => i.type.handle == "heading" and i['showInTableOfContents']|default(1) ) %}
 				<li>
-					<a href="{{ "#" ~ item.heading|kebab }}" class="block copy text-grey-600 underline decoration-transparent">
+					<a
+						href="{{ "#" ~ item.heading|kebab }}"
+						class="block"
+						style="font-family:'Lato',sans-serif; font-size:14px; color:rgba(17,34,80,0.55); text-decoration:none; transition:color 0.2s ease;"
+						onmouseover="this.style.color='#C9A96E';"
+						onmouseout="this.style.color='rgba(17,34,80,0.55)';"
+					>
 						{{ item.heading }}
 					</a>
 				</li>
@@ -17,11 +23,13 @@
 	</nav>
 {% endset %}
 
-<aside class="table-of-contents{{ modifiers }} rounded-2xl border border-grey-200 bg-grey-50 p-6"
+<aside
+	class="table-of-contents{{ modifiers }}"
 	aria-label="Table of contents"
+	style="border:1px solid rgba(17,34,80,0.1); background:#ffffff; padding:clamp(24px,3vw,36px);"
 >
 	<div class="table-of-contents__content">
-		<{{ headingTag }} class="heading-4 text-grey-900 mb-4">
+		<{{ headingTag }} style="font-family:'Playfair Display',serif; font-size:clamp(16px,1.4vw,20px); font-weight:400; color:#112250; margin-bottom:16px;">
 			{{ heading }}
 		</{{ headingTag }}>
 

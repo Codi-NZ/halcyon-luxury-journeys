@@ -17,11 +17,6 @@ settings:
       __assoc__:
         -
           - uid
-          - d1a32ced-eb4e-4005-8ead-bef8e2a5a65c
-    -
-      __assoc__:
-        -
-          - uid
           - 7c1bc3f3-9531-4b93-90bc-3f91a5201fa5 # Accordion
     -
       __assoc__:

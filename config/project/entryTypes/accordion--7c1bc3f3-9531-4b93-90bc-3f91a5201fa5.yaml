@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: blue
 description: null
 fieldLayouts:
@@ -11,21 +12,7 @@ fieldLayouts:
             dateAdded: '2025-04-15T01:58:34+00:00'
             editCondition: null
             elementCondition: null
-            fieldUid: b8f875f4-12b1-4e54-9900-0335b3c8b0b7 # Heading
-            handle: null
-            instructions: null
-            label: null
-            required: false
-            tip: null
-            type: craft\fieldlayoutelements\CustomField
-            uid: df6312df-66fc-4e4d-b8ab-ac0731f8c825
-            userCondition: null
-            warning: null
-            width: 100
-          -
-            dateAdded: '2025-04-15T01:58:34+00:00'
-            editCondition: null
-            elementCondition: null
+            elementEditCondition: null
             fieldUid: 0083aea4-e3b7-4627-85ee-400dd3e208a8 # Accordion Items
             handle: null
             instructions: null
@@ -40,6 +27,7 @@ fieldLayouts:
         name: Content
         uid: 9512f336-c6ec-4a90-833e-195e714a138d
         userCondition: null
+    thumbFieldKey: null
 handle: accordion
 hasTitleField: false
 icon: plus
@@ -51,3 +39,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

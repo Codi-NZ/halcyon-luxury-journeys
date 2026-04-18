@@ -1,6 +1,9 @@
+allowLineBreaksInTitles: false
 color: purple
+description: null
 fieldLayouts:
   f37a17a1-42d4-4ae3-9a04-96ba0124f183:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -9,6 +12,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:05:14+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: b060df82-d82d-4b9a-9fca-1c9fb98a03b3 # Label
             handle: honorific
             instructions: null
@@ -24,6 +28,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:05:14+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
             handle: firstName
             instructions: null
@@ -39,6 +44,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:05:14+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
             handle: lastName
             instructions: null
@@ -54,6 +60,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:05:14+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
             handle: jobTitle
             instructions: null
@@ -69,6 +76,7 @@ fieldLayouts:
             dateAdded: '2024-09-16T00:04:49+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 2c94cf41-f69a-4ae1-a226-93d6b6ef7b8c # People - Categories
             handle: categories
             instructions: null
@@ -84,6 +92,7 @@ fieldLayouts:
             dateAdded: '2024-09-16T00:04:49+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: b4bd62ee-6be8-4524-981e-871d0341766e # Gender
             handle: null
             instructions: null
@@ -99,6 +108,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:05:14+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 7318ab83-35e9-49f3-bee0-be852a027231 # Image
             handle: null
             instructions: null
@@ -114,6 +124,7 @@ fieldLayouts:
             dateAdded: '2024-09-16T00:04:49+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: ae962a30-32f5-4f16-a15d-80f6f7a3f2d9 # Summary
             handle: null
             instructions: null
@@ -135,6 +146,7 @@ fieldLayouts:
             dateAdded: '2024-09-16T00:04:49+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 194fbaee-c76c-4faf-b869-08ca938d3fe7 # Email Address
             handle: null
             instructions: null
@@ -150,6 +162,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:05:14+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
             handle: phoneNumber
             instructions: null
@@ -165,6 +178,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T05:05:14+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
             handle: mobileNumber
             instructions: null
@@ -186,6 +200,7 @@ fieldLayouts:
             dateAdded: '2024-09-16T00:04:49+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: acca6438-64e2-4899-b14c-371c0142069f # Text Basic
             handle: bio
             instructions: null
@@ -207,6 +222,7 @@ fieldLayouts:
             dateAdded: '2024-09-16T00:04:49+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 80801f65-acf2-4d04-92c0-df213deaed64 # Content Blocks
             handle: null
             instructions: null
@@ -228,6 +244,7 @@ fieldLayouts:
             dateAdded: '2024-09-16T00:04:49+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
             handle: null
             instructions: null
@@ -242,6 +259,7 @@ fieldLayouts:
         name: SEO
         uid: ace72f11-4da0-4ba5-a459-534b90f168ad
         userCondition: null
+    thumbFieldKey: null
 handle: person
 hasTitleField: false
 icon: person
@@ -253,3 +271,4 @@ slugTranslationMethod: site
 titleFormat: "{honorific ? honorific ~ ' '}{firstName} {lastName}"
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

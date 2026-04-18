@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: contactPhoneNote
+instructions: 'Sub-text below the phone number (e.g. "New Zealand · Mon – Fri, 9am – 6pm NZST")'
+name: 'Contact Phone Note'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 120
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

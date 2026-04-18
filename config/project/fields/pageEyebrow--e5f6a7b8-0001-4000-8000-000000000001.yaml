@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: pageEyebrow
+instructions: 'Short overline text displayed above the page title (e.g. "Destinations", "Signature Journeys").'
+name: 'Page Eyebrow'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 60
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

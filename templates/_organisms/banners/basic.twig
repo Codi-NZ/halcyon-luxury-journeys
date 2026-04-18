@@ -1,28 +1,67 @@
-{% import "macros/images" as imageMacros %}
-
 {% set title = title ?? entry.title %}
 {% set summary = summary ?? entry.summary %}
-{% set image = image ?? entry.image[0] ?? craft.simple.globals.fallbacks.images.banner %}
-{% set video = video ?? entry.video[0] ?? null %}
+{% set image = image ?? entry.image.one() ?? (craft.simple.globals.fallbacks.images.banner ?? null) %}
 
-<div class="inner grid grid-cols-1 lg:grid-cols-2 bg-gradient-to-br from-grey-900 via-grey-800 to-grey-700 text-white pt-12 pb-6 md:pb-12 xl:pb-0 gap-8 lg:gap-16 xl:mb-16 rounded-3xl">
-    <div class="flex flex-col justify-center">
-        <div class="max-w-2xl xl:pb-16">
-            <{{ headingTag1 }} class="heading-1 font-semibold">
-                {{ title }}
-            </{{ headingTag1 }}>
+{# ── Breadcrumbs ── #}
+{% set homePage = craft.entries.section('homepage').one() ?? null %}
+{% set ancestors = entry.getAncestors().all() ?? [] %}
 
-            <div class="copy mt-6">
+{# Map channel entries to their listing parent #}
+{% set sectionHandle = entry.section.handle ?? '' %}
+{% set listingParents = {
+    'destinations': { title: 'Destinations', url: '/destinations' },
+    'signatureJourneys': { title: 'Signature Journeys', url: '/signature-journeys' },
+    'inspiration': { title: 'Inspiration', url: '/inspiration' },
+} %}
+{% set listingParent = listingParents[sectionHandle] ?? null %}
+
+{# ── Page Hero Banner ── #}
+<section class="page-hero">
+    <div class="page-hero-inner">
+
+        {# Breadcrumbs #}
+        <nav class="breadcrumbs-halcyon" aria-label="Breadcrumbs">
+            {% if homePage %}
+                <a href="{{ homePage.url }}">Home</a>
+                <span class="breadcrumb-sep" aria-hidden="true">/</span>
+            {% endif %}
+
+            {# Structure ancestors (for Pages etc.) #}
+            {% for ancestor in ancestors %}
+                <a href="{{ ancestor.url }}">{{ ancestor.title }}</a>
+                <span class="breadcrumb-sep" aria-hidden="true">/</span>
+            {% endfor %}
+
+            {# Channel listing parent (for Destinations, Journeys, Inspiration) #}
+            {% if listingParent %}
+                <a href="{{ listingParent.url }}">{{ listingParent.title }}</a>
+                <span class="breadcrumb-sep" aria-hidden="true">/</span>
+            {% endif %}
+
+            <span class="breadcrumb-current" aria-current="page">{{ title }}</span>
+        </nav>
+
+        <{{ headingTag1 }} class="page-title" data-reveal>
+            {{ title }}
+        </{{ headingTag1 }}>
+
+        {% if summary %}
+            <div class="page-intro" data-reveal data-delay="100">
                 {{ summary }}
             </div>
+        {% endif %}
+    </div>
+</section>
+
+{% if image %}
+    <div class="layout-inner" style="margin-top:-40px; position:relative; z-index:1;">
+        <div class="overflow-hidden" style="aspect-ratio:16/7;">
+            <img
+                src="{{ image.url }}"
+                alt="{{ image.alt ?? image.title ?? title }}"
+                style="width:100%; height:100%; object-fit:cover; display:block;"
+                loading="eager"
+            />
         </div>
     </div>
-
-    <aside class="w-full xl:col-span-1 xl:-mb-16">
-        {{ imageMacros.imagerSrcset(
-            image,
-            "banner-basic",
-            { classes: "rounded-2xl overflow-hidden shadow-xl h-full" },
-        )}}
-    </aside>
-</div>
+{% endif %}

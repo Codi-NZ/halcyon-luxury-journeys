@@ -1,0 +1,11 @@
+fill: null
+format: webp
+handle: galleryCarouselSlide
+height: 800
+interlace: none
+mode: crop
+name: 'Gallery Carousel Slide'
+position: center-center
+quality: 82
+upscale: true
+width: 1280

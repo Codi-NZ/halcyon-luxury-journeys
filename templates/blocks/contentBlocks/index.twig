@@ -1,11 +1,5 @@
-{% set blocks = blocks ?? entry.contentBlocks.with(craft.app.config.custom.eager.sectionBlocks).all ?? null %}
+{% set blocks = blocks ?? (entry.contentBlocks is defined ? entry.contentBlocks.with(craft.app.config.custom.eager.sectionBlocks).all() : null) %}
 {% set modifiers = modifiers|default ? ' ' ~ modifiers %}
-
-{% if entry.switch == 1 %}
-    {% include '_molecules/tableOfContent' with {
-        heading: entry.heading
-    } %}
-{% endif %}
 
 {% for block in blocks %}
     {% set nextBlock = loop.index < (blocks|length) ? blocks[loop.index] : null %}

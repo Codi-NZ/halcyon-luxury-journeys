@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: experiencesCarouselInspirations
+instructions: 'Optional. Leave empty to show the six most recent Inspiration articles. Select up to six entries here to override that list and control order.'
+name: 'Experiences Carousel — Inspirations'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: 6
+  minRelations: null
+  selectionLabel: 'Add an inspiration article'
+  showSearchInput: true
+  showSiteMenu: true
+  showUnpermittedEntries: false
+  showUnpermittedSections: false
+  sources:
+    - 'section:e5f6a7b8-1004-4000-8000-000000000001' # Inspiration
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

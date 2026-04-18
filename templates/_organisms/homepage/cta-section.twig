@@ -1,26 +1,34 @@
 {#
   CTA Section — full-bleed image with dark overlay and centred content.
   Expects: entry.ctaOverline, entry.ctaHeading, entry.ctaBody,
-           entry.ctaButtonText, entry.ctaButtonUrl, entry.ctaBackgroundImage
+           entry.linkItMinimal (Hyper single-link for CTA button),
+           entry.ctaBackgroundImage
 #}
 
 {% set overline  = entry.ctaOverline         ?? 'work with us' %}
 {% set heading   = entry.ctaHeading          ?? "Partner\nWith Us" %}
 {% set body      = entry.ctaBody             ?? 'We love partnering with travel professionals who share our passion for exceptional journeys, and we\'re proud to be your trusted experts in New Zealand and Australia.' %}
-{% set btnText   = entry.ctaButtonText       ?? 'Begin an Enquiry' %}
-{% set btnUrl    = entry.ctaButtonUrl        ?? '/contact' %}
+{% set ctaLink   = entry.linkItMinimal.one() ?? null %}
+{% set btnText   = ctaLink ? ctaLink.text : 'Begin an Enquiry' %}
+{% set btnUrl    = ctaLink ? ctaLink.url  : '/contact' %}
 {% set bgImage   = entry.ctaBackgroundImage.one() ?? null %}
 
-{# Split the heading: last word gets gold italic treatment #}
-{% set headingWords = heading|trim|split('\n') %}
+{# Split the heading: last 2 words get gold italic treatment #}
+{% set headingWords = heading|trim|split(' ') %}
+{% set goldCount = 2 %}
+{% set normalWords = headingWords|slice(0, headingWords|length - goldCount) %}
+{% set goldWords = headingWords|slice(headingWords|length - goldCount) %}
 
 <section style="position:relative; min-height:560px; display:flex; align-items:center; justify-content:center; overflow:hidden;">
 
     {# Background image #}
     {% if bgImage %}
+        {% set transformed = bgImage.setTransform('fullBleed') %}
         <img
-            src="{{ bgImage.url }}"
-            alt="{{ bgImage.title ?? '' }}"
+            src="{{ transformed.url }}"
+            alt="{{ bgImage.alt ?? bgImage.title ?? '' }}"
+            width="{{ transformed.width }}"
+            height="{{ transformed.height }}"
             style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;"
             loading="lazy"
         />
@@ -43,16 +51,10 @@
             style="font-size:clamp(48px,7vw,96px); color:#F5F0E9; line-height:1; margin-bottom:24px; max-width:800px;"
             data-reveal data-delay="100"
         >
-            {% if headingWords|length > 1 %}
-                {% for line in headingWords %}
-                    {% if loop.last %}
-                        <em style="font-style:italic; color:#C9A96E;">{{ line }}</em>
-                    {% else %}
-                        {{ line }}<br/>
-                    {% endif %}
-                {% endfor %}
+            {% if headingWords|length > goldCount %}
+                {{ normalWords|join(' ') }} <em style="font-style:italic; color:#C9A96E;">{{ goldWords|join(' ')|nl2br }}</em>
             {% else %}
-                {{ heading }}
+                <em style="font-style:italic; color:#C9A96E;">{{ heading|nl2br }}</em>
             {% endif %}
         </h2>
 

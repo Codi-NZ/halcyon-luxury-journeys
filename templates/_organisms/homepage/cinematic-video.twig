@@ -1,20 +1,30 @@
 {#
   Cinematic Video — full-width video block between accordion and carousel.
-  Expects: entry.cinematicVideoUrl
+  Expects: entry.cinematicVideoUrl (Assets field — supports direct video files or embedded assets via JSON)
 #}
 
-{% set videoUrl = entry.cinematicVideoUrl ?? '/207717_medium.mp4' %}
+{% set cinematicAsset = entry.cinematicVideoUrl.one() ?? null %}
 
-<section class="layout-outer" style="background:#F5F0E9;">
-    <video
-        style="display:block; height:min(72vh,760px); width:100%; object-fit:cover;"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        aria-label="Luxury travel cinematic video"
-    >
-        <source src="{{ videoUrl }}" type="video/mp4" />
-    </video>
-</section>
+{% if cinematicAsset %}
+    {% set embeddedVideo = craft.embeddedAssets.get(cinematicAsset) ?? null %}
+
+    {% if embeddedVideo %}
+        {# Embedded video (YouTube / Vimeo via JSON) — full width, cropped to cover #}
+        <div class="cinematic-video-wrap">
+            {{ embeddedVideo.getIFrameCode(['background=1', 'autoplay=1', 'muted=1', 'loop=1', 'autopause=0'])|raw }}
+        </div>
+    {% elseif cinematicAsset.kind == 'video' %}
+        {# Direct video file (MP4) #}
+        <video
+            class="cinematic-video-native"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Luxury travel cinematic video"
+        >
+            <source src="{{ cinematicAsset.url }}" type="{{ cinematicAsset.mimeType }}" />
+        </video>
+    {% endif %}
+{% endif %}

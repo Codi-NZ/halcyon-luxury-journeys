@@ -1,0 +1,19 @@
+columnSuffix: null
+handle: inspirationCountry
+instructions: 'Country this article relates to, used for filtering.'
+name: 'Inspiration Country'
+searchable: false
+settings:
+  optgroups: false
+  options:
+    -
+      default: true
+      label: 'New Zealand'
+      value: new-zealand
+    -
+      default: false
+      label: Australia
+      value: australia
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

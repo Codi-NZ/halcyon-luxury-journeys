@@ -11,9 +11,9 @@ settings:
   maxRelations: null
   minRelations: null
   selectionLabel: null
-  showCardsInGrid: false
+  showSearchInput: true
   showSiteMenu: true
-  source: 'group:54f11066-6255-4fca-86e9-023943a31253' # News
+  source: 'group:54f11066-6255-4fca-86e9-023943a31253'
   targetSiteId: null
   validateRelatedElements: false
   viewMode: list

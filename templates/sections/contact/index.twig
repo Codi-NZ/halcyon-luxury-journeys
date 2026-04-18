@@ -1,5 +1,160 @@
 {% extends 'layouts/base' %}
 
+{% block banner %}{% endblock %}
+
 {% block content %}
-    Contact
+
+    {% set formEntry = entry.form.one() ?? null %}
+
+    {# ── Page Hero ─────────────────────────────────────── #}
+    <section class="page-hero">
+        <div class="page-hero-inner">
+            {% if entry.pageEyebrow %}
+                <p class="eyebrow" data-reveal>{{ entry.pageEyebrow }}</p>
+            {% endif %}
+            <{{ headingTag1 }} class="page-title" data-reveal data-delay="100">{{ entry.title }}</{{ headingTag1 }}>
+            {% if entry.summary %}
+                <p class="page-intro" data-reveal data-delay="200">
+                    {{ entry.summary }}
+                </p>
+            {% endif %}
+        </div>
+    </section>
+
+    {# ── Contact Body ──────────────────────────────────── #}
+    <section class="contact-section">
+        <div class="contact-inner">
+
+            {# Left: Get in Touch details #}
+            <div class="contact-details" data-reveal="left">
+
+                <div class="overline mb-8">Get in touch</div>
+
+                {% if entry.contactDetailsIntro %}
+                    <p class="contact-details-intro">
+                        {{ entry.contactDetailsIntro }}
+                    </p>
+                {% endif %}
+
+                <div class="contact-items">
+
+                    {% if entry.emailAddress %}
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 4.5C2 3.67 2.67 3 3.5 3h13C17.33 3 18 3.67 18 4.5v11c0 .83-.67 1.5-1.5 1.5h-13C2.67 17 2 16.33 2 15.5v-11Z" stroke="#C9A96E" stroke-width="1.2"/>
+                                    <path d="M2 5l8 5.5L18 5" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="contact-item-content">
+                                <p class="contact-item-label">Email</p>
+                                <a href="mailto:{{ entry.emailAddress }}" class="contact-item-value">
+                                    {{ entry.emailAddress }}
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if entry.contactPhone %}
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.5 2h-1A1.5 1.5 0 0 0 3 3.5v1C3 11.96 8.04 17 14.5 17h1A1.5 1.5 0 0 0 17 15.5v-1a.5.5 0 0 0-.31-.46l-3-1.25a.5.5 0 0 0-.57.14l-1.2 1.46a8.51 8.51 0 0 1-4.31-4.31l1.46-1.2a.5.5 0 0 0 .14-.57l-1.25-3A.5.5 0 0 0 7.5 4H6" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="contact-item-content">
+                                <p class="contact-item-label">Phone</p>
+                                <a href="tel:{{ entry.contactPhone|replace({' ': ''}) }}" class="contact-item-value">{{ entry.contactPhone }}</a>
+                                {% if entry.contactPhoneNote %}
+                                    <p class="contact-item-note">{{ entry.contactPhoneNote }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if entry.contactLocation %}
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="9" r="3" stroke="#C9A96E" stroke-width="1.2"/>
+                                    <path d="M10 2a7 7 0 0 1 7 7c0 4-7 10-7 10S3 13 3 9a7 7 0 0 1 7-7Z" stroke="#C9A96E" stroke-width="1.2"/>
+                                </svg>
+                            </div>
+                            <div class="contact-item-content">
+                                <p class="contact-item-label">Based in</p>
+                                <p class="contact-item-value">{{ entry.contactLocation }}</p>
+                                {% if entry.contactLocationNote %}
+                                    <p class="contact-item-note">{{ entry.contactLocationNote }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    {% if entry.contactResponseTime %}
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2" y="5" width="16" height="13" rx="1.5" stroke="#C9A96E" stroke-width="1.2"/>
+                                    <path d="M14 5V4a2 2 0 0 0-4 0v1M6 5V4a2 2 0 0 0-4 0" stroke="#C9A96E" stroke-width="1.2" stroke-linecap="round"/>
+                                    <path d="M2 9h16" stroke="#C9A96E" stroke-width="1.2"/>
+                                </svg>
+                            </div>
+                            <div class="contact-item-content">
+                                <p class="contact-item-label">Response time</p>
+                                <p class="contact-item-value">{{ entry.contactResponseTime }}</p>
+                                {% if entry.contactResponseNote %}
+                                    <p class="contact-item-note">{{ entry.contactResponseNote }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div>
+
+                {% if entry.contactInstagramUrl or entry.contactFacebookUrl %}
+                    {# Divider #}
+                    <div class="contact-details-rule"></div>
+
+                    {# Social links #}
+                    <div class="contact-social">
+                        <p class="contact-social-label">Follow the journey</p>
+                        <div class="contact-social-links">
+                            {% if entry.contactInstagramUrl %}
+                                <a href="{{ entry.contactInstagramUrl }}" class="contact-social-link" aria-label="Instagram" target="_blank" rel="noopener">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.4"/>
+                                        <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.4"/>
+                                        <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+                                    </svg>
+                                    Instagram
+                                </a>
+                            {% endif %}
+                            {% if entry.contactFacebookUrl %}
+                                <a href="{{ entry.contactFacebookUrl }}" class="contact-social-link" aria-label="Facebook" target="_blank" rel="noopener">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    Facebook
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+
+            </div>
+
+            {# Right: Enquiry Form #}
+            <div class="contact-form-wrap" data-reveal="right" data-delay="100">
+                <div class="overline mb-8">Send an enquiry</div>
+
+                {% if formEntry %}
+                    <div class="contact-formie-wrap">
+                        {{ craft.formie.renderForm(formEntry) }}
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </section>
+
 {% endblock %}

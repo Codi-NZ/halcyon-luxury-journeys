@@ -1,0 +1,12 @@
+columnSuffix: null
+handle: contactFacebookUrl
+instructions: 'Facebook page URL'
+name: 'Facebook URL'
+searchable: false
+settings:
+  maxLength: 255
+  types:
+    - url
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Url

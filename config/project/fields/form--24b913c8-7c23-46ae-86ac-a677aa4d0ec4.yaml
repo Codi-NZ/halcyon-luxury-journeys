@@ -11,12 +11,12 @@ settings:
   maxRelations: 1
   minRelations: null
   selectionLabel: null
-  showCardsInGrid: true
+  showSearchInput: true
   showSiteMenu: true
   sources: '*'
   targetSiteId: null
   validateRelatedElements: false
-  viewMode: cards
+  viewMode: cards-grid
 translationKeyFormat: null
 translationMethod: none
 type: verbb\formie\fields\Forms

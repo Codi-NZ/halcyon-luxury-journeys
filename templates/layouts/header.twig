@@ -1,13 +1,8 @@
 {# Halcyon Luxury Journeys — Site Header #}
 
-{% set navLinks = [
-    { href: '/destinations',       label: 'Destinations' },
-    { href: '/signature-journeys', label: 'Signature Journeys' },
-    { href: '/inspiration',        label: 'Inspiration' },
-    { href: '/about',              label: 'About' },
-    { href: '/testimonials',       label: 'Testimonials' },
-    { href: '/contact',            label: 'Contact Us' },
-] %}
+{% set globalsEntry = craft.entries().section('globals').one() %}
+{% set navLinks = globalsEntry.navigationLinks ?? [] %}
+{% set ctaLink = globalsEntry.navigationCta ?? null %}
 
 {# ── Utility bar ─────────────────────────────────────────────────────── #}
 <div class="layout-outer utility-bar">
@@ -45,8 +40,8 @@
         {# Left: nav links #}
         <nav class="menu-nav" aria-label="Main navigation">
             {% for link in navLinks %}
-                <a href="{{ link.href }}" class="overlay-link display" style="transition-delay: {{ loop.index0 * 0.07 }}s;">
-                    {{ link.label }}
+                <a href="{{ link.url }}" class="overlay-link display" style="transition-delay: {{ loop.index0 * 0.07 }}s;"{% if link.newWindow %} target="_blank" rel="noopener"{% endif %}>
+                    {{ link.text }}
                 </a>
             {% endfor %}
         </nav>
@@ -55,21 +50,27 @@
         <div class="menu-contact">
             <div class="contact-block" style="transition-delay: 0.32s;">
                 <p class="contact-eyebrow">Get in Touch</p>
-                <a href="tel:+64211398539" class="contact-phone">+64 21 139 8539</a>
-                <a href="mailto:hello@halcyonluxuryjourneys.co.nz" class="contact-email">hello@halcyonluxuryjourneys.co.nz</a>
+                {% if globalsEntry.phoneNumber %}
+                    <a href="tel:{{ globalsEntry.phoneNumber|replace({' ': ''}) }}" class="contact-phone">{{ globalsEntry.phoneNumber }}</a>
+                {% endif %}
+                {% if globalsEntry.emailAddress %}
+                    <a href="mailto:{{ globalsEntry.emailAddress }}" class="contact-email">{{ globalsEntry.emailAddress }}</a>
+                {% endif %}
             </div>
             <div class="contact-block" style="transition-delay: 0.42s;">
                 <p class="contact-eyebrow">Where We Travel</p>
                 <p class="contact-destinations">New Zealand<br/>Australia</p>
             </div>
-            <div class="contact-block" style="transition-delay: 0.52s;">
-                <a href="/contact" class="menu-cta">
-                    Begin Your Journey
-                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
-                        <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
-                    </svg>
-                </a>
-            </div>
+            {% if ctaLink %}
+                <div class="contact-block" style="transition-delay: 0.52s;">
+                    <a href="{{ ctaLink.url }}" class="menu-cta"{% if ctaLink.newWindow %} target="_blank" rel="noopener"{% endif %}>
+                        {{ ctaLink.text }}
+                        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                            <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+                        </svg>
+                    </a>
+                </div>
+            {% endif %}
         </div>
     </div>
 

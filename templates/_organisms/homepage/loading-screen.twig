@@ -1,4 +1,20 @@
-{# Loading Screen — shown on first page load #}
+{# Loading screen — first homepage visit in this tab only (sessionStorage). #}
+<script>
+(function () {
+    try {
+        if (sessionStorage.getItem('halcyonHomeLoaderSeen') === '1') {
+            document.documentElement.classList.add('home-loader-skip');
+        }
+    } catch (e) {}
+})();
+</script>
+<style>
+    html.home-loader-skip #loading-screen {
+        display: none !important;
+        visibility: hidden;
+        pointer-events: none;
+    }
+</style>
 <div id="loading-screen" aria-hidden="true" role="presentation">
     <div style="display:flex; flex-direction:column; align-items:center; gap:0;">
         <div class="loading-bar-wrap">
@@ -9,14 +25,23 @@
 </div>
 
 <script>
-(function() {
-    window.addEventListener('load', function() {
+(function () {
+    window.addEventListener('load', function () {
         var screen = document.getElementById('loading-screen');
         if (!screen) return;
-        setTimeout(function() {
+
+        if (document.documentElement.classList.contains('home-loader-skip')) {
+            screen.style.display = 'none';
+            return;
+        }
+
+        setTimeout(function () {
             screen.classList.add('exit');
-            setTimeout(function() {
+            setTimeout(function () {
                 screen.style.display = 'none';
+                try {
+                    sessionStorage.setItem('halcyonHomeLoaderSeen', '1');
+                } catch (e) {}
             }, 1100);
         }, 1800);
     });

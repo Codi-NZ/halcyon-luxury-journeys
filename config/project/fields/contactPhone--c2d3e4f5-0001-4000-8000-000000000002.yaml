@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: contactPhone
+instructions: 'Phone number displayed on the contact page (e.g. "+64 21 000 000")'
+name: 'Contact Phone'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 30
+  code: false
+  initialRows: 1
+  multiline: false
+  placeholder: '+64 21 000 000'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

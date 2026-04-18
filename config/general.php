@@ -53,7 +53,7 @@ return GeneralConfig::create()
     // The path to the image that should be used when a broken image is encountered.
     ->brokenImagePath('@webroot/dist/images/fallback.png')
     // The maximum upload file size allowed. (25mb)
-    ->maxUploadFileSize('25M')
+    ->maxUploadFileSize('5M')
     // Prevent generated URLs from including "index.php"
     ->omitScriptNameInUrls(true)
     // Preload Single entries as Twig variables

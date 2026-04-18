@@ -1,0 +1,277 @@
+{% extends 'layouts/base' %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+
+{# ── Hero area (from Single entry) ──────────────────── #}
+{% set eyebrow = entry is defined and entry ? entry.pageEyebrow ?? 'Inspiration' : 'Inspiration' %}
+{% set pageHeading = entry is defined and entry ? entry.heading ?? 'The Art of Extraordinary' : 'The Art of Extraordinary' %}
+{% set intro = entry is defined and entry ? entry.summary ?? 'Stories, perspectives and hidden discoveries — curated to spark the journey only you can take.' : 'Stories, perspectives and hidden discoveries — curated to spark the journey only you can take.' %}
+
+{# ── Data ───────────────────────────────────────────── #}
+{% set articles = craft.entries.section('inspiration').all() %}
+{% set categories = craft.categories.group('inspiration').all() %}
+
+<!-- Page Hero -->
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <p class="eyebrow" data-reveal>{{ eyebrow }}</p>
+        <h1 class="page-title" data-reveal data-delay="100">
+            {{ pageHeading|nl2br }}
+        </h1>
+        <p class="page-intro" data-reveal data-delay="200">
+            {{ intro }}
+        </p>
+    </div>
+</section>
+
+<!-- Filter Bar + Grid (Alpine component) -->
+<div
+    x-data="inspirationFilters()"
+    x-init="init()"
+>
+
+    <!-- Filter Bar -->
+    <section class="filter-section" aria-label="Filter stories">
+        <div class="filter-inner">
+            <div class="filter-controls">
+
+                <!-- Country -->
+                <div class="filter-group">
+                    <span class="filter-group-label" id="country-filter-label">Country</span>
+                    <div class="filter-pills" role="group" aria-labelledby="country-filter-label">
+                        <button
+                            class="filter-pill"
+                            :class="{ 'is-active': country === 'all' }"
+                            :aria-pressed="(country === 'all').toString()"
+                            @click="setCountry('all')"
+                        >All Countries</button>
+                        <button
+                            class="filter-pill"
+                            :class="{ 'is-active': country === 'New Zealand' }"
+                            :aria-pressed="(country === 'New Zealand').toString()"
+                            @click="setCountry('New Zealand')"
+                        >New Zealand</button>
+                        <button
+                            class="filter-pill"
+                            :class="{ 'is-active': country === 'Australia' }"
+                            :aria-pressed="(country === 'Australia').toString()"
+                            @click="setCountry('Australia')"
+                        >Australia</button>
+                    </div>
+                </div>
+
+                <div class="filter-divider" aria-hidden="true"></div>
+
+                <!-- Category (dynamic from category group) -->
+                <div class="filter-group">
+                    <span class="filter-group-label" id="cat-filter-label">Category</span>
+                    <div class="filter-pills" role="group" aria-labelledby="cat-filter-label">
+                        <button
+                            class="filter-pill"
+                            :class="{ 'is-active': category === 'all' }"
+                            :aria-pressed="(category === 'all').toString()"
+                            @click="setCategory('all')"
+                        >All</button>
+                        {% for cat in categories %}
+                            <button
+                                class="filter-pill"
+                                :class="{ 'is-active': category === '{{ cat.slug }}' }"
+                                :aria-pressed="(category === '{{ cat.slug }}').toString()"
+                                @click="setCategory('{{ cat.slug }}')"
+                            >{{ cat.title }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            <p class="filter-count" aria-live="polite" aria-atomic="true">
+                <span x-text="visibleCount" style="font-family:'Playfair Display',serif; font-size:18px; font-style:normal; color:#112250; line-height:1;"></span>
+                <span class="filter-count-label">stories</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="insp-section">
+        <div class="insp-inner">
+            <div class="insp-grid" id="insp-grid">
+                {% set badgeColors = {
+                    'places': '#112250',
+                    'experiences': '#2C4A7C',
+                    'food-wine': '#8B6914',
+                    'culture': '#4A5568',
+                    'wildlife': '#2D6A4F',
+                } %}
+
+                {% for article in articles %}
+                    {% set image = article.image.one() ?? null %}
+                    {% set country = article.inspirationCountry.label ?? '' %}
+                    {% set articleCategories = article.inspirationCategory.all() ?? [] %}
+
+                    <article
+                        class="insp-item"
+                        data-country="{{ country }}"
+                        data-categories="{{ articleCategories|map(c => c.slug)|join(',') }}"
+                        x-show="matchItem('{{ country }}', '{{ articleCategories|map(c => c.slug)|join(',') }}')"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                    >
+                        <a href="{{ article.url }}" class="insp-img-wrap">
+                            {% if image %}
+                                {% set transformed = image.setTransform('cardMedium') %}
+                                <img
+                                    src="{{ transformed.url }}"
+                                    alt="{{ image.alt ?? image.title ?? article.title }}"
+                                    class="insp-img"
+                                    loading="lazy"
+                                    decoding="async"
+                                    width="{{ transformed.width }}"
+                                    height="{{ transformed.height }}"
+                                />
+                            {% endif %}
+                            <div class="insp-overlay" aria-hidden="true">
+                                <span class="insp-overlay-text">
+                                    Read story
+                                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                                        <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            {% if articleCategories|length %}
+                                <div class="insp-badges">
+                                    {% for cat in articleCategories %}
+                                        <span
+                                            class="insp-badge"
+                                            style="background: {{ badgeColors[cat.slug] ?? '#112250' }}; color: #F5F0E9;"
+                                        >{{ cat.title }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </a>
+                        <div class="insp-info">
+                            <div class="insp-meta-row">
+                                <span class="insp-country">{{ country }}</span>
+                                {% if article.readTime %}
+                                    <span class="insp-sep" aria-hidden="true">&middot;</span>
+                                    <span class="insp-read-time">{{ article.readTime }}</span>
+                                {% endif %}
+                            </div>
+                            <h3 class="insp-title">
+                                <a href="{{ article.url }}">{{ article.title }}</a>
+                            </h3>
+                            {% if article.summary %}
+                                <p class="insp-excerpt">{{ article.summary }}</p>
+                            {% endif %}
+                            <a href="{{ article.url }}" class="btn-luxury">
+                                Read story
+                                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+
+            <!-- Empty state -->
+            <div class="insp-empty" x-show="visibleCount === 0" x-cloak>
+                <div class="rule" style="margin: 0 auto 28px;"></div>
+                <p class="insp-empty-msg">No stories match your current filters.</p>
+                <button class="insp-reset-btn btn-luxury" @click="resetFilters()">
+                    Clear all filters
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                        <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Stay Inspired CTA -->
+<section class="plan-cta" data-reveal>
+    <div class="plan-cta-inner">
+        <div class="rule" style="margin-bottom: 32px;"></div>
+        <p class="plan-cta-eyebrow">Begin your journey</p>
+        <h2 class="plan-cta-heading">Something here caught your eye?</h2>
+        <p class="plan-cta-body">
+            Every story on this page is a door. Tell us which one you'd like to walk through.
+        </p>
+        <a href="/contact" class="btn-filled btn-filled-light">
+            Start a Conversation
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+            </svg>
+        </a>
+    </div>
+</section>
+
+<script>
+document.addEventListener('alpine:init', () => {
+    Alpine.data('inspirationFilters', () => ({
+        country: 'all',
+        category: 'all',
+        visibleCount: {{ articles|length }},
+
+        init() {
+            const params = new URLSearchParams(window.location.search);
+            this.country = params.get('country') || 'all';
+            this.category = params.get('category') || 'all';
+
+            this.$nextTick(() => { this.updateCount(); });
+        },
+
+        setCountry(value) {
+            this.country = value;
+            this.syncUrl();
+            this.$nextTick(() => { this.updateCount(); });
+        },
+
+        setCategory(value) {
+            this.category = value;
+            this.syncUrl();
+            this.$nextTick(() => { this.updateCount(); });
+        },
+
+        resetFilters() {
+            this.country = 'all';
+            this.category = 'all';
+            this.syncUrl();
+            this.$nextTick(() => { this.updateCount(); });
+        },
+
+        matchItem(itemCountry, itemCategories) {
+            const countryMatch = this.country === 'all' || itemCountry === this.country;
+            const catSlugs = itemCategories ? itemCategories.split(',') : [];
+            const categoryMatch = this.category === 'all' || catSlugs.includes(this.category);
+            return countryMatch && categoryMatch;
+        },
+
+        updateCount() {
+            const items = this.$el.querySelectorAll('.insp-item');
+            let count = 0;
+            items.forEach(item => {
+                const itemCountry = item.dataset.country || '';
+                const itemCategories = item.dataset.categories || '';
+                if (this.matchItem(itemCountry, itemCategories)) count++;
+            });
+            this.visibleCount = count;
+        },
+
+        syncUrl() {
+            const params = new URLSearchParams();
+            if (this.country !== 'all') params.set('country', this.country);
+            if (this.category !== 'all') params.set('category', this.category);
+            const qs = params.toString();
+            const url = window.location.pathname + (qs ? '?' + qs : '');
+            window.history.replaceState({}, '', url);
+        }
+    }));
+});
+</script>
+
+{% endblock %}

@@ -1,6 +1,7 @@
 defaultPlacement: end
 fieldLayouts:
   dc47be99-6514-480b-8136-e3d352bf9011:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -36,6 +37,7 @@ fieldLayouts:
         name: Content
         uid: 006ddf5c-aea8-4b9a-8582-79ef69f9aefe
         userCondition: null
+    thumbFieldKey: null
 handle: people
 name: People
 siteSettings:

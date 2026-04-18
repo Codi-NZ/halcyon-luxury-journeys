@@ -1,0 +1,29 @@
+columnSuffix: null
+handle: whyHalcyonPillars
+instructions: 'Add up to 4 pillar cards for the "Why Halcyon" section'
+name: 'Why Halcyon Pillars'
+searchable: false
+settings:
+  createButtonLabel: 'Add a pillar'
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - d4e5f6a7-0002-4000-8000-000000000001
+        -
+          - group
+          - General
+  includeTableView: false
+  maxEntries: 4
+  minEntries: null
+  pageSize: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: blocks
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

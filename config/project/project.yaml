@@ -1,8 +1,8 @@
-dateModified: 1775511437
+dateModified: 1776554452
 elementSources:
   craft\elements\Category:
     -
-      key: 'group:5153a697-6d19-4be2-9e34-97179b397743' # Events
+      key: 'group:5153a697-6d19-4be2-9e34-97179b397743'
       type: native
     -
       defaultSort:
@@ -10,7 +10,7 @@ elementSources:
         - asc
       defaultViewMode: ''
       disabled: false
-      key: 'group:54f11066-6255-4fca-86e9-023943a31253' # News
+      key: 'group:54f11066-6255-4fca-86e9-023943a31253'
       tableAttributes: '-'
       type: native
     -
@@ -49,7 +49,6 @@ elementSources:
         - 'field:7318ab83-35e9-49f3-bee0-be852a027231' # Image
         - 'field:ceca07e6-941b-4381-8e36-e6b760f5f0a6' # Video
         - dateUpdated
-        - authors
         - link
       type: native
     -
@@ -58,7 +57,7 @@ elementSources:
         - desc
       defaultViewMode: ''
       disabled: false
-      key: 'section:bcf2c6bd-6a49-4563-9e25-2e4478a661fe' # Sitemap
+      key: 'section:bcf2c6bd-6a49-4563-9e25-2e4478a661fe' # Pages
       page: Entries
       tableAttributes:
         - 'field:7318ab83-35e9-49f3-bee0-be852a027231' # Image
@@ -69,111 +68,66 @@ elementSources:
         - link
       type: native
     -
-      defaultSort:
-        - postDate
-        - desc
-      defaultViewMode: ''
-      disabled: false
-      key: 'section:4d1b8d52-6b6b-46a7-9c08-f136d72499cd' # Misc Pages
-      page: Entries
-      tableAttributes:
-        - 'field:7318ab83-35e9-49f3-bee0-be852a027231' # Image
-        - 'field:ceca07e6-941b-4381-8e36-e6b760f5f0a6' # Video
-        - dateUpdated
-        - authors
-        - link
-      type: native
-    -
       heading: Channel
       key: 'heading:3cbe0980-8b5a-4530-b164-af9ff943a304'
       page: Entries
       type: heading
     -
-      heading: Events
-      key: 'heading:ada86350-6f1d-4f79-82fd-ea168239ffc2'
-      page: Entries
-      type: heading
-    -
-      heading: Updates
-      key: 'heading:856026b6-790b-4228-a386-d0a9bdec95e3'
-      page: Entries
-      type: heading
-    -
       defaultSort:
         - postDate
         - desc
-      disabled: false
-      key: 'section:62333b6e-9380-4bb6-9103-37699143de7e'
-      page: Entries
-      tableAttributes:
-        - 'field:7318ab83-35e9-49f3-bee0-be852a027231' # Image
-        - 'field:ceca07e6-941b-4381-8e36-e6b760f5f0a6' # Video
-        - 'fieldInstance:c14562dd-6975-407f-954d-c19907a044f8'
-        - postDate
-        - authors
-        - link
-      type: native
-    -
-      heading: People
-      key: 'heading:b5fe6b3a-ea15-4320-8529-171f51bba6e9'
-      page: Entries
-      type: heading
-    -
-      defaultSort:
-        - postDate
-        - desc
-      disabled: false
-      key: 'section:b0c5d611-6882-4a2b-8e12-3e743a96937e'
-      page: Entries
-      tableAttributes:
-        - 'field:7318ab83-35e9-49f3-bee0-be852a027231' # Image
-        - 'field:b4bd62ee-6be8-4524-981e-871d0341766e' # Gender
-        - 'fieldInstance:e4f409b1-83e4-4049-b2f6-d0c4d4d801dd'
-        - 'fieldInstance:3f995dba-9101-40e9-93a8-2e39ff63e7ab'
-        - 'field:194fbaee-c76c-4faf-b869-08ca938d3fe7' # Email Address
-        - 'fieldInstance:d060c47f-526d-4547-9ebc-c9c1fdb38db5'
-        - 'fieldInstance:cbc05b19-b271-4f61-9de0-f21955e729ca'
-        - dateUpdated
-        - authors
-        - link
-      type: native
-    -
-      heading: 'Distributed Content'
-      key: 'heading:3a749cbe-2996-45e5-8ab4-ea617a49b9d0'
-      page: Entries
-      type: heading
-    -
-      defaultSort:
-        - postDate
-        - desc
-      disabled: false
-      key: 'section:09733768-7ef0-4948-a79d-ec4275987b9e'
-      page: Entries
-      tableAttributes:
-        - dateUpdated
-        - authors
-      type: native
-    -
-      condition:
-        class: craft\elements\conditions\entries\EntryCondition
-        conditionRules:
-          -
-            class: craft\elements\conditions\entries\SectionConditionRule
-            operator: in
-            uid: 469d07a1-ca51-4d69-b793-82f33fb7c937
-            values:
-              - 547e86a1-c4e9-4b3e-8981-802d92006ec2 # Homepage
-        elementType: craft\elements\Entry
-        fieldContext: global
-      defaultSort:
-        - id
-        - asc
       defaultViewMode: ''
-      key: 'custom:9b1293cf-2a54-4b5a-b6dd-45373e39c742'
-      label: Home
+      disabled: false
+      key: 'section:c1d2e3f4-0001-4000-8000-000000000001' # Destinations
       page: Entries
-      tableAttributes: '-'
-      type: custom
+      tableAttributes:
+        - 'field:8424d72d-0e66-4574-aa2d-0fd35e686f3d' # Destination Country
+        - 'field:7a5d801a-75f9-4b26-8e09-46f7a326855d' # Destination Location
+        - 'field:7735c43c-fc38-4b9c-8116-774dfb0c51d6' # Destination Type
+        - status
+        - link
+      type: native
+    -
+      defaultSort:
+        - postDate
+        - desc
+      defaultViewMode: ''
+      disabled: false
+      key: 'section:c1d2e3f4-0002-4000-8000-000000000001' # Signature Journeys
+      page: Entries
+      tableAttributes:
+        - 'field:c1d2e3f4-0002-4000-8000-000000000010' # Journey Country
+        - 'field:c1d2e3f4-0002-4000-8000-000000000011' # Journey Duration
+        - 'field:e5f6a7b8-0005-4000-8000-000000000001' # Journey Region
+        - 'field:e5f6a7b8-0004-4000-8000-000000000001' # Journey Season
+        - 'field:e5f6a7b8-0003-4000-8000-000000000001' # Journey Subtitle
+        - status
+        - link
+      type: native
+    -
+      defaultSort:
+        - postDate
+        - desc
+      defaultViewMode: ''
+      disabled: false
+      key: 'section:e5f6a7b8-1004-4000-8000-000000000001' # Inspiration
+      page: Entries
+      tableAttributes:
+        - 'field:e5f6a7b8-0007-4000-8000-000000000001' # Inspiration Country
+        - 'field:e5f6a7b8-0006-4000-8000-000000000001' # Inspiration Category
+        - status
+        - postDate
+        - link
+      type: native
+    -
+      key: 'section:c1d2e3f4-0003-4000-8000-000000000001' # Testimonials
+      page: Entries
+      type: native
+    -
+      heading: ''
+      key: 'heading:65bc224f-89a6-451e-9c63-f3d055f23b56'
+      page: Entries
+      type: heading
 email:
   fromEmail: web@simple.com.au
   fromName: Simple
@@ -194,12 +148,12 @@ fs:
     type: craft\fs\Local
     url: '@baseUrl/assets/images'
   videos:
-    hasUrls: false
+    hasUrls: true
     name: Videos
     settings:
       path: '@webroot/assets/videos'
     type: craft\fs\Local
-    url: null
+    url: '@baseUrl/assets/videos'
 meta:
   __names__:
     0dea0411-f862-4c00-9d06-8c5f44767746: 'Gallery Display' # Gallery Display
@@ -211,27 +165,26 @@ meta:
     3c342a3d-4e8a-43d5-b952-a45e61022a5c: 'Body Rich Text' # Body Rich Text
     03e38e55-ec9f-4c48-8398-b00a51c40db4: Links # Links
     4b338ba8-633c-4ea2-a1fe-f3a65505675d: 'Listing - News' # Listing - News
-    4d1b8d52-6b6b-46a7-9c08-f136d72499cd: 'Misc Pages' # Misc Pages
     5ced9ecb-b142-4769-ac96-688fa11638e3: Person # Person
+    7a5d801a-75f9-4b26-8e09-46f7a326855d: 'Destination Location' # Destination Location
     7bbd3fc2-2784-4a32-9281-3db21962504c: State # State
     7c1bc3f3-9531-4b93-90bc-3f91a5201fa5: Accordion # Accordion
+    8a2c3cba-170b-4b9f-bd63-dd7dd61f606c: 'Links - Minimal' # Links - Minimal
     8a133acd-1d63-4b81-b445-8cf2ecd6eb37: Text # Text
     8d675c1b-010a-4f71-bcf8-b6fa04bcdb0b: 'Mirrored Page' # Mirrored Page
+    9aa761b2-ed78-4080-93b3-0d409624f4b0: 'Landing Page' # Landing Page
     9ac7d0b0-87f9-487d-a990-f718fdcdf4fd: Basic # Basic
     9c3d7bcb-b2bf-41e7-99e3-b7b91d9ea0e7: 'Switch On' # Switch On
     9eaebdd0-e760-4fd3-a207-d2dffd3e3cc9: 'Content Page' # Content Page
-    9fd3b6d6-51a8-4a8c-873b-d3c8c92a1afa: Footer # Footer
     12c009e5-5690-4abc-ae4b-e2d68e9a156e: 'Internal Page' # Internal Page
     12ff9a79-92e9-4da1-b561-6e5b3825c1a3: 'Section Blocks' # Section Blocks
     24a9a722-d230-49d0-8693-6825092a5675: $CRAFT_DEFAULT_SITE_NAME # $CRAFT_DEFAULT_SITE_NAME
     24b913c8-7c23-46ae-86ac-a677aa4d0ec4: Form # Form
     32fb968b-8cf7-43cb-a083-7666077b6c60: Homepage # Homepage
-    39e2a9d3-a837-45b2-9343-61cf359544a2: Fallbacks # Fallbacks
     40aec121-6297-4784-afee-cc15f3e675bd: Table # Table
-    045e7f22-ce71-4606-8fa3-717e53520728: 'Landing Page' # Landing Page
+    42e3ced1-8c83-4e92-a1a8-6ff5e6a42f5b: Inspiration # Inspiration
     46f2595c-2bd7-47fb-a8ad-7f432ce95b50: Images # Images
     48a21ed2-840d-43e1-b045-29faa67454b4: 'Heading Level' # Heading Level
-    54f11066-6255-4fca-86e9-023943a31253: News # News
     77dcf8f6-0eca-4d1a-a307-ce6088ed61f5: Videos # Videos
     80a10322-1b5c-4e4b-b1bd-0238c4e585a0: Table # Table
     0083aea4-e3b7-4627-85ee-400dd3e208a8: 'Accordion Items' # Accordion Items
@@ -245,38 +198,34 @@ meta:
     694fbcbc-c6a1-4224-b3ae-c5e747346b5c: Image # Image
     720e205f-1027-4c67-81ed-b8bbd5dd2f8a: Contact # Contact
     2575f49a-5928-4e08-8fac-d331e748d3c3: 'Landing Page' # Landing Page
-    5153a697-6d19-4be2-9e34-97179b397743: Events # Events
     7318ab83-35e9-49f3-bee0-be852a027231: Image # Image
+    7735c43c-fc38-4b9c-8116-774dfb0c51d6: 'Destination Type' # Destination Type
     7988a81d-958b-43e2-906e-98e06ed8f309: 'Image Gallery' # Image Gallery
+    8424d72d-0e66-4574-aa2d-0fd35e686f3d: 'Destination Country' # Destination Country
     8729e2f7-1fc9-4b02-bea2-024f302c227e: 'Accordion Item' # Accordion Item
     17602dc9-b8d7-416f-93ab-cd8467d9b76f: 'Call To Action' # Call To Action
     22179b31-ee25-4b4c-930e-0dfa53b20564: People # People
+    62472b7c-fe20-44e4-baa5-48d17f09d31a: 'Link It - Minimal' # Link It - Minimal
+    73988ff7-7dd9-4e10-ab92-d16f04347dd7: Globals # Globals
     80801f65-acf2-4d04-92c0-df213deaed64: 'Content Blocks' # Content Blocks
     86415a8b-91ea-47a9-87ec-12b73a5f2098: Minimal # Minimal
     519537c1-95e5-4995-862e-edafd8eed263: 'Public Schema' # Public Schema
     64019267-24c3-4313-bcb7-69bf3d827023: 'Shared Content' # Shared Content
     a0e23cc1-0f0e-4c56-999b-a6fc0c07df71: Geolocation # Geolocation
-    a066c31c-d443-4383-9b8a-1eeaaf56b63f: 'Business Details' # Business Details
     a1b2c3d4-000a-4000-8000-000000000001: 'CTA Overline' # CTA Overline
     a1b2c3d4-000a-4000-8000-000000000002: 'CTA Heading' # CTA Heading
     a1b2c3d4-000a-4000-8000-000000000003: 'CTA Body' # CTA Body
-    a1b2c3d4-000a-4000-8000-000000000004: 'CTA Button Text' # CTA Button Text
-    a1b2c3d4-000a-4000-8000-000000000005: 'CTA Button URL' # CTA Button URL
     a1b2c3d4-000a-4000-8000-000000000006: 'CTA Background Image' # CTA Background Image
     a1b2c3d4-0001-4000-8000-000000000001: 'Hero Tagline' # Hero Tagline
     a1b2c3d4-0001-4000-8000-000000000002: 'Hero Heading' # Hero Heading
     a1b2c3d4-0001-4000-8000-000000000003: 'Hero Subheading' # Hero Subheading
-    a1b2c3d4-0001-4000-8000-000000000004: 'Hero Primary Button Text' # Hero Primary Button Text
-    a1b2c3d4-0001-4000-8000-000000000005: 'Hero Primary Button URL' # Hero Primary Button URL
-    a1b2c3d4-0001-4000-8000-000000000006: 'Hero Secondary Button Text' # Hero Secondary Button Text
-    a1b2c3d4-0001-4000-8000-000000000007: 'Hero Secondary Button URL' # Hero Secondary Button URL
-    a1b2c3d4-0001-4000-8000-000000000008: 'Hero Video URL' # Hero Video URL
+    a1b2c3d4-0001-4000-8000-000000000008: 'Hero Video' # Hero Video
     a1b2c3d4-0002-4000-8000-000000000001: 'Brand Intro Heading' # Brand Intro Heading
     a1b2c3d4-0002-4000-8000-000000000002: 'Brand Intro Body' # Brand Intro Body
     a1b2c3d4-0003-4000-8000-000000000001: 'Destinations Intro Heading' # Destinations Intro Heading
     a1b2c3d4-0003-4000-8000-000000000002: 'Destinations Intro Copy' # Destinations Intro Copy
     a1b2c3d4-0003-4000-8000-000000000003: 'Featured Destinations' # Featured Destinations
-    a1b2c3d4-0004-4000-8000-000000000001: 'Cinematic Video URL' # Cinematic Video URL
+    a1b2c3d4-0004-4000-8000-000000000001: 'Cinematic Video' # Cinematic Video
     a1b2c3d4-0005-4000-8000-000000000001: 'Experiences Heading' # Experiences Heading
     a1b2c3d4-0005-4000-8000-000000000002: 'Experiences Copy' # Experiences Copy
     a1b2c3d4-0006-4000-8000-000000000001: 'Signature Journeys Intro Heading' # Signature Journeys Intro Heading
@@ -287,7 +236,6 @@ meta:
     a1b2c3d4-0008-4000-8000-000000000002: 'Story Body' # Story Body
     a1b2c3d4-0008-4000-8000-000000000003: 'Story Body 2' # Story Body 2
     a1b2c3d4-0008-4000-8000-000000000004: 'Story Image' # Story Image
-    a1b2c3d4-0008-4000-8000-000000000005: 'Story Link Text' # Story Link Text
     a1b2c3d4-0009-4000-8000-000000000001: 'Testimonials Heading' # Testimonials Heading
     a1b2c3d4-0009-4000-8000-000000000002: 'Featured Testimonials' # Featured Testimonials
     acca6438-64e2-4899-b14c-371c0142069f: 'Text Basic' # Text Basic
@@ -300,12 +248,15 @@ meta:
     b1c2d3e4-0001-4000-8000-000000000004: 'LP Form Label' # LP Form Label
     b1c2d3e4-0001-4000-8000-000000000005: 'LP Privacy Note' # LP Privacy Note
     b1c2d3e4-0001-4000-8000-000000000006: 'LP Contact Email' # LP Contact Email
+    b2c3d4e5-0001-4000-8000-000000000001: 'Full Bleed' # Full Bleed
+    b2c3d4e5-0002-4000-8000-000000000001: 'Card Large' # Card Large
+    b2c3d4e5-0003-4000-8000-000000000001: 'Card Medium' # Card Medium
+    b2c3d4e5-0005-4000-8000-000000000001: 'Gallery Carousel Slide' # Gallery Carousel Slide
     b4bd62ee-6be8-4524-981e-871d0341766e: Gender # Gender
     b8f875f4-12b1-4e54-9900-0335b3c8b0b7: Heading # Heading
     b7227fa1-de37-463e-a0cb-6dd871703a09: 'Shared Contents' # Shared Contents
     bac5c8c2-ebad-4210-b8de-091b5001da27: 'Listing - Children' # Listing - Children
-    bca8455c-17ea-494b-b21f-c138b8ce8961: Misc # Misc
-    bcf2c6bd-6a49-4563-9e25-2e4478a661fe: Sitemap # Sitemap
+    bcf2c6bd-6a49-4563-9e25-2e4478a661fe: Pages # Pages
     bda2da80-ad61-47e2-9388-753d954fc32b: $CRAFT_SYSTEM_NAME # $CRAFT_SYSTEM_NAME
     bf5d2f1a-a152-4756-bfd5-e9df69fb1553: 'Campaign Monitor' # Campaign Monitor
     c1d2e3f4-0001-4000-8000-000000000001: Destinations # Destinations
@@ -325,20 +276,41 @@ meta:
     c1d2e3f4-0003-4000-8000-000000000010: 'Testimonial Origin' # Testimonial Origin
     c1d2e3f4-0003-4000-8000-000000000011: 'Testimonial Quote' # Testimonial Quote
     c1d2e3f4-0003-4000-8000-000000000012: 'Testimonial Journey' # Testimonial Journey
-    ca2289b7-137e-4c93-b06c-34c084c2d3b0: New # New
     cc085bf4-81a3-4d07-8a13-fa1ade1087b4: 'Body Text' # Body Text
     ceca07e6-941b-4381-8e36-e6b760f5f0a6: Video # Video
     d0fad2d3-e5fe-487e-b11a-1d8cfdfe3377: Map # Map
+    d3e4f5a6-0001-4000-8000-000000000001: 'Featured Destination' # Featured Destination
+    d4e5f6a7-0001-4000-8000-000000000005: 'Why Halcyon Pillars' # Why Halcyon Pillars
     d473b784-8d70-40d9-92a2-941f139ea7e0: Blockquote # Blockquote
+    d5931c81-8084-4100-bcb7-9186a1bbde45: 'Destination Type' # Destination Type
     d271273f-e61d-4182-8c1e-c3348d00e993: 'Shared Content' # Shared Content
     db956d1c-c0f7-440d-bb69-d82e6209d30d: Contact # Contact
-    dce63158-7515-4521-831e-47885d8aeace: 'Contact Form' # Contact Form
     dd664a79-2f4f-4276-9342-80a640dde704: Switch # Switch
+    de80887f-330c-4889-8b5c-523bec7e239b: Globals # Globals
     e4e6cd78-eb0d-4cd5-99be-10c946b08f70: 'News - Categories' # News - Categories
+    e5f6a7b8-0001-4000-8000-000000000001: 'Page Eyebrow' # Page Eyebrow
+    e5f6a7b8-0002-4000-8000-000000000001: 'Philosophy Quote' # Philosophy Quote
+    e5f6a7b8-0003-4000-8000-000000000001: 'Journey Subtitle' # Journey Subtitle
+    e5f6a7b8-0004-4000-8000-000000000001: 'Journey Season' # Journey Season
+    e5f6a7b8-0005-4000-8000-000000000001: 'Journey Region' # Journey Region
+    e5f6a7b8-0006-4000-8000-000000000001: 'Inspiration Category' # Inspiration Category
+    e5f6a7b8-0007-4000-8000-000000000001: 'Inspiration Country' # Inspiration Country
+    e5f6a7b8-0008-4000-8000-000000000001: 'Read Time' # Read Time
+    e5f6a7b8-0010-4000-8000-000000000001: Tag # Tag
+    e5f6a7b8-1001-4000-8000-000000000001: 'Destinations Listing' # Destinations Listing
+    e5f6a7b8-1002-4000-8000-000000000001: 'Signature Journeys Listing' # Signature Journeys Listing
+    e5f6a7b8-1003-4000-8000-000000000001: 'Inspiration Listing' # Inspiration Listing
+    e5f6a7b8-1004-4000-8000-000000000001: Inspiration # Inspiration
+    e5f6a7b8-2002-4000-8000-000000000001: 'Listing - Signature Journeys' # Listing - Signature Journeys
+    e5f6a7b8-2003-4000-8000-000000000001: 'Listing - Inspiration' # Listing - Inspiration
+    e5f6a7b8-2004-4000-8000-000000000001: 'Inspiration Article' # Inspiration Article
     e59c9f67-aad5-41f2-b47e-71bcf09bc841: SEO # SEO
+    f1a2b3c4-0001-4000-8000-000000000001: 'Highlight Text' # Highlight Text
+    f1a2b3c4-0002-4000-8000-000000000001: 'Highlight Item' # Highlight Item
     f6d70fec-8f6c-480f-8473-3bb41501fba8: 'Content Blocks Shared Content' # Content Blocks Shared Content
     f422c2a6-e83d-46e8-a486-84e060efa559: Video # Video
     f797e817-5075-4b7f-871d-4593579a78b6: 'Rich Text' # Rich Text
+    f798b7e5-9dd8-42b6-bb4b-1d4cda346f84: 'Listing - Destinations' # Listing - Destinations
     fb06b793-2038-479d-8cbf-98092b08ba2e: Heading # Heading
     fc9c28af-2def-4c85-9022-985bd6c28fb5: 'Links & Downloads' # Links & Downloads
 plugins:
@@ -385,15 +357,13 @@ plugins:
   formie:
     edition: standard
     enabled: true
+    licenseKey: MNRC2L7KL33HULHI7QI1RF6J
     schemaVersion: 3.4.12
   hyper:
     edition: standard
     enabled: true
+    licenseKey: 8YODH49SRXQ9F6SKOV9YK59T
     schemaVersion: 1.0.0
-  imager-x:
-    edition: pro
-    enabled: true
-    schemaVersion: 4.0.0
   knock-knock:
     edition: standard
     enabled: true
@@ -405,6 +375,7 @@ plugins:
   seomatic:
     edition: standard
     enabled: true
+    licenseKey: PZQXUWYWA3OWN4S7I3EOSQZ3
     schemaVersion: 3.0.13
   simplemap:
     edition: lite

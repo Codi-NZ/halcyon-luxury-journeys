@@ -6,34 +6,37 @@
 {% set modifiers = modifiers|default ? " " ~ modifiers : null %}
 {% set attributes = attributes ?? {} %}
 
-<div class=""
-	x-data="{
-		expanded: false,
-		contentH: 0,
-	}"
+<div class="cb-accordion"
+	x-data="{ expanded: false }"
 	{{ macros.addAttributes(attributes) }}
-	:class="expanded ? 'open' : ''"
 >
-	<div class="relative flex justify-between items-center border-b border-grey-200"
-		:class="{'border-grey-400': expanded}"
+	<button
+		class="cb-accordion-trigger"
+		id="{{ id }}-header"
+		data-accordion-trigger="true"
+		aria-label="Toggle accordion"
+		aria-controls="{{ id }}-content"
+		:aria-expanded="expanded"
+		@click="expanded = !expanded"
 	>
-		<button class="heading-4 pb-2 w-full text-left flex items-center justify-between gap-4 cursor-pointer transition-colors" id="{{ id }}-header" "id": id ~ "-trigger" data-accordion-trigger="true" aria-label="Toggle accordion" aria-controls="{{ id }}-content" :aria-expanded="expanded" @click="expanded = !expanded" :class="expanded ? 'text-grey-700' : 'text-grey-900'">
-			{{ heading|raw }}
-			<span class="transition-transform" :class="expanded ? '-rotate-180' : ''">
-				{{ macros.icon("outline/chevron-down", "size-6") }}
-			</span>
-		</button>
-	</div>
+		<span class="cb-accordion-title" :style="expanded ? 'color:rgba(17,34,80,0.65)' : ''">{{ heading|raw }}</span>
+		<span class="cb-accordion-icon" :class="expanded ? 'is-open' : ''">
+			<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+				<line x1="7" y1="1" x2="7" y2="13" stroke="currentColor" stroke-width="1.2" class="cb-accordion-icon-v"/>
+				<line x1="1" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.2"/>
+			</svg>
+		</span>
+	</button>
 
-	<div class="transition-[height] overflow-hidden"
+	<div class="cb-accordion-panel"
 		x-show="expanded"
 		id="{{ id }}-content"
 		role="region"
-		aria-labelledby="{{ id }}-trigger"
+		aria-labelledby="{{ id }}-header"
 		:aria-hidden="!expanded"
 		x-collapse
 	>
-		<div class="py-4">
+		<div class="cb-accordion-body">
 			{% block main %}
 				{{ body|raw }}
 			{% endblock %}

@@ -1,0 +1,35 @@
+columnSuffix: null
+handle: whyHalcyonPillarIcon
+instructions: 'Select an icon for this pillar card'
+name: 'Pillar Icon'
+searchable: false
+settings:
+  optgroups: true
+  options:
+    -
+      label: 'Key (Private)'
+      value: key
+    -
+      label: 'Compass (Access)'
+      value: compass
+    -
+      label: 'Diamond (Quality)'
+      value: diamond
+    -
+      label: 'Path (Journey)'
+      value: path
+    -
+      label: 'Shield (Trust)'
+      value: shield
+    -
+      label: 'Heart (Care)'
+      value: heart
+    -
+      label: 'Globe (World)'
+      value: globe
+    -
+      label: 'Star (Excellence)'
+      value: star
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

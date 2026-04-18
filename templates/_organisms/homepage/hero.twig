@@ -1,34 +1,82 @@
 {#
   Hero section — full-height video hero.
   Expects: entry with heroTagline, heroHeading, heroSubheading,
-           heroVideoUrl, heroPrimaryButtonText, heroPrimaryButtonUrl,
-           heroSecondaryButtonText, heroSecondaryButtonUrl fields.
+           heroVideoUrl (Assets/video field), linksMinimal (Hyper field) for CTA buttons,
+           and optional heroTrustBullets (Plain text, one label per line) for the small caps list.
+
+  The heroVideoUrl field is an Assets field pointing to the Videos volume.
+  The linksMinimal field handles both text and URL for each button.
+  The first link renders as the primary CTA button; the second as a
+  text-style secondary link.
+
+  ─── Craft CMS 5 Override Instructions ───────────────────────────────
+  To customise hero button behaviour without reintroducing redundant fields:
+
+  1. FIELD OVERRIDES
+     - linksMinimal is a shared Verbb Hyper field. To change its allowed
+       link types, edit the field in Settings → Fields → "Links - Minimal".
+     - Need more than two buttons? Increase the Hyper field's "Max Links"
+       setting — no new fields required.
+     - To make links required, toggle "Required" on the field layout element
+       in the Homepage entry type (Settings → Entry Types → Homepage → Hero tab),
+       not on the field definition itself (which would affect all usages).
+
+  2. TEMPLATE OVERRIDES
+     - To change button styles per-link, use the link's `classes` or
+       `customAttributes` Hyper sub-fields (already available in linksMinimal).
+     - To render buttons differently, override this template in a
+       site-specific template directory or use Craft's template hooks.
+     - Access individual link properties: link.url, link.text, link.target,
+       link.classes, link.customAttributes, link.title.
+
+  3. DO NOT create separate heroPrimaryButtonUrl / heroSecondaryButtonUrl
+     fields. All button links must flow through linksMinimal to avoid
+     field duplication and keep the CMS schema clean.
+  ─────────────────────────────────────────────────────────────────────
 #}
 
-{% set videoUrl   = entry.heroVideoUrl   ?? '/14861093_3840_2160_30fps.mp4' %}
+{% set heroVideo  = entry.heroVideoUrl.one() ?? null %}
 {% set tagline    = entry.heroTagline    ?? 'Tailor-made New Zealand & Australia' %}
 {% set heading    = entry.heroHeading    ?? 'Luxury Journeys Crafted for Discerning Travelers' %}
 {% set subheading = entry.heroSubheading ?? 'Journeys through New Zealand and Australia, tailored with care for those who travel with intention.' %}
-{% set primaryText  = entry.heroPrimaryButtonText  ?? 'Start Planning' %}
-{% set primaryUrl   = entry.heroPrimaryButtonUrl   ?? '/destinations' %}
-{% set secondText   = entry.heroSecondaryButtonText ?? 'View Signature Journeys' %}
-{% set secondUrl    = entry.heroSecondaryButtonUrl  ?? '/signature-journeys' %}
+
+{% set heroLinks = entry.linksMinimal ?? null %}
+
+{% set heroTrustBulletsDefault = [
+    'Custom Itinerary Design',
+    '24/7 In-Journey Support',
+    'Local Knowledge and Expertise',
+] %}
+{% set heroTrustBullets = heroTrustBulletsDefault %}
+{% if entry.getFieldLayout().getFieldByHandle('heroTrustBullets') and entry.heroTrustBullets|trim %}
+    {% set heroTrustBullets = [] %}
+    {% for line in entry.heroTrustBullets|split('\n') %}
+        {% if line|trim %}
+            {% set heroTrustBullets = heroTrustBullets|merge([line|trim]) %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% if heroTrustBullets is empty %}
+    {% set heroTrustBullets = heroTrustBulletsDefault %}
+{% endif %}
 
 <section id="hero" class="layout-outer bg-cream" aria-label="Halcyon hero">
     <article class="relative" style="min-height:78vh; width:100%; overflow:hidden; background:#112250;">
 
-        <video
-            class="absolute inset-0"
-            style="width:100%; height:100%; object-fit:cover;"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            aria-label="Scenic New Zealand and Australia travel footage"
-        >
-            <source src="{{ videoUrl }}" type="video/mp4" />
-        </video>
+        {% if heroVideo %}
+            <video
+                class="absolute inset-0"
+                style="width:100%; height:100%; object-fit:cover;"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="Scenic New Zealand and Australia travel footage"
+            >
+                <source src="{{ heroVideo.url }}" type="{{ heroVideo.mimeType }}" />
+            </video>
+        {% endif %}
 
         <div class="absolute inset-0" style="background:linear-gradient(to right, rgba(11,23,56,0.88) 0%, rgba(11,23,56,0.55) 50%, rgba(11,23,56,0.20) 100%);"></div>
 
@@ -47,28 +95,41 @@
                     {{ subheading }}
                 </p>
 
-                <div style="margin-top:clamp(28px,3vw,36px); display:flex; flex-wrap:wrap; align-items:center; gap:16px;">
-                    <a href="{{ primaryUrl }}"
-                       style="display:inline-flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.6); background:rgba(255,255,255,0.1); padding:12px 24px; font-family:'Lato',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:#ffffff; text-decoration:none; transition:background 0.3s ease, color 0.3s ease;"
-                       onmouseover="this.style.background='#ffffff'; this.style.color='#112250';"
-                       onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.color='#ffffff';">
-                        {{ primaryText }}
-                    </a>
-                    <a href="{{ secondUrl }}"
-                       class="type-body-font"
-                       style="display:inline-flex; align-items:center; gap:8px; border-bottom:1px solid rgba(255,255,255,0.45); padding-bottom:2px; font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.9); text-decoration:none; transition:gap 0.3s ease, border-color 0.3s ease;"
-                       onmouseover="this.style.gap='16px'; this.style.borderColor='rgba(255,255,255,0.85)';"
-                       onmouseout="this.style.gap='8px'; this.style.borderColor='rgba(255,255,255,0.45)';">
-                        {{ secondText }}
-                        <span aria-hidden="true">→</span>
-                    </a>
-                </div>
+                {% if heroLinks and heroLinks|length %}
+                    <div style="margin-top:clamp(28px,3vw,36px); display:flex; flex-wrap:wrap; align-items:center; gap:16px;">
+                        {% for link in heroLinks %}
+                            {% if loop.first %}
+                                {# Primary CTA button #}
+                                <a href="{{ link.url }}"
+                                   {{ link.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}
+                                   style="display:inline-flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.6); background:rgba(255,255,255,0.1); padding:12px 24px; font-family:'Lato',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:#ffffff; text-decoration:none; transition:background 0.3s ease, color 0.3s ease;"
+                                   onmouseover="this.style.background='#ffffff'; this.style.color='#112250';"
+                                   onmouseout="this.style.background='rgba(255,255,255,0.1)'; this.style.color='#ffffff';">
+                                    {{ link.text ?? 'Start Planning' }}
+                                </a>
+                            {% else %}
+                                {# Secondary text link #}
+                                <a href="{{ link.url }}"
+                                   {{ link.target == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}
+                                   class="type-body-font"
+                                   style="display:inline-flex; align-items:center; gap:8px; border-bottom:1px solid rgba(255,255,255,0.45); padding-bottom:2px; font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.9); text-decoration:none; transition:gap 0.3s ease, border-color 0.3s ease;"
+                                   onmouseover="this.style.gap='16px'; this.style.borderColor='rgba(255,255,255,0.85)';"
+                                   onmouseout="this.style.gap='8px'; this.style.borderColor='rgba(255,255,255,0.45)';">
+                                    {{ link.text ?? 'View Signature Journeys' }}
+                                    <span aria-hidden="true">&rarr;</span>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
 
-                <ul style="margin-top:clamp(32px,3vw,40px); display:flex; flex-wrap:wrap; gap:clamp(16px,2vw,24px) clamp(12px,1.5vw,16px); padding:0; list-style:none;">
-                    <li class="type-body-font" style="font-size:10px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.7);">Custom Itinerary Design</li>
-                    <li class="type-body-font" style="font-size:10px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.7);">24/7 In-Journey Support</li>
-                    <li class="type-body-font" style="font-size:10px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.7);">Local Knowledge and Expertise</li>
-                </ul>
+                {% if heroTrustBullets|length %}
+                    <ul style="margin-top:clamp(32px,3vw,40px); display:flex; flex-wrap:wrap; gap:clamp(16px,2vw,24px) clamp(12px,1.5vw,16px); padding:0; list-style:none;">
+                        {% for label in heroTrustBullets %}
+                            <li class="type-body-font" style="font-size:10px; text-transform:uppercase; letter-spacing:0.14em; color:rgba(255,255,255,0.7);">{{ label }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
 
             </div>
         </div>

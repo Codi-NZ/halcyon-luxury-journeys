@@ -1,9 +1,9 @@
 {#
   Destinations Accordion — white background, two expandable rows.
   Expects: entry.destinationsIntroHeading, entry.destinationsIntroCopy,
-           entry.featuredDestinations (Entries field → destinations channel)
+           entry.featuredDestinations (Matrix field with featuredDestination blocks)
 
-  Each destination entry needs: title, destinationRegion, destinationImage, destinationDescription
+  Each featured destination block: title (entry title), pageEyebrow, image, summary, optional links.
 #}
 
 {% set sectionHeading = entry.destinationsIntroHeading ?? 'Two Countries. Infinite Journeys.' %}
@@ -38,9 +38,10 @@
         {# Accordion rows #}
         <div>
             {% for destination in destinations %}
-                {% set region = destination.destinationRegion ?? '' %}
-                {% set description = destination.destinationDescription ?? '' %}
-                {% set image = destination.destinationImage.one() ?? null %}
+                {% set region = destination.pageEyebrow ?? '' %}
+                {% set description = destination.summary ?? '' %}
+                {% set image = destination.image.one() ?? null %}
+                {% set destLinks = destination.links ?? null %}
 
                 <div class="accordion-item" data-reveal data-delay="{{ loop.index0 * 80 }}">
 
@@ -53,7 +54,14 @@
                         <span class="accordion-num">0{{ loop.index }}</span>
                         <span class="accordion-name">{{ destination.title }}</span>
                         <span class="accordion-sub">{{ region }}</span>
-                        <span class="accordion-icon" aria-hidden="true">+</span>
+                        <span class="accordion-icon" aria-hidden="true">
+                            <svg class="accordion-icon-svg accordion-icon--down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
+                                <path fill="currentColor" d="M297.4 438.6C309.9 451.1 330.2 451.1 342.7 438.6L502.7 278.6C515.2 266.1 515.2 245.8 502.7 233.3C490.2 220.8 469.9 220.8 457.4 233.3L320 370.7L182.6 233.4C170.1 220.9 149.8 220.9 137.3 233.4C124.8 245.9 124.8 266.2 137.3 278.7L297.3 438.7z"/>
+                            </svg>
+                            <svg class="accordion-icon-svg accordion-icon--up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
+                                <path fill="currentColor" d="M297.4 201.4C309.9 188.9 330.2 188.9 342.7 201.4L502.7 361.4C515.2 373.9 515.2 394.2 502.7 406.7C490.2 419.2 469.9 419.2 457.4 406.7L320 269.3L182.6 406.6C170.1 419.1 149.8 419.1 137.3 406.6C124.8 394.1 124.8 373.8 137.3 361.3L297.3 201.3z"/>
+                            </svg>
+                        </span>
                     </button>
 
                     <div
@@ -66,30 +74,34 @@
                             <div class="accordion-panel-grid">
                                 <div class="accordion-img-wrap">
                                     {% if image %}
+                                        {% set transformed = image.setTransform('cardMedium') %}
                                         <img
-                                            src="{{ image.url }}"
-                                            alt="{{ image.title ?? destination.title }}"
+                                            src="{{ transformed.url }}"
+                                            alt="{{ image.alt ?? image.title ?? destination.title }}"
                                             class="accordion-img"
                                             loading="lazy"
-                                            width="700"
-                                            height="437"
+                                            width="{{ transformed.width }}"
+                                            height="{{ transformed.height }}"
                                         />
                                     {% endif %}
                                 </div>
                                 <div class="accordion-content">
                                     {% if description %}
-                                        <p class="accordion-description">{{ description }}</p>
+                                        <p class="accordion-description">{{ description|nl2br }}</p>
                                     {% endif %}
-                                    <div class="accordion-categories">
-                                        <a href="{{ destination.url }}/places-to-stay" class="accordion-category-btn">
-                                            Exceptional Places to Stay
-                                            <span aria-hidden="true">→</span>
-                                        </a>
-                                        <a href="{{ destination.url }}/experiences" class="accordion-category-btn">
-                                            Exceptional Experiences
-                                            <span aria-hidden="true">→</span>
-                                        </a>
-                                    </div>
+                                    {% if destLinks and destLinks|length %}
+                                        <div class="accordion-categories">
+                                            {% for link in destLinks %}
+                                                {% set linkTarget = link.target ?? ((link.newWindow is defined and link.newWindow) ? '_blank' : null) %}
+                                                <a href="{{ link.url }}"
+                                                   {{ linkTarget == '_blank' ? 'target="_blank" rel="noopener noreferrer"' }}
+                                                   class="accordion-category-btn">
+                                                    {{ link.text }}
+                                                    <span aria-hidden="true">&rarr;</span>
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -97,9 +109,9 @@
 
                 </div>
             {% else %}
-                {# Fallback when no entries are related yet #}
+                {# Fallback when no blocks are added yet #}
                 <p class="type-body-font" style="color:rgba(17,34,80,0.4); font-style:italic; padding:40px 0; font-size:14px;">
-                    No destinations configured yet. Add destination entries and relate them to this page.
+                    No destinations configured yet. Add destination blocks to this page.
                 </p>
             {% endfor %}
             <div style="border-top:1px solid rgba(17,34,80,0.12);"></div>
@@ -114,9 +126,6 @@
         var triggers = document.querySelectorAll('.accordion-trigger');
 
         triggers.forEach(function(trigger) {
-            var icon = trigger.querySelector('.accordion-icon');
-            if (icon) icon.textContent = '+';
-
             trigger.addEventListener('click', function() {
                 var isOpen = trigger.getAttribute('aria-expanded') === 'true';
                 var panelId = trigger.getAttribute('aria-controls');
@@ -128,15 +137,12 @@
                         t.setAttribute('aria-expanded', 'false');
                         var otherPanel = document.getElementById(t.getAttribute('aria-controls'));
                         if (otherPanel) otherPanel.classList.remove('is-open');
-                        var otherIcon = t.querySelector('.accordion-icon');
-                        if (otherIcon) otherIcon.textContent = '+';
                     }
                 });
 
                 var next = !isOpen;
                 trigger.setAttribute('aria-expanded', String(next));
                 if (panel) panel.classList.toggle('is-open', next);
-                if (icon) icon.textContent = next ? '−' : '+';
             });
         });
     });

@@ -1,0 +1,17 @@
+columnSuffix: null
+handle: destinationCountry
+instructions: 'Select the country this destination belongs to.'
+name: 'Destination Country'
+searchable: false
+settings:
+  optgroups: true
+  options:
+    -
+      label: 'New Zealand'
+      value: new-zealand
+    -
+      label: Australia
+      value: australia
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Dropdown

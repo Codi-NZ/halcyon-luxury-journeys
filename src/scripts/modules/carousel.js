@@ -26,18 +26,27 @@ new Swiper('.default-carousel', {
     },
 })
 
-new Swiper('.image-carousel', {
-    slidesPerView: 1.25,
-    spaceBetween: 16,
-    loop: true,
-    centeredSlides: true,
-    breakpoints: {
-        768: {
-            slidesPerView: 1.5,
-        },
-    },
-    navigation: {
-        prevEl: '.prev-slide',
-        nextEl: '.next-slide',
-    },
+document.querySelectorAll('.image-carousel').forEach((carousel) => {
+    const container = carousel.parentElement
+    const slideCount =
+        parseInt(carousel.getAttribute('data-slide-count') || '0', 10) ||
+        carousel.querySelectorAll('.swiper-slide').length
+
+    const prevEl = container?.querySelector('.prev-slide')
+    const nextEl = container?.querySelector('.next-slide')
+
+    new Swiper(carousel, {
+        slidesPerView: 1,
+        spaceBetween: 16,
+        centeredSlides: true,
+        rewind: slideCount > 1,
+        watchOverflow: true,
+        navigation:
+            prevEl && nextEl
+                ? {
+                      prevEl,
+                      nextEl,
+                  }
+                : undefined,
+    })
 })

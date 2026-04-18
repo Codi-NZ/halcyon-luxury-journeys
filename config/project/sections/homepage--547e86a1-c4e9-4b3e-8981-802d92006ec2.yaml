@@ -15,7 +15,7 @@ propagationMethod: all
 siteSettings:
   24a9a722-d230-49d0-8693-6825092a5675: # $CRAFT_DEFAULT_SITE_NAME
     enabledByDefault: true
-    hasUrls: false
-    template: null
-    uriFormat: null
+    hasUrls: true
+    template: index
+    uriFormat: homepage
 type: single

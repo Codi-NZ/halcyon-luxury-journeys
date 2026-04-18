@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: blue
 description: null
 fieldLayouts:
@@ -20,6 +21,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:21:37+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: ceca07e6-941b-4381-8e36-e6b760f5f0a6 # Video
             handle: null
             instructions: null
@@ -35,6 +37,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T06:01:38+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
             handle: caption
             instructions: null
@@ -61,3 +64,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

@@ -1,3 +1,4 @@
+allowLineBreaksInTitles: false
 color: blue
 description: null
 fieldLayouts:
@@ -11,6 +12,7 @@ fieldLayouts:
             dateAdded: '2025-04-15T01:58:34+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 03e38e55-ec9f-4c48-8398-b00a51c40db4 # Links
             handle: null
             instructions: null
@@ -25,6 +27,7 @@ fieldLayouts:
         name: Content
         uid: 3f04a4ed-6595-4c79-9d23-61145099d7a7
         userCondition: null
+    thumbFieldKey: null
 handle: linksDownloads
 hasTitleField: false
 icon: link
@@ -36,3 +39,4 @@ slugTranslationMethod: site
 titleFormat: null
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

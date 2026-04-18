@@ -2,6 +2,7 @@ altTranslationKeyFormat: null
 altTranslationMethod: none
 fieldLayouts:
   d8fa0bfb-41a3-4664-a3ee-0c48b3106595:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -62,6 +63,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T06:01:15+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 8a133acd-1d63-4b81-b445-8cf2ecd6eb37 # Text
             handle: caption
             instructions: null
@@ -76,6 +78,7 @@ fieldLayouts:
         name: Content
         uid: 1cdfde17-043f-4870-8b11-94d8ade75d3e
         userCondition: null
+    thumbFieldKey: null
 fs: images
 handle: images
 name: Images

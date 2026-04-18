@@ -1,5 +1,67 @@
-{% include '_molecules/imageGallery' with {
-    images: block.images.all,
-    display: block.galleryDisplay.value,
-    galleryId: 'gallery-block-' ~ blockIndex
-} %}
+{% set images = block.images.all() %}
+{% set galleryId = 'gallery-block-' ~ blockIndex %}
+
+{% if images|length %}
+    <div class="image-gallery-block relative w-full overflow-hidden">
+        {% if images|length > 1 %}
+            <button
+                class="exp-arrow prev-slide"
+                type="button"
+                aria-label="Previous image"
+                style="left: clamp(12px, 2vw, 32px);"
+            >
+                <svg class="image-gallery-block__arrow-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
+                    <path fill="currentColor" d="M201.4 297.4C188.9 309.9 188.9 330.2 201.4 342.7L361.4 502.7C373.9 515.2 394.2 515.2 406.7 502.7C419.2 490.2 419.2 469.9 406.7 457.4L269.3 320L406.6 182.6C419.1 170.1 419.1 149.8 406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3L201.3 297.3z"/>
+                </svg>
+            </button>
+
+            <button
+                class="exp-arrow next-slide"
+                type="button"
+                aria-label="Next image"
+                style="right: clamp(12px, 2vw, 32px);"
+            >
+                <svg class="image-gallery-block__arrow-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" aria-hidden="true">
+                    <path fill="currentColor" d="M439.1 297.4C451.6 309.9 451.6 330.2 439.1 342.7L279.1 502.7C266.6 515.2 246.3 515.2 233.8 502.7C221.3 490.2 221.3 469.9 233.8 457.4L371.2 320L233.9 182.6C221.4 170.1 221.4 149.8 233.9 137.3C246.4 124.8 266.7 124.8 279.2 137.3L439.2 297.3z"/>
+                </svg>
+            </button>
+        {% endif %}
+
+        <div
+            class="swiper image-carousel w-full"
+            data-slide-count="{{ images|length }}"
+        >
+            <ul class="swiper-wrapper m-0 list-none p-0">
+                {% for image in images %}
+                    <li class="swiper-slide">
+                        <a
+                            class="image-gallery-block__link block w-full cursor-zoom-in overflow-hidden outline-none"
+                            style="margin: 0 auto; max-width: min(100%, 960px); background: rgba(245, 240, 233, 0.6);"
+                            data-fancybox="{{ galleryId }}"
+                            data-caption="{{ image.alt ?: image.title }}"
+                            href="{{ image.getUrl({
+                                width: 2000,
+                                height: 2000,
+                                mode: 'fit',
+                                format: 'webp',
+                                quality: 88
+                            }) }}"
+                        >
+                            <figure class="m-0 overflow-hidden">
+                                <img
+                                    src="{{ image.getUrl('galleryCarouselSlide') }}"
+                                    alt="{{ image.alt ?: image.title }}"
+                                    class="block h-auto w-full object-cover"
+                                    loading="{{ loop.first ? 'eager' : 'lazy' }}"
+                                    decoding="async"
+                                    width="1280"
+                                    height="800"
+                                >
+                            </figure>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endif %}

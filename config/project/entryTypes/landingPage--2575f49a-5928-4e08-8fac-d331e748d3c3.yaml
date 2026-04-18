@@ -1,6 +1,9 @@
+allowLineBreaksInTitles: false
 color: green
+description: null
 fieldLayouts:
   3be046fd-1413-498c-adde-7b54c39a7b7c:
+    cardThumbAlignment: end
     tabs:
       -
         elementCondition: null
@@ -9,6 +12,7 @@ fieldLayouts:
             dateAdded: '2026-04-07T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: b1c2d3e4-0001-4000-8000-000000000001 # LP Eyebrow
             handle: null
             instructions: null
@@ -24,6 +28,7 @@ fieldLayouts:
             dateAdded: '2026-04-07T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: b1c2d3e4-0001-4000-8000-000000000002 # LP Headline
             handle: null
             instructions: null
@@ -39,6 +44,7 @@ fieldLayouts:
             dateAdded: '2026-04-07T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: b1c2d3e4-0001-4000-8000-000000000003 # LP Body
             handle: null
             instructions: null
@@ -54,6 +60,7 @@ fieldLayouts:
             dateAdded: '2026-04-07T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: b1c2d3e4-0001-4000-8000-000000000006 # LP Contact Email
             handle: null
             instructions: null
@@ -75,6 +82,7 @@ fieldLayouts:
             dateAdded: '2026-04-07T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: b1c2d3e4-0001-4000-8000-000000000004 # LP Form Label
             handle: null
             instructions: null
@@ -90,6 +98,7 @@ fieldLayouts:
             dateAdded: '2026-04-07T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 24b913c8-7c23-46ae-86ac-a677aa4d0ec4 # Form
             handle: null
             instructions: null
@@ -105,6 +114,7 @@ fieldLayouts:
             dateAdded: '2026-04-07T00:00:00+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: b1c2d3e4-0001-4000-8000-000000000005 # LP Privacy Note
             handle: null
             instructions: null
@@ -126,6 +136,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:59:44+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: 7318ab83-35e9-49f3-bee0-be852a027231 # Image
             handle: null
             instructions: 'Fallback photo shown on mobile and when no video is present'
@@ -141,6 +152,7 @@ fieldLayouts:
             dateAdded: '2024-10-25T04:59:44+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: ceca07e6-941b-4381-8e36-e6b760f5f0a6 # Video
             handle: null
             instructions: 'Video displayed on desktop in the right panel'
@@ -162,6 +174,7 @@ fieldLayouts:
             dateAdded: '2024-10-24T05:29:39+00:00'
             editCondition: null
             elementCondition: null
+            elementEditCondition: null
             fieldUid: e59c9f67-aad5-41f2-b47e-71bcf09bc841 # SEO
             handle: null
             instructions: null
@@ -176,6 +189,7 @@ fieldLayouts:
         name: SEO
         uid: 2f934a50-a33a-43d6-af91-fd01afe2ecf9
         userCondition: null
+    thumbFieldKey: null
 handle: landingPage
 hasTitleField: false
 icon: file
@@ -187,3 +201,4 @@ slugTranslationMethod: site
 titleFormat: '{section.name|raw}'
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
+uiLabelFormat: '{title}'

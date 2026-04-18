@@ -1,0 +1,156 @@
+{% extends 'layouts/base' %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+
+{% set image = entry.journeyImage.one() ?? null %}
+{% set country = entry.journeyCountry.label ?? '' %}
+{% set duration = entry.journeyDuration ?? '' %}
+{% set region = entry.journeyRegion ?? '' %}
+{% set season = entry.journeySeason ?? '' %}
+{% set subtitle = entry.journeySubtitle ?? '' %}
+{% set description = entry.journeyDescription ?? '' %}
+{% set highlights = entry.journeyHighlights.all() ?? [] %}
+
+{# ── Breadcrumbs + Hero Banner ── #}
+{% set homePage = craft.entries.section('homepage').one() ?? null %}
+
+<section class="dest-detail-hero">
+    {% if image %}
+        <div class="dest-detail-hero-img-wrap">
+            <img
+                src="{{ image.url }}"
+                alt="{{ image.alt ?? image.title ?? entry.title }}"
+                class="dest-detail-hero-img"
+            />
+            <div class="dest-detail-hero-gradient"></div>
+        </div>
+    {% endif %}
+
+    <div class="dest-detail-hero-content">
+        <div class="container-lg">
+
+            {# Breadcrumbs #}
+            <nav class="breadcrumbs-halcyon" style="margin-bottom:clamp(24px,3vw,40px);" aria-label="Breadcrumbs">
+                {% if homePage %}
+                    <a href="{{ homePage.url }}" style="color:rgba(245,240,233,0.45);">Home</a>
+                    <span class="breadcrumb-sep" style="color:rgba(245,240,233,0.25);" aria-hidden="true">/</span>
+                {% endif %}
+                <a href="/signature-journeys" style="color:rgba(245,240,233,0.45);">Signature Journeys</a>
+                <span class="breadcrumb-sep" style="color:rgba(245,240,233,0.25);" aria-hidden="true">/</span>
+                <span style="color:rgba(245,240,233,0.7);" aria-current="page">{{ entry.title }}</span>
+            </nav>
+
+            {# Duration badge #}
+            {% if duration %}
+                <div class="dest-detail-badges">
+                    <span class="dest-detail-badge">{{ duration }}</span>
+                </div>
+            {% endif %}
+
+            {# Title #}
+            <h1 class="dest-detail-hero-title">{{ entry.title }}</h1>
+
+            {# Subtitle #}
+            {% if subtitle %}
+                <p style="font-family:'Playfair Display',serif; font-size:clamp(16px,1.6vw,22px); font-style:italic; color:rgba(245,240,233,0.6); letter-spacing:0.06em; margin-top:-16px; margin-bottom:clamp(20px,3vw,32px);">
+                    {{ subtitle }}
+                </p>
+            {% endif %}
+
+            {# Key details bar #}
+            <div class="dest-detail-meta">
+                {% if country %}
+                    <div class="dest-detail-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1"/>
+                            <ellipse cx="8" cy="8" rx="3.5" ry="6.5" stroke="currentColor" stroke-width="0.7" opacity="0.5"/>
+                            <line x1="1.5" y1="8" x2="14.5" y2="8" stroke="currentColor" stroke-width="0.7" opacity="0.4"/>
+                        </svg>
+                        <span class="dest-detail-meta-label">Country</span>
+                        <span class="dest-detail-meta-value">{{ country }}</span>
+                    </div>
+                {% endif %}
+
+                {% if region %}
+                    <div class="dest-detail-meta-divider"></div>
+                    <div class="dest-detail-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M8 1.5a4.5 4.5 0 0 1 4.5 4.5c0 3-4.5 8.5-4.5 8.5S3.5 9 3.5 6A4.5 4.5 0 0 1 8 1.5Z" stroke="currentColor" stroke-width="1"/>
+                            <circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="0.8"/>
+                        </svg>
+                        <span class="dest-detail-meta-label">Region</span>
+                        <span class="dest-detail-meta-value">{{ region }}</span>
+                    </div>
+                {% endif %}
+
+                {% if season %}
+                    <div class="dest-detail-meta-divider"></div>
+                    <div class="dest-detail-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1"/>
+                            <path d="M8 4v4.5l3 1.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+                        </svg>
+                        <span class="dest-detail-meta-label">Season</span>
+                        <span class="dest-detail-meta-value">{{ season }}</span>
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{# ── Description + Highlights ── #}
+{% if description or highlights|length %}
+    <section class="bg-cream" style="padding:clamp(48px,6vw,80px) 0;">
+        <div class="container-lg">
+            {% if description %}
+                <div class="dest-entry-body" data-reveal>
+                    <p class="dest-entry-description">{{ description }}</p>
+                </div>
+            {% endif %}
+
+            {% if highlights|length %}
+                <ul style="margin-top:32px; display:flex; flex-direction:column; gap:12px; padding:0; list-style:none; max-width:760px;" data-reveal>
+                    {% for h in highlights %}
+                        <li style="display:flex; align-items:center; gap:14px; padding:10px 0; border-bottom:1px solid rgba(17,34,80,0.07);">
+                            <span style="width:5px; height:5px; border-radius:50%; background:#C9A96E; flex-shrink:0;"></span>
+                            <span class="type-body-font" style="font-size:14px; color:rgba(17,34,80,0.7); line-height:1.5;">{{ h.highlightText }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </section>
+{% endif %}
+
+{# ── Content Blocks ── #}
+{% if entry.contentBlocks is defined and entry.contentBlocks.exists() %}
+    <section class="bg-cream section-pad" style="padding-top:0;">
+        <article class="container-lg">
+            {% include 'blocks/contentBlocks' %}
+        </article>
+    </section>
+{% endif %}
+
+{# ── CTA ── #}
+<section class="plan-cta" data-reveal>
+    <div class="plan-cta-inner">
+        <div class="rule" style="margin-bottom:32px; background:rgba(201,169,110,0.4);"></div>
+        <p class="plan-cta-eyebrow">Interested in this journey?</p>
+        <h2 class="plan-cta-heading">Let's make it yours.</h2>
+        <p class="plan-cta-body">
+            Every journey is tailored — tell us what inspires you and we'll craft it around you.
+        </p>
+        <a href="/contact" class="btn-filled-light">
+            Begin Your Journey
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

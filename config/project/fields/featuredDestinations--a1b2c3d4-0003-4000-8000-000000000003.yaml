@@ -1,26 +1,17 @@
 columnSuffix: null
 handle: featuredDestinations
-instructions: 'Select destination entries to feature in the accordion on the homepage'
+instructions: 'Exactly two featured destinations for the homepage accordion. Each block includes title, region, image, description, and links.'
 name: 'Featured Destinations'
 searchable: false
 settings:
-  allowSelfRelations: false
-  branchLimit: null
-  defaultPlacement: end
-  maintainHierarchy: false
-  maxRelations: null
-  minRelations: null
-  selectionLabel: 'Add a Destination'
-  showCardsInGrid: false
-  showSearchInput: true
-  showSiteMenu: true
-  showUnpermittedEntries: false
-  showUnpermittedSections: false
-  sources:
-    - 'section:c1d2e3f4-0001-4000-8000-000000000001' # Destinations
-  targetSiteId: null
-  validateRelatedElements: false
-  viewMode: list
+  createButtonLabel: 'Add a Destination'
+  entryTypes:
+    - d3e4f5a6-0001-4000-8000-000000000001 # Featured Destination
+  includeTableView: false
+  maxEntries: 2
+  minEntries: 2
+  pageSize: null
+  viewMode: blocks
 translationKeyFormat: null
-translationMethod: none
-type: craft\fields\Entries
+translationMethod: site
+type: craft\fields\Matrix

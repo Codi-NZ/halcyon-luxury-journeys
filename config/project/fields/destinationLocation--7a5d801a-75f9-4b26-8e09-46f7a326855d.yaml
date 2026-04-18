@@ -1,0 +1,17 @@
+columnSuffix: null
+handle: destinationLocation
+instructions: 'The specific location (e.g. "Glenorchy, Otago" or "Hamilton Island, Queensland").'
+name: 'Destination Location'
+searchable: true
+settings:
+  byteLimit: null
+  charLimit: 200
+  code: false
+  columnType: null
+  initialRows: 1
+  multiline: false
+  placeholder: 'e.g. Glenorchy, Otago'
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

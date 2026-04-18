@@ -3,33 +3,121 @@
 {% block banner %}{% endblock %}
 
 {% block content %}
-{#
-  Destination entry template — stub for future implementation.
-  Fields available on this entry:
-    - entry.title             (Destination Name)
-    - entry.destinationRegion (Sub-region label)
-    - entry.destinationImage  (Assets field)
-    - entry.destinationDescription (Description text)
-#}
 
-<section class="section-pad" style="background:#F5F0E9;">
+{% set image = entry.destinationImage.one() ?? null %}
+{% set countryField = entry.destinationCountry ?? null %}
+{% set country = countryField is iterable ? (countryField.one().title ?? '') : (countryField.label ?? '') %}
+{% set type = entry.destinationType ?? null %}
+{% set typeLabel = type is iterable ? (type.one().title ?? '') : (type.label ?? '') %}
+{% set typeValue = type is iterable ? (type.one().slug ?? '') : (type.value ?? '') %}
+{% set location = entry.destinationLocation ?? '' %}
+
+{# ── Hero ── #}
+<section class="dest-entry-hero">
+    {% if image %}
+        <div class="dest-entry-hero-img-wrap">
+            <img
+                src="{{ image.url }}"
+                alt="{{ image.alt ?? image.title ?? entry.title }}"
+                class="dest-entry-hero-img"
+            />
+            <div class="dest-entry-hero-gradient"></div>
+        </div>
+    {% endif %}
+    <div class="dest-entry-hero-content">
+        <div class="container-lg">
+            <div class="dest-entry-hero-meta">
+                {% if country %}
+                    <span class="dest-entry-hero-country">{{ country }}</span>
+                {% endif %}
+                {% if country and typeLabel %}
+                    <span class="dest-entry-hero-sep" aria-hidden="true">·</span>
+                {% endif %}
+                {% if typeLabel %}
+                    <span class="dest-entry-hero-type">{{ typeLabel }}</span>
+                {% endif %}
+            </div>
+            <h1 class="dest-entry-hero-title">{{ entry.title }}</h1>
+            {% if entry.destinationRegion %}
+                <p class="dest-entry-hero-region">{{ entry.destinationRegion }}</p>
+            {% endif %}
+            {% if location %}
+                <p class="dest-entry-hero-location">{{ location }}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{# ── Content ── #}
+<section class="section-pad bg-cream">
     <div class="container-lg">
-        <h1 class="display text-navy" style="font-size:clamp(40px,6vw,80px); line-height:1.05;">
-            {{ entry.title }}
-        </h1>
-        {% if entry.destinationRegion %}
-            <p class="overline" style="margin-top:12px;">{{ entry.destinationRegion }}</p>
-        {% endif %}
-        {% set image = entry.destinationImage.one() ?? null %}
-        {% if image %}
-            <img src="{{ image.url }}" alt="{{ image.title ?? entry.title }}"
-                 style="width:100%; aspect-ratio:16/9; object-fit:cover; margin-top:40px;" />
-        {% endif %}
         {% if entry.destinationDescription %}
-            <p class="type-body-font" style="font-size:clamp(15px,1.3vw,18px); line-height:1.85; color:rgba(17,34,80,0.7); margin-top:32px; max-width:760px;">
-                {{ entry.destinationDescription }}
-            </p>
+            <div class="dest-entry-body" data-reveal>
+                <p class="dest-entry-description">{{ entry.destinationDescription }}</p>
+            </div>
         {% endif %}
+
+        {# ── Related Destinations ── #}
+        {% set countryValue = countryField is iterable ? (countryField.one().slug ?? '') : (countryField.value ?? '') %}
+        {% set related = craft.entries()
+            .section('destinations')
+            .destinationCountry(countryValue)
+            .id('not ' ~ entry.id)
+            .limit(3)
+            .with(['destinationImage'])
+            .all()
+        %}
+
+        {% if related|length %}
+            <div class="dest-entry-related" data-reveal>
+                <div class="rule" style="margin-bottom:40px;"></div>
+                <h2 class="dest-entry-related-heading">More in {{ country }}</h2>
+                <div class="dest-entry-related-grid">
+                    {% for item in related %}
+                        {% set relImage = item.destinationImage.one() ?? null %}
+                        <a href="{{ item.url }}" class="dest-entry-related-card">
+                            {% if relImage %}
+                                <div class="dest-entry-related-img-wrap">
+                                    <img src="{{ relImage.url }}" alt="{{ relImage.alt ?? item.title }}" class="dest-entry-related-img" loading="lazy" />
+                                </div>
+                            {% endif %}
+                            <h3 class="dest-entry-related-name">{{ item.title }}</h3>
+                            {% if item.destinationLocation %}
+                                <p class="dest-entry-related-location">{{ item.destinationLocation }}</p>
+                            {% endif %}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        {# ── Back Link ── #}
+        <div style="margin-top:clamp(48px,6vw,80px);" data-reveal>
+            <a href="/destinations" class="btn-luxury">
+                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true" style="transform:scaleX(-1);">
+                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                </svg>
+                All destinations
+            </a>
+        </div>
+    </div>
+</section>
+
+{# ── CTA ── #}
+<section class="dest-listing-cta" data-reveal>
+    <div class="dest-listing-cta-inner">
+        <div class="rule" style="margin-bottom:32px; background:rgba(201,169,110,0.4);"></div>
+        <p class="dest-listing-cta-eyebrow">Interested in {{ entry.title }}?</p>
+        <h2 class="dest-listing-cta-heading">Let's plan your journey.</h2>
+        <p class="dest-listing-cta-body">
+            Tell us what inspires you — and we'll craft a bespoke itinerary around it.
+        </p>
+        <a href="/contact" class="btn-filled-light">
+            Begin Your Journey
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+        </a>
     </div>
 </section>
 

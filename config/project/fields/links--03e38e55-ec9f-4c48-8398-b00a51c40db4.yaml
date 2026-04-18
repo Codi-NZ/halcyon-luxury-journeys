@@ -21,7 +21,7 @@ settings:
           - default-verbb-hyper-links-asset
         3:
           - enabled
-          - true
+          - false
         4:
           - isCustom
           - false
@@ -299,6 +299,9 @@ settings:
         9:
           - showSiteMenu
           - true
+        10:
+          - allowElementsWithoutUri
+          - false
     -
       __assoc__:
         0:
@@ -312,7 +315,7 @@ settings:
           - default-verbb-hyper-links-category
         3:
           - enabled
-          - false
+          - true
         4:
           - isCustom
           - false
@@ -589,6 +592,9 @@ settings:
         9:
           - showSiteMenu
           - true
+        10:
+          - allowElementsWithoutUri
+          - false
     -
       __assoc__:
         -
@@ -602,7 +608,7 @@ settings:
           - default-verbb-hyper-links-custom
         -
           - enabled
-          - true
+          - false
         -
           - isCustom
           - false
@@ -1728,14 +1734,14 @@ settings:
         7:
           - sources
           -
-            - 'section:4d1b8d52-6b6b-46a7-9c08-f136d72499cd' # Misc Pages
-            - 'section:62333b6e-9380-4bb6-9103-37699143de7e'
-            - 'section:b0c5d611-6882-4a2b-8e12-3e743a96937e'
+            - 'section:bcf2c6bd-6a49-4563-9e25-2e4478a661fe' # Pages
             - singles
-            - 'section:bcf2c6bd-6a49-4563-9e25-2e4478a661fe' # Sitemap
         9:
           - showSiteMenu
           - true
+        10:
+          - allowElementsWithoutUri
+          - false
     -
       __assoc__:
         0:
@@ -2026,6 +2032,9 @@ settings:
         9:
           - showSiteMenu
           - true
+        10:
+          - allowElementsWithoutUri
+          - false
     -
       __assoc__:
         -
@@ -3171,6 +3180,9 @@ settings:
         9:
           - showSiteMenu
           - true
+        10:
+          - allowElementsWithoutUri
+          - false
   maxLinks: null
   minLinks: null
   multipleLinks: true

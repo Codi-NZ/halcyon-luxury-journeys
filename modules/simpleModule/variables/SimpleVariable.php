@@ -4,7 +4,6 @@ namespace simple\simplemodule\variables;
 
 use Craft;
 use craft\elements\Entry;
-use craft\elements\GlobalSet;
 use simple\simplemodule\Module as SimpleModule;
 
 class SimpleVariable
@@ -18,12 +17,19 @@ class SimpleVariable
 
         return Craft::$app->cache->getOrSet('CACHE_GLOBALS' . $currentSite, function ($cache) {
             /**
-             * Business Details
+             * Globals Single entry (replaces legacy Global Sets)
              */
-            $gs = GlobalSet::find()
-                ->handle('businessDetails')
+            $gs = Entry::find()
+                ->section('globals')
+                ->with([
+                    'fallbackBanner',
+                    'fallbackGeneric',
+                ])
                 ->one();
 
+            /**
+             * Business Details
+             */
             $businessDetails = [
                 'fullBusinessName' => $gs->fullBusinessName ?? null,
                 'tagline' => $gs->tagline ?? null,
@@ -50,14 +56,6 @@ class SimpleVariable
             /**
              * Fallbacks
              */
-            $gs = GlobalSet::find()
-                ->handle('fallbacks')
-                ->with([
-                    'fallbackBanner',
-                    'fallbackGeneric',
-                ])
-                ->one();
-
             $fallbacks = [
                 'images' => [
                     'banner' => $gs->fallbackBanner[0] ?? null,
@@ -68,31 +66,9 @@ class SimpleVariable
             /**
              * Misc
              */
-            $gs = GlobalSet::find()
-                ->handle('misc')
-                ->one();
-
             $misc = [
                 'acknowledgement' => $gs->acknowledgement ?? null,
             ];
-
-            /**
-             * Placeholders
-             */
-            $gs = GlobalSet::find()
-                ->handle('placeholders')
-                ->one();
-
-            $placeholders = $gs;
-            // TODO:RESOLVE
-            // Error: "Serialization of 'Closure' is not allowed"
-            // When initiated here, but in twig is OK??
-            // $placeholders = [
-                // 'entries' => $gs->entries ?? null,
-                // 'images' => $gs->images ?? null,
-                // 'links' => $gs->links ?? null,
-                // 'video' => $gs->video ?? null,
-            // ];
 
             /**
              * Listings
@@ -122,7 +98,6 @@ class SimpleVariable
                 'businessDetails' => $businessDetails,
                 'fallbacks' => $fallbacks,
                 'misc' => $misc,
-                'placeholders' => $placeholders,
                 'listings' => $listings,
                 'listingByEntryType' => $listingByEntryType,
             ];

@@ -1,23 +1,27 @@
+/**
+ * Content Block Spacing — Halcyon Luxury Journeys
+ */
+
 .block {
     & + & {
-        @apply mt-16;
+        margin-top: 48px;
     }
 
     .block--heading + & {
-        @apply mt-10;
+        margin-top: 24px;
     }
 }
 
 .section-block {
     & + & {
-        @apply mt-32;
+        margin-top: clamp(48px, 6vw, 80px);
     }
 
     .section-block--heading + & {
-        @apply mt-12;
+        margin-top: 24px;
     }
 
     .section-block--rich-text + & {
-        @apply mt-24;
+        margin-top: clamp(40px, 5vw, 64px);
     }
 }

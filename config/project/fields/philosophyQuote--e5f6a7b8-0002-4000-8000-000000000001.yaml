@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: philosophyQuote
+instructions: 'Italicised quote displayed in the philosophy strip below the hero.'
+name: 'Philosophy Quote'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 500
+  code: false
+  initialRows: 4
+  multiline: true
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText
