@@ -7,7 +7,6 @@ settings:
   byteLimit: null
   charLimit: 200
   code: false
-  columnType: null
   initialRows: 1
   multiline: false
   placeholder: 'e.g. Glenorchy, Otago'

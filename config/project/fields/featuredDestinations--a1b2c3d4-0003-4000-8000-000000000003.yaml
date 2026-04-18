@@ -5,12 +5,21 @@ name: 'Featured Destinations'
 searchable: false
 settings:
   createButtonLabel: 'Add a Destination'
+  defaultIndexViewMode: cards
+  enableVersioning: false
   entryTypes:
-    - d3e4f5a6-0001-4000-8000-000000000001 # Featured Destination
+    -
+      __assoc__:
+        -
+          - uid
+          - d3e4f5a6-0001-4000-8000-000000000001 # Testimonials Listing
   includeTableView: false
   maxEntries: 2
   minEntries: 2
   pageSize: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
   viewMode: blocks
 translationKeyFormat: null
 translationMethod: site

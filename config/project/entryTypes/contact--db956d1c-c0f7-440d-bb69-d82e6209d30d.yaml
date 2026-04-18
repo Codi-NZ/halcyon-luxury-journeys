@@ -95,7 +95,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: c2d3e4f5-0001-4000-8000-000000000001
+            fieldUid: c2d3e4f5-0001-4000-8000-000000000001 # Contact Details Intro
             handle: null
             instructions: null
             label: null
@@ -127,7 +127,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: c2d3e4f5-0001-4000-8000-000000000002
+            fieldUid: c2d3e4f5-0001-4000-8000-000000000002 # Contact Phone
             handle: null
             instructions: null
             label: null
@@ -143,7 +143,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: c2d3e4f5-0001-4000-8000-000000000003
+            fieldUid: c2d3e4f5-0001-4000-8000-000000000003 # Contact Phone Note
             handle: null
             instructions: null
             label: null
@@ -159,7 +159,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: c2d3e4f5-0001-4000-8000-000000000004
+            fieldUid: c2d3e4f5-0001-4000-8000-000000000004 # Contact Location
             handle: null
             instructions: null
             label: null
@@ -175,7 +175,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: c2d3e4f5-0001-4000-8000-000000000005
+            fieldUid: c2d3e4f5-0001-4000-8000-000000000005 # Contact Location Note
             handle: null
             instructions: null
             label: null
@@ -191,7 +191,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: c2d3e4f5-0001-4000-8000-000000000006
+            fieldUid: c2d3e4f5-0001-4000-8000-000000000006 # Contact Response Time
             handle: null
             instructions: null
             label: null
@@ -207,7 +207,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: c2d3e4f5-0001-4000-8000-000000000007
+            fieldUid: c2d3e4f5-0001-4000-8000-000000000007 # Contact Response Note
             handle: null
             instructions: null
             label: null
@@ -229,7 +229,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: c2d3e4f5-0001-4000-8000-000000000008
+            fieldUid: c2d3e4f5-0001-4000-8000-000000000008 # Instagram URL
             handle: null
             instructions: null
             label: null
@@ -245,7 +245,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: c2d3e4f5-0001-4000-8000-000000000009
+            fieldUid: c2d3e4f5-0001-4000-8000-000000000009 # Facebook URL
             handle: null
             instructions: null
             label: null

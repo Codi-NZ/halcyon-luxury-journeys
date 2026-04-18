@@ -4,14 +4,24 @@ instructions: 'Select the country this destination belongs to.'
 name: 'Destination Country'
 searchable: false
 settings:
-  optgroups: true
+  customOptions: false
   options:
     -
-      label: 'New Zealand'
-      value: new-zealand
+      __assoc__:
+        -
+          - label
+          - 'New Zealand'
+        -
+          - value
+          - new-zealand
     -
-      label: Australia
-      value: australia
+      __assoc__:
+        -
+          - label
+          - Australia
+        -
+          - value
+          - australia
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

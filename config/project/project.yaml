@@ -1,4 +1,4 @@
-dateModified: 1776554452
+dateModified: 1776555050
 elementSources:
   craft\elements\Category:
     -
@@ -228,6 +228,7 @@ meta:
     a1b2c3d4-0004-4000-8000-000000000001: 'Cinematic Video' # Cinematic Video
     a1b2c3d4-0005-4000-8000-000000000001: 'Experiences Heading' # Experiences Heading
     a1b2c3d4-0005-4000-8000-000000000002: 'Experiences Copy' # Experiences Copy
+    a1b2c3d4-0005-4000-8000-000000000003: 'Experiences Carousel — Inspirations' # Experiences Carousel — Inspirations
     a1b2c3d4-0006-4000-8000-000000000001: 'Signature Journeys Intro Heading' # Signature Journeys Intro Heading
     a1b2c3d4-0006-4000-8000-000000000002: 'Signature Journeys Copy' # Signature Journeys Copy
     a1b2c3d4-0006-4000-8000-000000000003: 'Featured Signature Journeys' # Featured Signature Journeys
@@ -251,6 +252,7 @@ meta:
     b2c3d4e5-0001-4000-8000-000000000001: 'Full Bleed' # Full Bleed
     b2c3d4e5-0002-4000-8000-000000000001: 'Card Large' # Card Large
     b2c3d4e5-0003-4000-8000-000000000001: 'Card Medium' # Card Medium
+    b2c3d4e5-0004-4000-8000-000000000001: 'Content Block Image' # Content Block Image
     b2c3d4e5-0005-4000-8000-000000000001: 'Gallery Carousel Slide' # Gallery Carousel Slide
     b4bd62ee-6be8-4524-981e-871d0341766e: Gender # Gender
     b8f875f4-12b1-4e54-9900-0335b3c8b0b7: Heading # Heading
@@ -276,11 +278,25 @@ meta:
     c1d2e3f4-0003-4000-8000-000000000010: 'Testimonial Origin' # Testimonial Origin
     c1d2e3f4-0003-4000-8000-000000000011: 'Testimonial Quote' # Testimonial Quote
     c1d2e3f4-0003-4000-8000-000000000012: 'Testimonial Journey' # Testimonial Journey
+    c2d3e4f5-0001-4000-8000-000000000001: 'Contact Details Intro' # Contact Details Intro
+    c2d3e4f5-0001-4000-8000-000000000002: 'Contact Phone' # Contact Phone
+    c2d3e4f5-0001-4000-8000-000000000003: 'Contact Phone Note' # Contact Phone Note
+    c2d3e4f5-0001-4000-8000-000000000004: 'Contact Location' # Contact Location
+    c2d3e4f5-0001-4000-8000-000000000005: 'Contact Location Note' # Contact Location Note
+    c2d3e4f5-0001-4000-8000-000000000006: 'Contact Response Time' # Contact Response Time
+    c2d3e4f5-0001-4000-8000-000000000007: 'Contact Response Note' # Contact Response Note
+    c2d3e4f5-0001-4000-8000-000000000008: 'Instagram URL' # Instagram URL
+    c2d3e4f5-0001-4000-8000-000000000009: 'Facebook URL' # Facebook URL
     cc085bf4-81a3-4d07-8a13-fa1ade1087b4: 'Body Text' # Body Text
     ceca07e6-941b-4381-8e36-e6b760f5f0a6: Video # Video
     d0fad2d3-e5fe-487e-b11a-1d8cfdfe3377: Map # Map
-    d3e4f5a6-0001-4000-8000-000000000001: 'Featured Destination' # Featured Destination
+    d3e4f5a6-0001-4000-8000-000000000001: 'Testimonials Listing' # Testimonials Listing
+    d3e4f5a6-0001-4000-8000-000000000002: 'Testimonials Listing' # Testimonials Listing
+    d4e5f6a7-0001-4000-8000-000000000001: 'Why Halcyon Overline' # Why Halcyon Overline
+    d4e5f6a7-0001-4000-8000-000000000003: 'Pillar Description' # Pillar Description
+    d4e5f6a7-0001-4000-8000-000000000004: 'Pillar Icon' # Pillar Icon
     d4e5f6a7-0001-4000-8000-000000000005: 'Why Halcyon Pillars' # Why Halcyon Pillars
+    d4e5f6a7-0002-4000-8000-000000000001: 'Why Halcyon Pillar' # Why Halcyon Pillar
     d473b784-8d70-40d9-92a2-941f139ea7e0: Blockquote # Blockquote
     d5931c81-8084-4100-bcb7-9186a1bbde45: 'Destination Type' # Destination Type
     d271273f-e61d-4182-8c1e-c3348d00e993: 'Shared Content' # Shared Content

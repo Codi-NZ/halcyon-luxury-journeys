@@ -41,7 +41,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: d4e5f6a7-0001-4000-8000-000000000003
+            fieldUid: d4e5f6a7-0001-4000-8000-000000000003 # Pillar Description
             handle: null
             instructions: null
             label: Description
@@ -57,7 +57,7 @@ fieldLayouts:
             editCondition: null
             elementCondition: null
             elementEditCondition: null
-            fieldUid: d4e5f6a7-0001-4000-8000-000000000004
+            fieldUid: d4e5f6a7-0001-4000-8000-000000000004 # Pillar Icon
             handle: null
             instructions: null
             label: null

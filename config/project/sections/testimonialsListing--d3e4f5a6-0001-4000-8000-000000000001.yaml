@@ -2,7 +2,7 @@ defaultPlacement: end
 enableVersioning: true
 entryTypes:
   -
-    uid: d3e4f5a6-0001-4000-8000-000000000002
+    uid: d3e4f5a6-0001-4000-8000-000000000002 # Testimonials Listing
 handle: testimonialsListing
 maxAuthors: 1
 name: 'Testimonials Listing'

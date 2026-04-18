@@ -4,16 +4,30 @@ instructions: 'Country this journey is based in.'
 name: 'Journey Country'
 searchable: false
 settings:
-  optgroups: false
+  customOptions: false
   options:
     -
-      default: true
-      label: 'New Zealand'
-      value: new-zealand
+      __assoc__:
+        -
+          - default
+          - true
+        -
+          - label
+          - 'New Zealand'
+        -
+          - value
+          - new-zealand
     -
-      default: false
-      label: Australia
-      value: australia
+      __assoc__:
+        -
+          - default
+          - false
+        -
+          - label
+          - Australia
+        -
+          - value
+          - australia
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

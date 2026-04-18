@@ -271,6 +271,9 @@ settings:
         9:
           - showSiteMenu
           - true
+        10:
+          - allowElementsWithoutUri
+          - false
     -
       __assoc__:
         0:
@@ -534,6 +537,9 @@ settings:
         9:
           - showSiteMenu
           - true
+        10:
+          - allowElementsWithoutUri
+          - false
     -
       __assoc__:
         -
@@ -1568,6 +1574,9 @@ settings:
         9:
           - showSiteMenu
           - true
+        10:
+          - allowElementsWithoutUri
+          - false
     -
       __assoc__:
         0:
@@ -1831,6 +1840,9 @@ settings:
         9:
           - showSiteMenu
           - true
+        10:
+          - allowElementsWithoutUri
+          - false
     -
       __assoc__:
         -
@@ -2868,6 +2880,9 @@ settings:
         9:
           - showSiteMenu
           - true
+        10:
+          - allowElementsWithoutUri
+          - false
   maxLinks: null
   minLinks: null
   multipleLinks: false
