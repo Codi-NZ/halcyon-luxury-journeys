@@ -1,0 +1,30 @@
+fieldLayouts:
+  2626c079-513d-4bc1-806b-cb7123490bda:
+    cardThumbAlignment: end
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2024-09-16T00:00:53+00:00'
+            editCondition: null
+            elementCondition: null
+            elementEditCondition: null
+            fieldUid: 03e38e55-ec9f-4c48-8398-b00a51c40db4 # Links
+            handle: legalLinks
+            instructions: null
+            label: 'Legal Links'
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: dd5619a9-931b-4602-abf5-54052bed0c48
+            userCondition: null
+            warning: null
+            width: 100
+        name: Legal
+        uid: 7bd6091c-88b4-41fe-a68b-e3bd0dbcd7be
+        userCondition: null
+    thumbFieldKey: null
+handle: globalFooter
+name: Footer
+sortOrder: 2

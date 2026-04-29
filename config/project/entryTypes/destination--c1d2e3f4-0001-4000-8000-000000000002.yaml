@@ -51,7 +51,63 @@ fieldLayouts:
             uid: d6da23da-6bfe-424d-ac3f-2a4275ab891a
             userCondition: null
             warning: null
-            width: 75
+            width: 50
+          -
+            dateAdded: '2026-04-21T20:57:40+00:00'
+            editCondition: null
+            elementCondition:
+              class: craft\elements\conditions\entries\EntryCondition
+              conditionRules:
+                -
+                  class: craft\fields\conditions\OptionsFieldConditionRule
+                  fieldUid: 8424d72d-0e66-4574-aa2d-0fd35e686f3d # Destination Country
+                  layoutElementUid: d6da23da-6bfe-424d-ac3f-2a4275ab891a
+                  operator: in
+                  uid: 53c3020d-5234-4229-992a-9b87dec1a20c
+                  values:
+                    - australia
+              elementType: craft\elements\Entry
+              fieldContext: global
+            elementEditCondition: null
+            fieldUid: 97f774f9-695e-46e7-a39e-aeb543069fc5 # Australia Region
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: b4d7bf08-ca12-47c6-ad98-d40bb45a330c
+            userCondition: null
+            warning: null
+            width: 50
+          -
+            dateAdded: '2026-04-21T20:57:40+00:00'
+            editCondition: null
+            elementCondition:
+              class: craft\elements\conditions\entries\EntryCondition
+              conditionRules:
+                -
+                  class: craft\fields\conditions\OptionsFieldConditionRule
+                  fieldUid: 8424d72d-0e66-4574-aa2d-0fd35e686f3d # Destination Country
+                  layoutElementUid: d6da23da-6bfe-424d-ac3f-2a4275ab891a
+                  operator: in
+                  uid: 59ba2d34-d37e-45e9-bea6-f1272aef9aa0
+                  values:
+                    - new-zealand
+              elementType: craft\elements\Entry
+              fieldContext: global
+            elementEditCondition: null
+            fieldUid: c1d2e3f4-0001-4000-8000-000000000010 # Destination Region
+            handle: null
+            instructions: null
+            label: null
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d95db1d0-1b80-43a8-8c05-4aff79b79f69
+            userCondition: null
+            warning: null
+            width: 50
           -
             dateAdded: '2026-04-12T00:00:00+00:00'
             editCondition: null
@@ -67,7 +123,7 @@ fieldLayouts:
             uid: a3416b32-3029-49f9-8892-0329eed78966
             userCondition: null
             warning: null
-            width: 75
+            width: 50
           -
             dateAdded: '2026-04-12T00:00:00+00:00'
             editCondition: null
@@ -83,7 +139,7 @@ fieldLayouts:
             uid: d2af647a-bc22-41ab-ba8d-0ccc89a42cca
             userCondition: null
             warning: null
-            width: 75
+            width: 50
           -
             dateAdded: '2026-04-06T00:00:00+00:00'
             editCondition: null

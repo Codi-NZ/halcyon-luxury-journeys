@@ -7,6 +7,7 @@
 {% set image = entry.destinationImage.one() ?? null %}
 {% set countryField = entry.destinationCountry ?? null %}
 {% set country = countryField.label ?? '' %}
+{% set region = entry.nzRegion.one() ?? entry.australiaRegion.one() ?? null %}
 {% set location = entry.destinationLocation ?? '' %}
 {% set types = entry.destinationType.all() ?? [] %}
 {% set description = entry.destinationDescription ?? '' %}
@@ -37,6 +38,10 @@
                 {% endif %}
                 <a href="/destinations" style="color:rgba(245,240,233,0.45);">Destinations</a>
                 <span class="breadcrumb-sep" style="color:rgba(245,240,233,0.25);" aria-hidden="true">/</span>
+                {% if region %}
+                    <a href="{{ region.url }}" style="color:rgba(245,240,233,0.45);">{{ region.title }}</a>
+                    <span class="breadcrumb-sep" style="color:rgba(245,240,233,0.25);" aria-hidden="true">/</span>
+                {% endif %}
                 <span style="color:rgba(245,240,233,0.7);" aria-current="page">{{ entry.title }}</span>
             </nav>
 
@@ -63,6 +68,18 @@
                         </svg>
                         <span class="dest-detail-meta-label">Country</span>
                         <span class="dest-detail-meta-value">{{ country }}</span>
+                    </div>
+                {% endif %}
+
+                {% if region %}
+                    <div class="dest-detail-meta-divider"></div>
+                    <div class="dest-detail-meta-item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                            <path d="M2 13.5l4-8 3 5 2-3 3 6" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/>
+                            <circle cx="11.5" cy="4.5" r="1.2" stroke="currentColor" stroke-width="0.8"/>
+                        </svg>
+                        <span class="dest-detail-meta-label">Region</span>
+                        <span class="dest-detail-meta-value">{{ region.title }}</span>
                     </div>
                 {% endif %}
 
@@ -97,7 +114,7 @@
 </section>
 
 {# ── Description ── #}
-{% if description %}
+{# {% if description %}
     <section class="bg-cream" style="padding:clamp(48px,6vw,80px) 0;">
         <div class="container-lg">
             <div class="dest-entry-body" data-reveal>
@@ -105,11 +122,11 @@
             </div>
         </div>
     </section>
-{% endif %}
+{% endif %} #}
 
 {# ── Content Blocks ── #}
 {% if entry.contentBlocks is defined and entry.contentBlocks.exists() %}
-    <section class="bg-cream section-pad" style="padding-top:0;">
+    <section class="bg-cream section-pad" style="padding:clamp(48px,6vw,80px) 0;">
         <article class="container-lg">
             {% include 'blocks/contentBlocks' %}
         </article>

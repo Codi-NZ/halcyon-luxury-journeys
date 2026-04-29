@@ -1,0 +1,275 @@
+{% extends 'layouts/base' %}
+
+{% block banner %}{% endblock %}
+
+{% block content %}
+
+{# ── Context ─────────────────────────────────────────── #}
+{# `category` is the current nzRegion or australiaRegion entry resolved by Craft #}
+{% set groupHandle = category.group.handle %}
+{% set country = groupHandle == 'nzRegion' ? 'New Zealand' : 'Australia' %}
+{% set regionImage = category.image.one() ?? null %}
+{% set regionExcerpt = category.excerpt ?? '' %}
+
+{# ── Destinations in this region ─────────────────────── #}
+{% set destinations = craft.entries
+    .section('destinations')
+    .relatedTo(category)
+    .all() %}
+
+{# ── Type categories for the Type filter (only used in this region) ── #}
+{% set typeCategories = destinations|length
+    ? craft.categories.group('destinationType').relatedTo(destinations).all()
+    : [] %}
+
+{# ── Home entry for breadcrumb ───────────────────────── #}
+{% set homePage = craft.entries.section('homepage').one() ?? null %}
+
+<!-- Region Hero -->
+<section class="dest-detail-hero">
+    {% if regionImage %}
+        <div class="dest-detail-hero-img-wrap">
+            <img
+                src="{{ regionImage.url }}"
+                alt="{{ regionImage.alt ?? regionImage.title ?? category.title }}"
+                class="dest-detail-hero-img"
+            />
+            <div class="dest-detail-hero-gradient"></div>
+        </div>
+    {% endif %}
+
+    <div class="dest-detail-hero-content">
+        <div class="container-lg">
+            <nav class="breadcrumbs-halcyon" style="margin-bottom:clamp(24px,3vw,40px);" aria-label="Breadcrumbs">
+                {% if homePage %}
+                    <a href="{{ homePage.url }}" style="color:rgba(245,240,233,0.45);">Home</a>
+                    <span class="breadcrumb-sep" style="color:rgba(245,240,233,0.25);" aria-hidden="true">/</span>
+                {% endif %}
+                <a href="/destinations" style="color:rgba(245,240,233,0.45);">Destinations</a>
+                <span class="breadcrumb-sep" style="color:rgba(245,240,233,0.25);" aria-hidden="true">/</span>
+                <span style="color:rgba(245,240,233,0.7);" aria-current="page">{{ category.title }}</span>
+            </nav>
+
+            <div class="dest-detail-badges">
+                <span class="dest-detail-badge">{{ country }}</span>
+            </div>
+
+            <h1 class="dest-detail-hero-title">{{ category.title }}</h1>
+
+            {% if regionExcerpt %}
+                <p class="dest-detail-hero-excerpt" style="max-width:720px; margin-top:clamp(16px,2vw,24px); color:rgba(245,240,233,0.82); font-size:clamp(16px,1.5vw,19px); line-height:1.6;">{{ regionExcerpt }}</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{# ── Rich Text intro (centered) ─────────────────────── #}
+{% if category.richText|striptags|trim %}
+    <section class="bg-cream" style="padding:clamp(48px,6vw,80px) 0;">
+        <div class="container-lg">
+            <div class="region-richtext richtext" data-reveal style="max-width:760px; margin:0 auto; text-align:center;">
+                {{ category.richText }}
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+<!-- Filter Bar + Grid -->
+<div
+    x-data="regionDestinationFilters()"
+    x-init="init()"
+>
+
+    <!-- Filter Bar -->
+    <section class="filter-section" aria-label="Filter destinations">
+        <div class="filter-inner">
+            <div class="filter-controls">
+
+                <!-- Type (dynamic from categories) -->
+                <div class="filter-group">
+                    <span class="filter-group-label" id="type-filter-label">Type</span>
+                    <div class="filter-pills" role="group" aria-labelledby="type-filter-label">
+                        <button
+                            class="filter-pill"
+                            :class="{ 'is-active': type === 'all' }"
+                            :aria-pressed="(type === 'all').toString()"
+                            @click="setType('all')"
+                        >All Types</button>
+                        {% for cat in typeCategories %}
+                            <button
+                                class="filter-pill"
+                                :class="{ 'is-active': type === '{{ cat.slug }}' }"
+                                :aria-pressed="(type === '{{ cat.slug }}').toString()"
+                                @click="setType('{{ cat.slug }}')"
+                            >{{ cat.title }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            <p class="filter-count" aria-live="polite" aria-atomic="true">
+                <span x-text="visibleCount" style="font-family:'Playfair Display',serif; font-size:18px; font-style:normal; color:#112250; line-height:1;"></span>
+                <span class="filter-count-label">destinations</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Destinations Grid -->
+    <section class="dest-section">
+        <div class="dest-inner">
+            {% if destinations|length %}
+                <div class="dest-grid" id="dest-grid">
+                    {% for item in destinations %}
+                        {% set image = item.destinationImage.one() ?? null %}
+                        {% set types = item.destinationType.all() ?? [] %}
+                        {% set typeSlugs = types|map(t => t.slug)|join(',') %}
+
+                        <a
+                            href="{{ item.url }}"
+                            class="dest-item"
+                            data-types="{{ typeSlugs }}"
+                            x-show="matchItem('{{ typeSlugs }}')"
+                            x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 translate-y-4"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                        >
+                            <div class="dest-img-wrap">
+                                {% if image %}
+                                    {% set transformedUrl = image.getUrl('cardMedium') ?: image.url %}
+                                    {% set transformedWidth = image.getWidth('cardMedium') ?: image.width %}
+                                    {% set transformedHeight = image.getHeight('cardMedium') ?: image.height %}
+                                    <img
+                                        src="{{ transformedUrl }}"
+                                        alt="{{ image.alt ?? image.title ?? item.title }}"
+                                        class="dest-img"
+                                        loading="lazy"
+                                        decoding="async"
+                                        width="{{ transformedWidth }}"
+                                        height="{{ transformedHeight }}"
+                                    />
+                                {% endif %}
+                                {% if types|length %}
+                                    {% set badgeColors = ['#112250', '#C9A96E', '#2C4A7C', '#8B6914', '#4A5568', '#2D6A4F'] %}
+                                    <div class="dest-badges">
+                                        {% for type in types %}
+                                            {% set badgeLabel = attribute(type, 'categoryTag') ?? type.title %}
+                                            <span
+                                                class="dest-badge"
+                                                style="background: {{ badgeColors[loop.index0 % badgeColors|length] }}; color: #F5F0E9;"
+                                            >{{ badgeLabel }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="dest-info">
+                                <div class="dest-meta-row">
+                                    <span class="dest-country-tag">{{ country }}</span>
+                                    {% if item.destinationLocation %}
+                                        <span class="dest-sep" aria-hidden="true">&middot;</span>
+                                        <span class="dest-location">{{ item.destinationLocation }}</span>
+                                    {% endif %}
+                                </div>
+                                <h3 class="dest-name">{{ item.title }}</h3>
+                                {% if item.destinationDescription %}
+                                    <p class="dest-desc">{{ item.destinationDescription }}</p>
+                                {% endif %}
+                                <span class="dest-card-cta btn-luxury">
+                                    Read More
+                                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                                        <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+
+                <!-- Empty state (when filter matches nothing) -->
+                <div class="dest-empty" x-show="visibleCount === 0" x-cloak>
+                    <div class="rule" style="margin: 0 auto 28px;"></div>
+                    <p class="dest-empty-msg">No destinations match the selected type.</p>
+                    <button class="dest-reset-btn btn-luxury" @click="resetFilters()">
+                        Clear filter
+                        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                            <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                        </svg>
+                    </button>
+                </div>
+            {% else %}
+                <div class="dest-empty">
+                    <div class="rule" style="margin: 0 auto 28px;"></div>
+                    <p class="dest-empty-msg">No destinations have been added to this region yet.</p>
+                    <a href="/destinations" class="dest-reset-btn btn-luxury">
+                        Back to all regions
+                        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                            <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                        </svg>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+</div>
+
+<!-- Begin Planning CTA -->
+<section class="plan-cta" data-reveal>
+    <div class="plan-cta-inner">
+        <div class="rule" style="margin-bottom: 32px;"></div>
+        <p class="plan-cta-eyebrow">Ready to explore {{ category.title }}?</p>
+        <h2 class="plan-cta-heading">Every journey begins with a conversation.</h2>
+        <p class="plan-cta-body">
+            Tell us where you'd like to go — and we'll take care of everything else.
+        </p>
+        <a href="/contact" class="btn-filled btn-filled-light">
+            Begin an Enquiry
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
+            </svg>
+        </a>
+    </div>
+</section>
+
+<script>
+document.addEventListener('alpine:init', () => {
+    Alpine.data('regionDestinationFilters', () => ({
+        type: 'all',
+        itemTypeSlugs: {{ destinations|map(d => d.destinationType.all()|map(t => t.slug)|join(','))|json_encode|raw }},
+
+        init() {
+            const params = new URLSearchParams(window.location.search);
+            this.type = params.get('type') || 'all';
+        },
+
+        setType(value) {
+            this.type = value;
+            this.syncUrl();
+        },
+
+        resetFilters() {
+            this.type = 'all';
+            this.syncUrl();
+        },
+
+        matchItem(itemTypes) {
+            if (this.type === 'all') return true;
+            const slugs = itemTypes ? itemTypes.split(',').filter(Boolean) : [];
+            return slugs.includes(this.type);
+        },
+
+        get visibleCount() {
+            return this.itemTypeSlugs.filter(s => this.matchItem(s)).length;
+        },
+
+        syncUrl() {
+            const params = new URLSearchParams();
+            if (this.type !== 'all') params.set('type', this.type);
+            const qs = params.toString();
+            const url = window.location.pathname + (qs ? '?' + qs : '');
+            window.history.replaceState({}, '', url);
+        }
+    }));
+});
+</script>
+
+{% endblock %}

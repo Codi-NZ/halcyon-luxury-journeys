@@ -16,7 +16,7 @@ settings:
   showUnpermittedEntries: true
   showUnpermittedSections: true
   sources:
-    - 'section:4d1b8d52-6b6b-46a7-9c08-f136d72499cd'
+    - 'section:4d1b8d52-6b6b-46a7-9c08-f136d72499cd' # Misc Pages
     - 'section:62333b6e-9380-4bb6-9103-37699143de7e'
     - 'section:b0c5d611-6882-4a2b-8e12-3e743a96937e'
     - singles

@@ -52,6 +52,10 @@ return GeneralConfig::create()
     ->errorTemplatePrefix('_exceptions/')
     // The path to the image that should be used when a broken image is encountered.
     ->brokenImagePath('@webroot/dist/images/fallback.png')
+    // Generate image transforms synchronously during page render so URLs resolve
+    // to real files instead of /actions/assets/generate-transform (avoids broken
+    // images when the queue/action endpoint isn't servicing requests reliably).
+    ->generateTransformsBeforePageLoad(true)
     // The maximum upload file size allowed. (25mb)
     ->maxUploadFileSize('5M')
     // Prevent generated URLs from including "index.php"

@@ -1,256 +1,277 @@
-{#
-  Destinations Listing — filterable grid of destination entries.
-  Rendered via a Sitemap entry with type "destinationsListing" or as a standalone template.
-
-  Filters: country (new-zealand / australia), type (stay / experience)
-  Grid: 3-column responsive layout with card hover effects.
-#}
-
 {% extends 'layouts/base' %}
 
 {% block banner %}{% endblock %}
 
 {% block content %}
 
-{% set allDestinations = craft.entries()
-    .section('destinations')
-    .with(['destinationImage'])
-    .orderBy('title asc')
-    .all()
-%}
+{# ── Hero area (from Single entry) ──────────────────── #}
+{% set eyebrow = entry is defined and entry ? entry.pageEyebrow ?? 'Destinations' : 'Destinations' %}
+{% set pageHeading = entry is defined and entry ? entry.heading ?? 'Two Countries.\nInfinite Journeys.' : 'Two Countries.\nInfinite Journeys.' %}
+{% set intro = entry is defined and entry ? entry.summary ?? 'New Zealand and Australia — two extraordinary nations, each with its own soul. We know every corner intimately so you don\'t have to.' : 'New Zealand and Australia — two extraordinary nations, each with its own soul. We know every corner intimately so you don\'t have to.' %}
 
-{# ── Page Hero ── #}
-<section class="dest-listing-hero">
-    <div class="dest-listing-hero-inner">
-        <p class="eyebrow" data-reveal>Destinations</p>
-        <h1 class="dest-listing-title" data-reveal data-delay="100">
-            Two Countries.<br>Infinite Journeys.
+{# ── Data: region cards (NZ first, then Australia) ──── #}
+{% set nzRegions = craft.categories.group('nzRegion').all() %}
+{% set auRegions = craft.categories.group('australiaRegion').all() %}
+{% set regionCards = [] %}
+{% for cat in nzRegions %}
+    {% set regionCards = regionCards|merge([{ cat: cat, country: 'New Zealand' }]) %}
+{% endfor %}
+{% for cat in auRegions %}
+    {% set regionCards = regionCards|merge([{ cat: cat, country: 'Australia' }]) %}
+{% endfor %}
+
+<!-- Page Hero -->
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <p class="eyebrow" data-reveal>{{ eyebrow }}</p>
+        <h1 class="page-title" data-reveal data-delay="100">
+            {{ pageHeading|nl2br }}
         </h1>
-        <p class="dest-listing-intro" data-reveal data-delay="200">
-            New Zealand and Australia — two extraordinary nations, each with its own soul.
-            We know every corner intimately so you don't have to.
+        <p class="page-intro" data-reveal data-delay="200">
+            {{ intro }}
         </p>
     </div>
 </section>
 
-{# ── Filter Bar ── #}
-<section class="dest-filter-section" aria-label="Filter destinations">
-    <div class="dest-filter-inner">
-        <div class="dest-filter-controls">
+<!-- Filter Bar + Grid (Alpine component) -->
+<div
+    x-data="destinationFilters()"
+    x-init="init()"
+>
 
-            {# Country Filter #}
-            <div class="dest-filter-group">
-                <span class="dest-filter-group-label" id="country-filter-label">Country</span>
-                <div class="dest-filter-pills" role="group" aria-labelledby="country-filter-label">
-                    <button class="dest-filter-pill is-active" data-filter="country" data-value="all" aria-pressed="true">All Countries</button>
-                    <button class="dest-filter-pill" data-filter="country" data-value="new-zealand" aria-pressed="false">New Zealand</button>
-                    <button class="dest-filter-pill" data-filter="country" data-value="australia" aria-pressed="false">Australia</button>
+    <!-- Filter Bar -->
+    <section class="filter-section" aria-label="Filter destinations">
+        <div class="filter-inner">
+            <div class="filter-controls">
+
+                <!-- Country -->
+                <div class="filter-group">
+                    <span class="filter-group-label" id="country-filter-label">Country</span>
+                    <div class="filter-pills" role="group" aria-labelledby="country-filter-label">
+                        <button
+                            class="filter-pill"
+                            :class="{ 'is-active': country === 'all' }"
+                            :aria-pressed="(country === 'all').toString()"
+                            @click="setCountry('all')"
+                        >All Countries</button>
+                        <button
+                            class="filter-pill"
+                            :class="{ 'is-active': country === 'New Zealand' }"
+                            :aria-pressed="(country === 'New Zealand').toString()"
+                            @click="setCountry('New Zealand')"
+                        >New Zealand</button>
+                        <button
+                            class="filter-pill"
+                            :class="{ 'is-active': country === 'Australia' }"
+                            :aria-pressed="(country === 'Australia').toString()"
+                            @click="setCountry('Australia')"
+                        >Australia</button>
+                    </div>
                 </div>
+
+                <div class="filter-divider" aria-hidden="true"></div>
+
+                <!-- Region (dynamic, scoped by country) -->
+                <div class="filter-group">
+                    <span class="filter-group-label" id="region-filter-label">Region</span>
+                    <div class="filter-pills" role="group" aria-labelledby="region-filter-label">
+                        <button
+                            class="filter-pill"
+                            :class="{ 'is-active': region === 'all' }"
+                            :aria-pressed="(region === 'all').toString()"
+                            @click="setRegion('all', null)"
+                        >All Regions</button>
+                        {% for cat in nzRegions %}
+                            <button
+                                class="filter-pill"
+                                x-show="country === 'all' || country === 'New Zealand'"
+                                :class="{ 'is-active': region === '{{ cat.slug }}' }"
+                                :aria-pressed="(region === '{{ cat.slug }}').toString()"
+                                @click="setRegion('{{ cat.slug }}', 'New Zealand')"
+                            >{{ cat.title }}</button>
+                        {% endfor %}
+                        {% for cat in auRegions %}
+                            <button
+                                class="filter-pill"
+                                x-show="country === 'all' || country === 'Australia'"
+                                :class="{ 'is-active': region === '{{ cat.slug }}' }"
+                                :aria-pressed="(region === '{{ cat.slug }}').toString()"
+                                @click="setRegion('{{ cat.slug }}', 'Australia')"
+                            >{{ cat.title }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+            <p class="filter-count" aria-live="polite" aria-atomic="true">
+                <span x-text="visibleCount" style="font-family:'Playfair Display',serif; font-size:18px; font-style:normal; color:#112250; line-height:1;"></span>
+                <span class="filter-count-label">regions</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Regions Grid -->
+    <section class="dest-section">
+        <div class="dest-inner">
+            <div class="dest-grid" id="dest-grid">
+                {% for card in regionCards %}
+                    {% set cat = card.cat %}
+                    {% set country = card.country %}
+                    {% set image = cat.image.one() ?? null %}
+                    {% set excerpt = cat.excerpt ?? '' %}
+
+                    <a
+                        href="{{ cat.url }}"
+                        class="dest-item"
+                        data-country="{{ country }}"
+                        data-region="{{ cat.slug }}"
+                        x-show="matchCard('{{ country }}', '{{ cat.slug }}')"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4"
+                        x-transition:enter-end="opacity-100 translate-y-0"
+                    >
+                        <div class="dest-img-wrap">
+                            {% if image %}
+                                {% set imgUrl = image.getUrl('cardMedium') ?? image.url %}
+                                {% if imgUrl %}
+                                    <img
+                                        src="{{ imgUrl }}"
+                                        alt="{{ image.alt ?? image.title ?? cat.title }}"
+                                        class="dest-img"
+                                        loading="lazy"
+                                        decoding="async"
+                                        width="{{ image.getWidth('cardMedium') ?? image.width ?? 700 }}"
+                                        height="{{ image.getHeight('cardMedium') ?? image.height ?? 440 }}"
+                                    />
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="dest-info">
+                            <div class="dest-meta-row">
+                                <span class="dest-country-tag">{{ country }}</span>
+                            </div>
+                            <h3 class="dest-name">{{ cat.title }}</h3>
+                            {% if excerpt %}
+                                <p class="dest-desc">{{ excerpt }}</p>
+                            {% endif %}
+                            <span class="dest-card-cta btn-luxury">
+                                Explore {{ cat.title }}
+                                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </a>
+                {% endfor %}
             </div>
 
-            <div class="dest-filter-divider" aria-hidden="true"></div>
-
-            {# Type Filter #}
-            <div class="dest-filter-group">
-                <span class="dest-filter-group-label" id="type-filter-label">Type</span>
-                <div class="dest-filter-pills" role="group" aria-labelledby="type-filter-label">
-                    <button class="dest-filter-pill is-active" data-filter="type" data-value="all" aria-pressed="true">All Types</button>
-                    <button class="dest-filter-pill" data-filter="type" data-value="stay" aria-pressed="false">Places to Stay</button>
-                    <button class="dest-filter-pill" data-filter="type" data-value="experience" aria-pressed="false">Experiences</button>
-                </div>
+            <!-- Empty state -->
+            <div class="dest-empty" x-show="visibleCount === 0" x-cloak>
+                <div class="rule" style="margin: 0 auto 28px;"></div>
+                <p class="dest-empty-msg">No regions match your current filters.</p>
+                <button class="dest-reset-btn btn-luxury" @click="resetFilters()">
+                    Clear all filters
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                        <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
+                </button>
             </div>
-
         </div>
+    </section>
 
-        <p class="dest-filter-count" aria-live="polite" aria-atomic="true">
-            <span id="dest-count">{{ allDestinations|length }}</span>
-            <span class="dest-filter-count-label">destinations</span>
-        </p>
-    </div>
-</section>
+</div>
 
-{# ── Destinations Grid ── #}
-<section class="dest-listing-section">
-    <div class="dest-listing-inner">
-
-        <div class="dest-listing-grid" id="dest-grid">
-            {% for destination in allDestinations %}
-                {% set country = destination.destinationCountry.value ?? '' %}
-                {% set type = destination.destinationType.value ?? '' %}
-                {% set countryLabel = destination.destinationCountry.label ?? '' %}
-                {% set location = destination.destinationLocation ?? '' %}
-                {% set image = destination.destinationImage.one() ?? null %}
-
-                <a
-                    href="{{ destination.url }}"
-                    class="dest-card"
-                    data-country="{{ country }}"
-                    data-type="{{ type }}"
-                >
-                    {# Image #}
-                    <div class="dest-card-img-wrap">
-                        {% if image %}
-                            <img
-                                src="{{ image.url }}"
-                                alt="{{ image.alt ?? image.title ?? destination.title }}"
-                                class="dest-card-img"
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        {% endif %}
-
-                        {# Type badge #}
-                        {% if type %}
-                            <div class="dest-card-badge dest-card-badge--{{ type }}">
-                                {{ type == 'stay' ? 'Stay' : 'Experience' }}
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    {# Card body #}
-                    <div class="dest-card-info">
-                        {% if countryLabel or location %}
-                            <div class="dest-card-meta-row">
-                                {% if countryLabel %}
-                                    <span class="dest-card-country-tag">{{ countryLabel }}</span>
-                                {% endif %}
-                                {% if countryLabel and location %}
-                                    <span class="dest-card-sep" aria-hidden="true">·</span>
-                                {% endif %}
-                                {% if location %}
-                                    <span class="dest-card-location">{{ location }}</span>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-
-                        <h3 class="dest-card-name">{{ destination.title }}</h3>
-
-                        {% if destination.destinationDescription %}
-                            <p class="dest-card-desc">{{ destination.destinationDescription }}</p>
-                        {% endif %}
-
-                        <span class="btn-luxury dest-card-cta">
-                            View More
-                            <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
-                                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
-                            </svg>
-                        </span>
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
-
-        {# Empty state #}
-        <div class="dest-listing-empty" id="dest-empty" hidden>
-            <div class="rule" style="margin:0 auto 28px;"></div>
-            <p class="dest-listing-empty-msg">No destinations match your current filters.</p>
-            <button class="btn-luxury" id="dest-reset">
-                Clear all filters
-                <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
-                    <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
-                </svg>
-            </button>
-        </div>
-
-    </div>
-</section>
-
-{# ── CTA Section ── #}
-<section class="dest-listing-cta" data-reveal>
-    <div class="dest-listing-cta-inner">
-        <div class="rule" style="margin-bottom:32px; background:rgba(201,169,110,0.4);"></div>
-        <p class="dest-listing-cta-eyebrow">Ready to explore?</p>
-        <h2 class="dest-listing-cta-heading">Every journey begins with a conversation.</h2>
-        <p class="dest-listing-cta-body">
+<!-- Begin Planning CTA -->
+<section class="plan-cta" data-reveal>
+    <div class="plan-cta-inner">
+        <div class="rule" style="margin-bottom: 32px;"></div>
+        <p class="plan-cta-eyebrow">Ready to explore?</p>
+        <h2 class="plan-cta-heading">Every journey begins with a conversation.</h2>
+        <p class="plan-cta-body">
             Tell us where you'd like to go — and we'll take care of everything else.
         </p>
-        <a href="/contact" class="btn-filled-light">
-            Begin Your Journey
+        <a href="/contact" class="btn-filled btn-filled-light">
+            Begin an Enquiry
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
-                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1"/>
             </svg>
         </a>
     </div>
 </section>
 
-
 <script>
-(function() {
-    var activeCountry = 'all';
-    var activeType = 'all';
-    var grid = document.getElementById('dest-grid');
-    var countEl = document.getElementById('dest-count');
-    var emptyEl = document.getElementById('dest-empty');
-    var resetBtn = document.getElementById('dest-reset');
-    if (!grid || !countEl || !emptyEl || !resetBtn) return;
+document.addEventListener('alpine:init', () => {
+    Alpine.data('destinationFilters', () => ({
+        country: 'all',
+        region: 'all',
+        cards: {{ regionCards|map(c => { slug: c.cat.slug, country: c.country })|json_encode|raw }},
+        nzRegionSlugs: {{ nzRegions|map(c => c.slug)|json_encode|raw }},
+        auRegionSlugs: {{ auRegions|map(c => c.slug)|json_encode|raw }},
 
-    function getItems() {
-        return Array.from(grid.querySelectorAll('.dest-card'));
-    }
+        get visibleCount() {
+            return this.cards.filter(c => this.matchCard(c.country, c.slug)).length;
+        },
 
-    function matches(item) {
-        var c = item.dataset.country || '';
-        var t = item.dataset.type || '';
-        return (activeCountry === 'all' || c === activeCountry)
-            && (activeType === 'all' || t === activeType);
-    }
+        init() {
+            const params = new URLSearchParams(window.location.search);
+            this.country = params.get('country') || 'all';
+            this.region = params.get('region') || 'all';
 
-    function applyFilters() {
-        var items = getItems();
-        grid.classList.add('is-fading');
-
-        setTimeout(function() {
-            var visible = 0;
-            items.forEach(function(item, idx) {
-                if (matches(item)) {
-                    item.hidden = false;
-                    item.style.animation = 'none';
-                    void item.offsetWidth;
-                    item.style.animation = 'destItemReveal 0.5s ease ' + (idx * 45) + 'ms both';
-                    visible++;
-                } else {
-                    item.hidden = true;
-                    item.style.animation = 'none';
+            if (this.region !== 'all') {
+                const derived = this.countryForRegion(this.region);
+                if (derived && this.country !== derived) {
+                    this.country = derived;
                 }
-            });
+            }
+        },
 
-            countEl.textContent = String(visible);
-            emptyEl.hidden = visible > 0;
-            grid.hidden = visible === 0;
-            grid.classList.remove('is-fading');
-        }, 230);
-    }
+        countryForRegion(slug) {
+            if (this.nzRegionSlugs.includes(slug)) return 'New Zealand';
+            if (this.auRegionSlugs.includes(slug)) return 'Australia';
+            return null;
+        },
 
-    document.querySelectorAll('.dest-filter-pill').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            var filterGroup = btn.dataset.filter;
-            var value = btn.dataset.value;
+        setCountry(value) {
+            this.country = value;
+            if (this.region !== 'all') {
+                const regionCountry = this.countryForRegion(this.region);
+                if (value !== 'all' && regionCountry !== value) {
+                    this.region = 'all';
+                }
+            }
+            this.syncUrl();
+        },
 
-            document.querySelectorAll('.dest-filter-pill[data-filter="' + filterGroup + '"]').forEach(function(b) {
-                b.classList.remove('is-active');
-                b.setAttribute('aria-pressed', 'false');
-            });
-            btn.classList.add('is-active');
-            btn.setAttribute('aria-pressed', 'true');
+        setRegion(value, parentCountry) {
+            this.region = value;
+            if (parentCountry) {
+                this.country = parentCountry;
+            }
+            this.syncUrl();
+        },
 
-            if (filterGroup === 'country') activeCountry = value;
-            if (filterGroup === 'type') activeType = value;
+        resetFilters() {
+            this.country = 'all';
+            this.region = 'all';
+            this.syncUrl();
+        },
 
-            applyFilters();
-        });
-    });
+        matchCard(cardCountry, cardRegion) {
+            const countryMatch = this.country === 'all' || cardCountry === this.country;
+            const regionMatch = this.region === 'all' || cardRegion === this.region;
+            return countryMatch && regionMatch;
+        },
 
-    resetBtn.addEventListener('click', function() {
-        activeCountry = 'all';
-        activeType = 'all';
-        document.querySelectorAll('.dest-filter-pill').forEach(function(btn) {
-            var isAll = btn.dataset.value === 'all';
-            btn.classList.toggle('is-active', isAll);
-            btn.setAttribute('aria-pressed', String(isAll));
-        });
-        applyFilters();
-    });
-})();
+        syncUrl() {
+            const params = new URLSearchParams();
+            if (this.country !== 'all') params.set('country', this.country);
+            if (this.region !== 'all') params.set('region', this.region);
+            const qs = params.toString();
+            const url = window.location.pathname + (qs ? '?' + qs : '');
+            window.history.replaceState({}, '', url);
+        }
+    }));
+});
 </script>
 
 {% endblock %}

@@ -74,15 +74,15 @@
                 >
                     <div class="jcard-img-wrap">
                         {% if image %}
-                            {% set transformed = image.setTransform('cardLarge') %}
+                            {% set transformHandle = 'cardLarge' %}
                             <img
-                                src="{{ transformed.url }}"
+                                src="{{ image.getUrl(transformHandle) }}"
                                 alt="{{ image.alt ?? image.title ?? journey.title }}"
                                 class="jcard-img"
                                 loading="lazy"
                                 decoding="async"
-                                width="{{ transformed.width }}"
-                                height="{{ transformed.height }}"
+                                width="{{ image.getWidth(transformHandle) }}"
+                                height="{{ image.getHeight(transformHandle) }}"
                             />
                         {% endif %}
                         <span class="jcard-num" aria-hidden="true">{{ num }}</span>

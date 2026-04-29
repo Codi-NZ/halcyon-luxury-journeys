@@ -1,7 +1,7 @@
 columnSuffix: null
-handle: newsCategories
+handle: australiaRegion
 instructions: null
-name: 'News - Categories'
+name: 'Australia Region'
 searchable: false
 settings:
   allowSelfRelations: false
@@ -12,8 +12,8 @@ settings:
   minRelations: null
   selectionLabel: null
   showSearchInput: true
-  showSiteMenu: true
-  source: 'group:54f11066-6255-4fca-86e9-023943a31253' # News
+  showSiteMenu: false
+  source: 'group:10f64791-f180-4eb9-ac42-b4d749f3ecce' # Australia Region
   targetSiteId: null
   validateRelatedElements: false
   viewMode: list

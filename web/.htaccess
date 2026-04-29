@@ -1,5 +1,5 @@
 <IfModule mod_deflate.c>
-	SetOutputFilter DEFLATE;
+    SetOutputFilter DEFLATE;
 </IfModule>
 
 # Security Hardening
@@ -10,40 +10,40 @@ ErrorDocument 503 /error.html
 
 ## Security Headers
 <IfModule mod_headers.c>
-	Header set X-XSS-Protection "1; mode=block"
-	Header set X-Content-Type-Options nosniff
-	Header set Permissions-Policy "geolocation=self"
-	Header set Content-Security-Policy "upgrade-insecure-requests; child-src 'self'; object-src: 'none';"
-	Header set Referrer-Policy "same-origin"
-	Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Content-Type-Options nosniff
+    Header set Permissions-Policy "geolocation=self"
+    Header set Content-Security-Policy "upgrade-insecure-requests; child-src 'self'; object-src 'none';"
+    Header set Referrer-Policy "same-origin"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 </IfModule>
 
 <IfModule mod_expires.c>
-	ExpiresActive On
-	ExpiresDefault							"access plus 1 year"
-	ExpiresByType text/html					"access plus 0 seconds"
-	ExpiresByType text/xml					"access plus 0 seconds"
-	ExpiresByType application/xml			"access plus 0 seconds"
-	ExpiresByType application/json			"access plus 0 seconds"
+    ExpiresActive On
+    ExpiresDefault                            "access plus 1 year"
+    ExpiresByType text/html                    "access plus 0 seconds"
+    ExpiresByType text/xml                    "access plus 0 seconds"
+    ExpiresByType application/xml            "access plus 0 seconds"
+    ExpiresByType application/json            "access plus 0 seconds"
 </IfModule>
 
 <IfModule mod_rewrite.c>
-	RewriteEngine On
+    RewriteEngine On
 
-	# Force single correct URL & force HTTPS (the HTTPS redirect can be done via ServerPilot,
-	# but it doesn't retain the HSTS header on initial HTTP request, so better to do here)
-	# RewriteCond %{HTTPS} off [OR]
-	# RewriteCond %{HTTP_HOST} !^domain\.tld$
-	# RewriteRule ^(.*)$ https://domain.tld/$1 [R=301,L]
+    # Force single correct URL & force HTTPS (the HTTPS redirect can be done via ServerPilot,
+    # but it doesn't retain the HSTS header on initial HTTP request, so better to do here)
+    # RewriteCond %{HTTPS} off [OR]
+    # RewriteCond %{HTTP_HOST} !^domain\.tld$
+    # RewriteRule ^(.*)$ https://domain.tld/$1 [R=301,L]
 
-	# Block Outlook discovery post errors
-	# https://support.tigertech.net/autodiscover-block-requests
-	RewriteRule ^autodiscover/autodiscover.xml$ - [forbidden,last]
-	RewriteRule ^Autodiscover/Autodiscover.xml$ - [forbidden,last]
+    # Block Outlook discovery post errors
+    # https://support.tigertech.net/autodiscover-block-requests
+    RewriteRule ^autodiscover/autodiscover.xml$ - [forbidden,last]
+    RewriteRule ^Autodiscover/Autodiscover.xml$ - [forbidden,last]
 
-	# Send would-be 404 requests to Craft
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteCond %{REQUEST_URI} !^/(favicon\.ico|apple-touch-icon.*\.png)$ [NC]
-	RewriteRule (.+) index.php?p=$1 [QSA,L]
+    # Send would-be 404 requests to Craft
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !^/(favicon\.ico|apple-touch-icon.*\.png)$ [NC]
+    RewriteRule (.+) index.php?p=$1 [QSA,L]
 </IfModule>
