@@ -9,25 +9,37 @@ settings:
     -
       __assoc__:
         -
-          - default
-          - true
-        -
           - label
           - 'New Zealand'
         -
           - value
           - new-zealand
-    -
-      __assoc__:
+        -
+          - icon
+          - ''
+        -
+          - color
+          - ''
         -
           - default
-          - false
+          - '1'
+    -
+      __assoc__:
         -
           - label
           - Australia
         -
           - value
           - australia
+        -
+          - icon
+          - ''
+        -
+          - color
+          - ''
+        -
+          - default
+          - ''
 translationKeyFormat: null
 translationMethod: none
 type: craft\fields\Dropdown

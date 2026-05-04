@@ -18,4 +18,7 @@ siteSettings:
     hasUrls: true
     template: sections/destinations/detail.twig
     uriFormat: '{% set r = object.nzRegion.one() ?? object.australiaRegion.one() %}destinations/{{ r.slug }}/{{ object.slug }}'
-type: channel
+structure:
+  maxLevels: null
+  uid: 7fb1eac8-73f5-4735-bb35-2976b0231f38
+type: structure
